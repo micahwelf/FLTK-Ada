@@ -27,6 +27,26 @@ package body FLTK.Widget is
             F : in Interfaces.C.int);
     pragma Import (C, fl_widget_set_label_font, "fl_widget_set_label_font");
 
+    function fl_widget_get_label_size
+           (W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_widget_get_label_size, "fl_widget_get_label_size");
+
+    procedure fl_widget_set_label_size
+           (W : in System.Address;
+            S : in Interfaces.C.int);
+    pragma Import (C, fl_widget_set_label_size, "fl_widget_set_label_size");
+
+    function fl_widget_get_label_type
+           (W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_widget_get_label_type, "fl_widget_get_label_type");
+
+    procedure fl_widget_set_label_type
+           (W : in System.Address;
+            L : in Interfaces.C.int);
+    pragma Import (C, fl_widget_set_label_type, "fl_widget_set_label_type");
+
 
 
 
@@ -74,6 +94,46 @@ package body FLTK.Widget is
     begin
         fl_widget_set_label_font (W.Void_Ptr, Font_Kind'Pos (F));
     end Set_Label_Font;
+
+
+
+
+    function Get_Label_Size
+           (W : in Widget_Type'Class)
+        return Font_Size is
+    begin
+        return Font_Size (fl_widget_get_label_size (W.Void_Ptr));
+    end Get_Label_Size;
+
+
+
+
+    procedure Set_Label_Size
+           (W : in Widget_Type'Class;
+            S : in Font_Size) is
+    begin
+        fl_widget_set_label_size (W.Void_Ptr, Interfaces.C.int (S));
+    end Set_Label_Size;
+
+
+
+
+    function Get_Label_Type
+           (W : in Widget_Type'Class)
+        return Label_Kind is
+    begin
+        return Label_Kind'Val (fl_widget_get_label_type (W.Void_Ptr));
+    end Get_Label_Type;
+
+
+
+
+    procedure Set_Label_Type
+           (W : in Widget_Type'Class;
+            L : in Label_Kind) is
+    begin
+        fl_widget_set_label_type (W.Void_Ptr, Label_Kind'Pos (L));
+    end Set_Label_Type;
 
 
 end FLTK.Widget;

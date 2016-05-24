@@ -1,14 +1,18 @@
 
 
 with FLTK.Enums; use FLTK.Enums;
-private with Ada.Finalization;
+with Ada.Finalization;
 private with System;
 
 
 package FLTK.Widget is
 
 
-    type Widget_Type is abstract tagged limited private;
+    type Widget_Type is abstract new Ada.Finalization.Limited_Controlled with private;
+
+
+    type Font_Size is new Natural;
+    Normal_Size : constant Font_Size := 14;
 
 
     function Create
@@ -35,6 +39,26 @@ package FLTK.Widget is
     procedure Set_Label_Font
            (W : in Widget_Type'Class;
             F : in Font_Kind);
+
+
+    function Get_Label_Size
+           (W : in Widget_Type'Class)
+        return Font_Size;
+
+
+    procedure Set_Label_Size
+           (W : in Widget_Type'Class;
+            S : in Font_Size);
+
+
+    function Get_Label_Type
+           (W : in Widget_Type'Class)
+        return Label_Kind;
+
+
+    procedure Set_Label_Type
+           (W : in Widget_Type'Class;
+            L : in Label_Kind);
 
 
 private

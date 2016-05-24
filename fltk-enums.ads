@@ -83,5 +83,17 @@ package FLTK.Enums is
             Free_Font);
 
 
+    type Label_Kind is
+           (Normal_Label,
+            No_Label,
+            Shadow_Label,
+            Engraved_Label,
+            Embossed_Label,
+            Multi_Label,
+            Icon_Label,
+            Image_Label,
+            Free_Label);
+
+
 end FLTK.Enums;
 

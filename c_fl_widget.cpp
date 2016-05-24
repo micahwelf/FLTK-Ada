@@ -23,3 +23,23 @@ void fl_widget_set_label_font(my_fl_widget w, int f) {
     reinterpret_cast<Fl_Widget*>(w)->labelfont(static_cast<Fl_Font>(f));
 }
 
+
+int fl_widget_get_label_size(my_fl_widget w) {
+    return reinterpret_cast<Fl_Widget*>(w)->labelsize();
+}
+
+
+void fl_widget_set_label_size(my_fl_widget w, int s) {
+    reinterpret_cast<Fl_Widget*>(w)->labelsize(static_cast<Fl_Fontsize>(s));
+}
+
+
+int fl_widget_get_label_type(my_fl_widget w) {
+    return reinterpret_cast<Fl_Widget*>(w)->labeltype();
+}
+
+
+void fl_widget_set_label_type(my_fl_widget w, int l) {
+    reinterpret_cast<Fl_Widget*>(w)->labeltype(static_cast<Fl_Labeltype>(l));
+}
+

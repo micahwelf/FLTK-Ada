@@ -14,3 +14,18 @@ void free_fl_button(my_fl_button f) {
     delete reinterpret_cast<Fl_Button*>(f);
 }
 
+
+int fl_button_get_state(my_fl_button b) {
+    return reinterpret_cast<Fl_Button*>(b)->value();
+}
+
+
+void fl_button_set_state(my_fl_button b, int s) {
+    reinterpret_cast<Fl_Button*>(b)->value(s);
+}
+
+
+void fl_button_set_only(my_fl_button b) {
+    reinterpret_cast<Fl_Button*>(b)->setonly();
+}
+
