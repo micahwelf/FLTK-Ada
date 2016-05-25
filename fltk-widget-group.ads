@@ -14,33 +14,33 @@ package FLTK.Widget.Group is
 
 
     procedure Add
-           (This : Group_Type;
+           (This : Group_Type'Class;
             Item : Widget_Type'Class);
 
 
     procedure Clear
-           (This : Group_Type);
+           (This : Group_Type'Class);
 
 
     function Find
-           (This : Group_Type;
+           (This : Group_Type'Class;
             Item : Widget_Type'Class)
         return Index;
 
 
     procedure Insert
-           (This  : Group_Type;
+           (This  : Group_Type'Class;
             Item  : Widget_Type'Class;
             Place : Index);
 
 
     procedure Remove
-           (This : Group_Type;
+           (This : Group_Type'Class;
             Item : Widget_Type'Class);
 
 
     procedure Remove
-           (This  : Group_Type;
+           (This  : Group_Type'Class;
             Place : Index);
 
 

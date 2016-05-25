@@ -63,8 +63,8 @@ package body FLTK.Widget.Group is
 
 
     function Create
-           (X, Y, W, H : Integer;
-            Label      : String)
+           (X, Y, W, H : in Integer;
+            Label      : in String)
         return Group_Type is
 
         VP : System.Address;
@@ -84,7 +84,7 @@ package body FLTK.Widget.Group is
 
 
     procedure Add
-           (This : Group_Type;
+           (This : Group_Type'Class;
             Item : Widget_Type'Class) is
     begin
         fl_group_add (This.Void_Ptr, Item.Void_Ptr);
@@ -94,7 +94,7 @@ package body FLTK.Widget.Group is
 
 
     procedure Clear
-           (This : Group_Type) is
+           (This : Group_Type'Class) is
     begin
         fl_group_clear (This.Void_Ptr);
     end Clear;
@@ -103,7 +103,7 @@ package body FLTK.Widget.Group is
 
 
     function Find
-           (This : Group_Type;
+           (This : Group_Type'Class;
             Item : Widget_Type'Class)
         return Index is
     begin
@@ -114,7 +114,7 @@ package body FLTK.Widget.Group is
 
 
     procedure Insert
-           (This  : Group_Type;
+           (This  : Group_Type'Class;
             Item  : Widget_Type'Class;
             Place : Index) is
     begin
@@ -128,7 +128,7 @@ package body FLTK.Widget.Group is
 
 
     procedure Remove
-           (This : Group_Type;
+           (This : Group_Type'Class;
             Item : Widget_Type'Class) is
     begin
         fl_group_remove (This.Void_Ptr, Item.Void_Ptr);
@@ -138,7 +138,7 @@ package body FLTK.Widget.Group is
 
 
     procedure Remove
-           (This  : Group_Type;
+           (This  : Group_Type'Class;
             Place : Index) is
     begin
         fl_group_remove2 (This.Void_Ptr, Interfaces.C.int (Place));

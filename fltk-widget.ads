@@ -15,6 +15,9 @@ package FLTK.Widget is
     Normal_Size : constant Font_Size := 14;
 
 
+    type Color is new Natural;
+
+
     function Create
            (X, Y, W, H : in Integer;
             Label      : in String)
