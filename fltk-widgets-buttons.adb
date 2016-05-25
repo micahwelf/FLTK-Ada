@@ -10,7 +10,7 @@ package body FLTK.Widgets.Buttons is
 
     function new_fl_button
            (X, Y, W, H : in Interfaces.C.int;
-            L          : in Interfaces.C.char_array)
+            Label      : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_button, "new_fl_button");
 
@@ -35,7 +35,8 @@ package body FLTK.Widgets.Buttons is
 
 
 
-    procedure Finalize (This : in out Button) is
+    procedure Finalize
+           (This : in out Button) is
     begin
         if (This.Void_Ptr /= System.Null_Address) then
             free_fl_button (This.Void_Ptr);
@@ -46,8 +47,8 @@ package body FLTK.Widgets.Buttons is
 
 
     function Create
-           (X, Y, W, H : Integer;
-            Label      : String)
+           (X, Y, W, H : in Integer;
+            Label      : in String)
         return Button is
 
         VP : System.Address;
@@ -76,8 +77,8 @@ package body FLTK.Widgets.Buttons is
 
 
     procedure Set_State
-           (B : in Button'Class;
-            S : in State) is
+           (B : in out Button'Class;
+            S : in     State) is
     begin
         fl_button_set_state (B.Void_Ptr, State'Pos (S));
     end Set_State;
@@ -86,7 +87,7 @@ package body FLTK.Widgets.Buttons is
 
 
     procedure Set_Only
-           (B : in Button'Class) is
+           (B : in out Button'Class) is
     begin
         fl_button_set_only (B.Void_Ptr);
     end Set_Only;

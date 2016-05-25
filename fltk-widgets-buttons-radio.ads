@@ -7,8 +7,8 @@ package FLTK.Widgets.Buttons.Radio is
 
 
     function Create
-           (X, Y, W, H : Integer;
-            Label      : String)
+           (X, Y, W, H : in Integer;
+            Label      : in String)
         return Radio_Button;
 
 
@@ -18,7 +18,8 @@ private
     type Radio_Button is new Button with null record;
 
 
-    overriding procedure Finalize (This : in out Radio_Button);
+    overriding procedure Finalize
+           (This : in out Radio_Button);
 
 
 end FLTK.Widgets.Buttons.Radio;

@@ -7,8 +7,8 @@ package FLTK.Widgets.Buttons.Repeat is
 
 
     function Create
-           (X, Y, W, H : Integer;
-            Label      : String)
+           (X, Y, W, H : in Integer;
+            Label      : in String)
         return Repeat_Button;
 
 
@@ -18,7 +18,8 @@ private
     type Repeat_Button is new Button with null record;
 
 
-    overriding procedure Finalize (This : in out Repeat_Button);
+    overriding procedure Finalize
+           (This : in out Repeat_Button);
 
 
 end FLTK.Widgets.Buttons.Repeat;

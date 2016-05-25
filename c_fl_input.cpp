@@ -4,13 +4,13 @@
 #include "c_fl_input.h"
 
 
-my_fl_input new_fl_input(int x, int y, int w, int h, char * label) {
-    Fl_Input *input = new Fl_Input(x, y, w, h, label);
-    return input;
+INPUT new_fl_input(int x, int y, int w, int h, char* label) {
+    Fl_Input *i = new Fl_Input(x, y, w, h, label);
+    return i;
 }
 
 
-void free_fl_input(my_fl_input f) {
-    delete reinterpret_cast<Fl_Input*>(f);
+void free_fl_input(INPUT i) {
+    delete reinterpret_cast<Fl_Input*>(i);
 }
 

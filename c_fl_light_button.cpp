@@ -4,13 +4,13 @@
 #include "c_fl_light_button.h"
 
 
-my_fl_light_button new_fl_light_button(int x, int y, int w, int h, char * label) {
-    Fl_Light_Button *button = new Fl_Light_Button(x, y, w, h, label);
-    return button;
+LIGHTBUTTON new_fl_light_button(int x, int y, int w, int h, char* label) {
+    Fl_Light_Button *b = new Fl_Light_Button(x, y, w, h, label);
+    return b;
 }
 
 
-void free_fl_light_button(my_fl_light_button b) {
+void free_fl_light_button(LIGHTBUTTON b) {
     delete reinterpret_cast<Fl_Light_Button*>(b);
 }
 

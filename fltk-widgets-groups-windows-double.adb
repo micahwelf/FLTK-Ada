@@ -10,7 +10,7 @@ package body FLTK.Widgets.Groups.Windows.Double is
 
     function new_fl_double_window
            (X, Y, W, H : in Interfaces.C.int;
-            L          : in Interfaces.C.char_array)
+            Label      : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_double_window, "new_fl_double_window");
 
@@ -30,13 +30,15 @@ package body FLTK.Widgets.Groups.Windows.Double is
 
 
 
-    procedure fl_group_end (G : in System.Address);
+    procedure fl_group_end
+           (G : in System.Address);
     pragma Import (C, fl_group_end, "fl_group_end");
 
 
 
 
-    procedure Finalize (This : in out Double_Window) is
+    procedure Finalize
+           (This : in out Double_Window) is
     begin
         if (This.Void_Ptr /= System.Null_Address) then
             free_fl_double_window (This.Void_Ptr);
@@ -47,8 +49,8 @@ package body FLTK.Widgets.Groups.Windows.Double is
 
 
     function Create
-           (X, Y, W, H : Integer;
-            Label      : String)
+           (X, Y, W, H : in Integer;
+            Label      : in String)
         return Double_Window is
 
         VP : System.Address;

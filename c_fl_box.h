@@ -4,11 +4,11 @@
 #define FL_BOX_GUARD
 
 
-typedef void* my_fl_box;
+typedef void* BOX;
 
 
-extern "C" my_fl_box new_fl_box(int x, int y, int w, int h, char * label);
-extern "C" void free_fl_box(my_fl_box f);
+extern "C" BOX new_fl_box(int x, int y, int w, int h, char * label);
+extern "C" void free_fl_box(BOX b);
 
 
 #endif

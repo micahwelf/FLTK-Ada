@@ -4,13 +4,13 @@
 #include "c_fl_repeat_button.h"
 
 
-my_fl_repeat_button new_fl_repeat_button(int x, int y, int w, int h, char * label) {
-    Fl_Repeat_Button *button = new Fl_Repeat_Button(x, y, w, h, label);
-    return button;
+REPEATBUTTON new_fl_repeat_button(int x, int y, int w, int h, char* label) {
+    Fl_Repeat_Button *b = new Fl_Repeat_Button(x, y, w, h, label);
+    return b;
 }
 
 
-void free_fl_repeat_button(my_fl_repeat_button b) {
+void free_fl_repeat_button(REPEATBUTTON b) {
     delete reinterpret_cast<Fl_Repeat_Button*>(b);
 }
 

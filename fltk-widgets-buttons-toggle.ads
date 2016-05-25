@@ -7,8 +7,8 @@ package FLTK.Widgets.Buttons.Toggle is
 
 
     function Create
-           (X, Y, W, H : Integer;
-            Label      : String)
+           (X, Y, W, H : in Integer;
+            Label      : in String)
         return Toggle_Button;
 
 
@@ -18,7 +18,8 @@ private
     type Toggle_Button is new Button with null record;
 
 
-    overriding procedure Finalize (This : in out Toggle_Button);
+    overriding procedure Finalize
+           (This : in out Toggle_Button);
 
 
 end FLTK.Widgets.Buttons.Toggle;

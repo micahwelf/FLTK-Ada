@@ -30,8 +30,8 @@ package FLTK.Widgets is
 
 
     procedure Set_Box
-           (W : in Widget'Class;
-            B : in Box_Kind);
+           (W : in out Widget'Class;
+            B : in     Box_Kind);
 
 
     function Get_Label_Font
@@ -40,8 +40,8 @@ package FLTK.Widgets is
 
 
     procedure Set_Label_Font
-           (W : in Widget'Class;
-            F : in Font_Kind);
+           (W : in out Widget'Class;
+            F : in     Font_Kind);
 
 
     function Get_Label_Size
@@ -50,8 +50,8 @@ package FLTK.Widgets is
 
 
     procedure Set_Label_Size
-           (W : in Widget'Class;
-            S : in Font_Size);
+           (W : in out Widget'Class;
+            S : in     Font_Size);
 
 
     function Get_Label_Type
@@ -60,8 +60,8 @@ package FLTK.Widgets is
 
 
     procedure Set_Label_Type
-           (W : in Widget'Class;
-            L : in Label_Kind);
+           (W : in out Widget'Class;
+            L : in     Label_Kind);
 
 
 private
@@ -73,7 +73,8 @@ private
         end record;
 
 
-    overriding procedure Initialize (This : in out Widget);
+    overriding procedure Initialize
+           (This : in out Widget);
 
 
 end FLTK.Widgets;

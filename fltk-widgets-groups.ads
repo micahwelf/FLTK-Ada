@@ -8,40 +8,40 @@ package FLTK.Widgets.Groups is
 
 
     function Create
-           (X, Y, W, H : Integer;
-            Label      : String)
+           (X, Y, W, H : in Integer;
+            Label      : in String)
         return Group;
 
 
     procedure Add
-           (This : Group'Class;
-            Item : Widget'Class);
+           (This : in out Group'Class;
+            Item : in     Widget'Class);
 
 
     procedure Clear
-           (This : Group'Class);
+           (This : in out Group'Class);
 
 
     function Find
-           (This : Group'Class;
-            Item : Widget'Class)
+           (This : in Group'Class;
+            Item : in Widget'Class)
         return Index;
 
 
     procedure Insert
-           (This  : Group'Class;
-            Item  : Widget'Class;
-            Place : Index);
+           (This  : in out Group'Class;
+            Item  : in     Widget'Class;
+            Place : in     Index);
 
 
     procedure Remove
-           (This : Group'Class;
-            Item : Widget'Class);
+           (This : in out Group'Class;
+            Item : in     Widget'Class);
 
 
     procedure Remove
-           (This  : Group'Class;
-            Place : Index);
+           (This  : in out Group'Class;
+            Place : in     Index);
 
 
 private
@@ -50,7 +50,8 @@ private
     type Group is new Widget with null record;
 
 
-    overriding procedure Finalize (This : in out Group);
+    overriding procedure Finalize
+           (This : in out Group);
 
 
 end FLTK.Widgets.Groups;

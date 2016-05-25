@@ -10,7 +10,7 @@ package body FLTK.Widgets.Buttons.Light.Radio is
 
     function new_fl_radio_light_button
            (X, Y, W, H : in Interfaces.C.int;
-            L          : in Interfaces.C.char_array)
+            Label      : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_radio_light_button, "new_fl_radio_light_button");
 
@@ -21,7 +21,8 @@ package body FLTK.Widgets.Buttons.Light.Radio is
 
 
 
-    procedure Finalize (This : in out Radio_Light_Button) is
+    procedure Finalize
+           (This : in out Radio_Light_Button) is
     begin
         if (This.Void_Ptr /= System.Null_Address) then
             free_fl_radio_light_button (This.Void_Ptr);
@@ -32,8 +33,8 @@ package body FLTK.Widgets.Buttons.Light.Radio is
 
 
     function Create
-           (X, Y, W, H : Integer;
-            Label      : String)
+           (X, Y, W, H : in Integer;
+            Label      : in String)
         return Radio_Light_Button is
 
         VP : System.Address;

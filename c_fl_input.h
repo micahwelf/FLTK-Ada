@@ -4,11 +4,11 @@
 #define FL_INPUT_GUARD
 
 
-typedef void* my_fl_input;
+typedef void* INPUT;
 
 
-extern "C" my_fl_input new_fl_input(int x, int y, int w, int h, char * label);
-extern "C" void free_fl_input(my_fl_input f);
+extern "C" INPUT new_fl_input(int x, int y, int w, int h, char* label);
+extern "C" void free_fl_input(INPUT i);
 
 
 #endif

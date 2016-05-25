@@ -4,28 +4,28 @@
 #include "c_fl_button.h"
 
 
-my_fl_button new_fl_button(int x, int y, int w, int h, char * label) {
-    Fl_Button *button = new Fl_Button(x, y, w, h, label);
-    return button;
+BUTTON new_fl_button(int x, int y, int w, int h, char* label) {
+    Fl_Button *b = new Fl_Button(x, y, w, h, label);
+    return b;
 }
 
 
-void free_fl_button(my_fl_button f) {
-    delete reinterpret_cast<Fl_Button*>(f);
+void free_fl_button(BUTTON b) {
+    delete reinterpret_cast<Fl_Button*>(b);
 }
 
 
-int fl_button_get_state(my_fl_button b) {
+int fl_button_get_state(BUTTON b) {
     return reinterpret_cast<Fl_Button*>(b)->value();
 }
 
 
-void fl_button_set_state(my_fl_button b, int s) {
+void fl_button_set_state(BUTTON b, int s) {
     reinterpret_cast<Fl_Button*>(b)->value(s);
 }
 
 
-void fl_button_set_only(my_fl_button b) {
+void fl_button_set_only(BUTTON b) {
     reinterpret_cast<Fl_Button*>(b)->setonly();
 }
 

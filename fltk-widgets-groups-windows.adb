@@ -10,29 +10,35 @@ package body FLTK.Widgets.Groups.Windows is
 
     function new_fl_window
            (X, Y, W, H : in Interfaces.C.int;
-            L          : in Interfaces.C.char_array)
+            Label      : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_window, "new_fl_window");
 
-    function new_fl_window2 (W, H : in Interfaces.C.int) return System.Address;
+    function new_fl_window2
+           (W, H : in Interfaces.C.int)
+        return System.Address;
     pragma Import (C, new_fl_window2, "new_fl_window2");
 
-    procedure free_fl_window (W : in System.Address);
+    procedure free_fl_window
+           (W : in System.Address);
     pragma Import (C, free_fl_window, "free_fl_window");
 
-    procedure fl_window_show (W : in System.Address);
+    procedure fl_window_show
+           (W : in System.Address);
     pragma Import (C, fl_window_show, "fl_window_show");
 
 
 
 
-    procedure fl_group_end (G : in System.Address);
+    procedure fl_group_end
+           (G : in System.Address);
     pragma Import (C, fl_group_end, "fl_group_end");
 
 
 
 
-    procedure Finalize (This : in out Window) is
+    procedure Finalize
+           (This : in out Window) is
     begin
         if (This.Void_Ptr /= System.Null_Address) then
             free_fl_window (This.Void_Ptr);
@@ -43,14 +49,13 @@ package body FLTK.Widgets.Groups.Windows is
 
 
     function Create
-           (X, Y, W, H : Integer;
-            Label      : String)
+           (X, Y, W, H : in Integer;
+            Label      : in String)
         return Window is
 
         VP : System.Address;
 
     begin
-
         VP := new_fl_window
                    (Interfaces.C.int (X),
                     Interfaces.C.int (Y),
@@ -59,14 +64,17 @@ package body FLTK.Widgets.Groups.Windows is
                     Interfaces.C.To_C (Label));
         fl_group_end (VP);
         return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP);
-
     end Create;
 
 
 
 
-    function Create (W, H : in Integer) return Window is
+    function Create
+           (W, H : in Integer)
+        return Window is
+
         VP : System.Address;
+
     begin
         VP := new_fl_window2 (Interfaces.C.int (W), Interfaces.C.int (H));
         fl_group_end (VP);
@@ -76,7 +84,8 @@ package body FLTK.Widgets.Groups.Windows is
 
 
 
-    procedure Show (W : in Window) is
+    procedure Show
+           (W : in Window) is
     begin
         fl_window_show (W.Void_Ptr);
     end Show;

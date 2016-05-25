@@ -10,7 +10,7 @@ package body FLTK.Widgets.Groups is
 
     function new_fl_group
            (X, Y, W, H : in Interfaces.C.int;
-            L          : in Interfaces.C.char_array)
+            Label      : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_group, "new_fl_group");
 
@@ -52,7 +52,8 @@ package body FLTK.Widgets.Groups is
 
 
 
-    procedure Finalize (This : in out Group) is
+    procedure Finalize
+           (This : in out Group) is
     begin
         if (This.Void_Ptr /= System.Null_Address) then
             free_fl_group (This.Void_Ptr);
@@ -84,8 +85,8 @@ package body FLTK.Widgets.Groups is
 
 
     procedure Add
-           (This : Group'Class;
-            Item : Widget'Class) is
+           (This : in out Group'Class;
+            Item : in     Widget'Class) is
     begin
         fl_group_add (This.Void_Ptr, Item.Void_Ptr);
     end Add;
@@ -94,7 +95,7 @@ package body FLTK.Widgets.Groups is
 
 
     procedure Clear
-           (This : Group'Class) is
+           (This : in out Group'Class) is
     begin
         fl_group_clear (This.Void_Ptr);
     end Clear;
@@ -103,8 +104,8 @@ package body FLTK.Widgets.Groups is
 
 
     function Find
-           (This : Group'Class;
-            Item : Widget'Class)
+           (This : in Group'Class;
+            Item : in Widget'Class)
         return Index is
     begin
         return Index (fl_group_find (This.Void_Ptr, Item.Void_Ptr));
@@ -114,9 +115,9 @@ package body FLTK.Widgets.Groups is
 
 
     procedure Insert
-           (This  : Group'Class;
-            Item  : Widget'Class;
-            Place : Index) is
+           (This  : in out Group'Class;
+            Item  : in     Widget'Class;
+            Place : in     Index) is
     begin
         fl_group_insert
                (This.Void_Ptr,
@@ -128,8 +129,8 @@ package body FLTK.Widgets.Groups is
 
 
     procedure Remove
-           (This : Group'Class;
-            Item : Widget'Class) is
+           (This : in out Group'Class;
+            Item : in     Widget'Class) is
     begin
         fl_group_remove (This.Void_Ptr, Item.Void_Ptr);
     end Remove;
@@ -138,8 +139,8 @@ package body FLTK.Widgets.Groups is
 
 
     procedure Remove
-           (This  : Group'Class;
-            Place : Index) is
+           (This  : in out Group'Class;
+            Place : in     Index) is
     begin
         fl_group_remove2 (This.Void_Ptr, Interfaces.C.int (Place));
     end Remove;

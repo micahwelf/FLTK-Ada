@@ -10,7 +10,7 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
     function new_fl_text_display
            (X, Y, W, H : in Interfaces.C.int;
-            L          : in Interfaces.C.char_array)
+            Label      : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_text_display, "new_fl_text_display");
 
@@ -58,7 +58,8 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
 
 
-    procedure Finalize (This : in out Text_Display) is
+    procedure Finalize
+           (This : in out Text_Display) is
     begin
         if (This.Void_Ptr /= System.Null_Address) then
             free_fl_text_display (This.Void_Ptr);
@@ -90,7 +91,7 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
 
     function Get_Text_Color
-           (TD : in Text_Display)
+           (TD : in Text_Display'Class)
         return Color is
     begin
         return Color (fl_text_display_get_text_color (TD.Void_Ptr));
@@ -100,8 +101,8 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
 
     procedure Set_Text_Color
-           (TD : in Text_Display;
-            C : in Color) is
+           (TD : in out Text_Display'Class;
+            C  : in     Color) is
     begin
         fl_text_display_set_text_color (TD.Void_Ptr, Interfaces.C.int (C));
     end Set_Text_Color;
@@ -110,7 +111,7 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
 
     function Get_Text_Font
-           (TD : in Text_Display)
+           (TD : in Text_Display'Class)
         return Font_Kind is
     begin
         return Font_Kind'Val (fl_text_display_get_text_font (TD.Void_Ptr));
@@ -120,8 +121,8 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
 
     procedure Set_Text_Font
-           (TD : in Text_Display;
-            F : in Font_Kind) is
+           (TD : in out Text_Display'Class;
+            F  : in     Font_Kind) is
     begin
         fl_text_display_set_text_font (TD.Void_Ptr, Font_Kind'Pos (F));
     end Set_Text_Font;
@@ -130,7 +131,7 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
 
     function Get_Text_Size
-           (TD : in Text_Display)
+           (TD : in Text_Display'Class)
         return Font_Size is
     begin
         return Font_Size (fl_text_display_get_text_size (TD.Void_Ptr));
@@ -140,8 +141,8 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
 
     procedure Set_Text_Size
-           (TD : in Text_Display;
-            S : in Font_Size) is
+           (TD : in out Text_Display'Class;
+            S  : in     Font_Size) is
     begin
         fl_text_display_set_text_size (TD.Void_Ptr, Interfaces.C.int (S));
     end Set_Text_Size;

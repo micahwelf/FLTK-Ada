@@ -8,8 +8,8 @@ package FLTK.Widgets.Buttons is
 
 
     function Create
-           (X, Y, W, H : Integer;
-            Label      : String)
+           (X, Y, W, H : in Integer;
+            Label      : in String)
         return Button;
 
 
@@ -19,12 +19,12 @@ package FLTK.Widgets.Buttons is
 
 
     procedure Set_State
-           (B : in Button'Class;
-            S : in State);
+           (B : in out Button'Class;
+            S : in     State);
 
 
     procedure Set_Only
-           (B : in Button'Class);
+           (B : in out Button'Class);
 
 
 private
@@ -33,7 +33,8 @@ private
     type Button is new Widget with null record;
 
 
-    overriding procedure Finalize (This : in out Button);
+    overriding procedure Finalize
+           (This : in out Button);
 
 
 end FLTK.Widgets.Buttons;

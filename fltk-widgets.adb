@@ -50,7 +50,8 @@ package body FLTK.Widgets is
 
 
 
-    procedure Initialize (This : in out Widget) is
+    procedure Initialize
+           (This : in out Widget) is
     begin
         This.Void_Ptr := System.Null_Address;
     end Initialize;
@@ -69,8 +70,8 @@ package body FLTK.Widgets is
 
 
     procedure Set_Box
-           (W : in Widget'Class;
-            B : in Box_Kind) is
+           (W : in out Widget'Class;
+            B : in     Box_Kind) is
     begin
         fl_widget_set_box (W.Void_Ptr, Box_Kind'Pos (B));
     end Set_Box;
@@ -89,8 +90,8 @@ package body FLTK.Widgets is
 
 
     procedure Set_Label_Font
-           (W : in Widget'Class;
-            F : in Font_Kind) is
+           (W : in out Widget'Class;
+            F : in     Font_Kind) is
     begin
         fl_widget_set_label_font (W.Void_Ptr, Font_Kind'Pos (F));
     end Set_Label_Font;
@@ -109,8 +110,8 @@ package body FLTK.Widgets is
 
 
     procedure Set_Label_Size
-           (W : in Widget'Class;
-            S : in Font_Size) is
+           (W : in out Widget'Class;
+            S : in     Font_Size) is
     begin
         fl_widget_set_label_size (W.Void_Ptr, Interfaces.C.int (S));
     end Set_Label_Size;
@@ -129,8 +130,8 @@ package body FLTK.Widgets is
 
 
     procedure Set_Label_Type
-           (W : in Widget'Class;
-            L : in Label_Kind) is
+           (W : in out Widget'Class;
+            L : in     Label_Kind) is
     begin
         fl_widget_set_label_type (W.Void_Ptr, Label_Kind'Pos (L));
     end Set_Label_Type;
