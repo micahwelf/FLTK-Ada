@@ -4,6 +4,7 @@ package FLTK.Widgets.Buttons.Toggle is
 
 
     type Toggle_Button is new Button with private;
+    type Toggle_Button_Access is access all Toggle_Button;
 
 
     function Create

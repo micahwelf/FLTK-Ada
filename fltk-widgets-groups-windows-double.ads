@@ -4,6 +4,7 @@ package FLTK.Widgets.Groups.Windows.Double is
 
 
     type Double_Window is new Window with private;
+    type Double_Window_Access is access all Double_Window;
 
 
     function Create

@@ -4,6 +4,9 @@ package FLTK.Widgets.Buttons is
 
 
     type Button is new Widget with private;
+    type Button_Access is access all Button;
+
+
     type State is (On, Off);
 
 

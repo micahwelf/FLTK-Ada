@@ -4,6 +4,7 @@ package FLTK.Widgets.Buttons.Light.Radio is
 
 
     type Radio_Light_Button is new Light_Button with private;
+    type Radio_Light_Button_Access is access all Radio_Light_Button;
 
 
     function Create

@@ -1,5 +1,6 @@
 
 
+with FLTK.Text_Buffers; use FLTK.Text_Buffers;
 with FLTK.Enums; use FLTK.Enums;
 
 
@@ -7,12 +8,23 @@ package FLTK.Widgets.Groups.Text_Displays is
 
 
     type Text_Display is new Group with private;
+    type Text_Display_Access is access all Text_Display;
 
 
     function Create
            (X, Y, W, H : in Integer;
             Label      : in String)
         return Text_Display;
+
+
+    function Get_Buffer
+           (TD : in Text_Display'Class)
+        return Text_Buffer_Access;
+
+
+    procedure Set_Buffer
+           (TD : in out Text_Display'Class;
+            TB : in     Text_Buffer_Access);
 
 
     function Get_Text_Color
@@ -48,7 +60,10 @@ package FLTK.Widgets.Groups.Text_Displays is
 private
 
 
-    type Text_Display is new Group with null record;
+    type Text_Display is new Group with
+        record
+            Buffer : Text_Buffer_Access;
+        end record;
 
 
     overriding procedure Finalize

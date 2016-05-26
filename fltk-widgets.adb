@@ -50,15 +50,6 @@ package body FLTK.Widgets is
 
 
 
-    procedure Initialize
-           (This : in out Widget) is
-    begin
-        This.Void_Ptr := System.Null_Address;
-    end Initialize;
-
-
-
-
     function Get_Box
            (W : in Widget'Class)
         return Box_Kind is

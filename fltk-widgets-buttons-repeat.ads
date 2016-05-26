@@ -4,6 +4,7 @@ package FLTK.Widgets.Buttons.Repeat is
 
 
     type Repeat_Button is new Button with private;
+    type Repeat_Button_Access is access all Repeat_Button;
 
 
     function Create

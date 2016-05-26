@@ -4,6 +4,7 @@ package FLTK.Widgets.Boxes is
 
 
     type Box is new Widget with private;
+    type Box_Access is access all Box;
 
 
     function Create

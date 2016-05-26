@@ -1,14 +1,13 @@
 
 
 with FLTK.Enums; use FLTK.Enums;
-with Ada.Finalization;
-private with System;
 
 
 package FLTK.Widgets is
 
 
-    type Widget is abstract new Ada.Finalization.Limited_Controlled with private;
+    type Widget is abstract new Wrapper with private;
+    type Widget_Access is access all Widget;
 
 
     type Font_Size is new Natural;
@@ -67,14 +66,7 @@ package FLTK.Widgets is
 private
 
 
-    type Widget is abstract new Ada.Finalization.Limited_Controlled with
-        record
-            Void_Ptr : System.Address;
-        end record;
-
-
-    overriding procedure Initialize
-           (This : in out Widget);
+    type Widget is abstract new Wrapper with null record;
 
 
 end FLTK.Widgets;

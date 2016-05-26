@@ -4,6 +4,7 @@ package FLTK.Widgets.Buttons.Light.Round.Radio is
 
 
     type Radio_Round_Button is new Round_Button with private;
+    type Radio_Round_Button_Access is access all Radio_Round_Button;
 
 
     function Create

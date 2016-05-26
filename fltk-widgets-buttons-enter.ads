@@ -5,6 +5,7 @@ package FLTK.Widgets.Buttons.Enter is
 
 
     type Enter_Button is new Button with private;
+    type Enter_Button_Access is access all Enter_Button;
 
 
     function Create

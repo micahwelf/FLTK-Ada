@@ -1,7 +1,9 @@
 
 
 #include <FL/Fl_Text_Display.H>
+#include <FL/Fl_Text_Buffer.H>
 #include "c_fl_text_display.h"
+#include "c_fl_text_buffer.h"
 
 
 TEXTDISPLAY new_fl_text_display(int x, int y, int w, int h, char*  label) {
@@ -12,6 +14,18 @@ TEXTDISPLAY new_fl_text_display(int x, int y, int w, int h, char*  label) {
 
 void free_fl_text_display(TEXTDISPLAY td) {
     delete reinterpret_cast<Fl_Text_Display*>(td);
+}
+
+
+// this actually never gets called, since an access to the text_buffer
+// object is stored on the Ada side of things
+TEXTBUFFER fl_text_display_get_buffer(TEXTDISPLAY td) {
+    return reinterpret_cast<Fl_Text_Display*>(td)->buffer();
+}
+
+
+void fl_text_display_set_buffer(TEXTDISPLAY td, TEXTBUFFER tb) {
+    reinterpret_cast<Fl_Text_Display*>(td)->buffer(reinterpret_cast<Fl_Text_Buffer*>(tb));
 }
 
 

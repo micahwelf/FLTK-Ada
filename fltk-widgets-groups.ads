@@ -4,6 +4,9 @@ package FLTK.Widgets.Groups is
 
 
     type Group is new Widget with private;
+    type Group_Access is access all Group;
+
+
     type Index is new Integer;
 
 

@@ -18,6 +18,15 @@ package body FLTK.Widgets.Groups.Text_Displays is
            (TD : in System.Address);
     pragma Import (C, free_fl_text_display, "free_fl_text_display");
 
+    function fl_text_display_get_buffer
+           (TD : in System.Address)
+        return System.Address;
+    pragma Import (C, fl_text_display_get_buffer, "fl_text_display_get_buffer");
+
+    procedure fl_text_display_set_buffer
+           (TD, TB : in System.Address);
+    pragma Import (C, fl_text_display_set_buffer, "fl_text_display_set_buffer");
+
     function fl_text_display_get_text_color
            (TD : in System.Address)
         return Interfaces.C.int;
@@ -84,8 +93,29 @@ package body FLTK.Widgets.Groups.Text_Displays is
                     Interfaces.C.int (H),
                     Interfaces.C.To_C (Label));
         fl_group_end (VP);
-        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP);
+        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP, Buffer => null);
     end Create;
+
+
+
+
+    function Get_Buffer
+           (TD : in Text_Display'Class)
+        return Text_Buffer_Access is
+    begin
+        return TD.Buffer;
+    end Get_Buffer;
+
+
+
+
+    procedure Set_Buffer
+           (TD : in out Text_Display'Class;
+            TB : in     Text_Buffer_Access) is
+    begin
+        fl_text_display_set_buffer (TD.Void_Ptr, Wrapper (TB.all).Void_Ptr);
+        TD.Buffer := TB;
+    end Set_Buffer;
 
 
 

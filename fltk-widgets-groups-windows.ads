@@ -4,6 +4,7 @@ package FLTK.Widgets.Groups.Windows is
 
 
     type Window is new Group with private;
+    type Window_Access is access all Window;
 
 
     function Create
