@@ -23,8 +23,8 @@ package FLTK.Widgets.Groups.Text_Displays is
 
 
     procedure Set_Buffer
-           (TD : in out Text_Display'Class;
-            TB : in     Text_Buffer_Access);
+           (TD :         in out Text_Display'Class;
+            TB : aliased in out Text_Buffer);
 
 
     function Get_Text_Color

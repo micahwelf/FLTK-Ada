@@ -110,11 +110,11 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
 
     procedure Set_Buffer
-           (TD : in out Text_Display'Class;
-            TB : in     Text_Buffer_Access) is
+           (TD :         in out Text_Display'Class;
+            TB : aliased in out Text_Buffer) is
     begin
-        fl_text_display_set_buffer (TD.Void_Ptr, Wrapper (TB.all).Void_Ptr);
-        TD.Buffer := TB;
+        fl_text_display_set_buffer (TD.Void_Ptr, Wrapper (TB).Void_Ptr);
+        TD.Buffer := TB'Access;
     end Set_Buffer;
 
 

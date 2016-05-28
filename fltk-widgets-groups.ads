@@ -1,5 +1,13 @@
 
 
+--  need to add a Vector to keep track of the children added to a group, and
+--  to change their Void_Ptrs to null addresses if Clear or Finalize are
+--  called, otherwise bad things will happen
+
+--  similarly, Widgets need to keep track of their parent so that Insert
+--  will work correctly
+
+
 package FLTK.Widgets.Groups is
 
 
