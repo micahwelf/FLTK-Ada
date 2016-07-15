@@ -4,12 +4,11 @@ package FLTK.Widgets.Groups.Windows.Single.Menu is
 
 
     type Menu_Window is new Single_Window with private;
-    type Menu_Window_Access is access all Menu_Window;
 
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Menu_Window;
 
 
@@ -19,25 +18,25 @@ package FLTK.Widgets.Groups.Windows.Single.Menu is
 
 
     procedure Show
-           (M : in Menu_Window);
+           (This : in Menu_Window);
 
 
     procedure Hide
-           (M : in Menu_Window);
+           (This : in Menu_Window);
 
 
     procedure Flush
-           (M : in out Menu_Window);
+           (This : in out Menu_Window);
 
 
     function Get_Overlay
-           (M : in Menu_Window)
+           (This : in Menu_Window)
         return Boolean;
 
 
     procedure Set_Overlay
-           (M : in out Menu_Window;
-            V : in     Boolean);
+           (This  : in out Menu_Window;
+            Value : in     Boolean);
 
 
 private

@@ -4,12 +4,11 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
     type Text_Editor is new Text_Display with private;
-    type Text_Editor_Access is access all Text_Editor;
 
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Text_Editor;
 
 

@@ -10,8 +10,10 @@ package FLTK is
     function Run return Integer;
 
 
-    --  ugly implementation thing; never use this
-    --  just ignore the hand moving behind the curtain here
+    --  ugly implementation detail, never use this
+    --  just ignore the hand moving behind the curtain
+    --  (this is necessary so things like text_buffers and
+    --  widgets can talk to each other behind the binding)
     type Wrapper is abstract new Ada.Finalization.Limited_Controlled with private;
 
 

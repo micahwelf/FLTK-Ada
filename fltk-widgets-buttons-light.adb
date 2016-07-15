@@ -10,7 +10,7 @@ package body FLTK.Widgets.Buttons.Light is
 
     function new_fl_light_button
            (X, Y, W, H : in Interfaces.C.int;
-            Label      : in Interfaces.C.char_array)
+            Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_light_button, "new_fl_light_button");
 
@@ -24,8 +24,11 @@ package body FLTK.Widgets.Buttons.Light is
     procedure Finalize
            (This : in out Light_Button) is
     begin
+        Finalize (Button (This));
         if (This.Void_Ptr /= System.Null_Address) then
-            free_fl_light_button (This.Void_Ptr);
+            if This in Light_Button then
+                free_fl_light_button (This.Void_Ptr);
+            end if;
         end if;
     end Finalize;
 
@@ -34,19 +37,17 @@ package body FLTK.Widgets.Buttons.Light is
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Light_Button is
-
-        VP : System.Address;
-
     begin
-        VP := new_fl_light_button
+        return This : Light_Button do
+            This.Void_Ptr := new_fl_light_button
                    (Interfaces.C.int (X),
                     Interfaces.C.int (Y),
                     Interfaces.C.int (W),
                     Interfaces.C.int (H),
-                    Interfaces.C.To_C (Label));
-        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP);
+                    Interfaces.C.To_C (Text));
+        end return;
     end Create;
 
 

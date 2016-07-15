@@ -4,12 +4,11 @@ package FLTK.Widgets.Groups.Windows.Single is
 
 
     type Single_Window is new Window with private;
-    type Single_Window_Access is access all Single_Window;
 
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Single_Window;
 
 
@@ -19,11 +18,11 @@ package FLTK.Widgets.Groups.Windows.Single is
 
 
     procedure Show
-           (S : in Single_Window);
+           (This : in Single_Window);
 
 
     procedure Flush
-           (S : in out Single_Window);
+           (This : in out Single_Window);
 
 
 private

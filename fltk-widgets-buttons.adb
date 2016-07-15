@@ -10,7 +10,7 @@ package body FLTK.Widgets.Buttons is
 
     function new_fl_button
            (X, Y, W, H : in Interfaces.C.int;
-            Label      : in Interfaces.C.char_array)
+            Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_button, "new_fl_button");
 
@@ -38,8 +38,11 @@ package body FLTK.Widgets.Buttons is
     procedure Finalize
            (This : in out Button) is
     begin
-        if (This.Void_Ptr /= System.Null_Address) then
-            free_fl_button (This.Void_Ptr);
+        Finalize (Widget (This));
+        if This.Void_Ptr /= System.Null_Address then
+            if This in Button then
+                free_fl_button (This.Void_Ptr);
+            end if;
         end if;
     end Finalize;
 
@@ -48,48 +51,46 @@ package body FLTK.Widgets.Buttons is
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Button is
-
-        VP : System.Address;
-
     begin
-        VP := new_fl_button
+        return This : Button do
+            This.Void_Ptr := new_fl_button
                    (Interfaces.C.int (X),
                     Interfaces.C.int (Y),
                     Interfaces.C.int (W),
                     Interfaces.C.int (H),
-                    Interfaces.C.To_C (Label));
-        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP);
+                    Interfaces.C.To_C (Text));
+        end return;
     end Create;
 
 
 
 
     function Get_State
-           (B : in Button'Class)
+           (This : in Button)
         return State is
     begin
-        return State'Val (fl_button_get_state (B.Void_Ptr));
+        return State'Val (fl_button_get_state (This.Void_Ptr));
     end Get_State;
 
 
 
 
     procedure Set_State
-           (B : in out Button'Class;
-            S : in     State) is
+           (This : in out Button;
+            St   : in     State) is
     begin
-        fl_button_set_state (B.Void_Ptr, State'Pos (S));
+        fl_button_set_state (This.Void_Ptr, State'Pos (St));
     end Set_State;
 
 
 
 
     procedure Set_Only
-           (B : in out Button'Class) is
+           (This : in out Button) is
     begin
-        fl_button_set_only (B.Void_Ptr);
+        fl_button_set_only (This.Void_Ptr);
     end Set_Only;
 
 

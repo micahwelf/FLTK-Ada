@@ -1,16 +1,17 @@
 
 
 --  Return Buttons, but return is a reserved word, so they're Enter Buttons instead
+
+
 package FLTK.Widgets.Buttons.Enter is
 
 
     type Enter_Button is new Button with private;
-    type Enter_Button_Access is access all Enter_Button;
 
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Enter_Button;
 
 

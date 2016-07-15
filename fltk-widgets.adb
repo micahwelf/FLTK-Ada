@@ -2,6 +2,7 @@
 
 with Interfaces.C;
 with System;
+with FLTK.Widgets.Groups;
 
 
 package body FLTK.Widgets is
@@ -50,81 +51,102 @@ package body FLTK.Widgets is
 
 
 
+    procedure Finalize
+           (This : in out Widget) is
+    begin
+        if This.Parent /= null then
+            This.Parent.Remove (This);
+        end if;
+    end Finalize;
+
+
+
+
+    function Parent
+           (This : in Widget)
+        return Group_Cursor is
+    begin
+        return Ref : Group_Cursor (Data => This.Parent);
+    end Parent;
+
+
+
+
     function Get_Box
-           (W : in Widget'Class)
+           (This : in Widget)
         return Box_Kind is
     begin
-        return Box_Kind'Val (fl_widget_get_box (W.Void_Ptr));
+        return Box_Kind'Val (fl_widget_get_box (This.Void_Ptr));
     end Get_Box;
 
 
 
 
     procedure Set_Box
-           (W : in out Widget'Class;
-            B : in     Box_Kind) is
+           (This : in out Widget;
+            Box  : in     Box_Kind) is
     begin
-        fl_widget_set_box (W.Void_Ptr, Box_Kind'Pos (B));
+        fl_widget_set_box (This.Void_Ptr, Box_Kind'Pos (Box));
     end Set_Box;
 
 
 
 
     function Get_Label_Font
-           (W : in Widget'Class)
+           (This : in Widget)
         return Font_Kind is
     begin
-        return Font_Kind'Val (fl_widget_get_label_font (W.Void_Ptr));
+        return Font_Kind'Val (fl_widget_get_label_font (This.Void_Ptr));
     end Get_Label_Font;
 
 
 
 
     procedure Set_Label_Font
-           (W : in out Widget'Class;
-            F : in     Font_Kind) is
+           (This : in out Widget;
+            Font : in     Font_Kind) is
     begin
-        fl_widget_set_label_font (W.Void_Ptr, Font_Kind'Pos (F));
+        fl_widget_set_label_font (This.Void_Ptr, Font_Kind'Pos (Font));
     end Set_Label_Font;
 
 
 
 
     function Get_Label_Size
-           (W : in Widget'Class)
+           (This : in Widget)
         return Font_Size is
     begin
-        return Font_Size (fl_widget_get_label_size (W.Void_Ptr));
+        return Font_Size (fl_widget_get_label_size (This.Void_Ptr));
     end Get_Label_Size;
 
 
 
 
     procedure Set_Label_Size
-           (W : in out Widget'Class;
-            S : in     Font_Size) is
+           (This : in out Widget;
+            Size : in     Font_Size) is
     begin
-        fl_widget_set_label_size (W.Void_Ptr, Interfaces.C.int (S));
+        fl_widget_set_label_size (This.Void_Ptr, Interfaces.C.int (Size));
     end Set_Label_Size;
 
 
 
 
     function Get_Label_Type
-           (W : in Widget'Class)
+           (This : in Widget)
         return Label_Kind is
     begin
-        return Label_Kind'Val (fl_widget_get_label_type (W.Void_Ptr));
+        return Label_Kind'Val (fl_widget_get_label_type (This.Void_Ptr));
     end Get_Label_Type;
 
 
 
 
     procedure Set_Label_Type
-           (W : in out Widget'Class;
-            L : in     Label_Kind) is
+           (This  : in out Widget;
+            Label : in     Label_Kind) is
     begin
-        fl_widget_set_label_type (W.Void_Ptr, Label_Kind'Pos (L));
+        fl_widget_set_label_type (This.Void_Ptr, Label_Kind'Pos (Label));
     end Set_Label_Type;
 
 

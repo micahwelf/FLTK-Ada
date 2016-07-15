@@ -4,12 +4,11 @@ package FLTK.Widgets.Groups.Windows is
 
 
     type Window is new Group with private;
-    type Window_Access is access all Window;
 
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Window;
 
 
@@ -19,7 +18,7 @@ package FLTK.Widgets.Groups.Windows is
 
 
     procedure Show
-           (W : in Window);
+           (This : in Window);
 
 
 private

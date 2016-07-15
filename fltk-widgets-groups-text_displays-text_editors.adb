@@ -10,7 +10,7 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
     function new_fl_text_editor
            (X, Y, W, H : in Interfaces.C.int;
-            Label      : in Interfaces.C.char_array)
+            Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_text_editor, "new_fl_text_editor");
 
@@ -31,8 +31,11 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     procedure Finalize
            (This : in out Text_Editor) is
     begin
-        if (This.Void_Ptr /= System.Null_Address) then
-            free_fl_text_editor (This.Void_Ptr);
+        Finalize (Text_Display (This));
+        if This.Void_Ptr /= System.Null_Address then
+            if This in Text_Editor then
+                free_fl_text_editor (This.Void_Ptr);
+            end if;
         end if;
     end Finalize;
 
@@ -41,20 +44,18 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Text_Editor is
-
-        VP : System.Address;
-
     begin
-        VP := new_fl_text_editor
+        return This : Text_Editor do
+            This.Void_Ptr := new_fl_text_editor
                    (Interfaces.C.int (X),
                     Interfaces.C.int (Y),
                     Interfaces.C.int (W),
                     Interfaces.C.int (H),
-                    Interfaces.C.To_C (Label));
-        fl_group_end (VP);
-        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP, Buffer => null);
+                    Interfaces.C.To_C (Text));
+            fl_group_end (This.Void_Ptr);
+        end return;
     end Create;
 
 

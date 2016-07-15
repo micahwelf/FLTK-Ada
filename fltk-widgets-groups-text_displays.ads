@@ -8,53 +8,52 @@ package FLTK.Widgets.Groups.Text_Displays is
 
 
     type Text_Display is new Group with private;
-    type Text_Display_Access is access all Text_Display;
 
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Text_Display;
 
 
     function Get_Buffer
-           (TD : in Text_Display'Class)
-        return Text_Buffer_Access;
+           (This : in Text_Display)
+        return Text_Buffer_Cursor;
 
 
     procedure Set_Buffer
-           (TD :         in out Text_Display'Class;
-            TB : aliased in out Text_Buffer);
+           (This : in out Text_Display;
+            Buff : in out Text_Buffer);
 
 
     function Get_Text_Color
-           (TD : in Text_Display'Class)
+           (This : in Text_Display)
         return Color;
 
 
     procedure Set_Text_Color
-           (TD : in out Text_Display'Class;
-            C  : in     Color);
+           (This : in out Text_Display;
+            Col  : in     Color);
 
 
     function Get_Text_Font
-           (TD : in Text_Display'Class)
+           (This : in Text_Display)
         return Font_Kind;
 
 
     procedure Set_Text_Font
-           (TD : in out Text_Display'Class;
-            F  : in     Font_Kind);
+           (This : in out Text_Display;
+            Font : in     Font_Kind);
 
 
     function Get_Text_Size
-           (TD : in Text_Display'Class)
+           (This : in Text_Display)
         return Font_Size;
 
 
     procedure Set_Text_Size
-           (TD : in out Text_Display'Class;
-            S  : in     Font_Size);
+           (This : in out Text_Display;
+            Size : in     Font_Size);
 
 
 private
@@ -62,7 +61,7 @@ private
 
     type Text_Display is new Group with
         record
-            Buffer : Text_Buffer_Access;
+            Buffer : access Text_Buffer;
         end record;
 
 

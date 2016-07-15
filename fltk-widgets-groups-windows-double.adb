@@ -10,7 +10,7 @@ package body FLTK.Widgets.Groups.Windows.Double is
 
     function new_fl_double_window
            (X, Y, W, H : in Interfaces.C.int;
-            Label      : in Interfaces.C.char_array)
+            Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_double_window, "new_fl_double_window");
 
@@ -40,8 +40,11 @@ package body FLTK.Widgets.Groups.Windows.Double is
     procedure Finalize
            (This : in out Double_Window) is
     begin
-        if (This.Void_Ptr /= System.Null_Address) then
-            free_fl_double_window (This.Void_Ptr);
+        Finalize (Window (This));
+        if This.Void_Ptr /= System.Null_Address then
+            if This in Double_Window then
+                free_fl_double_window (This.Void_Ptr);
+            end if;
         end if;
     end Finalize;
 
@@ -50,20 +53,18 @@ package body FLTK.Widgets.Groups.Windows.Double is
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Double_Window is
-
-        VP : System.Address;
-
     begin
-        VP := new_fl_double_window
+        return This : Double_Window do
+            This.Void_Ptr := new_fl_double_window
                    (Interfaces.C.int (X),
                     Interfaces.C.int (Y),
                     Interfaces.C.int (W),
                     Interfaces.C.int (H),
-                    Interfaces.C.To_C (Label));
-        fl_group_end (VP);
-        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP);
+                    Interfaces.C.To_C (Text));
+            fl_group_end (This.Void_Ptr);
+        end return;
     end Create;
 
 
@@ -72,24 +73,22 @@ package body FLTK.Widgets.Groups.Windows.Double is
     function Create
            (W, H : in Integer)
         return Double_Window is
-
-        VP : System.Address;
-
     begin
-        VP := new_fl_double_window2
+        return This : Double_Window do
+            This.Void_Ptr := new_fl_double_window2
                    (Interfaces.C.int (W),
                     Interfaces.C.int (H));
-        fl_group_end (VP);
-        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP);
+            fl_group_end (This.Void_Ptr);
+        end return;
     end Create;
 
 
 
 
     procedure Show
-           (W : in Double_Window) is
+           (This : in Double_Window) is
     begin
-        fl_double_window_show (W.Void_Ptr);
+        fl_double_window_show (This.Void_Ptr);
     end Show;
 
 

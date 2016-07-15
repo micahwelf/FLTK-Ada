@@ -23,8 +23,10 @@ package body FLTK.Text_Buffers is
     procedure Finalize
            (This : in out Text_Buffer) is
     begin
-        if (This.Void_Ptr /= System.Null_Address) then
-            free_fl_text_buffer (This.Void_Ptr);
+        if This.Void_Ptr /= System.Null_Address then
+            if This in Text_Buffer then
+                free_fl_text_buffer (This.Void_Ptr);
+            end if;
         end if;
     end Finalize;
 
@@ -35,14 +37,12 @@ package body FLTK.Text_Buffers is
            (Requested_Size     : in Natural := 0;
             Preferred_Gap_Size : in Natural := 1024)
         return Text_Buffer is
-
-        VP : System.Address;
-
     begin
-        VP := new_fl_text_buffer
+        return This : Text_Buffer do
+            This.Void_Ptr := new_fl_text_buffer
                    (Interfaces.C.int (Requested_Size),
                     Interfaces.C.int (Preferred_Gap_Size));
-        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP);
+        end return;
     end Create;
 
 

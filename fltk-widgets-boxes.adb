@@ -10,7 +10,7 @@ package body FLTK.Widgets.Boxes is
 
     function new_fl_box
            (X, Y, W, H : in Interfaces.C.int;
-            Label      : in Interfaces.C.char_array)
+            Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_box, "new_fl_box");
 
@@ -24,8 +24,11 @@ package body FLTK.Widgets.Boxes is
     procedure Finalize
            (This : in out Box) is
     begin
+        Finalize (Widget (This));
         if (This.Void_Ptr /= System.Null_Address) then
-            free_fl_box (This.Void_Ptr);
+            if This in Box then
+                free_fl_box (This.Void_Ptr);
+            end if;
         end if;
     end Finalize;
 
@@ -34,19 +37,17 @@ package body FLTK.Widgets.Boxes is
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Box is
-
-        VP : System.Address;
-
     begin
-        VP := new_fl_box
+        return This : Box do
+            This.Void_Ptr := new_fl_box
                    (Interfaces.C.int (X),
                     Interfaces.C.int (Y),
                     Interfaces.C.int (W),
                     Interfaces.C.int (H),
-                    Interfaces.C.To_C (Label));
-        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP);
+                    Interfaces.C.To_C (Text));
+        end return;
     end Create;
 
 

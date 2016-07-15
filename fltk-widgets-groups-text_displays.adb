@@ -70,8 +70,11 @@ package body FLTK.Widgets.Groups.Text_Displays is
     procedure Finalize
            (This : in out Text_Display) is
     begin
+        Finalize (Group (This));
         if (This.Void_Ptr /= System.Null_Address) then
-            free_fl_text_display (This.Void_Ptr);
+            if This in Text_Display then
+                free_fl_text_display (This.Void_Ptr);
+            end if;
         end if;
     end Finalize;
 
@@ -80,101 +83,99 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Text_Display is
-
-        VP : System.Address;
-
     begin
-        VP := new_fl_text_display
+        return This : Text_Display do
+            This.Void_Ptr := new_fl_text_display
                    (Interfaces.C.int (X),
                     Interfaces.C.int (Y),
                     Interfaces.C.int (W),
                     Interfaces.C.int (H),
-                    Interfaces.C.To_C (Label));
-        fl_group_end (VP);
-        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP, Buffer => null);
+                    Interfaces.C.To_C (Text));
+            fl_group_end (This.Void_Ptr);
+        end return;
     end Create;
 
 
 
 
     function Get_Buffer
-           (TD : in Text_Display'Class)
-        return Text_Buffer_Access is
+           (This : in Text_Display)
+        return Text_Buffer_Cursor is
     begin
-        return TD.Buffer;
+        return Ref : Text_Buffer_Cursor (This.Buffer);
     end Get_Buffer;
 
 
 
 
     procedure Set_Buffer
-           (TD :         in out Text_Display'Class;
-            TB : aliased in out Text_Buffer) is
+           (This : in out Text_Display;
+            Buff : in out Text_Buffer) is
     begin
-        fl_text_display_set_buffer (TD.Void_Ptr, Wrapper (TB).Void_Ptr);
-        TD.Buffer := TB'Access;
+        This.Buffer := Buff'Unchecked_Access;
+        fl_text_display_set_buffer (This.Void_Ptr, Wrapper (Buff).Void_Ptr);
     end Set_Buffer;
 
 
 
 
     function Get_Text_Color
-           (TD : in Text_Display'Class)
+           (This : in Text_Display)
         return Color is
     begin
-        return Color (fl_text_display_get_text_color (TD.Void_Ptr));
+        return Color (fl_text_display_get_text_color (This.Void_Ptr));
     end Get_Text_Color;
 
 
 
 
     procedure Set_Text_Color
-           (TD : in out Text_Display'Class;
-            C  : in     Color) is
+           (This : in out Text_Display;
+            Col  : in     Color) is
     begin
-        fl_text_display_set_text_color (TD.Void_Ptr, Interfaces.C.int (C));
+        fl_text_display_set_text_color (This.Void_Ptr, Interfaces.C.int (Col));
     end Set_Text_Color;
 
 
 
 
     function Get_Text_Font
-           (TD : in Text_Display'Class)
+           (This : in Text_Display)
         return Font_Kind is
     begin
-        return Font_Kind'Val (fl_text_display_get_text_font (TD.Void_Ptr));
+        return Font_Kind'Val (fl_text_display_get_text_font (This.Void_Ptr));
     end Get_Text_Font;
 
 
 
 
     procedure Set_Text_Font
-           (TD : in out Text_Display'Class;
-            F  : in     Font_Kind) is
+           (This : in out Text_Display;
+            Font : in     Font_Kind) is
     begin
-        fl_text_display_set_text_font (TD.Void_Ptr, Font_Kind'Pos (F));
+        fl_text_display_set_text_font (This.Void_Ptr, Font_Kind'Pos (Font));
     end Set_Text_Font;
 
 
 
 
     function Get_Text_Size
-           (TD : in Text_Display'Class)
+           (This : in Text_Display)
         return Font_Size is
     begin
-        return Font_Size (fl_text_display_get_text_size (TD.Void_Ptr));
+        return Font_Size (fl_text_display_get_text_size (This.Void_Ptr));
     end Get_Text_Size;
 
 
 
 
     procedure Set_Text_Size
-           (TD : in out Text_Display'Class;
-            S  : in     Font_Size) is
+           (This : in out Text_Display;
+            Size : in     Font_Size) is
     begin
-        fl_text_display_set_text_size (TD.Void_Ptr, Interfaces.C.int (S));
+        fl_text_display_set_text_size (This.Void_Ptr, Interfaces.C.int (Size));
     end Set_Text_Size;
 
 

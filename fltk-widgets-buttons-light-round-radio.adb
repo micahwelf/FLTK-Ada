@@ -10,7 +10,7 @@ package body FLTK.Widgets.Buttons.Light.Round.Radio is
 
     function new_fl_radio_round_button
            (X, Y, W, H : in Interfaces.C.int;
-            Label      : in Interfaces.C.char_array)
+            Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_radio_round_button, "new_fl_radio_round_button");
 
@@ -24,8 +24,11 @@ package body FLTK.Widgets.Buttons.Light.Round.Radio is
     procedure Finalize
            (This : in out Radio_Round_Button) is
     begin
+        Finalize (Round_Button (This));
         if (This.Void_Ptr /= System.Null_Address) then
-            free_fl_radio_round_button (This.Void_Ptr);
+            if This in Radio_Round_Button then
+                free_fl_radio_round_button (This.Void_Ptr);
+            end if;
         end if;
     end Finalize;
 
@@ -34,19 +37,17 @@ package body FLTK.Widgets.Buttons.Light.Round.Radio is
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Radio_Round_Button is
-
-        VP : System.Address;
-
     begin
-        VP := new_fl_radio_round_button
+        return This : Radio_Round_Button do
+            This.Void_Ptr := new_fl_radio_round_button
                    (Interfaces.C.int (X),
                     Interfaces.C.int (Y),
                     Interfaces.C.int (W),
                     Interfaces.C.int (H),
-                    Interfaces.C.To_C (Label));
-        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP);
+                    Interfaces.C.To_C (Text));
+        end return;
     end Create;
 
 

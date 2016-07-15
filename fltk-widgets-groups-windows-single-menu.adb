@@ -62,8 +62,11 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     procedure Finalize
            (This : in out Menu_Window) is
     begin
-        if (This.Void_Ptr /= System.Null_Address) then
-            free_fl_menu_window (This.Void_Ptr);
+        Finalize (Single_Window (This));
+        if This.Void_Ptr /= System.Null_Address then
+            if This in Menu_Window then
+                free_fl_menu_window (This.Void_Ptr);
+            end if;
         end if;
     end Finalize;
 
@@ -72,20 +75,18 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Menu_Window is
-
-        VP : System.Address;
-
     begin
-        VP := new_fl_menu_window
+        return This : Menu_Window do
+            This.Void_Ptr := new_fl_menu_window
                    (Interfaces.C.int (X),
                     Interfaces.C.int (Y),
                     Interfaces.C.int (W),
                     Interfaces.C.int (H),
-                    Interfaces.C.To_C (Label));
-        fl_group_end (VP);
-        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP);
+                    Interfaces.C.To_C (Text));
+            fl_group_end (This.Void_Ptr);
+        end return;
     end Create;
 
 
@@ -94,52 +95,50 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     function Create
            (W, H : in Integer)
         return Menu_Window is
-
-        VP : System.Address;
-
     begin
-        VP := new_fl_menu_window2
+        return This : Menu_Window do
+            This.Void_Ptr := new_fl_menu_window2
                    (Interfaces.C.int (W),
                     Interfaces.C.int (H));
-        fl_group_end (VP);
-        return (Ada.Finalization.Limited_Controlled with Void_Ptr => VP);
+            fl_group_end (This.Void_Ptr);
+        end return;
     end Create;
 
 
 
 
     procedure Show
-           (M : in Menu_Window) is
+           (This : in Menu_Window) is
     begin
-        fl_menu_window_show (M.Void_Ptr);
+        fl_menu_window_show (This.Void_Ptr);
     end Show;
 
 
 
 
     procedure Hide
-           (M : in Menu_Window) is
+           (This : in Menu_Window) is
     begin
-        fl_menu_window_hide (M.Void_Ptr);
+        fl_menu_window_hide (This.Void_Ptr);
     end Hide;
 
 
 
 
     procedure Flush
-           (M : in out Menu_Window) is
+           (This : in out Menu_Window) is
     begin
-        fl_menu_window_flush (M.Void_Ptr);
+        fl_menu_window_flush (This.Void_Ptr);
     end Flush;
 
 
 
 
     function Get_Overlay
-           (M : in Menu_Window)
+           (This : in Menu_Window)
         return Boolean is
     begin
-        if fl_menu_window_overlay (M.Void_Ptr) = 0 then
+        if fl_menu_window_overlay (This.Void_Ptr) = 0 then
             return False;
         else
             return True;
@@ -149,13 +148,13 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
 
 
     procedure Set_Overlay
-           (M : in out Menu_Window;
-            V : in     Boolean) is
+           (This  : in out Menu_Window;
+            Value : in     Boolean) is
     begin
-        if V then
-            fl_menu_window_set_overlay (M.Void_Ptr);
+        if Value then
+            fl_menu_window_set_overlay (This.Void_Ptr);
         else
-            fl_menu_window_clear_overlay (M.Void_Ptr);
+            fl_menu_window_clear_overlay (This.Void_Ptr);
         end if;
     end Set_Overlay;
 

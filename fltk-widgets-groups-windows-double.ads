@@ -4,12 +4,11 @@ package FLTK.Widgets.Groups.Windows.Double is
 
 
     type Double_Window is new Window with private;
-    type Double_Window_Access is access all Double_Window;
 
 
     function Create
            (X, Y, W, H : in Integer;
-            Label      : in String)
+            Text       : in String)
         return Double_Window;
 
 
@@ -19,7 +18,7 @@ package FLTK.Widgets.Groups.Windows.Double is
 
 
     procedure Show
-           (W : in Double_Window);
+           (This : in Double_Window);
 
 
 private

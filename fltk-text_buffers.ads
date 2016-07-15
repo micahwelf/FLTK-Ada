@@ -4,7 +4,8 @@ package FLTK.Text_Buffers is
 
 
     type Text_Buffer is new Wrapper with private;
-    type Text_Buffer_Access is access all Text_Buffer;
+    type Text_Buffer_Cursor (Data : access Text_Buffer'Class) is limited null record
+        with Implicit_Dereference => Data;
 
 
     function Create
