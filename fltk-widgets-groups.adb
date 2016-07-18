@@ -32,11 +32,6 @@ package body FLTK.Widgets.Groups is
            (G : in System.Address);
     pragma Import (C, fl_group_clear, "fl_group_clear");
 
-    --  function fl_group_find
-    --         (G, W : in System.Address)
-    --      return Interfaces.C.int;
-    --  pragma Import (C, fl_group_find, "fl_group_find");
-
     procedure fl_group_insert
            (G, W : in System.Address;
             P    : in Interfaces.C.int);

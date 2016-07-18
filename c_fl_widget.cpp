@@ -14,6 +14,16 @@ void fl_widget_set_box(WIDGET w, int b) {
 }
 
 
+const char* fl_widget_get_label(WIDGET w) {
+    return reinterpret_cast<Fl_Widget*>(w)->label();
+}
+
+
+void fl_widget_set_label(WIDGET w, const char* t) {
+    reinterpret_cast<Fl_Widget*>(w)->copy_label(t);
+}
+
+
 int fl_widget_get_label_font(WIDGET w) {
     return reinterpret_cast<Fl_Widget*>(w)->labelfont();
 }

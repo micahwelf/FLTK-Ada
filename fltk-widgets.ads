@@ -43,6 +43,16 @@ package FLTK.Widgets is
             Box  : in     Box_Kind);
 
 
+    function Get_Label
+           (This : in out Widget)
+        return String;
+
+
+    procedure Set_Label
+           (This : in out Widget;
+            Text : in     String);
+
+
     function Get_Label_Font
            (This : in Widget)
         return Font_Kind;

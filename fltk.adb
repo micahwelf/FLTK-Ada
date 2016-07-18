@@ -2,6 +2,7 @@
 
 with Interfaces.C;
 with System;
+use type System.Address;
 
 
 package body FLTK is
@@ -17,6 +18,16 @@ package body FLTK is
     begin
         return Integer (fl_run);
     end Run;
+
+
+
+
+    function Has_Valid_Ptr
+           (This : in Wrapper)
+        return Boolean is
+    begin
+        return This.Void_Ptr /= System.Null_Address;
+    end Has_Valid_Ptr;
 
 
 

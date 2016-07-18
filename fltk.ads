@@ -20,10 +20,19 @@ package FLTK is
 private
 
 
+    function Has_Valid_Ptr
+           (This : in Wrapper)
+        return Boolean;
+
+
     type Wrapper is abstract new Ada.Finalization.Limited_Controlled with
         record
             Void_Ptr : System.Address;
-        end record;
+        end record
+        with Type_Invariant => Has_Valid_Ptr (Wrapper);
+
+    --  unsure if the above invariant is doing what I'm after
+    --  oh well, something to work on
 
 
     overriding procedure Initialize

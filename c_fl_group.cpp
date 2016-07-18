@@ -17,9 +17,13 @@ void free_fl_group(GROUP g) {
 }
 
 
+
+
 void fl_group_end(GROUP g) {
     reinterpret_cast<Fl_Group*>(g)->end();
 }
+
+
 
 
 void fl_group_add(GROUP g, WIDGET item) {
@@ -29,11 +33,6 @@ void fl_group_add(GROUP g, WIDGET item) {
 
 void fl_group_clear(GROUP g) {
     reinterpret_cast<Fl_Group*>(g)->clear();
-}
-
-
-int fl_group_find(GROUP g, WIDGET item) {
-    return reinterpret_cast<Fl_Group*>(g)->find(reinterpret_cast<Fl_Widget*>(item));
 }
 
 

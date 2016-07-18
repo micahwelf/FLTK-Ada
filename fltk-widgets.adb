@@ -1,6 +1,7 @@
 
 
 with Interfaces.C;
+with Interfaces.C.Strings;
 with System;
 with FLTK.Widgets.Groups;
 
@@ -17,6 +18,16 @@ package body FLTK.Widgets is
            (W : in System.Address;
             B : in Interfaces.C.int);
     pragma Import (C, fl_widget_set_box, "fl_widget_set_box");
+
+    function fl_widget_get_label
+           (W : in System.Address)
+        return Interfaces.C.Strings.chars_ptr;
+    pragma Import (C, fl_widget_get_label, "fl_widget_get_label");
+
+    procedure fl_widget_set_label
+           (W : in System.Address;
+            T : in Interfaces.C.char_array);
+    pragma Import (C, fl_widget_set_label, "fl_widget_set_label");
 
     function fl_widget_get_label_font
            (W : in System.Address)
@@ -88,6 +99,26 @@ package body FLTK.Widgets is
     begin
         fl_widget_set_box (This.Void_Ptr, Box_Kind'Pos (Box));
     end Set_Box;
+
+
+
+
+    function Get_Label
+           (This : in out Widget)
+        return String is
+    begin
+        return Interfaces.C.Strings.Value (fl_widget_get_label (This.Void_Ptr));
+    end Get_Label;
+
+
+
+
+    procedure Set_Label
+           (This : in out Widget;
+            Text : in     String) is
+    begin
+        fl_widget_set_label (This.Void_Ptr, Interfaces.C.To_C (Text));
+    end Set_Label;
 
 
 
