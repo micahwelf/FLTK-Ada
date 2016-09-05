@@ -7,7 +7,7 @@ package FLTK.Callbacks is
 
 
     function Create
-           (Call : in access procedure)
+           (Call : access procedure)
         return Callback;
 
 

@@ -4,10 +4,10 @@ package body FLTK.Callbacks is
 
 
     function Create
-           (Call : in access procedure)
+           (Call : access procedure)
         return Callback is
     begin
-        return null record;
+        return This : Callback;
     end Create;
 
 

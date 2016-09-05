@@ -8,19 +8,19 @@ use type System.Address;
 package body FLTK.Menu_Items is
 
 
-    function Create
+    function Shortcut
            (Key : Pressable_Key)
         return Shortcut_Key is
     begin
         return This : Shortcut_Key do
-            This.Modifiers := Mod_None;
+            This.Modifier := Mod_None;
             This.Keypress := Key;
         end return;
-    end Create;
+    end Shortcut;
 
 
     function "+"
-           (Left, Right : in Modifer_Key)
+           (Left, Right : in Modifier_Key)
         return Modifier_Key is
     begin
         return Left or Right;
@@ -33,19 +33,19 @@ package body FLTK.Menu_Items is
         return Shortcut_Key is
     begin
         return This : Shortcut_Key do
-            This.Modifiers := Left;
+            This.Modifier := Left;
             This.Keypress := Right;
         end return;
     end "+";
 
 
     function "+"
-           (Left  : in Modifer_Key;
+           (Left  : in Modifier_Key;
             Right : in Shortcut_Key)
         return Shortcut_Key is
     begin
         return This : Shortcut_Key do
-            This.Modifiers := Left or Right.Modifiers;
+            This.Modifier := Left or Right.Modifier;
             This.Keypress := Right.Keypress;
         end return;
     end "+";
@@ -63,10 +63,29 @@ package body FLTK.Menu_Items is
 
 
 
+    function new_fl_menu_item
+           (Text  : in Interfaces.C.char_array;
+            CBack : in System.Address;
+            --  Data  : in System.Address;
+            Key   : in Interfaces.C.unsigned_long;
+            Flags : in Interfaces.C.unsigned_short)
+        return System.Address;
+    pragma Import (C, new_fl_menu_item, "new_fl_menu_item");
+
+    procedure free_fl_menu_item
+           (M : in System.Address);
+    pragma Import (C, free_fl_menu_item, "free_fl_menu_item");
+
+
+
+
     procedure Finalize
            (This : in out Menu_Item) is
     begin
-        null;
+        Finalize (Wrapper (This));
+        if This in Menu_Item then
+            free_fl_menu_item (This.Void_Ptr);
+        end if;
     end Finalize;
 
 
