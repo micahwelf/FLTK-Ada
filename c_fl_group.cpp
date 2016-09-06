@@ -31,8 +31,8 @@ void fl_group_add(GROUP g, WIDGET item) {
 }
 
 
-void fl_group_clear(GROUP g) {
-    reinterpret_cast<Fl_Group*>(g)->clear();
+int fl_group_find(GROUP g, WIDGET item) {
+    return reinterpret_cast<Fl_Group*>(g)->find(reinterpret_cast<Fl_Widget*>(item));
 }
 
 
@@ -48,5 +48,17 @@ void fl_group_remove(GROUP g, WIDGET item) {
 
 void fl_group_remove2(GROUP g, int place) {
     reinterpret_cast<Fl_Group*>(g)->remove(place);
+}
+
+
+
+
+int fl_group_children(GROUP g) {
+    return reinterpret_cast<Fl_Group*>(g)->children();
+}
+
+
+void * fl_group_child(GROUP g, int place) {
+    return reinterpret_cast<Fl_Group*>(g)->child(place);
 }
 

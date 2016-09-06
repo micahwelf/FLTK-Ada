@@ -15,10 +15,13 @@ extern "C" void free_fl_group(GROUP g);
 extern "C" void fl_group_end(GROUP g);
 
 extern "C" void fl_group_add(GROUP g, WIDGET item);
-extern "C" void fl_group_clear(GROUP g);
+extern "C" int fl_group_find(GROUP g, WIDGET item);
 extern "C" void fl_group_insert(GROUP g, WIDGET item, int place);
 extern "C" void fl_group_remove(GROUP g, WIDGET item);
 extern "C" void fl_group_remove2(GROUP g, int place);
+
+extern "C" int fl_group_children(GROUP g);
+extern "C" void * fl_group_child(GROUP g, int place);
 
 
 #endif

@@ -52,13 +52,6 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
 
 
 
-    procedure fl_group_end
-           (G : in System.Address);
-    pragma Import (C, fl_group_end, "fl_group_end");
-
-
-
-
     procedure Finalize
            (This : in out Menu_Window) is
     begin
@@ -86,6 +79,9 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
                     Interfaces.C.int (H),
                     Interfaces.C.To_C (Text));
             fl_group_end (This.Void_Ptr);
+            fl_widget_set_user_data
+                   (This.Void_Ptr,
+                    Widget_Convert.To_Address (This'Unchecked_Access));
         end return;
     end Create;
 
@@ -101,6 +97,9 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
                    (Interfaces.C.int (W),
                     Interfaces.C.int (H));
             fl_group_end (This.Void_Ptr);
+            fl_widget_set_user_data
+                   (This.Void_Ptr,
+                    Widget_Convert.To_Address (This'Unchecked_Access));
         end return;
     end Create;
 

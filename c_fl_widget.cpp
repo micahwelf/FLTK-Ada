@@ -4,6 +4,20 @@
 #include "c_fl_widget.h"
 
 
+
+
+void * fl_widget_get_user_data(WIDGET w) {
+    return reinterpret_cast<Fl_Widget*>(w)->user_data();
+}
+
+
+void fl_widget_set_user_data(WIDGET w, void * d) {
+    reinterpret_cast<Fl_Widget*>(w)->user_data(d);
+}
+
+
+
+
 int fl_widget_get_box(WIDGET w) {
     return reinterpret_cast<Fl_Widget*>(w)->box();
 }
@@ -51,5 +65,10 @@ int fl_widget_get_label_type(WIDGET w) {
 
 void fl_widget_set_label_type(WIDGET w, int l) {
     reinterpret_cast<Fl_Widget*>(w)->labeltype(static_cast<Fl_Labeltype>(l));
+}
+
+
+void * fl_widget_get_parent(WIDGET w) {
+    return reinterpret_cast<Fl_Widget*>(w)->parent();
 }
 

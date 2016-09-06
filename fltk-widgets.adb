@@ -3,10 +3,17 @@
 with Interfaces.C;
 with Interfaces.C.Strings;
 with System;
-with FLTK.Widgets.Groups;
+with System.Address_To_Access_Conversions;
+with FLTK.Widgets.Groups; use FLTK.Widgets.Groups;
+use type System.Address;
 
 
 package body FLTK.Widgets is
+
+
+    package Group_Convert is new System.Address_To_Access_Conversions (Group'Class);
+
+
 
 
     function fl_widget_get_box
@@ -59,16 +66,10 @@ package body FLTK.Widgets is
             L : in Interfaces.C.int);
     pragma Import (C, fl_widget_set_label_type, "fl_widget_set_label_type");
 
-
-
-
-    procedure Finalize
-           (This : in out Widget) is
-    begin
-        if This.Parent /= null then
-            This.Parent.Remove (This);
-        end if;
-    end Finalize;
+    function fl_widget_get_parent
+           (W : in System.Address)
+        return System.Address;
+    pragma Import (C, fl_widget_get_parent, "fl_widget_get_parent");
 
 
 
@@ -76,8 +77,16 @@ package body FLTK.Widgets is
     function Parent
            (This : in Widget)
         return Group_Cursor is
+
+        Parent_Ptr : System.Address;
+        Actual_Parent : access Group'Class;
+
     begin
-        return Ref : Group_Cursor (Data => This.Parent);
+        Parent_Ptr := fl_widget_get_parent (This.Void_Ptr);
+        if Parent_Ptr /= System.Null_Address then
+            Actual_Parent := Group_Convert.To_Pointer (fl_widget_get_user_data (Parent_Ptr));
+        end if;
+        return Ref : Group_Cursor (Data => Actual_Parent);
     end Parent;
 
 

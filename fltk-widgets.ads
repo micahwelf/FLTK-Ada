@@ -2,6 +2,8 @@
 
 with FLTK.Enums; use FLTK.Enums;
 limited with FLTK.Widgets.Groups;
+private with System;
+private with System.Address_To_Access_Conversions;
 
 
 package FLTK.Widgets is
@@ -86,14 +88,21 @@ package FLTK.Widgets is
 private
 
 
-    type Widget is abstract new Wrapper with
-        record
-            Parent : access FLTK.Widgets.Groups.Group;
-        end record;
+    type Widget is abstract new Wrapper with null record;
 
 
-    overriding procedure Finalize
-           (This : in out Widget);
+    package Widget_Convert is new System.Address_To_Access_Conversions (Widget'Class);
+
+
+    function fl_widget_get_user_data
+           (W : in System.Address)
+        return System.Address;
+    pragma Import (C, fl_widget_get_user_data, "fl_widget_get_user_data");
+
+
+    procedure fl_widget_set_user_data
+           (W, D : in System.Address);
+    pragma Import (C, fl_widget_set_user_data, "fl_widget_set_user_data");
 
 
 end FLTK.Widgets;

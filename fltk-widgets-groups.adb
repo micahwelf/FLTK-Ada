@@ -3,8 +3,6 @@
 with Interfaces.C;
 with System;
 use type System.Address;
-with Ada.Containers.Vectors;
-use type Ada.Containers.Count_Type;
 
 
 package body FLTK.Widgets.Groups is
@@ -20,17 +18,14 @@ package body FLTK.Widgets.Groups is
            (G : in System.Address);
     pragma Import (C, free_fl_group, "free_fl_group");
 
-    procedure fl_group_end
-           (G : in System.Address);
-    pragma Import (C, fl_group_end, "fl_group_end");
-
     procedure fl_group_add
            (G, W : in System.Address);
     pragma Import (C, fl_group_add, "fl_group_add");
 
-    procedure fl_group_clear
-           (G : in System.Address);
-    pragma Import (C, fl_group_clear, "fl_group_clear");
+    function fl_group_find
+           (G, W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_group_find, "fl_group_find");
 
     procedure fl_group_insert
            (G, W : in System.Address;
@@ -46,15 +41,16 @@ package body FLTK.Widgets.Groups is
             P : in Interfaces.C.int);
     pragma Import (C, fl_group_remove2, "fl_group_remove2");
 
+    function fl_group_children
+           (G : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_group_children, "fl_group_children");
 
-
-
-    procedure Initialize
-           (This : in out Group) is
-    begin
-        Initialize (Widget (This));
-        This.Widget_List := Widget_Vectors.Empty_Vector;
-    end Initialize;
+    function fl_group_child
+           (G : in System.Address;
+            I : in Interfaces.C.int)
+        return System.Address;
+    pragma Import (C, fl_group_child, "fl_group_child");
 
 
 
@@ -64,9 +60,7 @@ package body FLTK.Widgets.Groups is
     begin
         Finalize (Widget (This));
         if This.Void_Ptr /= System.Null_Address then
-            while This.Widget_List.Length > 0 loop
-                This.Remove (This.Widget_List.Last_Index);
-            end loop;
+            This.Clear;
             if This in Group then
                 free_fl_group (This.Void_Ptr);
             end if;
@@ -89,6 +83,9 @@ package body FLTK.Widgets.Groups is
                     Interfaces.C.int (H),
                     Interfaces.C.To_C (Text));
             fl_group_end (This.Void_Ptr);
+            fl_widget_set_user_data
+                   (This.Void_Ptr,
+                    Widget_Convert.To_Address (This'Unchecked_Access));
         end return;
     end Create;
 
@@ -99,11 +96,6 @@ package body FLTK.Widgets.Groups is
            (This : in out Group;
             Item : in out Widget'Class) is
     begin
-        if Item.Parent /= null then
-            Item.Parent.Remove (Item);
-        end if;
-        This.Widget_List.Append (Item'Unchecked_Access);
-        Item.Parent := This'Unchecked_Access;
         fl_group_add (This.Void_Ptr, Item.Void_Ptr);
     end Add;
 
@@ -114,9 +106,26 @@ package body FLTK.Widgets.Groups is
            (This  : in Group;
             Place : in Index)
         return Widget_Cursor is
+
+        Widget_Ptr : System.Address :=
+                fl_group_child (This.Void_Ptr, Interfaces.C.int (Place - 1));
+
+        Actual_Widget : access Widget'Class :=
+                Widget_Convert.To_Pointer (fl_widget_get_user_data (Widget_Ptr));
+
     begin
-        return Ref : Widget_Cursor (This.Widget_List.Element (Place));
+        return Ref : Widget_Cursor (Data => Actual_Widget);
     end Child;
+
+
+
+
+    function Number_Of_Children
+           (This : in Group)
+        return Natural is
+    begin
+        return Natural (fl_group_children (This.Void_Ptr));
+    end Number_Of_Children;
 
 
 
@@ -124,10 +133,9 @@ package body FLTK.Widgets.Groups is
     procedure Clear
            (This : in out Group) is
     begin
-        while This.Widget_List.Length > 0 loop
-            This.Remove (This.Widget_List.Last_Index);
+        for I in reverse 1 .. This.Number_Of_Children loop
+            This.Remove (Index (I));
         end loop;
-        fl_group_clear (This.Void_Ptr);
     end Clear;
 
 
@@ -138,7 +146,8 @@ package body FLTK.Widgets.Groups is
             Item : in out Widget'Class)
         return Index is
     begin
-        return This.Widget_List.Find_Index (Item'Unchecked_Access);
+        --  should set this up to throw an exception if not found
+        return Index (fl_group_find (This.Void_Ptr, Item.Void_Ptr));
     end Find;
 
 
@@ -149,11 +158,6 @@ package body FLTK.Widgets.Groups is
             Item  : in out Widget'Class;
             Place : in     Index) is
     begin
-        if Item.Parent /= null then
-            Item.Parent.Remove (Item);
-        end if;
-        This.Widget_List.Insert (Place, Item'Unchecked_Access);
-        Item.Parent := This'Unchecked_Access;
         fl_group_insert
                (This.Void_Ptr,
                 Item.Void_Ptr,
@@ -167,8 +171,6 @@ package body FLTK.Widgets.Groups is
            (This : in out Group;
             Item : in out Widget'Class) is
     begin
-        Item.Parent := null;
-        This.Widget_List.Delete (This.Find (Item));
         fl_group_remove (This.Void_Ptr, Item.Void_Ptr);
     end Remove;
 
@@ -179,8 +181,6 @@ package body FLTK.Widgets.Groups is
            (This  : in out Group;
             Place : in     Index) is
     begin
-        This.Widget_List.Element (Place).Parent := null;
-        This.Widget_List.Delete (Place);
         fl_group_remove2 (This.Void_Ptr, Interfaces.C.int (Place));
     end Remove;
 

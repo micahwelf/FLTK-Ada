@@ -1,6 +1,6 @@
 
 
-private with Ada.Containers.Vectors;
+private with System;
 
 
 package FLTK.Widgets.Groups is
@@ -25,6 +25,11 @@ package FLTK.Widgets.Groups is
            (This  : in Group;
             Place : in Index)
         return Widget_Cursor;
+
+
+    function Number_Of_Children
+           (This : in Group)
+        return Natural;
 
 
     procedure Clear
@@ -56,22 +61,16 @@ package FLTK.Widgets.Groups is
 private
 
 
-    type Widget_Access is access all Widget'Class;
-    package Widget_Vectors is new Ada.Containers.Vectors (Index, Widget_Access);
-
-
-    type Group is new Widget with
-        record
-            Widget_List : Widget_Vectors.Vector;
-        end record;
-
-
-    overriding procedure Initialize
-           (This : in out Group);
+    type Group is new Widget with null record;
 
 
     overriding procedure Finalize
            (This : in out Group);
+
+
+    procedure fl_group_end
+           (G : in System.Address);
+    pragma Import (C, fl_group_end, "fl_group_end");
 
 
 end FLTK.Widgets.Groups;

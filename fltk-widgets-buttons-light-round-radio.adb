@@ -47,6 +47,9 @@ package body FLTK.Widgets.Buttons.Light.Round.Radio is
                     Interfaces.C.int (W),
                     Interfaces.C.int (H),
                     Interfaces.C.To_C (Text));
+            fl_widget_set_user_data
+                   (This.Void_Ptr,
+                    Widget_Convert.To_Address (This'Unchecked_Access));
         end return;
     end Create;
 
