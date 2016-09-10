@@ -72,3 +72,10 @@ void * fl_widget_get_parent(WIDGET w) {
     return reinterpret_cast<Fl_Widget*>(w)->parent();
 }
 
+
+
+
+void fl_widget_set_callback(WIDGET w, void * cb) {
+    reinterpret_cast<Fl_Widget*>(w)->callback(reinterpret_cast<Fl_Callback_p>(cb));
+}
+

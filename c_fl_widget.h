@@ -24,5 +24,8 @@ extern "C" void fl_widget_set_label_type(WIDGET w, int l);
 extern "C" void * fl_widget_get_parent(WIDGET w);
 
 
+extern "C" void fl_widget_set_callback(WIDGET w, void * cb);
+
+
 #endif
 

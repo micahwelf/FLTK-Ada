@@ -14,6 +14,12 @@ package FLTK.Widgets is
         with Implicit_Dereference => Data;
 
 
+    type Widget_Callback is interface;
+    procedure Call
+           (This : in     Widget_Callback;
+            Item : in out Widget'Class) is abstract;
+
+
     --  would like to move this definition to FLTK.Widgets.Groups somehow
     type Group_Cursor (Data : access FLTK.Widgets.Groups.Group'Class) is limited null record
         with Implicit_Dereference => Data;
@@ -85,10 +91,18 @@ package FLTK.Widgets is
             Label : in     Label_Kind);
 
 
+    procedure Set_Callback
+           (This : in out Widget;
+            Func : not null access Widget_Callback'Class);
+
+
 private
 
 
-    type Widget is abstract new Wrapper with null record;
+    type Widget is abstract new Wrapper with
+        record
+            Callback : access Widget_Callback'Class;
+        end record;
 
 
     package Widget_Convert is new System.Address_To_Access_Conversions (Widget'Class);

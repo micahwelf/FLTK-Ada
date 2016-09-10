@@ -71,6 +71,10 @@ package body FLTK.Widgets is
         return System.Address;
     pragma Import (C, fl_widget_get_parent, "fl_widget_get_parent");
 
+    procedure fl_widget_set_callback
+           (W, C : in System.Address);
+    pragma Import (C, fl_widget_set_callback, "fl_widget_set_callback");
+
 
 
 
@@ -188,6 +192,35 @@ package body FLTK.Widgets is
     begin
         fl_widget_set_label_type (This.Void_Ptr, Label_Kind'Pos (Label));
     end Set_Label_Type;
+
+
+
+
+    --  this is the part called by FLTK callbacks
+    --  note that the user data portion is a reference back to the Ada binding
+    procedure Callback_Hook (W, U : in System.Address);
+    pragma Convention (C, Callback_Hook);
+
+    procedure Callback_Hook
+           (W, U : in System.Address) is
+
+        Ada_Widget : access Widget'Class :=
+            Widget_Convert.To_Pointer (U);
+
+    begin
+        Ada_Widget.Callback.Call (Ada_Widget.all);
+    end Callback_Hook;
+
+
+
+
+    procedure Set_Callback
+           (This : in out Widget;
+            Func : not null access Widget_Callback'Class) is
+    begin
+        This.Callback := Func;
+        fl_widget_set_callback (This.Void_Ptr, Callback_Hook'Address);
+    end Set_Callback;
 
 
 end FLTK.Widgets;
