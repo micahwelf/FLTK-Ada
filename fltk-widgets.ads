@@ -106,6 +106,7 @@ private
 
 
     package Widget_Convert is new System.Address_To_Access_Conversions (Widget'Class);
+    package Callback_Convert is new System.Address_To_Access_Conversions (Widget_Callback'Class);
 
 
     function fl_widget_get_user_data
