@@ -18,6 +18,22 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
            (TE : in System.Address);
     pragma Import (C, free_fl_text_editor, "free_fl_text_editor");
 
+    procedure fl_text_editor_cut
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_cut, "fl_text_editor_cut");
+
+    procedure fl_text_editor_copy
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_copy, "fl_text_editor_copy");
+
+    procedure fl_text_editor_paste
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_paste, "fl_text_editor_paste");
+
+    procedure fl_text_editor_delete
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_delete, "fl_text_editor_delete");
+
 
 
 
@@ -53,6 +69,42 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
                     Widget_Convert.To_Address (This'Unchecked_Access));
         end return;
     end Create;
+
+
+
+
+    procedure Cut
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_cut (This.Void_Ptr);
+    end Cut;
+
+
+
+
+    procedure Copy
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_copy (This.Void_Ptr);
+    end Copy;
+
+
+
+
+    procedure Paste
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_paste (This.Void_Ptr);
+    end Paste;
+
+
+
+
+    procedure Delete
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_delete (This.Void_Ptr);
+    end Delete;
 
 
 end FLTK.Widgets.Groups.Text_Displays.Text_Editors;

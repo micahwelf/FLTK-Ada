@@ -1,5 +1,9 @@
 
 
+private with Ada.Containers.Vectors;
+private with System.Address_To_Access_Conversions;
+
+
 package FLTK.Text_Buffers is
 
 
@@ -8,20 +12,69 @@ package FLTK.Text_Buffers is
         with Implicit_Dereference => Data;
 
 
+    type Position is new Natural;
+
+
+    type Modification is (Insert, Restyle, Delete);
+    type Modify_Callback is interface;
+    procedure Call
+           (This         : in Modify_Callback;
+            Action       : in Modification;
+            Place        : in Position;
+            Length       : in Natural;
+            Deleted_Text : in String) is abstract;
+
+
+    type Predelete_Callback is interface;
+    procedure Call
+           (This   : in Predelete_Callback;
+            Place  : in Position;
+            Length : in Natural) is abstract;
+
+
     function Create
            (Requested_Size     : in Natural := 0;
             Preferred_Gap_Size : in Natural := 1024)
         return Text_Buffer;
 
 
+    procedure Add_Modify_Callback
+           (This : in out Text_Buffer;
+            Func : not null access Modify_Callback'Class);
+
+
+    procedure Add_Predelete_Callback
+           (This : in out Text_Buffer;
+            Func : not null access Predelete_Callback'Class);
+
+
 private
 
 
-    type Text_Buffer is new Wrapper with null record;
+    type Modify_Access is access all Modify_Callback'Class;
+    type Predelete_Access is access all Predelete_Callback'Class;
+
+
+    package Modify_Vectors is new Ada.Containers.Vectors
+           (Index_Type => Positive,
+            Element_Type => Modify_Access);
+    package Predelete_Vectors is new Ada.Containers.Vectors
+           (Index_Type => Positive,
+            Element_Type => Predelete_Access);
+
+
+    type Text_Buffer is new Wrapper with
+        record
+            Modify_CBs : Modify_Vectors.Vector;
+            Predelete_CBs : Predelete_Vectors.Vector;
+        end record;
 
 
     overriding procedure Finalize
            (This : in out Text_Buffer);
+
+
+    package Text_Buffer_Convert is new System.Address_To_Access_Conversions (Text_Buffer);
 
 
 end FLTK.Text_Buffers;

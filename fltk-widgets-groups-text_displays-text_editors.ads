@@ -12,6 +12,22 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
         return Text_Editor;
 
 
+    procedure Cut
+           (This : in out Text_Editor);
+
+
+    procedure Copy
+           (This : in out Text_Editor);
+
+
+    procedure Paste
+           (This : in out Text_Editor);
+
+
+    procedure Delete
+           (This : in out Text_Editor);
+
+
 private
 
 
