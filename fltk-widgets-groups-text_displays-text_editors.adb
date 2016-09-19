@@ -18,6 +18,10 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
            (TE : in System.Address);
     pragma Import (C, free_fl_text_editor, "free_fl_text_editor");
 
+    procedure fl_text_editor_undo
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_undo, "fl_text_editor_undo");
+
     procedure fl_text_editor_cut
            (TE : in System.Address);
     pragma Import (C, fl_text_editor_cut, "fl_text_editor_cut");
@@ -69,6 +73,15 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
                     Widget_Convert.To_Address (This'Unchecked_Access));
         end return;
     end Create;
+
+
+
+
+    procedure Undo
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_undo (This.Void_Ptr);
+    end Undo;
 
 
 

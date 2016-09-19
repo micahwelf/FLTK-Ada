@@ -21,6 +21,15 @@ package FLTK.Widgets.Groups.Windows is
            (This : in Window);
 
 
+    procedure Hide
+           (This : in Window);
+
+
+    procedure Set_Label
+           (This : in out Window;
+            Text : in     String);
+
+
 private
 
 

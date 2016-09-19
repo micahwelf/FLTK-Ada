@@ -27,6 +27,10 @@ package body FLTK.Widgets.Groups.Windows.Double is
             (W : in System.Address);
     pragma Import (C, fl_double_window_show, "fl_double_window_show");
 
+    procedure fl_double_window_hide
+            (W : in System.Address);
+    pragma Import (C, fl_double_window_hide, "fl_double_window_hide");
+
 
 
 
@@ -89,6 +93,15 @@ package body FLTK.Widgets.Groups.Windows.Double is
     begin
         fl_double_window_show (This.Void_Ptr);
     end Show;
+
+
+
+
+    procedure Hide
+           (This : in Double_Window) is
+    begin
+        fl_double_window_hide (This.Void_Ptr);
+    end Hide;
 
 
 end FLTK.Widgets.Groups.Windows.Double;

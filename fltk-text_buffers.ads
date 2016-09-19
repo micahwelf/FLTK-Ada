@@ -15,7 +15,7 @@ package FLTK.Text_Buffers is
     type Position is new Natural;
 
 
-    type Modification is (Insert, Restyle, Delete);
+    type Modification is (Insert, Restyle, Delete, None);
     type Modify_Callback is interface;
     procedure Call
            (This         : in Modify_Callback;
@@ -46,6 +46,38 @@ package FLTK.Text_Buffers is
     procedure Add_Predelete_Callback
            (This : in out Text_Buffer;
             Func : not null access Predelete_Callback'Class);
+
+
+    procedure Call_Modify_Callbacks
+           (This : in out Text_Buffer);
+
+
+    procedure Call_Predelete_Callbacks
+           (This : in out Text_Buffer);
+
+
+    function Length
+           (This : in Text_Buffer)
+        return Natural;
+
+
+    procedure Load_File
+           (This : in Text_Buffer;
+            Name : in String);
+
+
+    procedure Remove_Selected_Text
+           (This : in out Text_Buffer);
+
+
+    procedure Save_File
+           (This : in Text_Buffer;
+            Name : in String);
+
+
+    procedure Set_Selection
+           (This          : in out Text_Buffer;
+            Start, Finish : in     Natural);
 
 
 private

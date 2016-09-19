@@ -25,3 +25,13 @@ void fl_window_show(WINDOW n) {
     reinterpret_cast<Fl_Window*>(n)->show();
 }
 
+
+void fl_window_hide(WINDOW n) {
+    reinterpret_cast<Fl_Window*>(n)->hide();
+}
+
+
+void fl_window_set_label(WINDOW n, char* text) {
+    reinterpret_cast<Fl_Window*>(n)->copy_label(text);
+}
+

@@ -27,6 +27,15 @@ package body FLTK.Widgets.Groups.Windows is
            (W : in System.Address);
     pragma Import (C, fl_window_show, "fl_window_show");
 
+    procedure fl_window_hide
+           (W : in System.Address);
+    pragma Import (C, fl_window_hide, "fl_window_hide");
+
+    procedure fl_window_set_label
+           (W : in System.Address;
+            T : in Interfaces.C.char_array);
+    pragma Import (C, fl_window_set_label, "fl_window_set_label");
+
 
 
 
@@ -89,6 +98,25 @@ package body FLTK.Widgets.Groups.Windows is
     begin
         fl_window_show (This.Void_Ptr);
     end Show;
+
+
+
+
+    procedure Hide
+           (This : in Window) is
+    begin
+        fl_window_hide (This.Void_Ptr);
+    end Hide;
+
+
+
+
+    procedure Set_Label
+           (This : in out Window;
+            Text : in     String) is
+    begin
+        fl_window_set_label (This.Void_Ptr, Interfaces.C.To_C (Text));
+    end Set_Label;
 
 
 end FLTK.Widgets.Groups.Windows;

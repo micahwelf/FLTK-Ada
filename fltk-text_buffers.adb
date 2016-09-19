@@ -36,6 +36,42 @@ package body FLTK.Text_Buffers is
     pragma Import (C, fl_text_buffer_add_predelete_callback,
                     "fl_text_buffer_add_predelete_callback");
 
+    procedure fl_text_buffer_call_modify_callbacks
+           (TB : in System.Address);
+    pragma Import (C, fl_text_buffer_call_modify_callbacks,
+                    "fl_text_buffer_call_modify_callbacks");
+
+    procedure fl_text_buffer_call_predelete_callbacks
+           (TB : in System.Address);
+    pragma Import (C, fl_text_buffer_call_predelete_callbacks,
+                    "fl_text_buffer_call_predelete_callbacks");
+
+    function fl_text_buffer_length
+           (TB : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_buffer_length, "fl_text_buffer_length");
+
+    function fl_text_buffer_loadfile
+           (TB : in System.Address;
+            N  : in Interfaces.C.char_array)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_buffer_loadfile, "fl_text_buffer_loadfile");
+
+    procedure fl_text_buffer_remove_selection
+           (TB : in System.Address);
+    pragma Import (C, fl_text_buffer_remove_selection, "fl_text_buffer_remove_selection");
+
+    function fl_text_buffer_savefile
+           (TB : in System.Address;
+            N  : in Interfaces.C.char_array)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_buffer_savefile, "fl_text_buffer_savefile");
+
+    procedure fl_text_buffer_select
+           (TB   : in System.Address;
+            S, E : in Interfaces.C.int);
+    pragma Import (C, fl_text_buffer_select, "fl_text_buffer_select");
+
 
 
 
@@ -88,7 +124,8 @@ package body FLTK.Text_Buffers is
             Length := Natural (Restyled);
             Action := Restyle;
         else
-            raise Program_Error;
+            Length := 0;
+            Action := None;
         end if;
 
         for CB of Ada_Text_Buffer.Modify_CBs loop
@@ -169,6 +206,90 @@ package body FLTK.Text_Buffers is
         end if;
         This.Predelete_CBs.Append (Func);
     end Add_Predelete_Callback;
+
+
+
+
+    procedure Call_Modify_Callbacks
+           (This : in out Text_Buffer) is
+    begin
+        fl_text_buffer_call_modify_callbacks (This.Void_Ptr);
+    end Call_Modify_Callbacks;
+
+
+
+
+    procedure Call_Predelete_Callbacks
+           (This : in out Text_Buffer) is
+    begin
+        fl_text_buffer_call_predelete_callbacks (This.Void_Ptr);
+    end Call_Predelete_Callbacks;
+
+
+
+
+    function Length
+           (This : in Text_Buffer)
+        return Natural is
+    begin
+        return Natural (fl_text_buffer_length (This.Void_Ptr));
+    end Length;
+
+
+
+
+    procedure Load_File
+           (This : in Text_Buffer;
+            Name : in String) is
+
+        Err_No : Interfaces.C.int := fl_text_buffer_loadfile
+               (This.Void_Ptr,
+                Interfaces.C.To_C (Name));
+
+    begin
+        if Err_No /= 0 then
+            raise Storage_Error;
+        end if;
+    end Load_File;
+
+
+
+
+    procedure Remove_Selected_Text
+           (This : in out Text_Buffer) is
+    begin
+        fl_text_buffer_remove_selection (This.Void_Ptr);
+    end Remove_Selected_Text;
+
+
+
+
+    procedure Save_File
+           (This : in Text_Buffer;
+            Name : in String) is
+
+        Err_No : Interfaces.C.int := fl_text_buffer_savefile
+               (This.Void_Ptr,
+                Interfaces.C.To_C (Name));
+
+    begin
+        if Err_No /= 0 then
+            raise Storage_Error;
+        end if;
+    end Save_File;
+
+
+
+
+    procedure Set_Selection
+           (This          : in out Text_Buffer;
+            Start, Finish : in     Natural) is
+    begin
+        fl_text_buffer_select
+               (This.Void_Ptr,
+                Interfaces.C.int (Start),
+                Interfaces.C.int (Finish));
+    end Set_Selection;
 
 
 end FLTK.Text_Buffers;

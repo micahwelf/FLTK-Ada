@@ -12,6 +12,10 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
         return Text_Editor;
 
 
+    procedure Undo
+           (This : in out Text_Editor);
+
+
     procedure Cut
            (This : in out Text_Editor);
 

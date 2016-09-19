@@ -21,6 +21,10 @@ package FLTK.Widgets.Groups.Windows.Double is
            (This : in Double_Window);
 
 
+    procedure Hide
+           (This : in Double_Window);
+
+
 private
 
 

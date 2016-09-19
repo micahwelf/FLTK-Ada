@@ -25,3 +25,8 @@ void fl_double_window_show(DOUBLEWINDOW d) {
     reinterpret_cast<Fl_Double_Window*>(d)->show();
 }
 
+
+void fl_double_window_hide(DOUBLEWINDOW d) {
+    reinterpret_cast<Fl_Double_Window*>(d)->hide();
+}
+
