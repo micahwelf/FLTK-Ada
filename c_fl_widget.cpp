@@ -79,3 +79,35 @@ void fl_widget_set_callback(WIDGET w, void * cb) {
     reinterpret_cast<Fl_Widget*>(w)->callback(reinterpret_cast<Fl_Callback_p>(cb));
 }
 
+
+
+
+int fl_widget_get_x(WIDGET w) {
+    return reinterpret_cast<Fl_Widget*>(w)->x();
+}
+
+
+int fl_widget_get_y(WIDGET w) {
+    return reinterpret_cast<Fl_Widget*>(w)->y();
+}
+
+
+int fl_widget_get_w(WIDGET w) {
+    return reinterpret_cast<Fl_Widget*>(w)->w();
+}
+
+
+int fl_widget_get_h(WIDGET w) {
+    return reinterpret_cast<Fl_Widget*>(w)->h();
+}
+
+
+void fl_widget_size(WIDGET w, int d, int h) {
+    reinterpret_cast<Fl_Widget*>(w)->size(d, h);
+}
+
+
+void fl_widget_position(WIDGET w, int x, int y) {
+    reinterpret_cast<Fl_Widget*>(w)->position(x, y);
+}
+

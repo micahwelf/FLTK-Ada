@@ -75,6 +75,36 @@ package body FLTK.Widgets is
            (W, C : in System.Address);
     pragma Import (C, fl_widget_set_callback, "fl_widget_set_callback");
 
+    function fl_widget_get_x
+           (W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_widget_get_x, "fl_widget_get_x");
+
+    function fl_widget_get_y
+           (W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_widget_get_y, "fl_widget_get_y");
+
+    function fl_widget_get_w
+           (W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_widget_get_w, "fl_widget_get_w");
+
+    function fl_widget_get_h
+           (W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_widget_get_h, "fl_widget_get_h");
+
+    procedure fl_widget_size
+           (W    : in System.Address;
+            D, H : in Interfaces.C.int);
+    pragma Import (C, fl_widget_size, "fl_widget_size");
+
+    procedure fl_widget_position
+           (W    : in System.Address;
+            X, Y : in Interfaces.C.int);
+    pragma Import (C, fl_widget_position, "fl_widget_position");
+
 
 
 
@@ -221,6 +251,72 @@ package body FLTK.Widgets is
         This.Callback := Func;
         fl_widget_set_callback (This.Void_Ptr, Callback_Hook'Address);
     end Set_Callback;
+
+
+
+
+    function Get_X
+           (This : in Widget)
+        return Integer is
+    begin
+        return Integer (fl_widget_get_x (This.Void_Ptr));
+    end Get_X;
+
+
+
+
+    function Get_Y
+           (This : in Widget)
+        return Integer is
+    begin
+        return Integer (fl_widget_get_y (This.Void_Ptr));
+    end Get_Y;
+
+
+
+
+    function Get_W
+           (This : in Widget)
+        return Integer is
+    begin
+        return Integer (fl_widget_get_w (This.Void_Ptr));
+    end Get_W;
+
+
+
+
+    function Get_H
+           (This : in Widget)
+        return Integer is
+    begin
+        return Integer (fl_widget_get_h (This.Void_Ptr));
+    end Get_H;
+
+
+
+
+    procedure Resize
+           (This : in out Widget;
+            W, H : in     Integer) is
+    begin
+        fl_widget_size
+               (This.Void_Ptr,
+                Interfaces.C.int (W),
+                Interfaces.C.int (H));
+    end Resize;
+
+
+
+
+    procedure Reposition
+           (This : in out Widget;
+            X, Y : in     Integer) is
+    begin
+        fl_widget_position
+               (This.Void_Ptr,
+                Interfaces.C.int (X),
+                Interfaces.C.int (Y));
+    end Reposition;
 
 
 end FLTK.Widgets;

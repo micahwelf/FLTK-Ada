@@ -96,6 +96,15 @@ package FLTK.Widgets is
             Func : not null access Widget_Callback'Class);
 
 
+    function Get_X (This : in Widget) return Integer;
+    function Get_Y (This : in Widget) return Integer;
+    function Get_W (This : in Widget) return Integer;
+    function Get_H (This : in Widget) return Integer;
+
+
+    procedure Resize (This : in out Widget; W, H : in Integer);
+    procedure Reposition (This : in out Widget; X, Y : in Integer);
+
 private
 
 

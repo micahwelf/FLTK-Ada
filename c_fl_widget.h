@@ -27,5 +27,13 @@ extern "C" void * fl_widget_get_parent(WIDGET w);
 extern "C" void fl_widget_set_callback(WIDGET w, void * cb);
 
 
+extern "C" int fl_widget_get_x(WIDGET w);
+extern "C" int fl_widget_get_y(WIDGET w);
+extern "C" int fl_widget_get_w(WIDGET w);
+extern "C" int fl_widget_get_h(WIDGET w);
+extern "C" void fl_widget_size(WIDGET w, int d, int h);
+extern "C" void fl_widget_position(WIDGET w, int x, int y);
+
+
 #endif
 
