@@ -36,6 +36,11 @@ package body FLTK.Widgets.Groups.Windows is
             T : in Interfaces.C.char_array);
     pragma Import (C, fl_window_set_label, "fl_window_set_label");
 
+    procedure fl_window_size_range
+           (W                         : in System.Address;
+            LW, LH, HW, HH, DW, DH, A : in Interfaces.C.int);
+    pragma Import (C, fl_window_size_range, "fl_window_size_range");
+
 
 
 
@@ -117,6 +122,26 @@ package body FLTK.Widgets.Groups.Windows is
     begin
         fl_window_set_label (This.Void_Ptr, Interfaces.C.To_C (Text));
     end Set_Label;
+
+
+
+
+    procedure Set_Size_Range
+           (This                           : in out Window;
+            Min_W, Min_H                   : in     Integer;
+            Max_W, Max_H, Incre_W, Incre_H : in     Integer := 0;
+            Keep_Aspect                    : in     Boolean := False) is
+    begin
+        fl_window_size_range
+               (This.Void_Ptr,
+                Interfaces.C.int (Min_W),
+                Interfaces.C.int (Min_H),
+                Interfaces.C.int (Max_W),
+                Interfaces.C.int (Max_H),
+                Interfaces.C.int (Incre_W),
+                Interfaces.C.int (Incre_H),
+                Boolean'Pos (Keep_Aspect));
+    end Set_Size_Range;
 
 
 end FLTK.Widgets.Groups.Windows;

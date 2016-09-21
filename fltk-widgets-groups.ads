@@ -58,6 +58,11 @@ package FLTK.Widgets.Groups is
             Place : in     Index);
 
 
+    procedure Set_Resizable
+           (This : in out Group;
+            Item : in     Widget'Class);
+
+
 private
 
 

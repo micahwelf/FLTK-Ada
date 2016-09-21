@@ -30,6 +30,13 @@ package FLTK.Widgets.Groups.Windows is
             Text : in     String);
 
 
+    procedure Set_Size_Range
+           (This                           : in out Window;
+            Min_W, Min_H                   : in     Integer;
+            Max_W, Max_H, Incre_W, Incre_H : in     Integer := 0;
+            Keep_Aspect                    : in     Boolean := False);
+
+
 private
 
 

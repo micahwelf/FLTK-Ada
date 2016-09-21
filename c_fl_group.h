@@ -19,6 +19,7 @@ extern "C" int fl_group_find(GROUP g, WIDGET item);
 extern "C" void fl_group_insert(GROUP g, WIDGET item, int place);
 extern "C" void fl_group_remove(GROUP g, WIDGET item);
 extern "C" void fl_group_remove2(GROUP g, int place);
+extern "C" void fl_group_resizable(GROUP g, WIDGET item);
 
 extern "C" int fl_group_children(GROUP g);
 extern "C" void * fl_group_child(GROUP g, int place);

@@ -35,3 +35,8 @@ void fl_window_set_label(WINDOW n, char* text) {
     reinterpret_cast<Fl_Window*>(n)->copy_label(text);
 }
 
+
+void fl_window_size_range(WINDOW n, int lw, int lh, int hw, int hh, int dw, int dh, int a) {
+    reinterpret_cast<Fl_Window*>(n)->size_range(lw, lh, hw, hh, dw, dh, a);
+}
+

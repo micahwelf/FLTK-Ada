@@ -52,6 +52,10 @@ package body FLTK.Widgets.Groups is
         return System.Address;
     pragma Import (C, fl_group_child, "fl_group_child");
 
+    procedure fl_group_resizable
+           (G, W : in System.Address);
+    pragma Import (C, fl_group_resizable, "fl_group_resizable");
+
 
 
 
@@ -183,6 +187,16 @@ package body FLTK.Widgets.Groups is
     begin
         fl_group_remove2 (This.Void_Ptr, Interfaces.C.int (Place));
     end Remove;
+
+
+
+
+    procedure Set_Resizable
+           (This : in out Group;
+            Item : in     Widget'Class) is
+    begin
+        fl_group_resizable (This.Void_Ptr, Item.Void_Ptr);
+    end Set_Resizable;
 
 
 end FLTK.Widgets.Groups;

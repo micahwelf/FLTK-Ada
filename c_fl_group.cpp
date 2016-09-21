@@ -51,6 +51,11 @@ void fl_group_remove2(GROUP g, int place) {
 }
 
 
+void fl_group_resizable(GROUP g, WIDGET item) {
+    reinterpret_cast<Fl_Group*>(g)->resizable(reinterpret_cast<Fl_Widget*>(item));
+}
+
+
 
 
 int fl_group_children(GROUP g) {
