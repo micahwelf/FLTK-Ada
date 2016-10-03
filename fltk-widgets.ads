@@ -10,19 +10,12 @@ package FLTK.Widgets is
 
 
     type Widget is abstract new Wrapper with private;
-    type Widget_Cursor (Data : access Widget'Class) is limited null record
-        with Implicit_Dereference => Data;
 
 
     type Widget_Callback is interface;
     procedure Call
            (This : in     Widget_Callback;
             Item : in out Widget'Class) is abstract;
-
-
-    --  would like to move this definition to FLTK.Widgets.Groups somehow
-    type Group_Cursor (Data : access FLTK.Widgets.Groups.Group'Class) is limited null record
-        with Implicit_Dereference => Data;
 
 
     type Font_Size is new Natural;
@@ -38,7 +31,7 @@ package FLTK.Widgets is
 
     function Parent
            (This : in Widget)
-        return Group_Cursor;
+        return access FLTK.Widgets.Groups.Group'Class;
 
 
     function Get_Box

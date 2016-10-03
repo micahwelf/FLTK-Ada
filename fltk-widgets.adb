@@ -110,7 +110,7 @@ package body FLTK.Widgets is
 
     function Parent
            (This : in Widget)
-        return Group_Cursor is
+        return access FLTK.Widgets.Groups.Group'Class is
 
         Parent_Ptr : System.Address;
         Actual_Parent : access Group'Class;
@@ -120,7 +120,7 @@ package body FLTK.Widgets is
         if Parent_Ptr /= System.Null_Address then
             Actual_Parent := Group_Convert.To_Pointer (fl_widget_get_user_data (Parent_Ptr));
         end if;
-        return Ref : Group_Cursor (Data => Actual_Parent);
+        return Actual_Parent;
     end Parent;
 
 

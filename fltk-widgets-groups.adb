@@ -109,7 +109,7 @@ package body FLTK.Widgets.Groups is
     function Child
            (This  : in Group;
             Place : in Index)
-        return Widget_Cursor is
+        return access Widget'Class is
 
         Widget_Ptr : System.Address :=
                 fl_group_child (This.Void_Ptr, Interfaces.C.int (Place - 1));
@@ -118,7 +118,7 @@ package body FLTK.Widgets.Groups is
                 Widget_Convert.To_Pointer (fl_widget_get_user_data (Widget_Ptr));
 
     begin
-        return Ref : Widget_Cursor (Data => Actual_Widget);
+        return Actual_Widget;
     end Child;
 
 

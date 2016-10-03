@@ -24,7 +24,7 @@ package FLTK.Widgets.Groups is
     function Child
            (This  : in Group;
             Place : in Index)
-        return Widget_Cursor;
+        return access Widget'Class;
 
 
     function Number_Of_Children
