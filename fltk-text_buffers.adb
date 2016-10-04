@@ -46,6 +46,12 @@ package body FLTK.Text_Buffers is
     pragma Import (C, fl_text_buffer_call_predelete_callbacks,
                     "fl_text_buffer_call_predelete_callbacks");
 
+    procedure fl_text_buffer_insert
+           (TB : in System.Address;
+            P  : in Interfaces.C.int;
+            I  : in Interfaces.C.char_array);
+    pragma Import (C, fl_text_buffer_insert, "fl_text_buffer_insert");
+
     function fl_text_buffer_length
            (TB : in System.Address)
         return Interfaces.C.int;
@@ -233,6 +239,20 @@ package body FLTK.Text_Buffers is
     begin
         fl_text_buffer_call_predelete_callbacks (This.Void_Ptr);
     end Call_Predelete_Callbacks;
+
+
+
+
+    procedure Insert_Text
+           (This : in out Text_Buffer;
+            Pos  : in     Natural;
+            Item : in     String) is
+    begin
+        fl_text_buffer_insert
+               (This.Void_Ptr,
+                Interfaces.C.int (Pos),
+                Interfaces.C.To_C (Item));
+    end Insert_Text;
 
 
 

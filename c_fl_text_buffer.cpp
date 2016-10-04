@@ -35,6 +35,11 @@ void fl_text_buffer_call_predelete_callbacks(TEXTBUFFER tb) {
 }
 
 
+void fl_text_buffer_insert(TEXTBUFFER tb, int p, const char * item) {
+    reinterpret_cast<Fl_Text_Buffer*>(tb)->insert(p, item);
+}
+
+
 int fl_text_buffer_length(TEXTBUFFER tb) {
     return reinterpret_cast<Fl_Text_Buffer*>(tb)->length();
 }

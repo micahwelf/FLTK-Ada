@@ -56,6 +56,12 @@ package FLTK.Text_Buffers is
            (This : in out Text_Buffer);
 
 
+    procedure Insert_Text
+           (This : in out Text_Buffer;
+            Pos  : in     Natural;
+            Item : in     String);
+
+
     function Length
            (This : in Text_Buffer)
         return Natural;
