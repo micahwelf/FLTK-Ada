@@ -12,6 +12,11 @@ package FLTK.Widgets.Inputs is
         return Input;
 
 
+    function Get_Value
+           (This : in Input)
+        return String;
+
+
 private
 
 

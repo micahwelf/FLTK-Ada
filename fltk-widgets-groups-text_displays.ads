@@ -56,6 +56,20 @@ package FLTK.Widgets.Groups.Text_Displays is
             Size : in     Font_Size);
 
 
+    function Get_Insert_Position
+           (This : in Text_Display)
+        return Natural;
+
+
+    procedure Set_Insert_Position
+           (This : in out Text_Display;
+            Pos  : in     Natural);
+
+
+    procedure Show_Insert_Position
+           (This : in out Text_Display);
+
+
 private
 
 

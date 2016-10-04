@@ -55,6 +55,11 @@ int fl_text_buffer_savefile(TEXTBUFFER tb, char * n) {
 }
 
 
+int fl_text_buffer_search_forward(TEXTBUFFER tb, int start, const char * item, int * found, int mcase) {
+    return reinterpret_cast<Fl_Text_Buffer*>(tb)->search_forward(start, item, found, mcase);
+}
+
+
 void fl_text_buffer_select(TEXTBUFFER tb, int s, int e) {
     reinterpret_cast<Fl_Text_Buffer*>(tb)->select(s, e);
 }

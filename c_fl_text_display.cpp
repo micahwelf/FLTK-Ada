@@ -58,3 +58,18 @@ void fl_text_display_set_text_size(TEXTDISPLAY td, int s) {
     reinterpret_cast<Fl_Text_Display*>(td)->textsize(static_cast<Fl_Fontsize>(s));
 }
 
+
+int fl_text_display_get_insert_pos(TEXTDISPLAY td) {
+    return reinterpret_cast<Fl_Text_Display*>(td)->insert_position();
+}
+
+
+void fl_text_display_set_insert_pos(TEXTDISPLAY td, int p) {
+    reinterpret_cast<Fl_Text_Display*>(td)->insert_position(p);
+}
+
+
+void fl_text_display_show_insert_pos(TEXTDISPLAY td) {
+    reinterpret_cast<Fl_Text_Display*>(td)->show_insert_position();
+}
+

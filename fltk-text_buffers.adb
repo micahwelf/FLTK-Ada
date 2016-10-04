@@ -67,6 +67,15 @@ package body FLTK.Text_Buffers is
         return Interfaces.C.int;
     pragma Import (C, fl_text_buffer_savefile, "fl_text_buffer_savefile");
 
+    function fl_text_buffer_search_forward
+           (TB : in     System.Address;
+            SP : in     Interfaces.C.int;
+            IT : in     Interfaces.C.char_array;
+            FP :    out Interfaces.C.int;
+            CA : in     Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_buffer_search_forward, "fl_text_buffer_search_forward");
+
     procedure fl_text_buffer_select
            (TB   : in System.Address;
             S, E : in Interfaces.C.int);
@@ -277,6 +286,31 @@ package body FLTK.Text_Buffers is
             raise Storage_Error;
         end if;
     end Save_File;
+
+
+
+
+    function Search_Forward
+           (This       : in     Text_Buffer;
+            Start_At   : in     Natural;
+            Item       : in     String;
+            Found_At   :    out Natural;
+            Match_Case : in     Boolean)
+        return Boolean is
+
+        Found_Raw : Interfaces.C.int;
+        Result : Interfaces.C.int;
+
+    begin
+        Result := fl_text_buffer_search_forward
+               (This.Void_Ptr,
+                Interfaces.C.int (Start_At),
+                Interfaces.C.To_C (Item),
+                Found_Raw,
+                Boolean'Pos (Match_Case));
+        Found_At := Natural (Found_Raw);
+        return Boolean'Val (Result);
+    end Search_Forward;
 
 
 

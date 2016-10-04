@@ -14,3 +14,8 @@ void free_fl_input(INPUT i) {
     delete reinterpret_cast<Fl_Input*>(i);
 }
 
+
+const char * fl_input_get_value(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->value();
+}
+

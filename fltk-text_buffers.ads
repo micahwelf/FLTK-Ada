@@ -75,6 +75,15 @@ package FLTK.Text_Buffers is
             Name : in String);
 
 
+    function Search_Forward
+           (This       : in     Text_Buffer;
+            Start_At   : in     Natural;
+            Item       : in     String;
+            Found_At   :    out Natural;
+            Match_Case : in     Boolean)
+        return Boolean;
+
+
     procedure Set_Selection
            (This          : in out Text_Buffer;
             Start, Finish : in     Natural);

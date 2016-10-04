@@ -20,6 +20,9 @@ extern "C" int fl_text_display_get_text_font(TEXTDISPLAY td);
 extern "C" void fl_text_display_set_text_font(TEXTDISPLAY td, int f);
 extern "C" int fl_text_display_get_text_size(TEXTDISPLAY td);
 extern "C" void fl_text_display_set_text_size(TEXTDISPLAY td, int s);
+extern "C" int fl_text_display_get_insert_pos(TEXTDISPLAY td);
+extern "C" void fl_text_display_set_insert_pos(TEXTDISPLAY td, int p);
+extern "C" void fl_text_display_show_insert_pos(TEXTDISPLAY td);
 
 
 #endif

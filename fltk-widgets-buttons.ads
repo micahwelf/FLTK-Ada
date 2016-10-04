@@ -6,7 +6,7 @@ package FLTK.Widgets.Buttons is
     type Button is new Widget with private;
 
 
-    type State is (On, Off);
+    type State is (Off, On);
 
 
     function Create

@@ -1,6 +1,7 @@
 
 
 with Interfaces.C;
+with Interfaces.C.Strings;
 with System;
 use type System.Address;
 
@@ -17,6 +18,11 @@ package body FLTK.Widgets.Inputs is
     procedure free_fl_input
            (F : in System.Address);
     pragma Import (C, free_fl_input, "free_fl_input");
+
+    function fl_input_get_value
+           (F : in System.Address)
+        return Interfaces.C.Strings.chars_ptr;
+    pragma Import (C, fl_input_get_value, "fl_input_get_value");
 
 
 
@@ -52,6 +58,16 @@ package body FLTK.Widgets.Inputs is
                     Widget_Convert.To_Address (This'Unchecked_Access));
         end return;
     end Create;
+
+
+
+
+    function Get_Value
+           (This : in Input)
+        return String is
+    begin
+        return Interfaces.C.Strings.Value (fl_input_get_value (This.Void_Ptr));
+    end Get_Value;
 
 
 end FLTK.Widgets.Inputs;

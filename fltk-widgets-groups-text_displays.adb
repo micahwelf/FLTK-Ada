@@ -57,6 +57,20 @@ package body FLTK.Widgets.Groups.Text_Displays is
             S  : in Interfaces.C.int);
     pragma Import (C, fl_text_display_set_text_size, "fl_text_display_set_text_size");
 
+    function fl_text_display_get_insert_pos
+           (TD : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_display_get_insert_pos, "fl_text_display_get_insert_pos");
+
+    procedure fl_text_display_set_insert_pos
+           (TD : in System.Address;
+            P  : in Interfaces.C.int);
+    pragma Import (C, fl_text_display_set_insert_pos, "fl_text_display_set_insert_pos");
+
+    procedure fl_text_display_show_insert_pos
+           (TD : in System.Address);
+    pragma Import (C, fl_text_display_show_insert_pos, "fl_text_display_show_insert_pos");
+
 
 
 
@@ -173,6 +187,35 @@ package body FLTK.Widgets.Groups.Text_Displays is
     begin
         fl_text_display_set_text_size (This.Void_Ptr, Interfaces.C.int (Size));
     end Set_Text_Size;
+
+
+
+
+    function Get_Insert_Position
+           (This : in Text_Display)
+        return Natural is
+    begin
+        return Natural (fl_text_display_get_insert_pos (This.Void_Ptr));
+    end Get_Insert_Position;
+
+
+
+
+    procedure Set_Insert_Position
+           (This : in out Text_Display;
+            Pos  : in     Natural) is
+    begin
+        fl_text_display_set_insert_pos (This.Void_Ptr, Interfaces.C.int (Pos));
+    end Set_Insert_Position;
+
+
+
+
+    procedure Show_Insert_Position
+           (This : in out Text_Display) is
+    begin
+        fl_text_display_show_insert_pos (This.Void_Ptr);
+    end Show_Insert_Position;
 
 
 end FLTK.Widgets.Groups.Text_Displays;
