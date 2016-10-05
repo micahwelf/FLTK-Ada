@@ -15,6 +15,9 @@ extern "C" void fl_window_show(WINDOW n);
 extern "C" void fl_window_hide(WINDOW n);
 extern "C" void fl_window_set_label(WINDOW n, char* text);
 extern "C" void fl_window_size_range(WINDOW n, int lw, int lh, int hw, int hh, int dw, int dh, int a);
+extern "C" void fl_window_set_icon(WINDOW n, void * img);
+extern "C" void fl_window_set_modal(WINDOW n);
+extern "C" void fl_window_set_non_modal(WINDOW n);
 
 
 #endif

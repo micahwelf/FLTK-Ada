@@ -5,6 +5,7 @@ with Interfaces.C.Strings;
 with System;
 with System.Address_To_Access_Conversions;
 with FLTK.Widgets.Groups; use FLTK.Widgets.Groups;
+with FLTK.Images;
 use type System.Address;
 
 
@@ -104,6 +105,10 @@ package body FLTK.Widgets is
            (W    : in System.Address;
             X, Y : in Interfaces.C.int);
     pragma Import (C, fl_widget_position, "fl_widget_position");
+
+    procedure fl_widget_set_image
+           (W, I : in System.Address);
+    pragma Import (C, fl_widget_set_image, "fl_widget_set_image");
 
 
 
@@ -317,6 +322,29 @@ package body FLTK.Widgets is
                 Interfaces.C.int (X),
                 Interfaces.C.int (Y));
     end Reposition;
+
+
+
+
+    function Get_Image
+           (This : in Widget)
+        return access FLTK.Images.Image'Class is
+    begin
+        return This.Current_Image;
+    end Get_Image;
+
+
+
+
+    procedure Set_Image
+           (This : in out Widget;
+            Pic  : in out FLTK.Images.Image'Class) is
+    begin
+        This.Current_Image := Pic'Unchecked_Access;
+        fl_widget_set_image
+               (This.Void_Ptr,
+                Wrapper (Pic).Void_Ptr);
+    end Set_Image;
 
 
 end FLTK.Widgets;

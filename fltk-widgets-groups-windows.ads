@@ -1,5 +1,8 @@
 
 
+with FLTK.Images.RGB;
+
+
 package FLTK.Widgets.Groups.Windows is
 
 
@@ -35,6 +38,19 @@ package FLTK.Widgets.Groups.Windows is
             Min_W, Min_H                   : in     Integer;
             Max_W, Max_H, Incre_W, Incre_H : in     Integer := 0;
             Keep_Aspect                    : in     Boolean := False);
+
+
+    procedure Set_Icon
+           (This : in out Window;
+            Pic  : in out FLTK.Images.RGB.RGB_Image'Class);
+
+
+    procedure Set_Modal
+           (This : in out Window);
+
+
+    procedure Set_Non_Modal
+           (This : in out Window);
 
 
 private

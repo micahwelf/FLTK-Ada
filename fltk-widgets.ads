@@ -1,6 +1,7 @@
 
 
 with FLTK.Enums; use FLTK.Enums;
+with FLTK.Images;
 limited with FLTK.Widgets.Groups;
 private with System;
 private with System.Address_To_Access_Conversions;
@@ -98,12 +99,24 @@ package FLTK.Widgets is
     procedure Resize (This : in out Widget; W, H : in Integer);
     procedure Reposition (This : in out Widget; X, Y : in Integer);
 
+
+    function Get_Image
+           (This : in Widget)
+        return access FLTK.Images.Image'Class;
+
+
+    procedure Set_Image
+           (This : in out Widget;
+            Pic  : in out FLTK.Images.Image'Class);
+
+
 private
 
 
     type Widget is abstract new Wrapper with
         record
-            Callback : access Widget_Callback'Class;
+            Callback      : access Widget_Callback'Class;
+            Current_Image : access FLTK.Images.Image'Class;
         end record;
 
 

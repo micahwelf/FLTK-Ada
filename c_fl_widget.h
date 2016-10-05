@@ -33,6 +33,7 @@ extern "C" int fl_widget_get_w(WIDGET w);
 extern "C" int fl_widget_get_h(WIDGET w);
 extern "C" void fl_widget_size(WIDGET w, int d, int h);
 extern "C" void fl_widget_position(WIDGET w, int x, int y);
+extern "C" void fl_widget_set_image(WIDGET w, void * img);
 
 
 #endif

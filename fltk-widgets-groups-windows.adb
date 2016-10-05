@@ -2,6 +2,7 @@
 
 with Interfaces.C;
 with System;
+with FLTK.Images.RGB;
 use type System.Address;
 
 
@@ -40,6 +41,18 @@ package body FLTK.Widgets.Groups.Windows is
            (W                         : in System.Address;
             LW, LH, HW, HH, DW, DH, A : in Interfaces.C.int);
     pragma Import (C, fl_window_size_range, "fl_window_size_range");
+
+    procedure fl_window_set_icon
+           (W, P : in System.Address);
+    pragma Import (C, fl_window_set_icon, "fl_window_set_icon");
+
+    procedure fl_window_set_modal
+           (W : in System.Address);
+    pragma Import (C, fl_window_set_modal, "fl_window_set_modal");
+
+    procedure fl_window_set_non_modal
+           (W : in System.Address);
+    pragma Import (C, fl_window_set_non_modal, "fl_window_set_non_modal");
 
 
 
@@ -142,6 +155,36 @@ package body FLTK.Widgets.Groups.Windows is
                 Interfaces.C.int (Incre_H),
                 Boolean'Pos (Keep_Aspect));
     end Set_Size_Range;
+
+
+
+
+    procedure Set_Icon
+           (This : in out Window;
+            Pic  : in out FLTK.Images.RGB.RGB_Image'Class) is
+    begin
+        fl_window_set_icon
+               (This.Void_Ptr,
+                Wrapper (Pic).Void_Ptr);
+    end Set_Icon;
+
+
+
+
+    procedure Set_Modal
+           (This : in out Window) is
+    begin
+        fl_window_set_modal (This.Void_Ptr);
+    end Set_Modal;
+
+
+
+
+    procedure Set_Non_Modal
+           (This : in out Window) is
+    begin
+        fl_window_set_non_modal (This.Void_Ptr);
+    end Set_Non_Modal;
 
 
 end FLTK.Widgets.Groups.Windows;

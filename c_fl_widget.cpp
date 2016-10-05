@@ -1,6 +1,7 @@
 
 
 #include <FL/Fl_Widget.H>
+#include <FL/Fl_Image.H>
 #include "c_fl_widget.h"
 
 
@@ -109,5 +110,10 @@ void fl_widget_size(WIDGET w, int d, int h) {
 
 void fl_widget_position(WIDGET w, int x, int y) {
     reinterpret_cast<Fl_Widget*>(w)->position(x, y);
+}
+
+
+void fl_widget_set_image(WIDGET w, void * img) {
+    reinterpret_cast<Fl_Widget*>(w)->image(reinterpret_cast<Fl_Image*>(img));
 }
 
