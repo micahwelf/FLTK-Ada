@@ -4,7 +4,7 @@ with Interfaces.C;
 with Interfaces.C.Strings;
 with System;
 with System.Address_To_Access_Conversions;
-with FLTK.Widgets.Groups; use FLTK.Widgets.Groups;
+with FLTK.Widgets.Groups;
 with FLTK.Images;
 use type System.Address;
 
@@ -12,7 +12,8 @@ use type System.Address;
 package body FLTK.Widgets is
 
 
-    package Group_Convert is new System.Address_To_Access_Conversions (Group'Class);
+    package Group_Convert is new
+        System.Address_To_Access_Conversions (FLTK.Widgets.Groups.Group'Class);
 
 
 
@@ -115,11 +116,10 @@ package body FLTK.Widgets is
 
     function Parent
            (This : in Widget)
-        return access FLTK.Widgets.Groups.Group'Class is
-
+        return access FLTK.Widgets.Groups.Group'Class
+    is
         Parent_Ptr : System.Address;
-        Actual_Parent : access Group'Class;
-
+        Actual_Parent : access FLTK.Widgets.Groups.Group'Class;
     begin
         Parent_Ptr := fl_widget_get_parent (This.Void_Ptr);
         if Parent_Ptr /= System.Null_Address then
@@ -237,11 +237,10 @@ package body FLTK.Widgets is
     pragma Convention (C, Callback_Hook);
 
     procedure Callback_Hook
-           (W, U : in System.Address) is
-
+           (W, U : in System.Address)
+    is
         Ada_Widget : access Widget'Class :=
             Widget_Convert.To_Pointer (U);
-
     begin
         Ada_Widget.Callback.Call (Ada_Widget.all);
     end Callback_Hook;

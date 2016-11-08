@@ -46,14 +46,13 @@ package body FLTK.Popups is
 
     function Three_Way_Choice
            (Message, Button1, Button2, Button3 : in String)
-        return Choice is
-
+        return Choice
+    is
         Result : Interfaces.C.int := popup_fl_choice
                (Interfaces.C.To_C (Message),
                 Interfaces.C.To_C (Button1),
                 Interfaces.C.To_C (Button2),
                 Interfaces.C.To_C (Button3));
-
     begin
         return Choice'Val (Result);
     end Three_Way_Choice;
@@ -63,15 +62,14 @@ package body FLTK.Popups is
 
     function File_Chooser
            (Message, Filter_Pattern, Default : in String;
-            Relative : in Boolean := False)
-        return String is
-
+            Relative                         : in Boolean := False)
+        return String
+    is
         Result : Interfaces.C.Strings.chars_ptr := popup_fl_file_chooser
                (Interfaces.C.To_C (Message),
                 Interfaces.C.To_C (Filter_Pattern),
                 Interfaces.C.To_C (Default),
                 Boolean'Pos (Relative));
-
     begin
         if Result = Interfaces.C.Strings.Null_Ptr then
             return "";
@@ -85,12 +83,11 @@ package body FLTK.Popups is
 
     function Text_Input
            (Message, Default : in String)
-        return String is
-
+        return String
+    is
         Result : Interfaces.C.Strings.chars_ptr := popup_fl_input
                (Interfaces.C.To_C (Message),
                 Interfaces.C.To_C (Default));
-
     begin
         if Result = Interfaces.C.Strings.Null_Ptr then
             return "";

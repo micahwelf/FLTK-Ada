@@ -1,6 +1,6 @@
 
 
-with FLTK.Text_Buffers; use FLTK.Text_Buffers;
+with FLTK.Text_Buffers;
 with FLTK.Enums; use FLTK.Enums;
 
 
@@ -18,12 +18,12 @@ package FLTK.Widgets.Groups.Text_Displays is
 
     function Get_Buffer
            (This : in Text_Display)
-        return Text_Buffer_Cursor;
+        return FLTK.Text_Buffers.Text_Buffer_Cursor;
 
 
     procedure Set_Buffer
            (This : in out Text_Display;
-            Buff : in out Text_Buffer);
+            Buff : in out FLTK.Text_Buffers.Text_Buffer);
 
 
     function Get_Text_Color
@@ -75,7 +75,7 @@ private
 
     type Text_Display is new Group with
         record
-            Buffer : access Text_Buffer;
+            Buffer : access FLTK.Text_Buffers.Text_Buffer;
         end record;
 
 

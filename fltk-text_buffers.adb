@@ -11,9 +11,6 @@ use type Interfaces.C.Strings.chars_ptr;
 use type Ada.Containers.Count_Type;
 
 
-with Ada.Text_IO;
-
-
 package body FLTK.Text_Buffers is
 
 
@@ -105,16 +102,16 @@ package body FLTK.Text_Buffers is
 
     procedure Modify_Callback_Hook
            (Pos, Inserted, Deleted, Restyled : in Interfaces.C.int;
-            Text : in Interfaces.C.Strings.chars_ptr;
-            UD : in System.Address);
+            Text                             : in Interfaces.C.Strings.chars_ptr;
+            UD                               : in System.Address);
     pragma Convention (C, Modify_Callback_Hook);
 
     procedure Modify_Callback_Hook
            (Pos                         : in Interfaces.C.int;
             Inserted, Deleted, Restyled : in Interfaces.C.int;
             Text                        : in Interfaces.C.Strings.chars_ptr;
-            UD                          : in System.Address) is
-
+            UD                          : in System.Address)
+    is
         package UStr renames Ada.Strings.Unbounded;
 
         Action : Modification;
@@ -124,7 +121,6 @@ package body FLTK.Text_Buffers is
 
         Ada_Text_Buffer : access Text_Buffer :=
             Text_Buffer_Convert.To_Pointer (UD);
-
     begin
         if Inserted > 0 then
             Length := Natural (Inserted);
@@ -158,14 +154,13 @@ package body FLTK.Text_Buffers is
 
     procedure Predelete_Callback_Hook
            (Pos, Deleted : in Interfaces.C.int;
-            UD           : in System.Address) is
-
+            UD           : in System.Address)
+    is
         Place : Position := Position (Pos);
         Length : Natural := Natural (Deleted);
 
         Ada_Text_Buffer : access Text_Buffer :=
             Text_Buffer_Convert.To_Pointer (UD);
-
     begin
         for CB of Ada_Text_Buffer.Predelete_CBs loop
             CB.Call (Place, Length);
@@ -269,12 +264,11 @@ package body FLTK.Text_Buffers is
 
     procedure Load_File
            (This : in Text_Buffer;
-            Name : in String) is
-
+            Name : in String)
+    is
         Err_No : Interfaces.C.int := fl_text_buffer_loadfile
                (This.Void_Ptr,
                 Interfaces.C.To_C (Name));
-
     begin
         if Err_No /= 0 then
             raise Storage_Error;
@@ -295,12 +289,11 @@ package body FLTK.Text_Buffers is
 
     procedure Save_File
            (This : in Text_Buffer;
-            Name : in String) is
-
+            Name : in String)
+    is
         Err_No : Interfaces.C.int := fl_text_buffer_savefile
                (This.Void_Ptr,
                 Interfaces.C.To_C (Name));
-
     begin
         if Err_No /= 0 then
             raise Storage_Error;
@@ -316,11 +309,10 @@ package body FLTK.Text_Buffers is
             Item       : in     String;
             Found_At   :    out Natural;
             Match_Case : in     Boolean)
-        return Boolean is
-
+        return Boolean
+    is
         Found_Raw : Interfaces.C.int;
         Result : Interfaces.C.int;
-
     begin
         Result := fl_text_buffer_search_forward
                (This.Void_Ptr,

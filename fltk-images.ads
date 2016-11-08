@@ -11,9 +11,19 @@ package FLTK.Images is
         return Image;
 
 
-    function Get_W (This : in Image) return Natural;
-    function Get_H (This : in Image) return Natural;
-    function Get_D (This : in Image) return Natural;
+    function Get_W
+           (This : in Image)
+        return Natural;
+
+
+    function Get_H
+           (This : in Image)
+        return Natural;
+
+
+    function Get_D
+           (This : in Image)
+        return Natural;
 
 
 private

@@ -14,7 +14,8 @@ package body FLTK is
 
 
 
-    function Run return Integer is
+    function Run
+        return Integer is
     begin
         return Integer (fl_run);
     end Run;

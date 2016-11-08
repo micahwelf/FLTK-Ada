@@ -2,6 +2,7 @@
 
 with Interfaces.C;
 with System;
+with FLTK.Text_Buffers;
 use type System.Address;
 
 
@@ -112,9 +113,9 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
     function Get_Buffer
            (This : in Text_Display)
-        return Text_Buffer_Cursor is
+        return FLTK.Text_Buffers.Text_Buffer_Cursor is
     begin
-        return Ref : Text_Buffer_Cursor (This.Buffer);
+        return Ref : FLTK.Text_Buffers.Text_Buffer_Cursor (This.Buffer);
     end Get_Buffer;
 
 
@@ -122,7 +123,7 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
     procedure Set_Buffer
            (This : in out Text_Display;
-            Buff : in out Text_Buffer) is
+            Buff : in out FLTK.Text_Buffers.Text_Buffer) is
     begin
         This.Buffer := Buff'Unchecked_Access;
         fl_text_display_set_buffer (This.Void_Ptr, Wrapper (Buff).Void_Ptr);

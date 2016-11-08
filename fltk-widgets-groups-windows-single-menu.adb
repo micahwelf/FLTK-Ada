@@ -137,11 +137,7 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
            (This : in Menu_Window)
         return Boolean is
     begin
-        if fl_menu_window_overlay (This.Void_Ptr) = 0 then
-            return False;
-        else
-            return True;
-        end if;
+        return fl_menu_window_overlay (This.Void_Ptr) /= 0;
     end Get_Overlay;
 
 

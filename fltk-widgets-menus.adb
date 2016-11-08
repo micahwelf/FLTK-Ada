@@ -118,11 +118,10 @@ package body FLTK.Widgets.Menus is
             Text     : in     String;
             Action   : access Widget_Callback'Class := null;
             Shortcut : in     Shortcut_Key := No_Key;
-            Flags    : in     Menu_Flag := Flag_Normal) is
-
+            Flags    : in     Menu_Flag := Flag_Normal)
+    is
         Place : Interfaces.C.int;
         Callback, User_Data : System.Address;
-
     begin
         if Action = null then
             Callback := System.Null_Address;
