@@ -57,7 +57,7 @@ package FLTK.Widgets.Menus is
     procedure Add
            (This     : in out Menu;
             Text     : in     String;
-            Action   : access Widget_Callback'Class := null;
+            Action   : in     Widget_Callback := null;
             Shortcut : in     Shortcut_Key := No_Key;
             Flags    : in     Menu_Flag := Flag_Normal);
 

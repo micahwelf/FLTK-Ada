@@ -242,7 +242,7 @@ package body FLTK.Widgets is
         Ada_Widget : access Widget'Class :=
             Widget_Convert.To_Pointer (U);
     begin
-        Ada_Widget.Callback.Call (Ada_Widget.all);
+        Ada_Widget.Callback.all (Ada_Widget.all);
     end Callback_Hook;
 
 
@@ -250,10 +250,12 @@ package body FLTK.Widgets is
 
     procedure Set_Callback
            (This : in out Widget;
-            Func : not null access Widget_Callback'Class) is
+            Func : in     Widget_Callback) is
     begin
-        This.Callback := Func;
-        fl_widget_set_callback (This.Void_Ptr, Callback_Hook'Address);
+        if Func /= null then
+            This.Callback := Func;
+            fl_widget_set_callback (This.Void_Ptr, Callback_Hook'Address);
+        end if;
     end Set_Callback;
 
 

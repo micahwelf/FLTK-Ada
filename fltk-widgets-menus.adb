@@ -98,16 +98,13 @@ package body FLTK.Widgets.Menus is
     pragma Convention (C, Item_Hook);
 
     procedure Item_Hook
-           (M, U : in System.Address) is
-
+           (M, U : in System.Address)
+    is
         Ada_Widget : access Widget'Class :=
             Widget_Convert.To_Pointer (fl_widget_get_user_data (M));
-
-        Action : access Widget_Callback'Class :=
-            Callback_Convert.To_Pointer (U);
-
+        Action : Widget_Callback := Callback_Convert.To_Pointer (U);
     begin
-        Action.Call (Ada_Widget.all);
+        Action.all (Ada_Widget.all);
     end Item_Hook;
 
 
@@ -116,7 +113,7 @@ package body FLTK.Widgets.Menus is
     procedure Add
            (This     : in out Menu;
             Text     : in     String;
-            Action   : access Widget_Callback'Class := null;
+            Action   : in     Widget_Callback := null;
             Shortcut : in     Shortcut_Key := No_Key;
             Flags    : in     Menu_Flag := Flag_Normal)
     is

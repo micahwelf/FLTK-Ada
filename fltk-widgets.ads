@@ -5,6 +5,7 @@ with FLTK.Images;
 limited with FLTK.Widgets.Groups;
 private with System;
 private with System.Address_To_Access_Conversions;
+private with Ada.Unchecked_Conversion;
 
 
 package FLTK.Widgets is
@@ -13,10 +14,8 @@ package FLTK.Widgets is
     type Widget is abstract new Wrapper with private;
 
 
-    type Widget_Callback is interface;
-    procedure Call
-           (This : in     Widget_Callback;
-            Item : in out Widget'Class) is abstract;
+    type Widget_Callback is access procedure
+           (Item : in out Widget'Class);
 
 
     type Font_Size is new Natural;
@@ -87,7 +86,7 @@ package FLTK.Widgets is
 
     procedure Set_Callback
            (This : in out Widget;
-            Func : not null access Widget_Callback'Class);
+            Func : in     Widget_Callback);
 
 
     function Get_X
@@ -135,13 +134,17 @@ private
 
     type Widget is abstract new Wrapper with
         record
-            Callback      : access Widget_Callback'Class;
+            Callback      : Widget_Callback;
             Current_Image : access FLTK.Images.Image'Class;
         end record;
 
 
     package Widget_Convert is new System.Address_To_Access_Conversions (Widget'Class);
-    package Callback_Convert is new System.Address_To_Access_Conversions (Widget_Callback'Class);
+    --  package Callback_Convert is new System.Address_To_Access_Conversions (Widget_Callback);
+    package Callback_Convert is
+        function To_Pointer is new Ada.Unchecked_Conversion (System.Address, Widget_Callback);
+        function To_Address is new Ada.Unchecked_Conversion (Widget_Callback, System.Address);
+    end Callback_Convert;
 
 
     function fl_widget_get_user_data
