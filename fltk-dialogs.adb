@@ -5,32 +5,32 @@ with Interfaces.C.Strings;
 use type Interfaces.C.Strings.chars_ptr;
 
 
-package body FLTK.Popups is
+package body FLTK.Dialogs is
 
 
-    procedure popup_fl_alert
+    procedure dialog_fl_alert
            (M : in Interfaces.C.char_array);
-    pragma Import (C, popup_fl_alert, "popup_fl_alert");
+    pragma Import (C, dialog_fl_alert, "dialog_fl_alert");
 
-    function popup_fl_choice
+    function dialog_fl_choice
            (M, A, B, C : in Interfaces.C.char_array)
         return Interfaces.C.int;
-    pragma Import (C, popup_fl_choice, "popup_fl_choice");
+    pragma Import (C, dialog_fl_choice, "dialog_fl_choice");
 
-    function popup_fl_file_chooser
+    function dialog_fl_file_chooser
            (M, P, D : in Interfaces.C.char_array;
             R : in Interfaces.C.int)
         return Interfaces.C.Strings.chars_ptr;
-    pragma Import (C, popup_fl_file_chooser, "popup_fl_file_chooser");
+    pragma Import (C, dialog_fl_file_chooser, "dialog_fl_file_chooser");
 
-    function popup_fl_input
+    function dialog_fl_input
            (M, D : in Interfaces.C.char_array)
         return Interfaces.C.Strings.chars_ptr;
-    pragma Import (C, popup_fl_input, "popup_fl_input");
+    pragma Import (C, dialog_fl_input, "dialog_fl_input");
 
-    procedure popup_fl_message
+    procedure dialog_fl_message
            (M : in Interfaces.C.char_array);
-    pragma Import (C, popup_fl_message, "popup_fl_message");
+    pragma Import (C, dialog_fl_message, "dialog_fl_message");
 
 
 
@@ -38,7 +38,7 @@ package body FLTK.Popups is
     procedure Alert
            (Message : String) is
     begin
-        popup_fl_alert (Interfaces.C.To_C (Message));
+        dialog_fl_alert (Interfaces.C.To_C (Message));
     end Alert;
 
 
@@ -48,7 +48,7 @@ package body FLTK.Popups is
            (Message, Button1, Button2, Button3 : in String)
         return Choice
     is
-        Result : Interfaces.C.int := popup_fl_choice
+        Result : Interfaces.C.int := dialog_fl_choice
                (Interfaces.C.To_C (Message),
                 Interfaces.C.To_C (Button1),
                 Interfaces.C.To_C (Button2),
@@ -65,7 +65,7 @@ package body FLTK.Popups is
             Relative                         : in Boolean := False)
         return String
     is
-        Result : Interfaces.C.Strings.chars_ptr := popup_fl_file_chooser
+        Result : Interfaces.C.Strings.chars_ptr := dialog_fl_file_chooser
                (Interfaces.C.To_C (Message),
                 Interfaces.C.To_C (Filter_Pattern),
                 Interfaces.C.To_C (Default),
@@ -85,7 +85,7 @@ package body FLTK.Popups is
            (Message, Default : in String)
         return String
     is
-        Result : Interfaces.C.Strings.chars_ptr := popup_fl_input
+        Result : Interfaces.C.Strings.chars_ptr := dialog_fl_input
                (Interfaces.C.To_C (Message),
                 Interfaces.C.To_C (Default));
     begin
@@ -102,9 +102,9 @@ package body FLTK.Popups is
     procedure Message_Box
            (Message : in String) is
     begin
-        popup_fl_message (Interfaces.C.To_C (Message));
+        dialog_fl_message (Interfaces.C.To_C (Message));
     end Message_Box;
 
 
-end FLTK.Popups;
+end FLTK.Dialogs;
 

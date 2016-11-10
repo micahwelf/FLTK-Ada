@@ -1,6 +1,6 @@
 
 
-package FLTK.Popups is
+package FLTK.Dialogs is
 
 
     procedure Alert
@@ -28,5 +28,5 @@ package FLTK.Popups is
            (Message : in String);
 
 
-end FLTK.Popups;
+end FLTK.Dialogs;
 
