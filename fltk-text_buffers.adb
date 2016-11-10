@@ -2,7 +2,7 @@
 
 with Interfaces.C;
 with Interfaces.C.Strings;
-with Ada.Strings.Unbounded;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 with Ada.Containers;
 with System;
 use type System.Address;
@@ -112,12 +112,10 @@ package body FLTK.Text_Buffers is
             Text                        : in Interfaces.C.Strings.chars_ptr;
             UD                          : in System.Address)
     is
-        package UStr renames Ada.Strings.Unbounded;
-
         Action : Modification;
         Place : Position := Position (Pos);
         Length : Natural;
-        Deleted_Text : UStr.Unbounded_String := UStr.To_Unbounded_String ("");
+        Deleted_Text : Unbounded_String := To_Unbounded_String ("");
 
         Ada_Text_Buffer : access Text_Buffer :=
             Text_Buffer_Convert.To_Pointer (UD);
@@ -129,7 +127,7 @@ package body FLTK.Text_Buffers is
             Length := Natural (Deleted);
             Action := Delete;
             if Text /= Interfaces.C.Strings.Null_Ptr then
-                Deleted_Text := UStr.To_Unbounded_String (Interfaces.C.Strings.Value (Text));
+                Deleted_Text := To_Unbounded_String (Interfaces.C.Strings.Value (Text));
             end if;
         elsif Restyled > 0 then
             Length := Natural (Restyled);
@@ -140,7 +138,7 @@ package body FLTK.Text_Buffers is
         end if;
 
         for CB of Ada_Text_Buffer.Modify_CBs loop
-            CB.Call (Action, Place, Length, UStr.To_String (Deleted_Text));
+            CB.all (Action, Place, Length, To_String (Deleted_Text));
         end loop;
     end Modify_Callback_Hook;
 
@@ -163,7 +161,7 @@ package body FLTK.Text_Buffers is
             Text_Buffer_Convert.To_Pointer (UD);
     begin
         for CB of Ada_Text_Buffer.Predelete_CBs loop
-            CB.Call (Place, Length);
+            CB.all (Place, Length);
         end loop;
     end Predelete_Callback_Hook;
 
@@ -190,7 +188,7 @@ package body FLTK.Text_Buffers is
 
     procedure Add_Modify_Callback
            (This : in out Text_Buffer;
-            Func : not null access Modify_Callback'Class) is
+            Func : in     Modify_Callback) is
     begin
         if This.Modify_CBs.Length = 0 then
             fl_text_buffer_add_modify_callback
@@ -206,7 +204,7 @@ package body FLTK.Text_Buffers is
 
     procedure Add_Predelete_Callback
            (This : in out Text_Buffer;
-            Func : not null access Predelete_Callback'Class) is
+            Func : in     Predelete_Callback) is
     begin
         if This.Predelete_CBs.Length = 0 then
             fl_text_buffer_add_predelete_callback

@@ -13,23 +13,19 @@ package FLTK.Text_Buffers is
 
 
     type Position is new Natural;
-
-
     type Modification is (Insert, Restyle, Delete, None);
-    type Modify_Callback is interface;
-    procedure Call
-           (This         : in Modify_Callback;
-            Action       : in Modification;
+
+
+    type Modify_Callback is access procedure
+           (Action       : in Modification;
             Place        : in Position;
             Length       : in Natural;
-            Deleted_Text : in String) is abstract;
+            Deleted_Text : in String);
 
 
-    type Predelete_Callback is interface;
-    procedure Call
-           (This   : in Predelete_Callback;
-            Place  : in Position;
-            Length : in Natural) is abstract;
+    type Predelete_Callback is access procedure
+           (Place  : in Position;
+            Length : in Natural);
 
 
     function Create
@@ -40,12 +36,12 @@ package FLTK.Text_Buffers is
 
     procedure Add_Modify_Callback
            (This : in out Text_Buffer;
-            Func : not null access Modify_Callback'Class);
+            Func : in     Modify_Callback);
 
 
     procedure Add_Predelete_Callback
            (This : in out Text_Buffer;
-            Func : not null access Predelete_Callback'Class);
+            Func : in     Predelete_Callback);
 
 
     procedure Call_Modify_Callbacks
@@ -98,21 +94,17 @@ package FLTK.Text_Buffers is
 private
 
 
-    type Modify_Access is access all Modify_Callback'Class;
-    type Predelete_Access is access all Predelete_Callback'Class;
-
-
     package Modify_Vectors is new Ada.Containers.Vectors
            (Index_Type => Positive,
-            Element_Type => Modify_Access);
+            Element_Type => Modify_Callback);
     package Predelete_Vectors is new Ada.Containers.Vectors
            (Index_Type => Positive,
-            Element_Type => Predelete_Access);
+            Element_Type => Predelete_Callback);
 
 
     type Text_Buffer is new Wrapper with
         record
-            Modify_CBs : Modify_Vectors.Vector;
+            Modify_CBs    : Modify_Vectors.Vector;
             Predelete_CBs : Predelete_Vectors.Vector;
         end record;
 
