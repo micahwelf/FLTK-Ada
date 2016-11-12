@@ -70,6 +70,14 @@ package FLTK.Widgets.Groups.Text_Displays is
            (This : in out Text_Display);
 
 
+    procedure Next_Word
+           (This : in out Text_Display);
+
+
+    procedure Previous_Word
+           (This : in out Text_Display);
+
+
 private
 
 

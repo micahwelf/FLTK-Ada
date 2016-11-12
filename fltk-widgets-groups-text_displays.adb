@@ -72,6 +72,14 @@ package body FLTK.Widgets.Groups.Text_Displays is
            (TD : in System.Address);
     pragma Import (C, fl_text_display_show_insert_pos, "fl_text_display_show_insert_pos");
 
+    procedure fl_text_display_next_word
+           (TD : in System.Address);
+    pragma Import (C, fl_text_display_next_word, "fl_text_display_next_word");
+
+    procedure fl_text_display_previous_word
+           (TD : in System.Address);
+    pragma Import (C, fl_text_display_previous_word, "fl_text_display_previous_word");
+
 
 
 
@@ -217,6 +225,24 @@ package body FLTK.Widgets.Groups.Text_Displays is
     begin
         fl_text_display_show_insert_pos (This.Void_Ptr);
     end Show_Insert_Position;
+
+
+
+
+    procedure Next_Word
+           (This : in out Text_Display) is
+    begin
+        fl_text_display_next_word (This.Void_Ptr);
+    end Next_Word;
+
+
+
+
+    procedure Previous_Word
+           (This : in out Text_Display) is
+    begin
+        fl_text_display_previous_word (This.Void_Ptr);
+    end Previous_Word;
 
 
 end FLTK.Widgets.Groups.Text_Displays;

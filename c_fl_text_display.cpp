@@ -73,3 +73,13 @@ void fl_text_display_show_insert_pos(TEXTDISPLAY td) {
     reinterpret_cast<Fl_Text_Display*>(td)->show_insert_position();
 }
 
+
+void fl_text_display_next_word(TEXTDISPLAY td) {
+    reinterpret_cast<Fl_Text_Display*>(td)->next_word();
+}
+
+
+void fl_text_display_previous_word(TEXTDISPLAY td) {
+    reinterpret_cast<Fl_Text_Display*>(td)->previous_word();
+}
+
