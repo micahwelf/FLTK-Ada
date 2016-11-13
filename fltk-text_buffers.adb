@@ -79,10 +79,25 @@ package body FLTK.Text_Buffers is
         return Interfaces.C.int;
     pragma Import (C, fl_text_buffer_search_forward, "fl_text_buffer_search_forward");
 
+    function fl_text_buffer_search_backward
+           (TB : in     System.Address;
+            SP : in     Interfaces.C.int;
+            IT : in     Interfaces.C.char_array;
+            FP :    out Interfaces.C.int;
+            CA : in     Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_buffer_search_backward, "fl_text_buffer_search_backward");
+
     procedure fl_text_buffer_select
            (TB   : in System.Address;
             S, E : in Interfaces.C.int);
     pragma Import (C, fl_text_buffer_select, "fl_text_buffer_select");
+
+    function fl_text_buffer_selection_position
+           (TB   : in     System.Address;
+            S, E :    out Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_buffer_selection_position, "fl_text_buffer_selection_position");
 
     function fl_text_buffer_skip_lines
            (TB   : in System.Address;
@@ -327,8 +342,7 @@ package body FLTK.Text_Buffers is
             Match_Case : in     Boolean)
         return Boolean
     is
-        Found_Raw : Interfaces.C.int;
-        Result : Interfaces.C.int;
+        Found_Raw, Result : Interfaces.C.int;
     begin
         Result := fl_text_buffer_search_forward
                (This.Void_Ptr,
@@ -336,9 +350,36 @@ package body FLTK.Text_Buffers is
                 Interfaces.C.To_C (Item),
                 Found_Raw,
                 Boolean'Pos (Match_Case));
-        Found_At := Natural (Found_Raw);
-        return Boolean'Val (Result);
+        if Result /= 0 then
+            Found_At := Natural (Found_Raw);
+        end if;
+        return Result /= 0;
     end Search_Forward;
+
+
+
+
+    function Search_Backward
+           (This       : in     Text_Buffer;
+            Start_At   : in     Natural;
+            Item       : in     String;
+            Found_At   :    out Natural;
+            Match_Case : in     Boolean)
+        return Boolean
+    is
+        Found_Raw, Result : Interfaces.C.int;
+    begin
+        Result := fl_text_buffer_search_backward
+               (This.Void_Ptr,
+                Interfaces.C.int (Start_At),
+                Interfaces.C.To_C (Item),
+                Found_Raw,
+                Boolean'Pos (Match_Case));
+        if Result /= 0 then
+            Found_At := Natural (Found_Raw);
+        end if;
+        return Result /= 0;
+    end Search_Backward;
 
 
 
@@ -352,6 +393,27 @@ package body FLTK.Text_Buffers is
                 Interfaces.C.int (Start),
                 Interfaces.C.int (Finish));
     end Set_Selection;
+
+
+
+
+    function Get_Selection
+           (This          : in     Text_Buffer;
+            Start, Finish :    out Natural)
+        return Boolean
+    is
+        Result, Start_Raw, Finish_Raw : Interfaces.C.int;
+    begin
+        Result := fl_text_buffer_selection_position
+               (This.Void_Ptr,
+                Start_Raw,
+                Finish_Raw);
+        if Result /= 0 then
+            Start := Natural (Start_Raw);
+            Finish := Natural (Finish_Raw);
+        end if;
+        return Result /= 0;
+    end Get_Selection;
 
 
 

@@ -86,9 +86,24 @@ package FLTK.Text_Buffers is
         return Boolean;
 
 
+    function Search_Backward
+           (This       : in     Text_Buffer;
+            Start_At   : in     Natural;
+            Item       : in     String;
+            Found_At   :    out Natural;
+            Match_Case : in     Boolean)
+        return Boolean;
+
+
     procedure Set_Selection
            (This          : in out Text_Buffer;
             Start, Finish : in     Natural);
+
+
+    function Get_Selection
+           (This          : in     Text_Buffer;
+            Start, Finish :    out Natural)
+        return Boolean;
 
 
     --  only takes into account newline characters, not word wrap

@@ -65,8 +65,18 @@ int fl_text_buffer_search_forward(TEXTBUFFER tb, int start, const char * item, i
 }
 
 
+int fl_text_buffer_search_backward(TEXTBUFFER tb, int start, const char * item, int * found, int mcase) {
+    return reinterpret_cast<Fl_Text_Buffer*>(tb)->search_backward(start, item, found, mcase);
+}
+
+
 void fl_text_buffer_select(TEXTBUFFER tb, int s, int e) {
     reinterpret_cast<Fl_Text_Buffer*>(tb)->select(s, e);
+}
+
+
+int fl_text_buffer_selection_position(TEXTBUFFER tb, int * s, int * e) {
+    return reinterpret_cast<Fl_Text_Buffer*>(tb)->selection_position(s, e);
 }
 
 
