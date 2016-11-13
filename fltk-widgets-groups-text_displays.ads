@@ -10,6 +10,9 @@ package FLTK.Widgets.Groups.Text_Displays is
     type Text_Display is new Group with private;
 
 
+    type Wrap_Mode is (Wrap_None, Wrap_At_Column, Wrap_At_Pixel, Wrap_At_Bounds);
+
+
     function Create
            (X, Y, W, H : in Integer;
             Text       : in String)
@@ -76,6 +79,12 @@ package FLTK.Widgets.Groups.Text_Displays is
 
     procedure Previous_Word
            (This : in out Text_Display);
+
+
+    procedure Set_Wrap_Mode
+           (This   : in out Text_Display;
+            Mode   : in     Wrap_Mode;
+            Margin : in     Natural := 0);
 
 
 private

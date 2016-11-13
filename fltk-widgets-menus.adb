@@ -91,6 +91,16 @@ package body FLTK.Widgets.Menus is
         return Interfaces.C.int;
     pragma Import (C, fl_menu_add, "fl_menu_add");
 
+    function fl_menu_mvalue
+           (M : in System.Address)
+        return System.Address;
+    pragma Import (C, fl_menu_mvalue, "fl_menu_mvalue");
+
+    function fl_menuitem_value
+           (MI : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_menuitem_value, "fl_menuitem_value");
+
 
 
 
@@ -136,6 +146,28 @@ package body FLTK.Widgets.Menus is
                 User_Data,
                 Interfaces.C.unsigned_long (Flags));
     end Add;
+
+
+
+
+    function Chosen
+           (This : in Menu'Class)
+        return Menu_Item is
+    begin
+        return Item : Menu_Item do
+            Item.Void_Ptr := fl_menu_mvalue (This.Void_Ptr);
+        end return;
+    end Chosen;
+
+
+
+
+    function Value
+           (Item : in Menu_Item)
+        return Boolean is
+    begin
+        return fl_menuitem_value (Item.Void_Ptr) /= 0;
+    end Value;
 
 
 end FLTK.Widgets.Menus;

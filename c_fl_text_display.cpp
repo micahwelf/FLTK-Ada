@@ -83,3 +83,8 @@ void fl_text_display_previous_word(TEXTDISPLAY td) {
     reinterpret_cast<Fl_Text_Display*>(td)->previous_word();
 }
 
+
+void fl_text_display_wrap_mode(TEXTDISPLAY td, int w, int m) {
+    reinterpret_cast<Fl_Text_Display*>(td)->wrap_mode(w, m);
+}
+

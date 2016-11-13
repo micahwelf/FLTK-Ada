@@ -80,6 +80,11 @@ package body FLTK.Widgets.Groups.Text_Displays is
            (TD : in System.Address);
     pragma Import (C, fl_text_display_previous_word, "fl_text_display_previous_word");
 
+    procedure fl_text_display_wrap_mode
+           (TD    : in System.Address;
+            W, M  : in Interfaces.C.int);
+    pragma Import (C, fl_text_display_wrap_mode, "fl_text_display_wrap_mode");
+
 
 
 
@@ -243,6 +248,20 @@ package body FLTK.Widgets.Groups.Text_Displays is
     begin
         fl_text_display_previous_word (This.Void_Ptr);
     end Previous_Word;
+
+
+
+
+    procedure Set_Wrap_Mode
+           (This   : in out Text_Display;
+            Mode   : in     Wrap_Mode;
+            Margin : in     Natural := 0) is
+    begin
+        fl_text_display_wrap_mode
+               (This.Void_Ptr,
+                Wrap_Mode'Pos (Mode),
+                Interfaces.C.int (Margin));
+    end Set_Wrap_Mode;
 
 
 end FLTK.Widgets.Groups.Text_Displays;

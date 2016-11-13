@@ -12,9 +12,7 @@ package FLTK.Widgets.Menus is
         with Implicit_Dereference => Data;
 
 
-    type Menu_Item is private;
-    type Menu_Item_Cursor (Data : access Menu_Item) is limited null record
-        with Implicit_Dereference => Data;
+    type Menu_Item is tagged limited private;
 
 
     type Index is new Positive;
@@ -62,13 +60,26 @@ package FLTK.Widgets.Menus is
             Flags    : in     Menu_Flag := Flag_Normal);
 
 
+    function Chosen
+           (This : in Menu'Class)
+        return Menu_Item;
+
+
+    function Value
+           (Item : in Menu_Item)
+        return Boolean;
+
+
 private
 
 
     type Menu is abstract new Widget with null record;
 
 
-    type Menu_Item is new System.Address;
+    type Menu_Item is tagged limited
+        record
+            Void_Ptr : System.Address;
+        end record;
 
 
     --  these values designed to align with FLTK enumeration types
