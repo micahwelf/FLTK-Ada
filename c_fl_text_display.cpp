@@ -98,3 +98,8 @@ int fl_text_display_rewind_lines(TEXTDISPLAY td, int s, int l) {
     return reinterpret_cast<Fl_Text_Display*>(td)->rewind_lines(s, l);
 }
 
+
+void fl_text_display_linenumber_width(TEXTDISPLAY td, int w) {
+    reinterpret_cast<Fl_Text_Display*>(td)->linenumber_width(w);
+}
+

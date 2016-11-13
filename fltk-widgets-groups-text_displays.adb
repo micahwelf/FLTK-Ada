@@ -97,6 +97,11 @@ package body FLTK.Widgets.Groups.Text_Displays is
         return Interfaces.C.int;
     pragma Import (C, fl_text_display_rewind_lines, "fl_text_display_rewind_lines");
 
+    procedure fl_text_display_linenumber_width
+           (TD : in System.Address;
+            W  : in Interfaces.C.int);
+    pragma Import (C, fl_text_display_linenumber_width, "fl_text_display_linenumber_width");
+
 
 
 
@@ -304,6 +309,18 @@ package body FLTK.Widgets.Groups.Text_Displays is
                 Interfaces.C.int (Start),
                 Interfaces.C.int (Lines)));
     end Rewind_Lines;
+
+
+
+
+    procedure Set_Linenumber_Width
+           (This  : in out Text_Display;
+            Width : in     Natural) is
+    begin
+        fl_text_display_linenumber_width
+               (This.Void_Ptr,
+                Interfaces.C.int (Width));
+    end Set_Linenumber_Width;
 
 
 end FLTK.Widgets.Groups.Text_Displays;

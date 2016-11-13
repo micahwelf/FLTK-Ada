@@ -102,6 +102,11 @@ package FLTK.Widgets.Groups.Text_Displays is
         return Natural;
 
 
+    procedure Set_Linenumber_Width
+           (This  : in out Text_Display;
+            Width : in     Natural);
+
+
 private
 
 
