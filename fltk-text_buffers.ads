@@ -105,6 +105,12 @@ package FLTK.Text_Buffers is
         return Natural;
 
 
+    function Character_At
+           (This : in Text_Buffer;
+            Pos  : in Natural)
+        return Character;
+
+
 private
 
 

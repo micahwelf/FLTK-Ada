@@ -96,6 +96,12 @@ package body FLTK.Text_Buffers is
         return Interfaces.C.int;
     pragma Import (C, fl_text_buffer_rewind_lines, "fl_text_buffer_rewind_lines");
 
+    function fl_text_buffer_char_at
+           (TB : in System.Address;
+            P  : in Interfaces.C.int)
+        return Interfaces.C.unsigned;
+    pragma Import (C, fl_text_buffer_char_at, "fl_text_buffer_char_at");
+
 
 
 
@@ -374,6 +380,19 @@ package body FLTK.Text_Buffers is
                 Interfaces.C.int (Start),
                 Interfaces.C.int (Lines)));
     end Rewind_Lines;
+
+
+
+
+    function Character_At
+           (This : in Text_Buffer;
+            Pos  : in Natural)
+        return Character is
+    begin
+        return Character'Val (fl_text_buffer_char_at
+               (This.Void_Ptr,
+                Interfaces.C.int (Pos)));
+    end Character_At;
 
 
 end FLTK.Text_Buffers;
