@@ -69,3 +69,13 @@ void fl_text_buffer_select(TEXTBUFFER tb, int s, int e) {
     reinterpret_cast<Fl_Text_Buffer*>(tb)->select(s, e);
 }
 
+
+int fl_text_buffer_skip_lines(TEXTBUFFER tb, int s, int l) {
+    reinterpret_cast<Fl_Text_Buffer*>(tb)->skip_lines(s, l);
+}
+
+
+int fl_text_buffer_rewind_lines(TEXTBUFFER tb, int s, int l) {
+    reinterpret_cast<Fl_Text_Buffer*>(tb)->rewind_lines(s, l);
+}
+

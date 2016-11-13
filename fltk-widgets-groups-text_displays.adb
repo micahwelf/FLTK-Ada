@@ -85,6 +85,18 @@ package body FLTK.Widgets.Groups.Text_Displays is
             W, M  : in Interfaces.C.int);
     pragma Import (C, fl_text_display_wrap_mode, "fl_text_display_wrap_mode");
 
+    function fl_text_display_skip_lines
+           (TD      : in System.Address;
+            S, L, P : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_display_skip_lines, "fl_text_display_skip_lines");
+
+    function fl_text_display_rewind_lines
+           (TD   : in System.Address;
+            S, L : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_display_rewind_lines, "fl_text_display_rewind_lines");
+
 
 
 
@@ -262,6 +274,36 @@ package body FLTK.Widgets.Groups.Text_Displays is
                 Wrap_Mode'Pos (Mode),
                 Interfaces.C.int (Margin));
     end Set_Wrap_Mode;
+
+
+
+
+    function Skip_Lines
+           (This                    : in out Text_Display;
+            Start, Lines            : in     Natural;
+            Start_Pos_Is_Line_Start : in     Boolean := False)
+        return Natural is
+    begin
+        return Natural (fl_text_display_skip_lines
+               (This.Void_Ptr,
+                Interfaces.C.int (Start),
+                Interfaces.C.int (Lines),
+                Boolean'Pos (Start_Pos_Is_Line_Start)));
+    end Skip_Lines;
+
+
+
+
+    function Rewind_Lines
+           (This         : in out Text_Display;
+            Start, Lines : in     Natural)
+        return Natural is
+    begin
+        return Natural (fl_text_display_rewind_lines
+               (This.Void_Ptr,
+                Interfaces.C.int (Start),
+                Interfaces.C.int (Lines)));
+    end Rewind_Lines;
 
 
 end FLTK.Widgets.Groups.Text_Displays;

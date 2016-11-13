@@ -91,6 +91,20 @@ package FLTK.Text_Buffers is
             Start, Finish : in     Natural);
 
 
+    --  only takes into account newline characters, not word wrap
+    function Skip_Lines
+           (This         : in out Text_Buffer;
+            Start, Lines : in     Natural)
+        return Natural;
+
+
+    --  only takes into account newline characters, not word wrap
+    function Rewind_Lines
+           (This         : in out Text_Buffer;
+            Start, Lines : in     Natural)
+        return Natural;
+
+
 private
 
 

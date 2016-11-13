@@ -88,3 +88,13 @@ void fl_text_display_wrap_mode(TEXTDISPLAY td, int w, int m) {
     reinterpret_cast<Fl_Text_Display*>(td)->wrap_mode(w, m);
 }
 
+
+int fl_text_display_skip_lines(TEXTDISPLAY td, int s, int l, int p) {
+    return reinterpret_cast<Fl_Text_Display*>(td)->skip_lines(s, l, p);
+}
+
+
+int fl_text_display_rewind_lines(TEXTDISPLAY td, int s, int l) {
+    return reinterpret_cast<Fl_Text_Display*>(td)->rewind_lines(s, l);
+}
+

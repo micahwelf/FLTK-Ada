@@ -20,7 +20,8 @@ package FLTK.Dialogs is
 
 
     function Text_Input
-           (Message, Default : in String)
+           (Message : in String;
+            Default : in String := "")
         return String;
 
 

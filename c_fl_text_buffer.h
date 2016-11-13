@@ -22,6 +22,8 @@ extern "C" void fl_text_buffer_remove_selection(TEXTBUFFER tb);
 extern "C" int fl_text_buffer_savefile(TEXTBUFFER tb, char * n);
 extern "C" int fl_text_buffer_search_forward(TEXTBUFFER tb, int start, const char * item, int * found, int mcase);
 extern "C" void fl_text_buffer_select(TEXTBUFFER tb, int s, int e);
+extern "C" int fl_text_buffer_skip_lines(TEXTBUFFER tb, int s, int l);
+extern "C" int fl_text_buffer_rewind_lines(TEXTBUFFER tb, int s, int l);
 
 
 #endif

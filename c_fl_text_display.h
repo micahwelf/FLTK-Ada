@@ -26,6 +26,8 @@ extern "C" void fl_text_display_show_insert_pos(TEXTDISPLAY td);
 extern "C" void fl_text_display_next_word(TEXTDISPLAY td);
 extern "C" void fl_text_display_previous_word(TEXTDISPLAY td);
 extern "C" void fl_text_display_wrap_mode(TEXTDISPLAY td, int w, int m);
+extern "C" int fl_text_display_skip_lines(TEXTDISPLAY td, int s, int l, int p);
+extern "C" int fl_text_display_rewind_lines(TEXTDISPLAY td, int s, int l);
 
 
 #endif

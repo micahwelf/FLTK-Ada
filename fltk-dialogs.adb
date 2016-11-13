@@ -82,7 +82,8 @@ package body FLTK.Dialogs is
 
 
     function Text_Input
-           (Message, Default : in String)
+           (Message : in String;
+            Default : in String := "")
         return String
     is
         Result : Interfaces.C.Strings.chars_ptr := dialog_fl_input

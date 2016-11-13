@@ -84,6 +84,18 @@ package body FLTK.Text_Buffers is
             S, E : in Interfaces.C.int);
     pragma Import (C, fl_text_buffer_select, "fl_text_buffer_select");
 
+    function fl_text_buffer_skip_lines
+           (TB   : in System.Address;
+            S, L : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_buffer_skip_lines, "fl_text_buffer_skip_lines");
+
+    function fl_text_buffer_rewind_lines
+           (TB   : in System.Address;
+            S, L : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_buffer_rewind_lines, "fl_text_buffer_rewind_lines");
+
 
 
 
@@ -334,6 +346,34 @@ package body FLTK.Text_Buffers is
                 Interfaces.C.int (Start),
                 Interfaces.C.int (Finish));
     end Set_Selection;
+
+
+
+
+    function Skip_Lines
+           (This         : in out Text_Buffer;
+            Start, Lines : in     Natural)
+        return Natural is
+    begin
+        return Natural (fl_text_buffer_skip_lines
+               (This.Void_Ptr,
+                Interfaces.C.int (Start),
+                Interfaces.C.int (Lines)));
+    end Skip_Lines;
+
+
+
+
+    function Rewind_Lines
+           (This         : in out Text_Buffer;
+            Start, Lines : in     Natural)
+        return Natural is
+    begin
+        return Natural (fl_text_buffer_rewind_lines
+               (This.Void_Ptr,
+                Interfaces.C.int (Start),
+                Interfaces.C.int (Lines)));
+    end Rewind_Lines;
 
 
 end FLTK.Text_Buffers;

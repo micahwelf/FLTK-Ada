@@ -87,6 +87,21 @@ package FLTK.Widgets.Groups.Text_Displays is
             Margin : in     Natural := 0);
 
 
+    --  takes into account word wrap as well as newline characters
+    function Skip_Lines
+           (This                    : in out Text_Display;
+            Start, Lines            : in     Natural;
+            Start_Pos_Is_Line_Start : in     Boolean := False)
+        return Natural;
+
+
+    --  takes into account word wrap as well as newline characters
+    function Rewind_Lines
+           (This         : in out Text_Display;
+            Start, Lines : in     Natural)
+        return Natural;
+
+
 private
 
 
