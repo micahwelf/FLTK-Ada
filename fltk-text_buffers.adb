@@ -99,6 +99,11 @@ package body FLTK.Text_Buffers is
         return Interfaces.C.int;
     pragma Import (C, fl_text_buffer_selection_position, "fl_text_buffer_selection_position");
 
+    function fl_text_buffer_selected
+           (TB : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_buffer_selected, "fl_text_buffer_selected");
+
     function fl_text_buffer_skip_lines
            (TB   : in System.Address;
             S, L : in Interfaces.C.int)
@@ -414,6 +419,16 @@ package body FLTK.Text_Buffers is
         end if;
         return Result /= 0;
     end Get_Selection;
+
+
+
+
+    function Has_Selection
+           (This : in Text_Buffer)
+        return Boolean is
+    begin
+        return fl_text_buffer_selected (This.Void_Ptr) /= 0;
+    end Has_Selection;
 
 
 

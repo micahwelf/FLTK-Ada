@@ -106,6 +106,11 @@ package FLTK.Text_Buffers is
         return Boolean;
 
 
+    function Has_Selection
+           (This : in Text_Buffer)
+        return Boolean;
+
+
     --  only takes into account newline characters, not word wrap
     function Skip_Lines
            (This         : in out Text_Buffer;

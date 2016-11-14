@@ -91,6 +91,12 @@ package body FLTK.Widgets.Menus is
         return Interfaces.C.int;
     pragma Import (C, fl_menu_add, "fl_menu_add");
 
+    function fl_menu_find_item
+           (M : in System.Address;
+            T : in Interfaces.C.char_array)
+        return System.Address;
+    pragma Import (C, fl_menu_find_item, "fl_menu_find_item");
+
     function fl_menu_mvalue
            (M : in System.Address)
         return System.Address;
@@ -100,6 +106,14 @@ package body FLTK.Widgets.Menus is
            (MI : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_menuitem_value, "fl_menuitem_value");
+
+    procedure fl_menuitem_activate
+           (MI : in System.Address);
+    pragma Import (C, fl_menuitem_activate, "fl_menuitem_activate");
+
+    procedure fl_menuitem_deactivate
+           (MI : in System.Address);
+    pragma Import (C, fl_menuitem_deactivate, "fl_menuitem_deactivate");
 
 
 
@@ -150,6 +164,21 @@ package body FLTK.Widgets.Menus is
 
 
 
+    function Find_Item
+           (This : in Menu'Class;
+            Name : in String)
+        return Menu_Item is
+    begin
+        return Item : Menu_Item do
+            Item.Void_Ptr := fl_menu_find_item
+                   (This.Void_Ptr,
+                    Interfaces.C.To_C (Name));
+        end return;
+    end Find_Item;
+
+
+
+
     function Chosen
            (This : in Menu'Class)
         return Menu_Item is
@@ -168,6 +197,24 @@ package body FLTK.Widgets.Menus is
     begin
         return fl_menuitem_value (Item.Void_Ptr) /= 0;
     end Value;
+
+
+
+
+    procedure Activate
+           (Item : in Menu_Item) is
+    begin
+        fl_menuitem_activate (Item.Void_Ptr);
+    end Activate;
+
+
+
+
+    procedure Deactivate
+           (Item : in Menu_Item) is
+    begin
+        fl_menuitem_deactivate (Item.Void_Ptr);
+    end Deactivate;
 
 
 end FLTK.Widgets.Menus;

@@ -60,6 +60,12 @@ package FLTK.Widgets.Menus is
             Flags    : in     Menu_Flag := Flag_Normal);
 
 
+    function Find_Item
+           (This : in Menu'Class;
+            Name : in String)
+        return Menu_Item;
+
+
     function Chosen
            (This : in Menu'Class)
         return Menu_Item;
@@ -68,6 +74,14 @@ package FLTK.Widgets.Menus is
     function Value
            (Item : in Menu_Item)
         return Boolean;
+
+
+    procedure Activate
+           (Item : in Menu_Item);
+
+
+    procedure Deactivate
+           (Item : in Menu_Item);
 
 
 private

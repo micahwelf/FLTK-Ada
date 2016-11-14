@@ -80,6 +80,11 @@ int fl_text_buffer_selection_position(TEXTBUFFER tb, int * s, int * e) {
 }
 
 
+int fl_text_buffer_selected(TEXTBUFFER tb) {
+    return reinterpret_cast<Fl_Text_Buffer*>(tb)->selected();
+}
+
+
 int fl_text_buffer_skip_lines(TEXTBUFFER tb, int s, int l) {
     return reinterpret_cast<Fl_Text_Buffer*>(tb)->skip_lines(s, l);
 }
