@@ -40,6 +40,11 @@ void fl_text_buffer_insert(TEXTBUFFER tb, int p, const char * item) {
 }
 
 
+void fl_text_buffer_remove(TEXTBUFFER tb, int s, int f) {
+    reinterpret_cast<Fl_Text_Buffer*>(tb)->remove(s, f);
+}
+
+
 int fl_text_buffer_length(TEXTBUFFER tb) {
     return reinterpret_cast<Fl_Text_Buffer*>(tb)->length();
 }
@@ -97,5 +102,10 @@ int fl_text_buffer_rewind_lines(TEXTBUFFER tb, int s, int l) {
 
 unsigned int fl_text_buffer_char_at(TEXTBUFFER tb, int p) {
     return reinterpret_cast<Fl_Text_Buffer*>(tb)->char_at(p);
+}
+
+
+char * fl_text_buffer_text_range(TEXTBUFFER tb, int s, int f) {
+    return reinterpret_cast<Fl_Text_Buffer*>(tb)->text_range(s, f);
 }
 

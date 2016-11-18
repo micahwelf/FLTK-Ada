@@ -52,10 +52,23 @@ package FLTK.Text_Buffers is
            (This : in out Text_Buffer);
 
 
+    procedure Enable_Callbacks
+           (This : in out Text_Buffer);
+
+
+    procedure Disable_Callbacks
+           (This : in out Text_Buffer);
+
+
     procedure Insert_Text
            (This : in out Text_Buffer;
             Pos  : in     Natural;
             Item : in     String);
+
+
+    procedure Remove_Text
+           (This          : in out Text_Buffer;
+            Start, Finish : in     Natural);
 
 
     function Length
@@ -131,6 +144,12 @@ package FLTK.Text_Buffers is
         return Character;
 
 
+    function Text_At
+           (This          : in Text_Buffer;
+            Start, Finish : in Natural)
+        return String;
+
+
 private
 
 
@@ -144,6 +163,7 @@ private
 
     type Text_Buffer is new Wrapper with
         record
+            CB_Active     : Boolean;
             Modify_CBs    : Modify_Vectors.Vector;
             Predelete_CBs : Predelete_Vectors.Vector;
         end record;

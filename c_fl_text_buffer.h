@@ -16,6 +16,7 @@ extern "C" void fl_text_buffer_add_predelete_callback(TEXTBUFFER tb, void * cb, 
 extern "C" void fl_text_buffer_call_modify_callbacks(TEXTBUFFER tb);
 extern "C" void fl_text_buffer_call_predelete_callbacks(TEXTBUFFER tb);
 extern "C" void fl_text_buffer_insert(TEXTBUFFER tb, int p, const char * item);
+extern "C" void fl_text_buffer_remove(TEXTBUFFER tb, int s, int f);
 extern "C" int fl_text_buffer_length(TEXTBUFFER tb);
 extern "C" int fl_text_buffer_loadfile(TEXTBUFFER tb, char * n);
 extern "C" void fl_text_buffer_remove_selection(TEXTBUFFER tb);
@@ -28,6 +29,7 @@ extern "C" int fl_text_buffer_selected(TEXTBUFFER tb);
 extern "C" int fl_text_buffer_skip_lines(TEXTBUFFER tb, int s, int l);
 extern "C" int fl_text_buffer_rewind_lines(TEXTBUFFER tb, int s, int l);
 extern "C" unsigned int fl_text_buffer_char_at(TEXTBUFFER tb, int p);
+extern "C" char * fl_text_buffer_text_range(TEXTBUFFER tb, int s, int f);
 
 
 #endif

@@ -1,6 +1,5 @@
 
 
-with Interfaces.C;
 with Interfaces.C.Strings;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 with Ada.Containers;
@@ -48,6 +47,11 @@ package body FLTK.Text_Buffers is
             P  : in Interfaces.C.int;
             I  : in Interfaces.C.char_array);
     pragma Import (C, fl_text_buffer_insert, "fl_text_buffer_insert");
+
+    procedure fl_text_buffer_remove
+           (TB   : in System.Address;
+            S, F : in Interfaces.C.int);
+    pragma Import (C, fl_text_buffer_remove, "fl_text_buffer_remove");
 
     function fl_text_buffer_length
            (TB : in System.Address)
@@ -122,6 +126,12 @@ package body FLTK.Text_Buffers is
         return Interfaces.C.unsigned;
     pragma Import (C, fl_text_buffer_char_at, "fl_text_buffer_char_at");
 
+    function fl_text_buffer_text_range
+           (TB   : in System.Address;
+            S, F : in Interfaces.C.int)
+        return Interfaces.C.Strings.chars_ptr;
+    pragma Import (C, fl_text_buffer_text_range, "fl_text_buffer_text_range");
+
 
 
 
@@ -158,26 +168,28 @@ package body FLTK.Text_Buffers is
         Ada_Text_Buffer : access Text_Buffer :=
             Text_Buffer_Convert.To_Pointer (UD);
     begin
-        if Inserted > 0 then
-            Length := Natural (Inserted);
-            Action := Insert;
-        elsif Deleted > 0 then
-            Length := Natural (Deleted);
-            Action := Delete;
-            if Text /= Interfaces.C.Strings.Null_Ptr then
-                Deleted_Text := To_Unbounded_String (Interfaces.C.Strings.Value (Text));
+        if Ada_Text_Buffer.CB_Active then
+            if Inserted > 0 then
+                Length := Natural (Inserted);
+                Action := Insert;
+            elsif Deleted > 0 then
+                Length := Natural (Deleted);
+                Action := Delete;
+                if Text /= Interfaces.C.Strings.Null_Ptr then
+                    Deleted_Text := To_Unbounded_String (Interfaces.C.Strings.Value (Text));
+                end if;
+            elsif Restyled > 0 then
+                Length := Natural (Restyled);
+                Action := Restyle;
+            else
+                Length := 0;
+                Action := None;
             end if;
-        elsif Restyled > 0 then
-            Length := Natural (Restyled);
-            Action := Restyle;
-        else
-            Length := 0;
-            Action := None;
-        end if;
 
-        for CB of Ada_Text_Buffer.Modify_CBs loop
-            CB.all (Action, Place, Length, To_String (Deleted_Text));
-        end loop;
+            for CB of Ada_Text_Buffer.Modify_CBs loop
+                CB.all (Action, Place, Length, To_String (Deleted_Text));
+            end loop;
+        end if;
     end Modify_Callback_Hook;
 
 
@@ -198,9 +210,11 @@ package body FLTK.Text_Buffers is
         Ada_Text_Buffer : access Text_Buffer :=
             Text_Buffer_Convert.To_Pointer (UD);
     begin
-        for CB of Ada_Text_Buffer.Predelete_CBs loop
-            CB.all (Place, Length);
-        end loop;
+        if Ada_Text_Buffer.CB_Active then
+            for CB of Ada_Text_Buffer.Predelete_CBs loop
+                CB.all (Place, Length);
+            end loop;
+        end if;
     end Predelete_Callback_Hook;
 
 
@@ -218,6 +232,7 @@ package body FLTK.Text_Buffers is
 
             This.Modify_CBs := Modify_Vectors.Empty_Vector;
             This.Predelete_CBs := Predelete_Vectors.Empty_Vector;
+            This.CB_Active := True;
         end return;
     end Create;
 
@@ -274,6 +289,24 @@ package body FLTK.Text_Buffers is
 
 
 
+    procedure Enable_Callbacks
+           (This : in out Text_Buffer) is
+    begin
+        This.CB_Active := True;
+    end Enable_Callbacks;
+
+
+
+
+    procedure Disable_Callbacks
+           (This : in out Text_Buffer) is
+    begin
+        This.CB_Active := False;
+    end Disable_Callbacks;
+
+
+
+
     procedure Insert_Text
            (This : in out Text_Buffer;
             Pos  : in     Natural;
@@ -284,6 +317,19 @@ package body FLTK.Text_Buffers is
                 Interfaces.C.int (Pos),
                 Interfaces.C.To_C (Item));
     end Insert_Text;
+
+
+
+
+    procedure Remove_Text
+           (This          : in out Text_Buffer;
+            Start, Finish : in     Natural) is
+    begin
+        fl_text_buffer_remove
+               (This.Void_Ptr,
+                Interfaces.C.int (Start),
+                Interfaces.C.int (Finish));
+    end Remove_Text;
 
 
 
@@ -470,6 +516,24 @@ package body FLTK.Text_Buffers is
                (This.Void_Ptr,
                 Interfaces.C.int (Pos)));
     end Character_At;
+
+
+
+
+    function Text_At
+           (This          : in Text_Buffer;
+            Start, Finish : in Natural)
+        return String
+    is
+        C_Str : Interfaces.C.Strings.chars_ptr := fl_text_buffer_text_range
+               (This.Void_Ptr,
+                Interfaces.C.int (Start),
+                Interfaces.C.int (Finish));
+        The_Text : String := Interfaces.C.Strings.Value (C_Str);
+    begin
+        Interfaces.C.Strings.Free (C_Str);
+        return The_Text;
+    end Text_At;
 
 
 end FLTK.Text_Buffers;
