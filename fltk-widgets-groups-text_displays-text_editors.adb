@@ -38,6 +38,12 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
            (TE : in System.Address);
     pragma Import (C, fl_text_editor_delete, "fl_text_editor_delete");
 
+    procedure fl_text_editor_remove_key_binding
+           (TE : in System.Address;
+            K  : in Interfaces.C.unsigned;
+            M  : in Interfaces.C.unsigned_long);
+    pragma Import (C, fl_text_editor_remove_key_binding, "fl_text_editor_remove_key_binding");
+
 
 
 
@@ -118,6 +124,21 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     begin
         fl_text_editor_delete (This.Void_Ptr);
     end Delete;
+
+
+
+
+    procedure Remove_Key_Binding
+           (This : in out Text_Editor;
+            Key  : in     Shortcut_Key)
+    is
+        use type Interfaces.C.unsigned_long;
+    begin
+        fl_text_editor_remove_key_binding
+               (This.Void_Ptr,
+                Character'Pos (Key.Keypress),
+                Interfaces.C.unsigned_long (Key.Modifier) * 65536);
+    end Remove_Key_Binding;
 
 
 end FLTK.Widgets.Groups.Text_Displays.Text_Editors;

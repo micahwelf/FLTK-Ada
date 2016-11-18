@@ -1,5 +1,8 @@
 
 
+with FLTK.Enums; use FLTK.Enums;
+
+
 package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
@@ -30,6 +33,11 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
     procedure Delete
            (This : in out Text_Editor);
+
+
+    procedure Remove_Key_Binding
+           (This : in out Text_Editor;
+            Key  : in     Shortcut_Key);
 
 
 private

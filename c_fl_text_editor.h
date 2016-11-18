@@ -16,6 +16,7 @@ extern "C" void fl_text_editor_cut(TEXTEDITOR te);
 extern "C" void fl_text_editor_copy(TEXTEDITOR te);
 extern "C" void fl_text_editor_paste(TEXTEDITOR te);
 extern "C" void fl_text_editor_delete(TEXTEDITOR te);
+extern "C" void fl_text_editor_remove_key_binding(TEXTEDITOR te, unsigned int k, unsigned long m);
 
 
 #endif

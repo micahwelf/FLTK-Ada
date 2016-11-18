@@ -41,3 +41,8 @@ void fl_text_editor_delete(TEXTEDITOR te) {
     Fl_Text_Editor::kf_delete(0, reinterpret_cast<Fl_Text_Editor*>(te));
 }
 
+
+void fl_text_editor_remove_key_binding(TEXTEDITOR te, unsigned int k, unsigned long m) {
+    reinterpret_cast<Fl_Text_Editor*>(te)->remove_key_binding(k, m);
+}
+

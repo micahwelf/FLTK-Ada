@@ -1,5 +1,6 @@
 
 
+with FLTK.Enums; use FLTK.Enums;
 private with Interfaces;
 private with System;
 
@@ -16,22 +17,6 @@ package FLTK.Widgets.Menus is
 
 
     type Index is new Positive;
-
-
-    type Shortcut_Key is private;
-    subtype Pressable_Key is Character range Character'Val (32) .. Character'Val (126);
-    function Shortcut (Key : Pressable_Key) return Shortcut_Key;
-    No_Key : constant Shortcut_Key;
-
-
-    type Modifier_Key is private;
-    function "+" (Left, Right : in Modifier_Key) return Modifier_Key;
-    function "+" (Left : in Modifier_Key; Right : in Pressable_Key) return Shortcut_Key;
-    function "+" (Left : in Modifier_Key; Right : in Shortcut_Key) return Shortcut_Key;
-    Mod_None  : constant Modifier_Key;
-    Mod_Shift : constant Modifier_Key;
-    Mod_Ctrl  : constant Modifier_Key;
-    Mod_Alt   : constant Modifier_Key;
 
 
     type Menu_Flag is private;
@@ -94,23 +79,6 @@ private
         record
             Void_Ptr : System.Address;
         end record;
-
-
-    --  these values designed to align with FLTK enumeration types
-    type Modifier_Key is new Interfaces.Unsigned_8;
-    Mod_None  : constant Modifier_Key := 2#00000000#;
-    Mod_Shift : constant Modifier_Key := 2#00000001#;
-    Mod_Ctrl  : constant Modifier_Key := 2#00000100#;
-    Mod_Alt   : constant Modifier_Key := 2#00001000#;
-
-
-    type Shortcut_Key is
-        record
-            Modifier : Modifier_Key;
-            Keypress : Character;
-        end record;
-    No_Key : constant Shortcut_Key :=
-        (Modifier => Mod_None, Keypress => Character'Val (0));
 
 
     type Menu_Flag is new Interfaces.Unsigned_8;

@@ -1,5 +1,9 @@
 
 
+with Interfaces.C;
+private with FLTK.Enum_Values;
+
+
 package FLTK.Enums is
 
 
@@ -93,6 +97,49 @@ package FLTK.Enums is
             Icon_Label,
             Image_Label,
             Free_Label);
+
+
+    --  type Modifier_Key is private;
+    type Modifier_Key is new Interfaces.Unsigned_8;
+
+    --  type Shortcut_Key is private;
+    type Shortcut_Key is
+        record
+            Modifier : Modifier_Key;
+            Keypress : Character;
+        end record;
+
+    subtype Pressable_Key is Character range Character'Val (32) .. Character'Val (126);
+    function Shortcut (Key : Pressable_Key) return Shortcut_Key;
+    No_Key : constant Shortcut_Key;
+
+
+    function "+" (Left, Right : in Modifier_Key) return Modifier_Key;
+    function "+" (Left : in Modifier_Key; Right : in Pressable_Key) return Shortcut_Key;
+    function "+" (Left : in Modifier_Key; Right : in Shortcut_Key) return Shortcut_Key;
+    Mod_None  : constant Modifier_Key;
+    Mod_Shift : constant Modifier_Key;
+    Mod_Ctrl  : constant Modifier_Key;
+    Mod_Alt   : constant Modifier_Key;
+
+
+    function Key_To_C
+           (Key : Shortcut_Key)
+        return Interfaces.C.unsigned_long;
+
+
+private
+
+
+    --  these values designed to align with FLTK enumeration types
+    Mod_None  : constant Modifier_Key := 2#00000000#;
+    Mod_Shift : constant Modifier_Key := 2#00000001#;
+    Mod_Ctrl  : constant Modifier_Key := 2#00000100#;
+    Mod_Alt   : constant Modifier_Key := 2#00001000#;
+
+
+    No_Key : constant Shortcut_Key :=
+        (Modifier => Mod_None, Keypress => Character'Val (0));
 
 
 end FLTK.Enums;
