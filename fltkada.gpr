@@ -1,11 +1,24 @@
 
 
-project FLTKAda is
+library project FLTKAda is
+
+
+    for Languages use ("Ada", "C++");
+
+
     for Source_Dirs use ("src");
     for Object_Dir use "obj";
-    for Library_Name use "fltkada";
     for Library_Dir use "lib";
+    for Library_Name use "fltkada";
     for Library_Kind use "dynamic";
+
+
+    package Compiler is
+        for Default_Switches("Ada") use ("-gnaty4aAbcefhiklM99nprt");
+        for Default_Switches("C++") use ("-Wall","-Wextra");
+    end Compiler;
+
+
 end FLTKAda;
 
 
