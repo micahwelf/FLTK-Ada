@@ -9,6 +9,14 @@ use type System.Address;
 package body FLTK.Widgets.Groups.Windows is
 
 
+    procedure window_set_draw_hook
+           (W, D : in System.Address);
+    pragma Import (C, window_set_draw_hook, "window_set_draw_hook");
+
+    procedure fl_window_draw
+           (W : in System.Address);
+    pragma Import (C, fl_window_draw, "fl_window_draw");
+
     function new_fl_window
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -57,6 +65,30 @@ package body FLTK.Widgets.Groups.Windows is
 
 
 
+    procedure Draw_Hook (U : in System.Address);
+    pragma Convention (C, Draw_Hook);
+
+    procedure Draw_Hook
+           (U : in System.Address)
+    is
+        Ada_Window : access Window'Class :=
+            Window_Convert.To_Pointer (U);
+    begin
+        Ada_Window.Draw;
+    end Draw_Hook;
+
+
+
+
+    procedure Draw
+           (This : in out Window) is
+    begin
+        fl_window_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
     procedure Finalize
            (This : in out Window) is
     begin
@@ -87,6 +119,7 @@ package body FLTK.Widgets.Groups.Windows is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 
@@ -105,6 +138,7 @@ package body FLTK.Widgets.Groups.Windows is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 

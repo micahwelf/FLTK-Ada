@@ -15,7 +15,7 @@ library project FLTKAda is
 
     package Compiler is
         for Default_Switches("Ada") use ("-gnaty4aAbcefhiklM99nprt");
-        for Default_Switches("C++") use ("-Wall","-Wextra");
+        for Default_Switches("C++") use ("-Wall","-Wextra","-std=c++11");
     end Compiler;
 
 

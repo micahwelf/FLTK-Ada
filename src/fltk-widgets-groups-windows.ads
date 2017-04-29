@@ -56,11 +56,18 @@ package FLTK.Widgets.Groups.Windows is
 private
 
 
+    procedure Draw
+           (This : in out Window);
+
+
     type Window is new Group with null record;
 
 
     overriding procedure Finalize
            (This : in out Window);
+
+
+    package Window_Convert is new System.Address_To_Access_Conversions (Window'Class);
 
 
 end FLTK.Widgets.Groups.Windows;
