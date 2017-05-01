@@ -32,11 +32,18 @@ package FLTK.Widgets.Buttons is
 private
 
 
+    procedure Draw
+           (This : in out Button);
+
+
     type Button is new Widget with null record;
 
 
     overriding procedure Finalize
            (This : in out Button);
+
+
+    package Button_Convert is new System.Address_To_Access_Conversions (Button'Class);
 
 
 end FLTK.Widgets.Buttons;

@@ -15,11 +15,19 @@ package FLTK.Widgets.Buttons.Light.Radio is
 private
 
 
+    procedure Draw
+           (This : in out Radio_Light_Button);
+
+
     type Radio_Light_Button is new Light_Button with null record;
 
 
     overriding procedure Finalize
            (This : in out Radio_Light_Button);
+
+
+    package Radio_Light_Button_Convert is new System.Address_To_Access_Conversions
+           (Radio_Light_Button'Class);
 
 
 end FLTK.Widgets.Buttons.Light.Radio;

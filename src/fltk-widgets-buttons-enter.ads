@@ -18,11 +18,19 @@ package FLTK.Widgets.Buttons.Enter is
 private
 
 
+    procedure Draw
+           (This : in out Enter_Button);
+
+
     type Enter_Button is new Button with null record;
 
 
     overriding procedure Finalize
            (This : in out Enter_Button);
+
+
+    package Enter_Button_Convert is new System.Address_To_Access_Conversions
+           (Enter_Button'Class);
 
 
 end FLTK.Widgets.Buttons.Enter;

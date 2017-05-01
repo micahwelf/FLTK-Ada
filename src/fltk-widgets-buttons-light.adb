@@ -8,6 +8,14 @@ use type System.Address;
 package body FLTK.Widgets.Buttons.Light is
 
 
+    procedure light_button_set_draw_hook
+           (W, D : in System.Address);
+    pragma Import (C, light_button_set_draw_hook, "light_button_set_draw_hook");
+
+    procedure fl_light_button_draw
+           (W : in System.Address);
+    pragma Import (C, fl_light_button_draw, "fl_light_button_draw");
+
     function new_fl_light_button
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -17,6 +25,30 @@ package body FLTK.Widgets.Buttons.Light is
     procedure free_fl_light_button
            (B : in System.Address);
     pragma Import (C, free_fl_light_button, "free_fl_light_button");
+
+
+
+
+    procedure Draw_Hook (U : in System.Address);
+    pragma Convention (C, Draw_Hook);
+
+    procedure Draw_Hook
+           (U : in System.Address)
+    is
+        Ada_Light_Button : access Light_Button'Class :=
+            Light_Button_Convert.To_Pointer (U);
+    begin
+        Ada_Light_Button.Draw;
+    end Draw_Hook;
+
+
+
+
+    procedure Draw
+           (This : in out Light_Button) is
+    begin
+        fl_light_button_draw (This.Void_Ptr);
+    end Draw;
 
 
 
@@ -50,6 +82,7 @@ package body FLTK.Widgets.Buttons.Light is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            light_button_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 

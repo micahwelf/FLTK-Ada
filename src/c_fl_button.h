@@ -7,6 +7,9 @@
 typedef void* BUTTON;
 
 
+extern "C" void button_set_draw_hook(BUTTON b, void * d);
+extern "C" void fl_button_draw(BUTTON b);
+
 extern "C" BUTTON new_fl_button(int x, int y, int w, int h, char* label);
 extern "C" void free_fl_button(BUTTON b);
 

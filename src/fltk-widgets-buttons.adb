@@ -8,6 +8,14 @@ use type System.Address;
 package body FLTK.Widgets.Buttons is
 
 
+    procedure button_set_draw_hook
+           (W, D : in System.Address);
+    pragma Import (C, button_set_draw_hook, "button_set_draw_hook");
+
+    procedure fl_button_draw
+           (W : in System.Address);
+    pragma Import (C, fl_button_draw, "fl_button_draw");
+
     function new_fl_button
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -31,6 +39,30 @@ package body FLTK.Widgets.Buttons is
     procedure fl_button_set_only
            (B : in System.Address);
     pragma Import (C, fl_button_set_only, "fl_button_set_only");
+
+
+
+
+    procedure Draw_Hook (U : in System.Address);
+    pragma Convention (C, Draw_Hook);
+
+    procedure Draw_Hook
+           (U : in System.Address)
+    is
+        Ada_Button : access Button'Class :=
+            Button_Convert.To_Pointer (U);
+    begin
+        Ada_Button.Draw;
+    end Draw_Hook;
+
+
+
+
+    procedure Draw
+           (This : in out Button) is
+    begin
+        fl_button_draw (This.Void_Ptr);
+    end Draw;
 
 
 
@@ -64,6 +96,7 @@ package body FLTK.Widgets.Buttons is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            button_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 

@@ -15,11 +15,19 @@ package FLTK.Widgets.Buttons.Light is
 private
 
 
+    procedure Draw
+           (This : in out Light_Button);
+
+
     type Light_Button is new Button with null record;
 
 
     overriding procedure Finalize
            (This : in out Light_Button);
+
+
+    package Light_Button_Convert is new System.Address_To_Access_Conversions
+           (Light_Button'Class);
 
 
 end FLTK.Widgets.Buttons.Light;

@@ -15,11 +15,19 @@ package FLTK.Widgets.Buttons.Toggle is
 private
 
 
+    procedure Draw
+           (This : in out Toggle_Button);
+
+
     type Toggle_Button is new Button with null record;
 
 
     overriding procedure Finalize
            (This : in out Toggle_Button);
+
+
+    package Toggle_Button_Convert is new System.Address_To_Access_Conversions
+           (Toggle_Button'Class);
 
 
 end FLTK.Widgets.Buttons.Toggle;
