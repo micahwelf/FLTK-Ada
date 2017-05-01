@@ -15,11 +15,18 @@ package FLTK.Widgets.Boxes is
 private
 
 
+    procedure Draw
+           (This : in out Box);
+
+
     type Box is new Widget with null record;
 
 
     overriding procedure Finalize
            (This : in out Box);
+
+
+    package Box_Convert is new System.Address_To_Access_Conversions (Box'Class);
 
 
 end FLTK.Widgets.Boxes;

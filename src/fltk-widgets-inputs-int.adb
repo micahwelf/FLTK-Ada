@@ -8,6 +8,14 @@ use type System.Address;
 package body FLTK.Widgets.Inputs.Int is
 
 
+    procedure int_input_set_draw_hook
+           (W, D : in System.Address);
+    pragma Import (C, int_input_set_draw_hook, "int_input_set_draw_hook");
+
+    procedure fl_int_input_draw
+           (W : in System.Address);
+    pragma Import (C, fl_int_input_draw, "fl_int_input_draw");
+
     function new_fl_int_input
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -22,6 +30,30 @@ package body FLTK.Widgets.Inputs.Int is
            (F : in System.Address)
         return Interfaces.C.Strings.chars_ptr;
     pragma Import (C, fl_int_input_get_value, "fl_int_input_get_value");
+
+
+
+
+    procedure Draw_Hook (U : in System.Address);
+    pragma Convention (C, Draw_Hook);
+
+    procedure Draw_Hook
+           (U : in System.Address)
+    is
+        Ada_Input : access Integer_Input'Class :=
+            Integer_Input_Convert.To_Pointer (U);
+    begin
+        Ada_Input.Draw;
+    end Draw_Hook;
+
+
+
+
+    procedure Draw
+           (This : in out Integer_Input) is
+    begin
+        fl_int_input_draw (This.Void_Ptr);
+    end Draw;
 
 
 
@@ -55,6 +87,7 @@ package body FLTK.Widgets.Inputs.Int is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            int_input_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 

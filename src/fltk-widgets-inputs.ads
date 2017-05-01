@@ -20,11 +20,18 @@ package FLTK.Widgets.Inputs is
 private
 
 
+    procedure Draw
+           (This : in out Input);
+
+
     type Input is new Widget with null record;
 
 
     overriding procedure Finalize
            (This : in out Input);
+
+
+    package Input_Convert is new System.Address_To_Access_Conversions (Input'Class);
 
 
 end FLTK.Widgets.Inputs;
