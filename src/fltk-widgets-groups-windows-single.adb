@@ -8,6 +8,14 @@ use type System.Address;
 package body FLTK.Widgets.Groups.Windows.Single is
 
 
+    procedure single_window_set_draw_hook
+           (W, D : in System.Address);
+    pragma Import (C, single_window_set_draw_hook, "single_window_set_draw_hook");
+
+    procedure fl_single_window_draw
+           (W : in System.Address);
+    pragma Import (C, fl_single_window_draw, "fl_single_window_draw");
+
     function new_fl_single_window
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -30,6 +38,30 @@ package body FLTK.Widgets.Groups.Windows.Single is
     procedure fl_single_window_flush
            (S : in System.Address);
     pragma Import (C, fl_single_window_flush, "fl_single_window_flush");
+
+
+
+
+    procedure Draw_Hook (U : in System.Address);
+    pragma Convention (C, Draw_Hook);
+
+    procedure Draw_Hook
+           (U : in System.Address)
+    is
+        Ada_Window : access Single_Window'Class :=
+            Single_Window_Convert.To_Pointer (U);
+    begin
+        Ada_Window.Draw;
+    end Draw_Hook;
+
+
+
+
+    procedure Draw
+           (This : in out Single_Window) is
+    begin
+        fl_single_window_draw (This.Void_Ptr);
+    end Draw;
 
 
 
@@ -64,6 +96,7 @@ package body FLTK.Widgets.Groups.Windows.Single is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            single_window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 
@@ -82,6 +115,7 @@ package body FLTK.Widgets.Groups.Windows.Single is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            single_window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 

@@ -9,6 +9,14 @@ use type Interfaces.C.unsigned;
 package body FLTK.Widgets.Groups.Windows.Single.Menu is
 
 
+    procedure menu_window_set_draw_hook
+           (W, D : in System.Address);
+    pragma Import (C, menu_window_set_draw_hook, "menu_window_set_draw_hook");
+
+    procedure fl_menu_window_draw
+           (W : in System.Address);
+    pragma Import (C, fl_menu_window_draw, "fl_menu_window_draw");
+
     function new_fl_menu_window
            (X, Y, W, H : in Interfaces.C.int;
             Label      : in Interfaces.C.char_array)
@@ -52,6 +60,30 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
 
 
 
+    procedure Draw_Hook (U : in System.Address);
+    pragma Convention (C, Draw_Hook);
+
+    procedure Draw_Hook
+           (U : in System.Address)
+    is
+        Ada_Window : access Menu_Window'Class :=
+            Menu_Window_Convert.To_Pointer (U);
+    begin
+        Ada_Window.Draw;
+    end Draw_Hook;
+
+
+
+
+    procedure Draw
+           (This : in out Menu_Window) is
+    begin
+        fl_menu_window_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
     procedure Finalize
            (This : in out Menu_Window) is
     begin
@@ -82,6 +114,7 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            menu_window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 
@@ -100,6 +133,7 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            menu_window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 

@@ -7,6 +7,9 @@
 typedef void* SINGLEWINDOW;
 
 
+extern "C" void single_window_set_draw_hook(SINGLEWINDOW n, void * d);
+extern "C" void fl_single_window_draw(SINGLEWINDOW n);
+
 extern "C" SINGLEWINDOW new_fl_single_window(int x, int y, int w, int h, char* label);
 extern "C" SINGLEWINDOW new_fl_single_window2(int x, int y);
 extern "C" void free_fl_single_window(SINGLEWINDOW w);

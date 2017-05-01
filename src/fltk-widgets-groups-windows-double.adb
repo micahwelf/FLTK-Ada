@@ -8,6 +8,14 @@ use type System.Address;
 package body FLTK.Widgets.Groups.Windows.Double is
 
 
+    procedure double_window_set_draw_hook
+           (W, D : in System.Address);
+    pragma Import (C, double_window_set_draw_hook, "double_window_set_draw_hook");
+
+    procedure fl_double_window_draw
+           (W : in System.Address);
+    pragma Import (C, fl_double_window_draw, "fl_double_window_draw");
+
     function new_fl_double_window
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -30,6 +38,30 @@ package body FLTK.Widgets.Groups.Windows.Double is
     procedure fl_double_window_hide
             (W : in System.Address);
     pragma Import (C, fl_double_window_hide, "fl_double_window_hide");
+
+
+
+
+    procedure Draw_Hook (U : in System.Address);
+    pragma Convention (C, Draw_Hook);
+
+    procedure Draw_Hook
+           (U : in System.Address)
+    is
+        Ada_Window : access Double_Window'Class :=
+            Double_Window_Convert.To_Pointer (U);
+    begin
+        Ada_Window.Draw;
+    end Draw_Hook;
+
+
+
+
+    procedure Draw
+           (This : in out Double_Window) is
+    begin
+        fl_double_window_draw (This.Void_Ptr);
+    end Draw;
 
 
 
@@ -64,6 +96,7 @@ package body FLTK.Widgets.Groups.Windows.Double is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            double_window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 
@@ -82,6 +115,7 @@ package body FLTK.Widgets.Groups.Windows.Double is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            double_window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 

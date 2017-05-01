@@ -42,11 +42,19 @@ package FLTK.Widgets.Groups.Windows.Single.Menu is
 private
 
 
+    procedure Draw
+           (This : in out Menu_Window);
+
+
     type Menu_Window is new Single_Window with null record;
 
 
     overriding procedure Finalize
            (This : in out Menu_Window);
+
+
+    package Menu_Window_Convert is new System.Address_To_Access_Conversions
+           (Menu_Window'Class);
 
 
 end FLTK.Widgets.Groups.Windows.Single.Menu;
