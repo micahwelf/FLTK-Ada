@@ -9,6 +9,14 @@ use type System.Address;
 package body FLTK.Widgets.Groups.Text_Displays is
 
 
+    procedure text_display_set_draw_hook
+           (W, D : in System.Address);
+    pragma Import (C, text_display_set_draw_hook, "text_display_set_draw_hook");
+
+    procedure fl_text_display_draw
+           (W : in System.Address);
+    pragma Import (C, fl_text_display_draw, "fl_text_display_draw");
+
     function new_fl_text_display
            (X, Y, W, H : in Interfaces.C.int;
             Label      : in Interfaces.C.char_array)
@@ -105,6 +113,30 @@ package body FLTK.Widgets.Groups.Text_Displays is
 
 
 
+    procedure Draw_Hook (U : in System.Address);
+    pragma Convention (C, Draw_Hook);
+
+    procedure Draw_Hook
+           (U : in System.Address)
+    is
+        Ada_Text_Display : access Text_Display'Class :=
+            Text_Display_Convert.To_Pointer (U);
+    begin
+        Ada_Text_Display.Draw;
+    end Draw_Hook;
+
+
+
+
+    procedure Draw
+           (This : in out Text_Display) is
+    begin
+        fl_text_display_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
     procedure Finalize
            (This : in out Text_Display) is
     begin
@@ -135,6 +167,7 @@ package body FLTK.Widgets.Groups.Text_Displays is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            text_display_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 

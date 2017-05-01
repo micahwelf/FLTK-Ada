@@ -7,6 +7,9 @@
 typedef void* MENUBUTTON;
 
 
+extern "C" void menu_button_set_draw_hook(MENUBUTTON m, void * d);
+extern "C" void fl_menu_button_draw(MENUBUTTON m);
+
 extern "C" MENUBUTTON new_fl_menu_button(int x, int y, int w, int h, char* label);
 extern "C" void free_fl_menu_button(MENUBUTTON m);
 

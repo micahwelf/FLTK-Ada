@@ -7,6 +7,10 @@
 typedef void* TEXTEDITOR;
 
 
+extern "C" void text_editor_set_draw_hook(TEXTEDITOR te, void * d);
+extern "C" void fl_text_editor_draw(TEXTEDITOR te);
+
+
 extern "C" TEXTEDITOR new_fl_text_editor(int x, int y, int w, int h, char* label);
 extern "C" void free_fl_text_editor(TEXTEDITOR te);
 

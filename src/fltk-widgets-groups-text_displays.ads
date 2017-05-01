@@ -110,6 +110,10 @@ package FLTK.Widgets.Groups.Text_Displays is
 private
 
 
+    procedure Draw
+           (This : in out Text_Display);
+
+
     type Text_Display is new Group with
         record
             Buffer : access FLTK.Text_Buffers.Text_Buffer;
@@ -118,6 +122,10 @@ private
 
     overriding procedure Finalize
            (This : in out Text_Display);
+
+
+    package Text_Display_Convert is new System.Address_To_Access_Conversions
+           (Text_Display'Class);
 
 
 end FLTK.Widgets.Groups.Text_Displays;

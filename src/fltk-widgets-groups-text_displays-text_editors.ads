@@ -43,11 +43,19 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 private
 
 
+    procedure Draw
+           (This : in out Text_Editor);
+
+
     type Text_Editor is new Text_Display with null record;
 
 
     overriding procedure Finalize
            (This : in out Text_Editor);
+
+
+    package Text_Editor_Convert is new System.Address_To_Access_Conversions
+           (Text_Editor'Class);
 
 
 end FLTK.Widgets.Groups.Text_Displays.Text_Editors;

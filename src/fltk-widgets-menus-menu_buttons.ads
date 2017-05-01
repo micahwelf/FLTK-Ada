@@ -24,11 +24,19 @@ package FLTK.Widgets.Menus.Menu_Buttons is
 private
 
 
+    procedure Draw
+           (This : in out Menu_Button);
+
+
     type Menu_Button is new Menu with null record;
 
 
     overriding procedure Finalize
            (This : in out Menu_Button);
+
+
+    package Menu_Button_Convert is new System.Address_To_Access_Conversions
+           (Menu_Button'Class);
 
 
 end FLTK.Widgets.Menus.Menu_Buttons;

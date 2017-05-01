@@ -8,6 +8,14 @@ use type System.Address;
 package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
+    procedure text_editor_set_draw_hook
+           (W, D : in System.Address);
+    pragma Import (C, text_editor_set_draw_hook, "text_editor_set_draw_hook");
+
+    procedure fl_text_editor_draw
+           (W : in System.Address);
+    pragma Import (C, fl_text_editor_draw, "fl_text_editor_draw");
+
     function new_fl_text_editor
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -47,6 +55,30 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
 
+    procedure Draw_Hook (U : in System.Address);
+    pragma Convention (C, Draw_Hook);
+
+    procedure Draw_Hook
+           (U : in System.Address)
+    is
+        Ada_Text_Editor : access Text_Editor'Class :=
+            Text_Editor_Convert.To_Pointer (U);
+    begin
+        Ada_Text_Editor.Draw;
+    end Draw_Hook;
+
+
+
+
+    procedure Draw
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
     procedure Finalize
            (This : in out Text_Editor) is
     begin
@@ -77,6 +109,7 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
             fl_widget_set_user_data
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
+            text_editor_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 
