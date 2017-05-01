@@ -66,11 +66,18 @@ package FLTK.Widgets.Groups is
 private
 
 
+    procedure Draw
+           (This : in out Group);
+
+
     type Group is new Widget with null record;
 
 
     overriding procedure Finalize
            (This : in out Group);
+
+
+    package Group_Convert is new System.Address_To_Access_Conversions (Group'Class);
 
 
     procedure fl_group_end

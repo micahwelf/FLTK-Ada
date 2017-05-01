@@ -9,6 +9,9 @@
 typedef void* GROUP;
 
 
+extern "C" void group_set_draw_hook(GROUP g, void * d);
+extern "C" void fl_group_draw(GROUP g);
+
 extern "C" GROUP new_fl_group(int x, int y, int w, int h, char* label);
 extern "C" void free_fl_group(GROUP g);
 

@@ -8,7 +8,11 @@ private with System;
 package FLTK.Widgets.Menus is
 
 
-    type Menu is abstract new Widget with private;
+    --  still abstract, really, because if the Draw procedure isn't
+    --  overridden it'll call the abstract C++ method
+    type Menu is new Widget with private;
+
+
     type Menu_Cursor (Data : access Menu'Class) is limited null record
         with Implicit_Dereference => Data;
 
@@ -34,7 +38,7 @@ package FLTK.Widgets.Menus is
     function Create
            (X, Y, W, H : in Integer;
             Text       : in String)
-        return Menu is abstract;
+        return Menu;
 
 
     procedure Add
@@ -72,7 +76,16 @@ package FLTK.Widgets.Menus is
 private
 
 
-    type Menu is abstract new Widget with null record;
+    --  must be overridden in any derived types
+    procedure Draw
+           (This : in out Menu);
+
+
+    type Menu is new Widget with null record;
+
+
+    overriding procedure Finalize
+           (This : in out Menu);
 
 
     type Menu_Item is tagged limited
@@ -91,6 +104,9 @@ private
     --  Flag_Submenu_Pointer unlikely to be used
     Flag_Submenu   : constant Menu_Flag := 2#01000000#;
     Flag_Divider   : constant Menu_Flag := 2#10000000#;
+
+
+    package Menu_Convert is new System.Address_To_Access_Conversions (Menu'Class);
 
 
 end FLTK.Widgets.Menus;
