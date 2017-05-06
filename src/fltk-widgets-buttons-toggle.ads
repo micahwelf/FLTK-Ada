@@ -12,11 +12,11 @@ package FLTK.Widgets.Buttons.Toggle is
         return Toggle_Button;
 
 
-private
-
-
     procedure Draw
            (This : in out Toggle_Button);
+
+
+private
 
 
     type Toggle_Button is new Button with null record;

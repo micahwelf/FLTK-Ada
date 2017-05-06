@@ -53,11 +53,11 @@ package FLTK.Widgets.Groups.Windows is
            (This : in out Window);
 
 
-private
-
-
     procedure Draw
            (This : in out Window);
+
+
+private
 
 
     type Window is new Group with null record;

@@ -39,11 +39,11 @@ package FLTK.Widgets.Groups.Windows.Single.Menu is
             Value : in     Boolean);
 
 
-private
-
-
     procedure Draw
            (This : in out Menu_Window);
+
+
+private
 
 
     type Menu_Window is new Single_Window with null record;

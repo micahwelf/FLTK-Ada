@@ -15,10 +15,8 @@ class My_Menu : public Fl_Menu_ {
     public:
         using Fl_Menu_::Fl_Menu_;
         friend void menu_set_draw_hook(MENU m, void * d);
-        friend void fl_menu_draw(MENU m);
     protected:
         void draw();
-        void real_draw();
         hook_p draw_hook;
 };
 
@@ -28,18 +26,8 @@ void My_Menu::draw() {
 }
 
 
-void My_Menu::real_draw() {
-    //Fl_Menu_::draw();
-}
-
-
 void menu_set_draw_hook(MENU m, void * d) {
     reinterpret_cast<My_Menu*>(m)->draw_hook = reinterpret_cast<hook_p>(d);
-}
-
-
-void fl_menu_draw(MENU m) {
-    reinterpret_cast<My_Menu*>(m)->real_draw();
 }
 
 

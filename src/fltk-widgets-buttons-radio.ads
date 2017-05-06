@@ -12,11 +12,11 @@ package FLTK.Widgets.Buttons.Radio is
         return Radio_Button;
 
 
-private
-
-
     procedure Draw
            (This : in out Radio_Button);
+
+
+private
 
 
     type Radio_Button is new Button with null record;

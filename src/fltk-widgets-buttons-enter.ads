@@ -15,11 +15,11 @@ package FLTK.Widgets.Buttons.Enter is
         return Enter_Button;
 
 
-private
-
-
     procedure Draw
            (This : in out Enter_Button);
+
+
+private
 
 
     type Enter_Button is new Button with null record;

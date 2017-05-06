@@ -129,11 +129,11 @@ package FLTK.Widgets is
             Pic  : in out FLTK.Images.Image'Class);
 
 
-private
-
-
     procedure Draw
            (This : in out Widget);
+
+
+private
 
 
     type Widget is new Wrapper with

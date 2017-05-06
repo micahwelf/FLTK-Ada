@@ -12,11 +12,11 @@ package FLTK.Widgets.Buttons.Light.Round.Radio is
         return Radio_Round_Button;
 
 
-private
-
-
     procedure Draw
            (This : in out Radio_Round_Button);
+
+
+private
 
 
     type Radio_Round_Button is new Round_Button with null record;

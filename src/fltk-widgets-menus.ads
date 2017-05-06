@@ -73,12 +73,11 @@ package FLTK.Widgets.Menus is
            (Item : in Menu_Item);
 
 
-private
-
-
-    --  must be overridden in any derived types
     procedure Draw
            (This : in out Menu);
+
+
+private
 
 
     type Menu is new Widget with null record;

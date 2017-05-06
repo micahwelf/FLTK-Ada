@@ -12,11 +12,11 @@ package FLTK.Widgets.Boxes is
         return Box;
 
 
-private
-
-
     procedure Draw
            (This : in out Box);
+
+
+private
 
 
     type Box is new Widget with null record;

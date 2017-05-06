@@ -29,11 +29,11 @@ package FLTK.Widgets.Buttons is
            (This : in out Button);
 
 
-private
-
-
     procedure Draw
            (This : in out Button);
+
+
+private
 
 
     type Button is new Widget with null record;

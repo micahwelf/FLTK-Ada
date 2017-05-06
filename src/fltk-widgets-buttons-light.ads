@@ -12,11 +12,11 @@ package FLTK.Widgets.Buttons.Light is
         return Light_Button;
 
 
-private
-
-
     procedure Draw
            (This : in out Light_Button);
+
+
+private
 
 
     type Light_Button is new Button with null record;

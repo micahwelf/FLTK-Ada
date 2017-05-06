@@ -12,11 +12,11 @@ package FLTK.Widgets.Menus.Menu_Bars is
         return Menu_Bar;
 
 
-private
-
-
     procedure Draw
            (This : in out Menu_Bar);
+
+
+private
 
 
     type Menu_Bar is new Menu with null record;

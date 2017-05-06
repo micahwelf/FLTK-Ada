@@ -25,11 +25,11 @@ package FLTK.Widgets.Groups.Windows.Single is
            (This : in out Single_Window);
 
 
-private
-
-
     procedure Draw
            (This : in out Single_Window);
+
+
+private
 
 
     type Single_Window is new Window with null record;

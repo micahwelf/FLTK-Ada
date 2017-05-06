@@ -17,11 +17,11 @@ package FLTK.Widgets.Inputs.Int is
         return Integer;
 
 
-private
-
-
     procedure Draw
            (This : in out Integer_Input);
+
+
+private
 
 
     type Integer_Input is new Input with null record;

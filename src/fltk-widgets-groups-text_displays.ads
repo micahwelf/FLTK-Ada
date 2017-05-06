@@ -107,11 +107,11 @@ package FLTK.Widgets.Groups.Text_Displays is
             Width : in     Natural);
 
 
-private
-
-
     procedure Draw
            (This : in out Text_Display);
+
+
+private
 
 
     type Text_Display is new Group with

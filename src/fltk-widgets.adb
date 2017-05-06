@@ -150,7 +150,8 @@ package body FLTK.Widgets is
     procedure Draw
            (This : in out Widget) is
     begin
-        fl_widget_draw (This.Void_Ptr);
+        --  this space intentionally left blank
+        null;
     end Draw;
 
 

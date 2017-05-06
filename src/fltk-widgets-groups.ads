@@ -63,11 +63,11 @@ package FLTK.Widgets.Groups is
             Item : in     Widget'Class);
 
 
-private
-
-
     procedure Draw
            (This : in out Group);
+
+
+private
 
 
     type Group is new Widget with null record;

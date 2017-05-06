@@ -93,7 +93,8 @@ package body FLTK.Widgets.Menus is
     procedure Draw
            (This : in out Menu) is
     begin
-        fl_menu_draw (This.Void_Ptr);
+        --  this space intentionally left blank
+        null;
     end Draw;
 
 

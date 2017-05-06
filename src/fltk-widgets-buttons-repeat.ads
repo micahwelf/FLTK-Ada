@@ -12,11 +12,11 @@ package FLTK.Widgets.Buttons.Repeat is
         return Repeat_Button;
 
 
-private
-
-
     procedure Draw
            (This : in out Repeat_Button);
+
+
+private
 
 
     type Repeat_Button is new Button with null record;

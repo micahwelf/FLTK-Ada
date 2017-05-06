@@ -25,11 +25,11 @@ package FLTK.Widgets.Groups.Windows.Double is
            (This : in Double_Window);
 
 
-private
-
-
     procedure Draw
            (This : in out Double_Window);
+
+
+private
 
 
     type Double_Window is new Window with null record;

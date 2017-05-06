@@ -40,11 +40,11 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
             Key  : in     Shortcut_Key);
 
 
-private
-
-
     procedure Draw
            (This : in out Text_Editor);
+
+
+private
 
 
     type Text_Editor is new Text_Display with null record;

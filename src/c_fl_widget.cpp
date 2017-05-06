@@ -15,11 +15,9 @@ class My_Widget : public Fl_Widget {
     public:
         using Fl_Widget::Fl_Widget;
         friend void widget_set_draw_hook(WIDGET w, void * d);
-        friend void fl_widget_draw(WIDGET w);
         friend WIDGET new_fl_widget(int x, int y, int w, int h, char* label);
     protected:
         void draw();
-        void real_draw();
         hook_p draw_hook;
 };
 
@@ -29,18 +27,8 @@ void My_Widget::draw() {
 }
 
 
-void My_Widget::real_draw() {
-    //Fl_Widget::draw();
-}
-
-
 void widget_set_draw_hook(WIDGET w, void * d) {
     reinterpret_cast<My_Widget*>(w)->draw_hook = reinterpret_cast<hook_p>(d);
-}
-
-
-void fl_widget_draw(WIDGET w) {
-    reinterpret_cast<My_Widget*>(w)->real_draw();
 }
 
 

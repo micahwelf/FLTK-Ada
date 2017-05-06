@@ -21,11 +21,11 @@ package FLTK.Widgets.Menus.Menu_Buttons is
             Pop  : in     Popup_Buttons);
 
 
-private
-
-
     procedure Draw
            (This : in out Menu_Button);
+
+
+private
 
 
     type Menu_Button is new Menu with null record;

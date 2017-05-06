@@ -17,11 +17,11 @@ package FLTK.Widgets.Inputs is
         return String;
 
 
-private
-
-
     procedure Draw
            (This : in out Input);
+
+
+private
 
 
     type Input is new Widget with null record;
