@@ -7,6 +7,14 @@
 typedef void* WIDGET;
 
 
+extern "C" void widget_set_draw_hook(WIDGET w, void * d);
+extern "C" void fl_widget_draw(WIDGET w);
+
+
+extern "C" WIDGET new_fl_widget(int x, int y, int w, int h, char* label);
+extern "C" void free_fl_widget(WIDGET w);
+
+
 extern "C" void * fl_widget_get_user_data(WIDGET w);
 extern "C" void fl_widget_set_user_data(WIDGET w, void * d);
 

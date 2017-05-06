@@ -11,7 +11,7 @@ private with Ada.Unchecked_Conversion;
 package FLTK.Widgets is
 
 
-    type Widget is abstract new Wrapper with private;
+    type Widget is new Wrapper with private;
 
 
     type Widget_Callback is access procedure
@@ -26,7 +26,7 @@ package FLTK.Widgets is
     function Create
            (X, Y, W, H : in Integer;
             Text       : in String)
-        return Widget is abstract;
+        return Widget;
 
 
     function Parent
@@ -132,11 +132,19 @@ package FLTK.Widgets is
 private
 
 
-    type Widget is abstract new Wrapper with
+    procedure Draw
+           (This : in out Widget);
+
+
+    type Widget is new Wrapper with
         record
             Callback      : Widget_Callback;
             Current_Image : access FLTK.Images.Image'Class;
         end record;
+
+
+    overriding procedure Finalize
+           (This : in out Widget);
 
 
     package Widget_Convert is new System.Address_To_Access_Conversions (Widget'Class);

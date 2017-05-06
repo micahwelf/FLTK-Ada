@@ -29,7 +29,7 @@ void My_Menu::draw() {
 
 
 void My_Menu::real_draw() {
-    Fl_Menu_::draw();
+    //Fl_Menu_::draw();
 }
 
 

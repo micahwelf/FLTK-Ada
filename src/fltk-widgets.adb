@@ -18,6 +18,24 @@ package body FLTK.Widgets is
 
 
 
+    procedure widget_set_draw_hook
+           (W, D : in System.Address);
+    pragma Import (C, widget_set_draw_hook, "widget_set_draw_hook");
+
+    procedure fl_widget_draw
+           (W : in System.Address);
+    pragma Import (C, fl_widget_draw, "fl_widget_draw");
+
+    function new_fl_widget
+           (X, Y, W, H : in Interfaces.C.int;
+            Text       : in Interfaces.C.char_array)
+        return System.Address;
+    pragma Import (C, new_fl_widget, "new_fl_widget");
+
+    procedure free_fl_widget
+           (F : in System.Address);
+    pragma Import (C, free_fl_widget, "free_fl_widget");
+
     function fl_widget_get_box
            (W : in System.Address)
         return Interfaces.C.int;
@@ -110,6 +128,65 @@ package body FLTK.Widgets is
     procedure fl_widget_set_image
            (W, I : in System.Address);
     pragma Import (C, fl_widget_set_image, "fl_widget_set_image");
+
+
+
+
+    procedure Draw_Hook (U : in System.Address);
+    pragma Convention (C, Draw_Hook);
+
+    procedure Draw_Hook
+           (U : in System.Address)
+    is
+        Ada_Widget : access Widget'Class :=
+            Widget_Convert.To_Pointer (U);
+    begin
+        Ada_Widget.Draw;
+    end Draw_Hook;
+
+
+
+
+    procedure Draw
+           (This : in out Widget) is
+    begin
+        fl_widget_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    procedure Finalize
+           (This : in out Widget) is
+    begin
+        if This.Void_Ptr /= System.Null_Address then
+            if This in Widget then
+                free_fl_widget (This.Void_Ptr);
+            end if;
+        end if;
+    end Finalize;
+
+
+
+
+    function Create
+           (X, Y, W, H : in Integer;
+            Text       : in String)
+        return Widget is
+    begin
+        return This : Widget do
+            This.Void_Ptr := new_fl_widget
+                   (Interfaces.C.int (X),
+                    Interfaces.C.int (Y),
+                    Interfaces.C.int (W),
+                    Interfaces.C.int (H),
+                    Interfaces.C.To_C (Text));
+            fl_widget_set_user_data
+                   (This.Void_Ptr,
+                    Widget_Convert.To_Address (This'Unchecked_Access));
+            widget_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+        end return;
+    end Create;
 
 
 
