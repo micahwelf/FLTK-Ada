@@ -22,10 +22,6 @@ package body FLTK.Widgets is
            (W, D : in System.Address);
     pragma Import (C, widget_set_draw_hook, "widget_set_draw_hook");
 
-    procedure fl_widget_draw
-           (W : in System.Address);
-    pragma Import (C, fl_widget_draw, "fl_widget_draw");
-
     function new_fl_widget
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -147,23 +143,13 @@ package body FLTK.Widgets is
 
 
 
-    procedure Draw
-           (This : in out Widget) is
-    begin
-        --  this space intentionally left blank
-        null;
-    end Draw;
-
-
-
-
     procedure Finalize
            (This : in out Widget) is
     begin
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Widget then
-                free_fl_widget (This.Void_Ptr);
-            end if;
+        if  This in Widget and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            free_fl_widget (This.Void_Ptr);
         end if;
     end Finalize;
 

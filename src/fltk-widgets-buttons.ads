@@ -43,8 +43,5 @@ private
            (This : in out Button);
 
 
-    package Button_Convert is new System.Address_To_Access_Conversions (Button'Class);
-
-
 end FLTK.Widgets.Buttons;
 

@@ -26,9 +26,5 @@ private
            (This : in out Menu_Bar);
 
 
-    package Menu_Bar_Convert is new System.Address_To_Access_Conversions
-           (Menu_Bar'Class);
-
-
 end FLTK.Widgets.Menus.Menu_Bars;
 

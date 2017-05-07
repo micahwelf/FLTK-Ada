@@ -67,36 +67,36 @@ void free_fl_window(WINDOW n) {
 
 
 void fl_window_show(WINDOW n) {
-    reinterpret_cast<My_Window*>(n)->show();
+    reinterpret_cast<Fl_Window*>(n)->show();
 }
 
 
 void fl_window_hide(WINDOW n) {
-    reinterpret_cast<My_Window*>(n)->hide();
+    reinterpret_cast<Fl_Window*>(n)->hide();
 }
 
 
 void fl_window_set_label(WINDOW n, char* text) {
-    reinterpret_cast<My_Window*>(n)->copy_label(text);
+    reinterpret_cast<Fl_Window*>(n)->copy_label(text);
 }
 
 
 void fl_window_size_range(WINDOW n, int lw, int lh, int hw, int hh, int dw, int dh, int a) {
-    reinterpret_cast<My_Window*>(n)->size_range(lw, lh, hw, hh, dw, dh, a);
+    reinterpret_cast<Fl_Window*>(n)->size_range(lw, lh, hw, hh, dw, dh, a);
 }
 
 
 void fl_window_set_icon(WINDOW n, void * img) {
-    reinterpret_cast<My_Window*>(n)->icon(reinterpret_cast<Fl_RGB_Image*>(img));
+    reinterpret_cast<Fl_Window*>(n)->icon(reinterpret_cast<Fl_RGB_Image*>(img));
 }
 
 
 void fl_window_set_modal(WINDOW n) {
-    reinterpret_cast<My_Window*>(n)->set_modal();
+    reinterpret_cast<Fl_Window*>(n)->set_modal();
 }
 
 
 void fl_window_set_non_modal(WINDOW n) {
-    reinterpret_cast<My_Window*>(n)->set_non_modal();
+    reinterpret_cast<Fl_Window*>(n)->set_non_modal();
 }
 

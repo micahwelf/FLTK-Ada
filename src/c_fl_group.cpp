@@ -60,50 +60,50 @@ void free_fl_group(GROUP g) {
 
 
 void fl_group_end(GROUP g) {
-    reinterpret_cast<My_Group*>(g)->end();
+    reinterpret_cast<Fl_Group*>(g)->end();
 }
 
 
 
 
 void fl_group_add(GROUP g, WIDGET item) {
-    reinterpret_cast<My_Group*>(g)->add(reinterpret_cast<Fl_Widget*>(item));
+    reinterpret_cast<Fl_Group*>(g)->add(reinterpret_cast<Fl_Widget*>(item));
 }
 
 
 int fl_group_find(GROUP g, WIDGET item) {
-    return reinterpret_cast<My_Group*>(g)->find(reinterpret_cast<Fl_Widget*>(item));
+    return reinterpret_cast<Fl_Group*>(g)->find(reinterpret_cast<Fl_Widget*>(item));
 }
 
 
 void fl_group_insert(GROUP g, WIDGET item, int place) {
-    reinterpret_cast<My_Group*>(g)->insert(*(reinterpret_cast<Fl_Widget*>(item)), place);
+    reinterpret_cast<Fl_Group*>(g)->insert(*(reinterpret_cast<Fl_Widget*>(item)), place);
 }
 
 
 void fl_group_remove(GROUP g, WIDGET item) {
-    reinterpret_cast<My_Group*>(g)->remove(reinterpret_cast<Fl_Widget*>(item));
+    reinterpret_cast<Fl_Group*>(g)->remove(reinterpret_cast<Fl_Widget*>(item));
 }
 
 
 void fl_group_remove2(GROUP g, int place) {
-    reinterpret_cast<My_Group*>(g)->remove(place);
+    reinterpret_cast<Fl_Group*>(g)->remove(place);
 }
 
 
 void fl_group_resizable(GROUP g, WIDGET item) {
-    reinterpret_cast<My_Group*>(g)->resizable(reinterpret_cast<Fl_Widget*>(item));
+    reinterpret_cast<Fl_Group*>(g)->resizable(reinterpret_cast<Fl_Widget*>(item));
 }
 
 
 
 
 int fl_group_children(GROUP g) {
-    return reinterpret_cast<My_Group*>(g)->children();
+    return reinterpret_cast<Fl_Group*>(g)->children();
 }
 
 
 void * fl_group_child(GROUP g, int place) {
-    return reinterpret_cast<My_Group*>(g)->child(place);
+    return reinterpret_cast<Fl_Group*>(g)->child(place);
 }
 

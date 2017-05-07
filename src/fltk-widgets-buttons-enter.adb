@@ -35,6 +35,9 @@ package body FLTK.Widgets.Buttons.Enter is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Enter_Button_Convert is new
+            System.Address_To_Access_Conversions (Enter_Button'Class);
+
         Ada_Enter_Button : access Enter_Button'Class :=
             Enter_Button_Convert.To_Pointer (U);
     begin
@@ -56,12 +59,12 @@ package body FLTK.Widgets.Buttons.Enter is
     procedure Finalize
            (This : in out Enter_Button) is
     begin
-        Finalize (Button (This));
-        if (This.Void_Ptr /= System.Null_Address) then
-            if This in Enter_Button then
-                free_fl_return_button (This.Void_Ptr);
-            end if;
+        if  This in Enter_Button and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            free_fl_return_button (This.Void_Ptr);
         end if;
+        Finalize (Button (This));
     end Finalize;
 
 

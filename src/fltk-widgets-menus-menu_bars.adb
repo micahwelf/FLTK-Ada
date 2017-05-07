@@ -35,6 +35,9 @@ package body FLTK.Widgets.Menus.Menu_Bars is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Menu_Bar_Convert is new
+            System.Address_To_Access_Conversions (Menu_Bar'Class);
+
         Ada_Menu_Bar : access Menu_Bar'Class :=
             Menu_Bar_Convert.To_Pointer (U);
     begin
@@ -56,12 +59,12 @@ package body FLTK.Widgets.Menus.Menu_Bars is
     procedure Finalize
            (This : in out Menu_Bar) is
     begin
-        Finalize (Menu (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Menu_Bar then
-                free_fl_menu_bar (This.Void_Ptr);
-            end if;
+        if  This in Menu_Bar and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            free_fl_menu_bar (This.Void_Ptr);
         end if;
+        Finalize (Menu (This));
     end Finalize;
 
 

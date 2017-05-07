@@ -8,8 +8,6 @@ private with System;
 package FLTK.Widgets.Menus is
 
 
-    --  still abstract, really, because if the Draw procedure isn't
-    --  overridden it'll call the abstract C++ method
     type Menu is new Widget with private;
 
 
@@ -74,7 +72,7 @@ package FLTK.Widgets.Menus is
 
 
     procedure Draw
-           (This : in out Menu);
+           (This : in out Menu) is null;
 
 
 private
@@ -103,9 +101,6 @@ private
     --  Flag_Submenu_Pointer unlikely to be used
     Flag_Submenu   : constant Menu_Flag := 2#01000000#;
     Flag_Divider   : constant Menu_Flag := 2#10000000#;
-
-
-    package Menu_Convert is new System.Address_To_Access_Conversions (Menu'Class);
 
 
 end FLTK.Widgets.Menus;

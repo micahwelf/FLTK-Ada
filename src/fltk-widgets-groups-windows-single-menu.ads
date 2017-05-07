@@ -53,9 +53,5 @@ private
            (This : in out Menu_Window);
 
 
-    package Menu_Window_Convert is new System.Address_To_Access_Conversions
-           (Menu_Window'Class);
-
-
 end FLTK.Widgets.Groups.Windows.Single.Menu;
 

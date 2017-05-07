@@ -26,9 +26,5 @@ private
            (This : in out Light_Button);
 
 
-    package Light_Button_Convert is new System.Address_To_Access_Conversions
-           (Light_Button'Class);
-
-
 end FLTK.Widgets.Buttons.Light;
 

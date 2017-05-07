@@ -35,6 +35,9 @@ package body FLTK.Widgets.Buttons.Repeat is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Repeat_Button_Convert is new
+            System.Address_To_Access_Conversions (Repeat_Button'Class);
+
         Ada_Repeat_Button : access Repeat_Button'Class :=
             Repeat_Button_Convert.To_Pointer (U);
     begin
@@ -56,12 +59,12 @@ package body FLTK.Widgets.Buttons.Repeat is
     procedure Finalize
            (This : in out Repeat_Button) is
     begin
-        Finalize (Button (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Repeat_Button then
-                free_fl_repeat_button (This.Void_Ptr);
-            end if;
+        if  This in Repeat_Button and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            free_fl_repeat_button (This.Void_Ptr);
         end if;
+        Finalize (Button (This));
     end Finalize;
 
 

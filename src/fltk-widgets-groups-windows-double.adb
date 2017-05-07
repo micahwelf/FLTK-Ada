@@ -48,6 +48,9 @@ package body FLTK.Widgets.Groups.Windows.Double is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Double_Window_Convert is new
+            System.Address_To_Access_Conversions (Double_Window'Class);
+
         Ada_Window : access Double_Window'Class :=
             Double_Window_Convert.To_Pointer (U);
     begin
@@ -69,12 +72,13 @@ package body FLTK.Widgets.Groups.Windows.Double is
     procedure Finalize
            (This : in out Double_Window) is
     begin
-        Finalize (Window (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Double_Window then
-                free_fl_double_window (This.Void_Ptr);
-            end if;
+        if  This in Double_Window and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            This.Clear;
+            free_fl_double_window (This.Void_Ptr);
         end if;
+        Finalize (Window (This));
     end Finalize;
 
 

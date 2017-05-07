@@ -35,6 +35,9 @@ package body FLTK.Widgets.Buttons.Toggle is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Toggle_Button_Convert is new
+            System.Address_To_Access_Conversions (Toggle_Button'Class);
+
         Ada_Toggle_Button : access Toggle_Button'Class :=
             Toggle_Button_Convert.To_Pointer (U);
     begin
@@ -56,12 +59,12 @@ package body FLTK.Widgets.Buttons.Toggle is
     procedure Finalize
            (This : in out Toggle_Button) is
     begin
-        Finalize (Button (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Toggle_Button then
-                free_fl_toggle_button (This.Void_Ptr);
-            end if;
+        if  This in Toggle_Button and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            free_fl_toggle_button (This.Void_Ptr);
         end if;
+        Finalize (Button (This));
     end Finalize;
 
 

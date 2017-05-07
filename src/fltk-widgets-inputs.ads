@@ -31,8 +31,5 @@ private
            (This : in out Input);
 
 
-    package Input_Convert is new System.Address_To_Access_Conversions (Input'Class);
-
-
 end FLTK.Widgets.Inputs;
 

@@ -26,9 +26,5 @@ private
            (This : in out Toggle_Button);
 
 
-    package Toggle_Button_Convert is new System.Address_To_Access_Conversions
-           (Toggle_Button'Class);
-
-
 end FLTK.Widgets.Buttons.Toggle;
 

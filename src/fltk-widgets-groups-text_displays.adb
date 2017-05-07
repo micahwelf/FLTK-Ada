@@ -119,6 +119,9 @@ package body FLTK.Widgets.Groups.Text_Displays is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Text_Display_Convert is new
+            System.Address_To_Access_Conversions (Text_Display'Class);
+
         Ada_Text_Display : access Text_Display'Class :=
             Text_Display_Convert.To_Pointer (U);
     begin
@@ -140,12 +143,13 @@ package body FLTK.Widgets.Groups.Text_Displays is
     procedure Finalize
            (This : in out Text_Display) is
     begin
-        Finalize (Group (This));
-        if (This.Void_Ptr /= System.Null_Address) then
-            if This in Text_Display then
-                free_fl_text_display (This.Void_Ptr);
-            end if;
+        if  This in Text_Display and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            This.Clear;
+            free_fl_text_display (This.Void_Ptr);
         end if;
+        Finalize (Group (This));
     end Finalize;
 
 

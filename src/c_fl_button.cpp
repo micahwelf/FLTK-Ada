@@ -58,16 +58,16 @@ void free_fl_button(BUTTON b) {
 
 
 int fl_button_get_state(BUTTON b) {
-    return reinterpret_cast<My_Button*>(b)->value();
+    return reinterpret_cast<Fl_Button*>(b)->value();
 }
 
 
 void fl_button_set_state(BUTTON b, int s) {
-    reinterpret_cast<My_Button*>(b)->value(s);
+    reinterpret_cast<Fl_Button*>(b)->value(s);
 }
 
 
 void fl_button_set_only(BUTTON b) {
-    reinterpret_cast<My_Button*>(b)->setonly();
+    reinterpret_cast<Fl_Button*>(b)->setonly();
 }
 

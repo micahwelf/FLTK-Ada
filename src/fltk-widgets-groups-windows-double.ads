@@ -39,9 +39,5 @@ private
            (This : in out Double_Window);
 
 
-    package Double_Window_Convert is new System.Address_To_Access_Conversions
-           (Double_Window'Class);
-
-
 end FLTK.Widgets.Groups.Windows.Double;
 

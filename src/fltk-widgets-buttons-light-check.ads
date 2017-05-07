@@ -26,9 +26,5 @@ private
            (This : in out Check_Button);
 
 
-    package Check_Button_Convert is new System.Address_To_Access_Conversions
-           (Check_Button'Class);
-
-
 end FLTK.Widgets.Buttons.Light.Check;
 

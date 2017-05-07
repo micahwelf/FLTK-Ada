@@ -64,11 +64,11 @@ void free_fl_double_window(DOUBLEWINDOW d) {
 
 
 void fl_double_window_show(DOUBLEWINDOW d) {
-    reinterpret_cast<My_Double_Window*>(d)->show();
+    reinterpret_cast<Fl_Double_Window*>(d)->show();
 }
 
 
 void fl_double_window_hide(DOUBLEWINDOW d) {
-    reinterpret_cast<My_Double_Window*>(d)->hide();
+    reinterpret_cast<Fl_Double_Window*>(d)->hide();
 }
 

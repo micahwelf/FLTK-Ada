@@ -61,6 +61,9 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Text_Editor_Convert is new
+            System.Address_To_Access_Conversions (Text_Editor'Class);
+
         Ada_Text_Editor : access Text_Editor'Class :=
             Text_Editor_Convert.To_Pointer (U);
     begin
@@ -82,12 +85,13 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     procedure Finalize
            (This : in out Text_Editor) is
     begin
-        Finalize (Text_Display (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Text_Editor then
-                free_fl_text_editor (This.Void_Ptr);
-            end if;
+        if  This in Text_Editor and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            This.Clear;
+            free_fl_text_editor (This.Void_Ptr);
         end if;
+        Finalize (Text_Display (This));
     end Finalize;
 
 

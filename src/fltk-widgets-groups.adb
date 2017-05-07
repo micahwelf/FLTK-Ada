@@ -73,6 +73,8 @@ package body FLTK.Widgets.Groups is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Group_Convert is new System.Address_To_Access_Conversions (Group'Class);
+
         Ada_Group : access Group'Class :=
             Group_Convert.To_Pointer (U);
     begin
@@ -94,13 +96,13 @@ package body FLTK.Widgets.Groups is
     procedure Finalize
            (This : in out Group) is
     begin
-        Finalize (Widget (This));
-        if This.Void_Ptr /= System.Null_Address then
+        if  This in Group and then
+            This.Void_Ptr /= System.Null_Address
+        then
             This.Clear;
-            if This in Group then
-                free_fl_group (This.Void_Ptr);
-            end if;
+            free_fl_group (This.Void_Ptr);
         end if;
+        Finalize (Widget (This));
     end Finalize;
 
 

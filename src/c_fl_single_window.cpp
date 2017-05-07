@@ -64,11 +64,11 @@ void free_fl_single_window(SINGLEWINDOW w) {
 
 
 void fl_single_window_show(SINGLEWINDOW w) {
-    reinterpret_cast<My_Single_Window*>(w)->show();
+    reinterpret_cast<Fl_Single_Window*>(w)->show();
 }
 
 
 void fl_single_window_flush(SINGLEWINDOW w) {
-    reinterpret_cast<My_Single_Window*>(w)->flush();
+    reinterpret_cast<Fl_Single_Window*>(w)->flush();
 }
 

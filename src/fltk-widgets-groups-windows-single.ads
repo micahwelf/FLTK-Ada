@@ -39,9 +39,5 @@ private
            (This : in out Single_Window);
 
 
-    package Single_Window_Convert is new System.Address_To_Access_Conversions
-           (Single_Window'Class);
-
-
 end FLTK.Widgets.Groups.Windows.Single;
 

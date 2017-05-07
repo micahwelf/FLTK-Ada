@@ -35,6 +35,8 @@ package body FLTK.Widgets.Boxes is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Box_Convert is new System.Address_To_Access_Conversions (Box'Class);
+
         Ada_Box : access Box'Class :=
             Box_Convert.To_Pointer (U);
     begin
@@ -56,12 +58,12 @@ package body FLTK.Widgets.Boxes is
     procedure Finalize
            (This : in out Box) is
     begin
-        Finalize (Widget (This));
-        if (This.Void_Ptr /= System.Null_Address) then
-            if This in Box then
-                free_fl_box (This.Void_Ptr);
-            end if;
+        if  This in Box and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            free_fl_box (This.Void_Ptr);
         end if;
+        Finalize (Widget (This));
     end Finalize;
 
 

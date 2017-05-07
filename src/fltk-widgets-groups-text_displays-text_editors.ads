@@ -54,9 +54,5 @@ private
            (This : in out Text_Editor);
 
 
-    package Text_Editor_Convert is new System.Address_To_Access_Conversions
-           (Text_Editor'Class);
-
-
 end FLTK.Widgets.Groups.Text_Displays.Text_Editors;
 

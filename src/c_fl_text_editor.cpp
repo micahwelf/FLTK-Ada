@@ -58,31 +58,31 @@ void free_fl_text_editor(TEXTEDITOR te) {
 
 
 void fl_text_editor_undo(TEXTEDITOR te) {
-    My_Text_Editor::kf_undo(0, reinterpret_cast<My_Text_Editor*>(te));
+    Fl_Text_Editor::kf_undo(0, reinterpret_cast<Fl_Text_Editor*>(te));
 }
 
 
 void fl_text_editor_cut(TEXTEDITOR te) {
-    My_Text_Editor::kf_cut(0, reinterpret_cast<My_Text_Editor*>(te));
+    Fl_Text_Editor::kf_cut(0, reinterpret_cast<Fl_Text_Editor*>(te));
 }
 
 
 void fl_text_editor_copy(TEXTEDITOR te) {
-    My_Text_Editor::kf_copy(0, reinterpret_cast<My_Text_Editor*>(te));
+    Fl_Text_Editor::kf_copy(0, reinterpret_cast<Fl_Text_Editor*>(te));
 }
 
 
 void fl_text_editor_paste(TEXTEDITOR te) {
-    My_Text_Editor::kf_paste(0, reinterpret_cast<My_Text_Editor*>(te));
+    Fl_Text_Editor::kf_paste(0, reinterpret_cast<Fl_Text_Editor*>(te));
 }
 
 
 void fl_text_editor_delete(TEXTEDITOR te) {
-    My_Text_Editor::kf_delete(0, reinterpret_cast<My_Text_Editor*>(te));
+    Fl_Text_Editor::kf_delete(0, reinterpret_cast<Fl_Text_Editor*>(te));
 }
 
 
 void fl_text_editor_remove_key_binding(TEXTEDITOR te, unsigned int k, unsigned long m) {
-    reinterpret_cast<My_Text_Editor*>(te)->remove_key_binding(k, m);
+    reinterpret_cast<Fl_Text_Editor*>(te)->remove_key_binding(k, m);
 }
 

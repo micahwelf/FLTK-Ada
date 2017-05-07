@@ -49,6 +49,8 @@ package body FLTK.Widgets.Buttons is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Button_Convert is new System.Address_To_Access_Conversions (Button'Class);
+
         Ada_Button : access Button'Class :=
             Button_Convert.To_Pointer (U);
     begin
@@ -70,12 +72,12 @@ package body FLTK.Widgets.Buttons is
     procedure Finalize
            (This : in out Button) is
     begin
-        Finalize (Widget (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Button then
-                free_fl_button (This.Void_Ptr);
-            end if;
+        if  This in Button and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            free_fl_button (This.Void_Ptr);
         end if;
+        Finalize (Widget (This));
     end Finalize;
 
 

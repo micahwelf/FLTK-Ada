@@ -64,31 +64,31 @@ void free_fl_menu_window(MENUWINDOW m) {
 
 
 void fl_menu_window_show(MENUWINDOW m) {
-    reinterpret_cast<My_Menu_Window*>(m)->show();
+    reinterpret_cast<Fl_Menu_Window*>(m)->show();
 }
 
 
 void fl_menu_window_hide(MENUWINDOW m) {
-    reinterpret_cast<My_Menu_Window*>(m)->hide();
+    reinterpret_cast<Fl_Menu_Window*>(m)->hide();
 }
 
 
 void fl_menu_window_flush(MENUWINDOW m) {
-    reinterpret_cast<My_Menu_Window*>(m)->flush();
+    reinterpret_cast<Fl_Menu_Window*>(m)->flush();
 }
 
 
 void fl_menu_window_set_overlay(MENUWINDOW m) {
-    reinterpret_cast<My_Menu_Window*>(m)->set_overlay();
+    reinterpret_cast<Fl_Menu_Window*>(m)->set_overlay();
 }
 
 
 void fl_menu_window_clear_overlay(MENUWINDOW m) {
-    reinterpret_cast<My_Menu_Window*>(m)->clear_overlay();
+    reinterpret_cast<Fl_Menu_Window*>(m)->clear_overlay();
 }
 
 
 unsigned int fl_menu_window_overlay(MENUWINDOW m) {
-    return reinterpret_cast<My_Menu_Window*>(m)->overlay();
+    return reinterpret_cast<Fl_Menu_Window*>(m)->overlay();
 }
 

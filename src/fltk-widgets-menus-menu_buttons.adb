@@ -40,6 +40,9 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Menu_Button_Convert is new
+            System.Address_To_Access_Conversions (Menu_Button'Class);
+
         Ada_Menu_Button : access Menu_Button'Class :=
             Menu_Button_Convert.To_Pointer (U);
     begin
@@ -61,12 +64,12 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
     procedure Finalize
            (This : in out Menu_Button) is
     begin
-        Finalize (Menu (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Menu_Button then
-                free_fl_menu_button (This.Void_Ptr);
-            end if;
+        if  This in Menu_Button and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            free_fl_menu_button (This.Void_Ptr);
         end if;
+        Finalize (Menu (This));
     end Finalize;
 
 

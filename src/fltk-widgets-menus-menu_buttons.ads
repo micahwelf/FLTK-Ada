@@ -35,9 +35,5 @@ private
            (This : in out Menu_Button);
 
 
-    package Menu_Button_Convert is new System.Address_To_Access_Conversions
-           (Menu_Button'Class);
-
-
 end FLTK.Widgets.Menus.Menu_Buttons;
 

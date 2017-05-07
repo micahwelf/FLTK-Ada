@@ -35,6 +35,9 @@ package body FLTK.Widgets.Buttons.Light.Radio is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Radio_Light_Button_Convert is new
+            System.Address_To_Access_Conversions (Radio_Light_Button'Class);
+
         Ada_Radio_Light_Button : access Radio_Light_Button'Class :=
             Radio_Light_Button_Convert.To_Pointer (U);
     begin
@@ -56,12 +59,12 @@ package body FLTK.Widgets.Buttons.Light.Radio is
     procedure Finalize
            (This : in out Radio_Light_Button) is
     begin
-        Finalize (Light_Button (This));
-        if (This.Void_Ptr /= System.Null_Address) then
-            if This in Radio_Light_Button then
-                free_fl_radio_light_button (This.Void_Ptr);
-            end if;
+        if  This in Radio_Light_Button and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            free_fl_radio_light_button (This.Void_Ptr);
         end if;
+        Finalize (Light_Button (This));
     end Finalize;
 
 

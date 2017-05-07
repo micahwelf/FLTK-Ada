@@ -58,6 +58,6 @@ void free_fl_menu_button(MENUBUTTON m) {
 
 
 void fl_menu_button_type(MENUBUTTON m, unsigned int t) {
-    reinterpret_cast<My_Menu_Button*>(m)->type(t);
+    reinterpret_cast<Fl_Menu_Button*>(m)->type(t);
 }
 

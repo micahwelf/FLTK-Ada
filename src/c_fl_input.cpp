@@ -58,6 +58,6 @@ void free_fl_input(INPUT i) {
 
 
 const char * fl_input_get_value(INPUT i) {
-    return reinterpret_cast<My_Input*>(i)->value();
+    return reinterpret_cast<Fl_Input*>(i)->value();
 }
 

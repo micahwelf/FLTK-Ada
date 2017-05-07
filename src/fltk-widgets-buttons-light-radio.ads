@@ -26,9 +26,5 @@ private
            (This : in out Radio_Light_Button);
 
 
-    package Radio_Light_Button_Convert is new System.Address_To_Access_Conversions
-           (Radio_Light_Button'Class);
-
-
 end FLTK.Widgets.Buttons.Light.Radio;
 

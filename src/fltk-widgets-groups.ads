@@ -77,9 +77,6 @@ private
            (This : in out Group);
 
 
-    package Group_Convert is new System.Address_To_Access_Conversions (Group'Class);
-
-
     procedure fl_group_end
            (G : in System.Address);
     pragma Import (C, fl_group_end, "fl_group_end");

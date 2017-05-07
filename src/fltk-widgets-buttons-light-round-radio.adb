@@ -35,6 +35,9 @@ package body FLTK.Widgets.Buttons.Light.Round.Radio is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Radio_Round_Button_Convert is new
+            System.Address_To_Access_Conversions (Radio_Round_Button'Class);
+
         Ada_Radio_Round_Button : access Radio_Round_Button'Class :=
             Radio_Round_Button_Convert.To_Pointer (U);
     begin
@@ -56,12 +59,12 @@ package body FLTK.Widgets.Buttons.Light.Round.Radio is
     procedure Finalize
            (This : in out Radio_Round_Button) is
     begin
-        Finalize (Round_Button (This));
-        if (This.Void_Ptr /= System.Null_Address) then
-            if This in Radio_Round_Button then
-                free_fl_radio_round_button (This.Void_Ptr);
-            end if;
+        if  This in Radio_Round_Button and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            free_fl_radio_round_button (This.Void_Ptr);
         end if;
+        Finalize (Round_Button (This));
     end Finalize;
 
 

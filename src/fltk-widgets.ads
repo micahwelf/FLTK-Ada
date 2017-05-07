@@ -130,7 +130,7 @@ package FLTK.Widgets is
 
 
     procedure Draw
-           (This : in out Widget);
+           (This : in out Widget) is null;
 
 
 private
@@ -148,7 +148,6 @@ private
 
 
     package Widget_Convert is new System.Address_To_Access_Conversions (Widget'Class);
-    --  package Callback_Convert is new System.Address_To_Access_Conversions (Widget_Callback);
     package Callback_Convert is
         function To_Pointer is new Ada.Unchecked_Conversion (System.Address, Widget_Callback);
         function To_Address is new Ada.Unchecked_Conversion (Widget_Callback, System.Address);

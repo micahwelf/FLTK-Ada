@@ -66,6 +66,9 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Menu_Window_Convert is new
+            System.Address_To_Access_Conversions (Menu_Window'Class);
+
         Ada_Window : access Menu_Window'Class :=
             Menu_Window_Convert.To_Pointer (U);
     begin
@@ -87,12 +90,13 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     procedure Finalize
            (This : in out Menu_Window) is
     begin
-        Finalize (Single_Window (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Menu_Window then
-                free_fl_menu_window (This.Void_Ptr);
-            end if;
+        if  This in Menu_Window and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            This.Clear;
+            free_fl_menu_window (This.Void_Ptr);
         end if;
+        Finalize (Single_Window (This));
     end Finalize;
 
 

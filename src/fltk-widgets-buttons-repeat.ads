@@ -26,9 +26,5 @@ private
            (This : in out Repeat_Button);
 
 
-    package Repeat_Button_Convert is new System.Address_To_Access_Conversions
-           (Repeat_Button'Class);
-
-
 end FLTK.Widgets.Buttons.Repeat;
 

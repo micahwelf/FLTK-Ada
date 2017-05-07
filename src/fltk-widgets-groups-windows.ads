@@ -67,8 +67,5 @@ private
            (This : in out Window);
 
 
-    package Window_Convert is new System.Address_To_Access_Conversions (Window'Class);
-
-
 end FLTK.Widgets.Groups.Windows;
 

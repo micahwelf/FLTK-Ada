@@ -26,9 +26,5 @@ private
            (This : in out Round_Button);
 
 
-    package Round_Button_Convert is new System.Address_To_Access_Conversions
-           (Round_Button'Class);
-
-
 end FLTK.Widgets.Buttons.Light.Round;
 

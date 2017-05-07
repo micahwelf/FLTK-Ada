@@ -26,8 +26,5 @@ private
            (This : in out Box);
 
 
-    package Box_Convert is new System.Address_To_Access_Conversions (Box'Class);
-
-
 end FLTK.Widgets.Boxes;
 

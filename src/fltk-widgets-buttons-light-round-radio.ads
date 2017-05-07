@@ -26,9 +26,5 @@ private
            (This : in out Radio_Round_Button);
 
 
-    package Radio_Round_Button_Convert is new System.Address_To_Access_Conversions
-           (Radio_Round_Button'Class);
-
-
 end FLTK.Widgets.Buttons.Light.Round.Radio;
 

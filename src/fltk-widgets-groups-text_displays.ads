@@ -124,9 +124,5 @@ private
            (This : in out Text_Display);
 
 
-    package Text_Display_Convert is new System.Address_To_Access_Conversions
-           (Text_Display'Class);
-
-
 end FLTK.Widgets.Groups.Text_Displays;
 

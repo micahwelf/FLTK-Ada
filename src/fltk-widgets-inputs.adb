@@ -41,6 +41,8 @@ package body FLTK.Widgets.Inputs is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Input_Convert is new System.Address_To_Access_Conversions (Input'Class);
+
         Ada_Input : access Input'Class :=
             Input_Convert.To_Pointer (U);
     begin
@@ -62,12 +64,12 @@ package body FLTK.Widgets.Inputs is
     procedure Finalize
            (This : in out Input) is
     begin
-        Finalize (Widget (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Input then
-                free_fl_input (This.Void_Ptr);
-            end if;
+        if  This in Input and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            free_fl_input (This.Void_Ptr);
         end if;
+        Finalize (Widget (This));
     end Finalize;
 
 

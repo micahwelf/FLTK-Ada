@@ -71,6 +71,8 @@ package body FLTK.Widgets.Groups.Windows is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Window_Convert is new System.Address_To_Access_Conversions (Window'Class);
+
         Ada_Window : access Window'Class :=
             Window_Convert.To_Pointer (U);
     begin
@@ -92,12 +94,13 @@ package body FLTK.Widgets.Groups.Windows is
     procedure Finalize
            (This : in out Window) is
     begin
-        Finalize (Group (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Window then
-                free_fl_window (This.Void_Ptr);
-            end if;
+        if  This in Window and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            This.Clear;
+            free_fl_window (This.Void_Ptr);
         end if;
+        Finalize (Group (This));
     end Finalize;
 
 

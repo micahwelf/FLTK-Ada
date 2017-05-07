@@ -25,10 +25,6 @@ package body FLTK.Widgets.Menus is
            (W, D : in System.Address);
     pragma Import (C, menu_set_draw_hook, "menu_set_draw_hook");
 
-    procedure fl_menu_draw
-           (W : in System.Address);
-    pragma Import (C, fl_menu_draw, "fl_menu_draw");
-
     function new_fl_menu
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -81,6 +77,8 @@ package body FLTK.Widgets.Menus is
     procedure Draw_Hook
            (U : in System.Address)
     is
+        package Menu_Convert is new System.Address_To_Access_Conversions (Menu'Class);
+
         Ada_Menu : access Menu'Class :=
             Menu_Convert.To_Pointer (U);
     begin
@@ -90,25 +88,15 @@ package body FLTK.Widgets.Menus is
 
 
 
-    procedure Draw
-           (This : in out Menu) is
-    begin
-        --  this space intentionally left blank
-        null;
-    end Draw;
-
-
-
-
     procedure Finalize
            (This : in out Menu) is
     begin
-        Finalize (Widget (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Menu then
-                free_fl_menu (This.Void_Ptr);
-            end if;
+        if  This in Menu and then
+            This.Void_Ptr /= System.Null_Address
+        then
+            free_fl_menu (This.Void_Ptr);
         end if;
+        Finalize (Widget (This));
     end Finalize;
 
 
