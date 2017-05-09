@@ -14,8 +14,5 @@ extern "C" FLOAT_INPUT new_fl_float_input(int x, int y, int w, int h, char* labe
 extern "C" void free_fl_float_input(FLOAT_INPUT i);
 
 
-extern "C" const char * fl_float_input_get_value(FLOAT_INPUT i);
-
-
 #endif
 

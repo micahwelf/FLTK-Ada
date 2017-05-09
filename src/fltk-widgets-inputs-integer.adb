@@ -26,11 +26,6 @@ package body FLTK.Widgets.Inputs.Integer is
            (F : in System.Address);
     pragma Import (C, free_fl_int_input, "free_fl_int_input");
 
-    function fl_int_input_get_value
-           (F : in System.Address)
-        return Interfaces.C.Strings.chars_ptr;
-    pragma Import (C, fl_int_input_get_value, "fl_int_input_get_value");
-
 
 
 
@@ -102,8 +97,7 @@ package body FLTK.Widgets.Inputs.Integer is
         return Standard.Integer is
     begin
         return Standard.Integer'Value
-               (Interfaces.C.Strings.Value
-                       (fl_int_input_get_value (This.Void_Ptr)));
+               (Interfaces.C.Strings.Value (fl_input_get_value (This.Void_Ptr)));
     end Get_Value;
 
 

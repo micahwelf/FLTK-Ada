@@ -27,11 +27,6 @@ package body FLTK.Widgets.Inputs is
            (F : in System.Address);
     pragma Import (C, free_fl_input, "free_fl_input");
 
-    function fl_input_get_value
-           (F : in System.Address)
-        return Interfaces.C.Strings.chars_ptr;
-    pragma Import (C, fl_input_get_value, "fl_input_get_value");
-
 
 
 

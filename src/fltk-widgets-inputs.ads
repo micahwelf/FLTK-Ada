@@ -1,5 +1,9 @@
 
 
+private with Interfaces.C.Strings;
+private with System;
+
+
 package FLTK.Widgets.Inputs is
 
 
@@ -29,6 +33,12 @@ private
 
     overriding procedure Finalize
            (This : in out Input);
+
+
+    function fl_input_get_value
+           (F : in System.Address)
+        return Interfaces.C.Strings.chars_ptr;
+    pragma Import (C, fl_input_get_value, "fl_input_get_value");
 
 
 end FLTK.Widgets.Inputs;

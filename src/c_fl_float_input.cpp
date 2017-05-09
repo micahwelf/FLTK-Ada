@@ -55,9 +55,3 @@ void free_fl_float_input(FLOAT_INPUT i) {
 }
 
 
-
-
-const char * fl_float_input_get_value(FLOAT_INPUT i) {
-    return reinterpret_cast<Fl_Float_Input*>(i)->value();
-}
-
