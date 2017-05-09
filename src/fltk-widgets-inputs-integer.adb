@@ -5,7 +5,7 @@ with System;
 use type System.Address;
 
 
-package body FLTK.Widgets.Inputs.Int is
+package body FLTK.Widgets.Inputs.Integer is
 
 
     procedure int_input_set_draw_hook
@@ -76,7 +76,7 @@ package body FLTK.Widgets.Inputs.Int is
 
 
     function Create
-           (X, Y, W, H : in Integer;
+           (X, Y, W, H : in Standard.Integer;
             Text       : in String)
         return Integer_Input is
     begin
@@ -99,13 +99,13 @@ package body FLTK.Widgets.Inputs.Int is
 
     function Get_Value
            (This : in Integer_Input)
-        return Integer is
+        return Standard.Integer is
     begin
-        return Integer'Value
+        return Standard.Integer'Value
                (Interfaces.C.Strings.Value
                        (fl_int_input_get_value (This.Void_Ptr)));
     end Get_Value;
 
 
-end FLTK.Widgets.Inputs.Int;
+end FLTK.Widgets.Inputs.Integer;
 

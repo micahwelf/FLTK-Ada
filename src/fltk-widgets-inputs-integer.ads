@@ -1,20 +1,20 @@
 
 
-package FLTK.Widgets.Inputs.Int is
+package FLTK.Widgets.Inputs.Integer is
 
 
     type Integer_Input is new Input with private;
 
 
     function Create
-           (X, Y, W, H : in Integer;
+           (X, Y, W, H : in Standard.Integer;
             Text       : in String)
         return Integer_Input;
 
 
     function Get_Value
            (This : in Integer_Input)
-        return Integer;
+        return Standard.Integer;
 
 
     procedure Draw
@@ -31,5 +31,5 @@ private
            (This : in out Integer_Input);
 
 
-end FLTK.Widgets.Inputs.Int;
+end FLTK.Widgets.Inputs.Integer;
 
