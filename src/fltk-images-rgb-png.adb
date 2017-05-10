@@ -23,12 +23,13 @@ package body FLTK.Images.RGB.PNG is
     overriding procedure Finalize
            (This : in out PNG_Image) is
     begin
-        Finalize (RGB_Image (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in PNG_Image then
-                free_fl_png_image (This.Void_Ptr);
-            end if;
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in PNG_Image'Class
+        then
+            free_fl_png_image (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
+        Finalize (RGB_Image (This));
     end Finalize;
 
 

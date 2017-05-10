@@ -72,11 +72,12 @@ package body FLTK.Widgets.Groups.Windows.Single is
     procedure Finalize
            (This : in out Single_Window) is
     begin
-        if  This in Single_Window and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Single_Window'Class
         then
             This.Clear;
             free_fl_single_window (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Window (This));
     end Finalize;

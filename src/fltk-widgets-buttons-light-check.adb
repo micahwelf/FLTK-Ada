@@ -59,10 +59,11 @@ package body FLTK.Widgets.Buttons.Light.Check is
     procedure Finalize
            (This : in out Check_Button) is
     begin
-        if  This in Check_Button and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Check_Button'Class
         then
             free_fl_check_button (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Light_Button (This));
     end Finalize;

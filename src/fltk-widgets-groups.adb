@@ -96,11 +96,12 @@ package body FLTK.Widgets.Groups is
     procedure Finalize
            (This : in out Group) is
     begin
-        if  This in Group and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Group'Class
         then
             This.Clear;
             free_fl_group (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Widget (This));
     end Finalize;

@@ -59,10 +59,11 @@ package body FLTK.Widgets.Inputs is
     procedure Finalize
            (This : in out Input) is
     begin
-        if  This in Input and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Input'Class
         then
             free_fl_input (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Widget (This));
     end Finalize;

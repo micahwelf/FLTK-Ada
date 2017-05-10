@@ -59,10 +59,11 @@ package body FLTK.Widgets.Buttons.Light.Round.Radio is
     procedure Finalize
            (This : in out Radio_Round_Button) is
     begin
-        if  This in Radio_Round_Button and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Radio_Round_Button'Class
         then
             free_fl_radio_round_button (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Round_Button (This));
     end Finalize;

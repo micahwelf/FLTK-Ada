@@ -59,10 +59,11 @@ package body FLTK.Widgets.Buttons.Repeat is
     procedure Finalize
            (This : in out Repeat_Button) is
     begin
-        if  This in Repeat_Button and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Repeat_Button'Class
         then
             free_fl_repeat_button (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Button (This));
     end Finalize;

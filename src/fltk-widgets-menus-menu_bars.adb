@@ -59,10 +59,11 @@ package body FLTK.Widgets.Menus.Menu_Bars is
     procedure Finalize
            (This : in out Menu_Bar) is
     begin
-        if  This in Menu_Bar and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Menu_Bar'Class
         then
             free_fl_menu_bar (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Menu (This));
     end Finalize;

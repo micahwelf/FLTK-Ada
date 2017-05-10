@@ -138,10 +138,11 @@ package body FLTK.Text_Buffers is
     procedure Finalize
            (This : in out Text_Buffer) is
     begin
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Text_Buffer then
-                free_fl_text_buffer (This.Void_Ptr);
-            end if;
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Text_Buffer'Class
+        then
+            free_fl_text_buffer (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
     end Finalize;
 

@@ -59,10 +59,11 @@ package body FLTK.Widgets.Inputs.Float is
     procedure Finalize
            (This : in out Float_Input) is
     begin
-        if  This in Float_Input and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Float_Input'Class
         then
             free_fl_float_input (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Input (This));
     end Finalize;

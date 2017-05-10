@@ -58,10 +58,11 @@ package body FLTK.Widgets.Boxes is
     procedure Finalize
            (This : in out Box) is
     begin
-        if  This in Box and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Box'Class
         then
             free_fl_box (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Widget (This));
     end Finalize;

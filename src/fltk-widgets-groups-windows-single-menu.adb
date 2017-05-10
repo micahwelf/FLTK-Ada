@@ -90,11 +90,12 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     procedure Finalize
            (This : in out Menu_Window) is
     begin
-        if  This in Menu_Window and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Menu_Window'Class
         then
             This.Clear;
             free_fl_menu_window (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Single_Window (This));
     end Finalize;

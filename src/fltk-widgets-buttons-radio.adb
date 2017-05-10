@@ -59,10 +59,11 @@ package body FLTK.Widgets.Buttons.Radio is
     procedure Finalize
            (This : in out Radio_Button) is
     begin
-        if  This in Radio_Button and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Radio_Button'Class
         then
             free_fl_radio_button (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Button (This));
     end Finalize;

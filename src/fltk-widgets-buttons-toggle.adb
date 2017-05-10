@@ -59,10 +59,11 @@ package body FLTK.Widgets.Buttons.Toggle is
     procedure Finalize
            (This : in out Toggle_Button) is
     begin
-        if  This in Toggle_Button and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Toggle_Button'Class
         then
             free_fl_toggle_button (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Button (This));
     end Finalize;

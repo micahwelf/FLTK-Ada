@@ -85,11 +85,12 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     procedure Finalize
            (This : in out Text_Editor) is
     begin
-        if  This in Text_Editor and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Text_Editor'Class
         then
             This.Clear;
             free_fl_text_editor (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Text_Display (This));
     end Finalize;

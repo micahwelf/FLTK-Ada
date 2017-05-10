@@ -91,10 +91,11 @@ package body FLTK.Widgets.Menus is
     procedure Finalize
            (This : in out Menu) is
     begin
-        if  This in Menu and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Menu'Class
         then
             free_fl_menu (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Widget (This));
     end Finalize;

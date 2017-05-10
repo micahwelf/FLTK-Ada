@@ -72,10 +72,11 @@ package body FLTK.Widgets.Buttons is
     procedure Finalize
            (This : in out Button) is
     begin
-        if  This in Button and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Button'Class
         then
             free_fl_button (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Widget (This));
     end Finalize;

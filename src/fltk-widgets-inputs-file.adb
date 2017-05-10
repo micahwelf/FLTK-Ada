@@ -59,10 +59,11 @@ package body FLTK.Widgets.Inputs.File is
     procedure Finalize
            (This : in out File_Input) is
     begin
-        if  This in File_Input and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in File_Input'Class
         then
             free_fl_file_input (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Input (This));
     end Finalize;

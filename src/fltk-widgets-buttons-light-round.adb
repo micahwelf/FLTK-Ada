@@ -59,10 +59,11 @@ package body FLTK.Widgets.Buttons.Light.Round is
     procedure Finalize
            (This : in out Round_Button) is
     begin
-        if  This in Round_Button and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Round_Button'Class
         then
             free_fl_round_button (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Light_Button (This));
     end Finalize;

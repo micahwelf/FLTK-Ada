@@ -59,10 +59,11 @@ package body FLTK.Widgets.Inputs.Outputs is
     procedure Finalize
            (This : in out Output) is
     begin
-        if  This in Output and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Output'Class
         then
             free_fl_output (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Input (This));
     end Finalize;

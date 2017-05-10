@@ -72,11 +72,12 @@ package body FLTK.Widgets.Groups.Windows.Double is
     procedure Finalize
            (This : in out Double_Window) is
     begin
-        if  This in Double_Window and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Double_Window'Class
         then
             This.Clear;
             free_fl_double_window (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Window (This));
     end Finalize;

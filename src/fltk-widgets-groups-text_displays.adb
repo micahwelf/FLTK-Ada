@@ -143,11 +143,12 @@ package body FLTK.Widgets.Groups.Text_Displays is
     procedure Finalize
            (This : in out Text_Display) is
     begin
-        if  This in Text_Display and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Text_Display'Class
         then
             This.Clear;
             free_fl_text_display (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Group (This));
     end Finalize;

@@ -146,10 +146,11 @@ package body FLTK.Widgets is
     procedure Finalize
            (This : in out Widget) is
     begin
-        if  This in Widget and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Widget'Class
         then
             free_fl_widget (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
     end Finalize;
 

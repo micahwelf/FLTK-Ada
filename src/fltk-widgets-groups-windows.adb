@@ -94,11 +94,12 @@ package body FLTK.Widgets.Groups.Windows is
     procedure Finalize
            (This : in out Window) is
     begin
-        if  This in Window and then
-            This.Void_Ptr /= System.Null_Address
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Window'Class
         then
             This.Clear;
             free_fl_window (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Group (This));
     end Finalize;

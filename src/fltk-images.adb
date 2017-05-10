@@ -38,12 +38,13 @@ package body FLTK.Images is
     overriding procedure Finalize
            (This : in out Image) is
     begin
-        Finalize (Wrapper (This));
-        if This.Void_Ptr /= System.Null_Address then
-            if This in Image then
-                free_fl_image (This.Void_Ptr);
-            end if;
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Image'Class
+        then
+            free_fl_image (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
         end if;
+        Finalize (Wrapper (This));
     end Finalize;
 
 
