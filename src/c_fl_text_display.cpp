@@ -6,8 +6,14 @@
 #include "c_fl_text_buffer.h"
 
 
-typedef void (hook)(void*);
-typedef hook* hook_p;
+
+
+typedef void (d_hook)(void*);
+typedef d_hook* d_hook_p;
+
+
+typedef int (h_hook)(void*,int);
+typedef h_hook* h_hook_p;
 
 
 
@@ -17,10 +23,15 @@ class My_Text_Display : public Fl_Text_Display {
         using Fl_Text_Display::Fl_Text_Display;
         friend void text_display_set_draw_hook(TEXTDISPLAY td, void * d);
         friend void fl_text_display_draw(TEXTDISPLAY td);
+        friend void text_display_set_handle_hook(TEXTDISPLAY td, void * h);
+        friend int fl_text_display_handle(TEXTDISPLAY td, int e);
     protected:
         void draw();
         void real_draw();
-        hook_p draw_hook;
+        int handle(int e);
+        int real_handle(int e);
+        d_hook_p draw_hook;
+        h_hook_p handle_hook;
 };
 
 
@@ -34,13 +45,33 @@ void My_Text_Display::real_draw() {
 }
 
 
+int My_Text_Display::handle(int e) {
+    return (*handle_hook)(this->user_data(), e);
+}
+
+
+int My_Text_Display::real_handle(int e) {
+    return Fl_Text_Display::handle(e);
+}
+
+
 void text_display_set_draw_hook(TEXTDISPLAY td, void * d) {
-    reinterpret_cast<My_Text_Display*>(td)->draw_hook = reinterpret_cast<hook_p>(d);
+    reinterpret_cast<My_Text_Display*>(td)->draw_hook = reinterpret_cast<d_hook_p>(d);
 }
 
 
 void fl_text_display_draw(TEXTDISPLAY td) {
     reinterpret_cast<My_Text_Display*>(td)->real_draw();
+}
+
+
+void text_display_set_handle_hook(TEXTDISPLAY td, void * h) {
+    reinterpret_cast<My_Text_Display*>(td)->handle_hook = reinterpret_cast<h_hook_p>(h);
+}
+
+
+int fl_text_display_handle(TEXTDISPLAY td, int e) {
+    return reinterpret_cast<My_Text_Display*>(td)->real_handle(e);
 }
 
 

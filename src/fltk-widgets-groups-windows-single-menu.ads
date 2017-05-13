@@ -43,6 +43,12 @@ package FLTK.Widgets.Groups.Windows.Single.Menu is
            (This : in out Menu_Window);
 
 
+    function Handle
+           (This  : in out Menu_Window;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

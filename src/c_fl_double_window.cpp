@@ -4,8 +4,14 @@
 #include "c_fl_double_window.h"
 
 
-typedef void (hook)(void*);
-typedef hook* hook_p;
+
+
+typedef void (d_hook)(void*);
+typedef d_hook* d_hook_p;
+
+
+typedef int (h_hook)(void*,int);
+typedef h_hook* h_hook_p;
 
 
 
@@ -15,10 +21,15 @@ class My_Double_Window : public Fl_Double_Window {
         using Fl_Double_Window::Fl_Double_Window;
         friend void double_window_set_draw_hook(DOUBLEWINDOW n, void * d);
         friend void fl_double_window_draw(DOUBLEWINDOW n);
+        friend void double_window_set_handle_hook(DOUBLEWINDOW n, void * h);
+        friend int fl_double_window_handle(DOUBLEWINDOW n, int e);
     protected:
         void draw();
         void real_draw();
-        hook_p draw_hook;
+        int handle(int e);
+        int real_handle(int e);
+        d_hook_p draw_hook;
+        h_hook_p handle_hook;
 };
 
 
@@ -32,13 +43,33 @@ void My_Double_Window::real_draw() {
 }
 
 
+int My_Double_Window::handle(int e) {
+    return (*handle_hook)(this->user_data(), e);
+}
+
+
+int My_Double_Window::real_handle(int e) {
+    return Fl_Double_Window::handle(e);
+}
+
+
 void double_window_set_draw_hook(DOUBLEWINDOW n, void * d) {
-    reinterpret_cast<My_Double_Window*>(n)->draw_hook = reinterpret_cast<hook_p>(d);
+    reinterpret_cast<My_Double_Window*>(n)->draw_hook = reinterpret_cast<d_hook_p>(d);
 }
 
 
 void fl_double_window_draw(DOUBLEWINDOW n) {
     reinterpret_cast<My_Double_Window*>(n)->real_draw();
+}
+
+
+void double_window_set_handle_hook(DOUBLEWINDOW n, void * h) {
+    reinterpret_cast<My_Double_Window*>(n)->handle_hook = reinterpret_cast<h_hook_p>(h);
+}
+
+
+int fl_double_window_handle(DOUBLEWINDOW n, int e) {
+    return reinterpret_cast<My_Double_Window*>(n)->real_handle(e);
 }
 
 

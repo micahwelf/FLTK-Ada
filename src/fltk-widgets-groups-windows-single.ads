@@ -29,6 +29,12 @@ package FLTK.Widgets.Groups.Windows.Single is
            (This : in out Single_Window);
 
 
+    function Handle
+           (This  : in out Single_Window;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

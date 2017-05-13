@@ -44,6 +44,12 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
            (This : in out Text_Editor);
 
 
+    function Handle
+           (This  : in out Text_Editor;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

@@ -111,6 +111,12 @@ package FLTK.Widgets.Groups.Text_Displays is
            (This : in out Text_Display);
 
 
+    function Handle
+           (This  : in out Text_Display;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

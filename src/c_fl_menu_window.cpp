@@ -4,8 +4,14 @@
 #include "c_fl_menu_window.h"
 
 
-typedef void (hook)(void*);
-typedef hook* hook_p;
+
+
+typedef void (d_hook)(void*);
+typedef d_hook* d_hook_p;
+
+
+typedef int (h_hook)(void*,int);
+typedef h_hook* h_hook_p;
 
 
 
@@ -15,10 +21,15 @@ class My_Menu_Window : public Fl_Menu_Window {
         using Fl_Menu_Window::Fl_Menu_Window;
         friend void menu_window_set_draw_hook(MENUWINDOW n, void * d);
         friend void fl_menu_window_draw(MENUWINDOW n);
+        friend void menu_window_set_handle_hook(MENUWINDOW n, void * h);
+        friend int fl_menu_window_handle(MENUWINDOW n, int e);
     protected:
         void draw();
         void real_draw();
-        hook_p draw_hook;
+        int handle(int e);
+        int real_handle(int e);
+        d_hook_p draw_hook;
+        h_hook_p handle_hook;
 };
 
 
@@ -32,13 +43,33 @@ void My_Menu_Window::real_draw() {
 }
 
 
+int My_Menu_Window::handle(int e) {
+    return (*handle_hook)(this->user_data(), e);
+}
+
+
+int My_Menu_Window::real_handle(int e) {
+    return Fl_Menu_Window::handle(e);
+}
+
+
 void menu_window_set_draw_hook(MENUWINDOW n, void * d) {
-    reinterpret_cast<My_Menu_Window*>(n)->draw_hook = reinterpret_cast<hook_p>(d);
+    reinterpret_cast<My_Menu_Window*>(n)->draw_hook = reinterpret_cast<d_hook_p>(d);
 }
 
 
 void fl_menu_window_draw(MENUWINDOW n) {
     reinterpret_cast<My_Menu_Window*>(n)->real_draw();
+}
+
+
+void menu_window_set_handle_hook(MENUWINDOW n, void * h) {
+    reinterpret_cast<My_Menu_Window*>(n)->handle_hook = reinterpret_cast<h_hook_p>(h);
+}
+
+
+int fl_menu_window_handle(MENUWINDOW n, int e) {
+    return reinterpret_cast<My_Menu_Window*>(n)->real_handle(e);
 }
 
 

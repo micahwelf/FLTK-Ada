@@ -6,8 +6,14 @@
 #include "c_fl_widget.h"
 
 
-typedef void (hook)(void*);
-typedef hook* hook_p;
+
+
+typedef void (d_hook)(void*);
+typedef d_hook* d_hook_p;
+
+
+typedef int (h_hook)(void*,int);
+typedef h_hook* h_hook_p;
 
 
 
@@ -17,10 +23,15 @@ class My_Group : public Fl_Group {
         using Fl_Group::Fl_Group;
         friend void group_set_draw_hook(GROUP g, void * d);
         friend void fl_group_draw(GROUP g);
+        friend void group_set_handle_hook(GROUP g, void * h);
+        friend int fl_group_handle(GROUP g, int e);
     protected:
         void draw();
         void real_draw();
-        hook_p draw_hook;
+        int handle(int e);
+        int real_handle(int e);
+        d_hook_p draw_hook;
+        h_hook_p handle_hook;
 };
 
 
@@ -34,13 +45,33 @@ void My_Group::real_draw() {
 }
 
 
+int My_Group::handle(int e) {
+    return (*handle_hook)(this->user_data(), e);
+}
+
+
+int My_Group::real_handle(int e) {
+    return Fl_Group::handle(e);
+}
+
+
 void group_set_draw_hook(GROUP g, void * d) {
-    reinterpret_cast<My_Group*>(g)->draw_hook = reinterpret_cast<hook_p>(d);
+    reinterpret_cast<My_Group*>(g)->draw_hook = reinterpret_cast<d_hook_p>(d);
 }
 
 
 void fl_group_draw(GROUP g) {
     reinterpret_cast<My_Group*>(g)->real_draw();
+}
+
+
+void group_set_handle_hook(GROUP g, void * h) {
+    reinterpret_cast<My_Group*>(g)->handle_hook = reinterpret_cast<h_hook_p>(h);
+}
+
+
+int fl_group_handle(GROUP g, int e) {
+    return reinterpret_cast<My_Group*>(g)->real_handle(e);
 }
 
 

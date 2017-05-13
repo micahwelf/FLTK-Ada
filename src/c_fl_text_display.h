@@ -11,9 +11,13 @@ typedef void* TEXTDISPLAY;
 
 extern "C" void text_display_set_draw_hook(TEXTDISPLAY td, void * d);
 extern "C" void fl_text_display_draw(TEXTDISPLAY td);
+extern "C" void text_display_set_handle_hook(TEXTDISPLAY td, void * h);
+extern "C" int fl_text_display_handle(TEXTDISPLAY td, int e);
+
 
 extern "C" TEXTDISPLAY new_fl_text_display(int x, int y, int w, int h, char* label);
 extern "C" void free_fl_text_display(TEXTDISPLAY td);
+
 
 extern "C" TEXTBUFFER fl_text_display_get_buffer(TEXTDISPLAY td);
 extern "C" void fl_text_display_set_buffer(TEXTDISPLAY td, TEXTBUFFER tb);

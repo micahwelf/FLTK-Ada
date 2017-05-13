@@ -29,6 +29,12 @@ package FLTK.Widgets.Groups.Windows.Double is
            (This : in out Double_Window);
 
 
+    function Handle
+           (This  : in out Double_Window;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

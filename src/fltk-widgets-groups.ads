@@ -67,6 +67,12 @@ package FLTK.Widgets.Groups is
            (This : in out Group);
 
 
+    function Handle
+           (This  : in out Group;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 
