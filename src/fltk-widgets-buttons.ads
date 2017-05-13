@@ -33,6 +33,12 @@ package FLTK.Widgets.Buttons is
            (This : in out Button);
 
 
+    function Handle
+           (This  : in out Button;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

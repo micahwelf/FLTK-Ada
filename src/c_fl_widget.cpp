@@ -5,8 +5,14 @@
 #include "c_fl_widget.h"
 
 
-typedef void (hook)(void*);
-typedef hook* hook_p;
+
+
+typedef void (d_hook)(void*);
+typedef d_hook* d_hook_p;
+
+
+typedef int (h_hook)(void*,int);
+typedef h_hook* h_hook_p;
 
 
 
@@ -15,10 +21,13 @@ class My_Widget : public Fl_Widget {
     public:
         using Fl_Widget::Fl_Widget;
         friend void widget_set_draw_hook(WIDGET w, void * d);
+        friend void widget_set_handle_hook(WIDGET w, void * h);
         friend WIDGET new_fl_widget(int x, int y, int w, int h, char* label);
     protected:
         void draw();
-        hook_p draw_hook;
+        int handle(int e);
+        d_hook_p draw_hook;
+        h_hook_p handle_hook;
 };
 
 
@@ -27,8 +36,18 @@ void My_Widget::draw() {
 }
 
 
+int My_Widget::handle(int e) {
+    return (*handle_hook)(this->user_data(), e);
+}
+
+
 void widget_set_draw_hook(WIDGET w, void * d) {
-    reinterpret_cast<My_Widget*>(w)->draw_hook = reinterpret_cast<hook_p>(d);
+    reinterpret_cast<My_Widget*>(w)->draw_hook = reinterpret_cast<d_hook_p>(d);
+}
+
+
+void widget_set_handle_hook(WIDGET w, void * h) {
+    reinterpret_cast<My_Widget*>(w)->handle_hook = reinterpret_cast<h_hook_p>(h);
 }
 
 

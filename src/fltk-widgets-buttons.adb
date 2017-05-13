@@ -12,9 +12,19 @@ package body FLTK.Widgets.Buttons is
            (W, D : in System.Address);
     pragma Import (C, button_set_draw_hook, "button_set_draw_hook");
 
+    procedure button_set_handle_hook
+           (W, H : in System.Address);
+    pragma Import (C, button_set_handle_hook, "button_set_handle_hook");
+
     procedure fl_button_draw
            (W : in System.Address);
     pragma Import (C, fl_button_draw, "fl_button_draw");
+
+    function fl_button_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_button_handle, "fl_button_handle");
 
     function new_fl_button
            (X, Y, W, H : in Interfaces.C.int;
@@ -69,6 +79,18 @@ package body FLTK.Widgets.Buttons is
 
 
 
+    function Handle
+           (This  : in out Button;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_button_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
+
+
+
+
     procedure Finalize
            (This : in out Button) is
     begin
@@ -100,6 +122,7 @@ package body FLTK.Widgets.Buttons is
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
             button_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+            button_set_handle_hook (This.Void_Ptr, Draw_Hook'Address);
         end return;
     end Create;
 

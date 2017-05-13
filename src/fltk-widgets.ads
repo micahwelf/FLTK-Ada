@@ -6,6 +6,7 @@ limited with FLTK.Widgets.Groups;
 private with System;
 private with System.Address_To_Access_Conversions;
 private with Ada.Unchecked_Conversion;
+private with Interfaces.C;
 
 
 package FLTK.Widgets is
@@ -21,6 +22,8 @@ package FLTK.Widgets is
     type Font_Size is new Natural;
     Normal_Size : constant Font_Size := 14;
     type Color is new Natural;
+
+    type Event_Outcome is (Not_Handled, Handled);
 
 
     function Create
@@ -133,6 +136,12 @@ package FLTK.Widgets is
            (This : in out Widget) is null;
 
 
+    function Handle
+           (This  : in out Widget;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 
@@ -141,6 +150,13 @@ private
             Callback      : Widget_Callback;
             Current_Image : access FLTK.Images.Image'Class;
         end record;
+
+
+    function Handle_Hook
+           (U : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Convention (C, Handle_Hook);
 
 
     overriding procedure Finalize

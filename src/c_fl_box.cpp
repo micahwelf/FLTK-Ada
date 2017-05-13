@@ -4,8 +4,14 @@
 #include "c_fl_box.h"
 
 
-typedef void (hook)(void*);
-typedef hook* hook_p;
+
+
+typedef void (d_hook)(void*);
+typedef d_hook* d_hook_p;
+
+
+typedef int (h_hook)(void*,int);
+typedef h_hook* h_hook_p;
 
 
 
@@ -15,10 +21,15 @@ class My_Box : public Fl_Box {
         using Fl_Box::Fl_Box;
         friend void box_set_draw_hook(BOX n, void * d);
         friend void fl_box_draw(BOX n);
+        friend void box_set_handle_hook(BOX n, void * h);
+        friend int fl_box_handle(BOX n, int e);
     protected:
         void draw();
         void real_draw();
-        hook_p draw_hook;
+        int handle(int e);
+        int real_handle(int e);
+        d_hook_p draw_hook;
+        h_hook_p handle_hook;
 };
 
 
@@ -32,13 +43,33 @@ void My_Box::real_draw() {
 }
 
 
+int My_Box::handle(int e) {
+    return (*handle_hook)(this->user_data(), e);
+}
+
+
+int My_Box::real_handle(int e) {
+    return Fl_Box::handle(e);
+}
+
+
 void box_set_draw_hook(BOX n, void * d) {
-    reinterpret_cast<My_Box*>(n)->draw_hook = reinterpret_cast<hook_p>(d);
+    reinterpret_cast<My_Box*>(n)->draw_hook = reinterpret_cast<d_hook_p>(d);
 }
 
 
 void fl_box_draw(BOX n) {
     reinterpret_cast<My_Box*>(n)->real_draw();
+}
+
+
+void box_set_handle_hook(BOX n, void * h) {
+    reinterpret_cast<My_Box*>(n)->handle_hook = reinterpret_cast<h_hook_p>(h);
+}
+
+
+int fl_box_handle(BOX n, int e) {
+    return reinterpret_cast<My_Box*>(n)->real_handle(e);
 }
 
 

@@ -22,6 +22,10 @@ package body FLTK.Widgets is
            (W, D : in System.Address);
     pragma Import (C, widget_set_draw_hook, "widget_set_draw_hook");
 
+    procedure widget_set_handle_hook
+           (W, H : in System.Address);
+    pragma Import (C, widget_set_handle_hook, "widget_set_handle_hook");
+
     function new_fl_widget
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -143,6 +147,31 @@ package body FLTK.Widgets is
 
 
 
+    function Handle_Hook
+           (U : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int
+    is
+        Ada_Widget : access Widget'Class :=
+            Widget_Convert.To_Pointer (U);
+    begin
+        return Event_Outcome'Pos (Ada_Widget.Handle (Event_Kind'Val (E)));
+    end Handle_Hook;
+
+
+
+
+    function Handle
+           (This  : in out Widget;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Not_Handled;
+    end Handle;
+
+
+
+
     procedure Finalize
            (This : in out Widget) is
     begin
@@ -173,6 +202,7 @@ package body FLTK.Widgets is
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
             widget_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+            widget_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
 

@@ -8,6 +8,7 @@ typedef void* WIDGET;
 
 
 extern "C" void widget_set_draw_hook(WIDGET w, void * d);
+extern "C" void widget_set_handle_hook(WIDGET w, void * h);
 
 
 extern "C" WIDGET new_fl_widget(int x, int y, int w, int h, char* label);

@@ -99,6 +99,35 @@ package FLTK.Enums is
             Free_Label);
 
 
+    type Event_Kind is
+           (No_Event,
+            Push,
+            Release,
+            Enter,
+            Leave,
+            Drag,
+            Focus,
+            Unfocus,
+            Keydown,
+            Keyup,
+            Close,
+            Move,
+            Shortcut,
+            Deactivate,
+            Activate,
+            Hide,
+            Show,
+            Paste,
+            Selection_Clear,
+            Mouse_Wheel,
+            DnD_Enter,
+            DnD_Drag,
+            DnD_Leave,
+            DnD_Release,
+            Screen_Config_Changed,
+            Fullscreen);
+
+
     --  type Modifier_Key is private;
     type Modifier_Key is new Interfaces.Unsigned_8;
 

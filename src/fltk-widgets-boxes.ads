@@ -16,6 +16,12 @@ package FLTK.Widgets.Boxes is
            (This : in out Box);
 
 
+    function Handle
+           (This  : in out Box;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 
