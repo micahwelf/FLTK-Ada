@@ -12,9 +12,19 @@ package body FLTK.Widgets.Buttons.Toggle is
            (W, D : in System.Address);
     pragma Import (C, toggle_button_set_draw_hook, "toggle_button_set_draw_hook");
 
+    procedure toggle_button_set_handle_hook
+           (W, H : in System.Address);
+    pragma Import (C, toggle_button_set_handle_hook, "toggle_button_set_handle_hook");
+
     procedure fl_toggle_button_draw
            (W : in System.Address);
     pragma Import (C, fl_toggle_button_draw, "fl_toggle_button_draw");
+
+    function fl_toggle_button_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_toggle_button_handle, "fl_toggle_button_handle");
 
     function new_fl_toggle_button
            (X, Y, W, H : in Interfaces.C.int;
@@ -56,6 +66,18 @@ package body FLTK.Widgets.Buttons.Toggle is
 
 
 
+    function Handle
+           (This  : in out Toggle_Button;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_toggle_button_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
+
+
+
+
     procedure Finalize
            (This : in out Toggle_Button) is
     begin
@@ -87,6 +109,7 @@ package body FLTK.Widgets.Buttons.Toggle is
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
             toggle_button_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+            toggle_button_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
 

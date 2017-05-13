@@ -16,6 +16,12 @@ package FLTK.Widgets.Buttons.Toggle is
            (This : in out Toggle_Button);
 
 
+    function Handle
+           (This  : in out Toggle_Button;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

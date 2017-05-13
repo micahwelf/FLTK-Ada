@@ -16,6 +16,12 @@ package FLTK.Widgets.Buttons.Light.Round.Radio is
            (This : in out Radio_Round_Button);
 
 
+    function Handle
+           (This  : in out Radio_Round_Button;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

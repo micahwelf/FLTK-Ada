@@ -16,6 +16,12 @@ package FLTK.Widgets.Buttons.Repeat is
            (This : in out Repeat_Button);
 
 
+    function Handle
+           (This  : in out Repeat_Button;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

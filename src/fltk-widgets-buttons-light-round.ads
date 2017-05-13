@@ -16,6 +16,12 @@ package FLTK.Widgets.Buttons.Light.Round is
            (This : in out Round_Button);
 
 
+    function Handle
+           (This  : in out Round_Button;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 
