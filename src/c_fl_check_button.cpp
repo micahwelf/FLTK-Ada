@@ -4,8 +4,14 @@
 #include "c_fl_check_button.h"
 
 
-typedef void (hook)(void*);
-typedef hook* hook_p;
+
+
+typedef void (d_hook)(void*);
+typedef d_hook* d_hook_p;
+
+
+typedef int (h_hook)(void*,int);
+typedef h_hook* h_hook_p;
 
 
 
@@ -15,10 +21,15 @@ class My_Check_Button : public Fl_Check_Button {
         using Fl_Check_Button::Fl_Check_Button;
         friend void check_button_set_draw_hook(CHECKBUTTON b, void * d);
         friend void fl_check_button_draw(CHECKBUTTON b);
+        friend void check_button_set_handle_hook(CHECKBUTTON b, void * h);
+        friend int fl_check_button_handle(CHECKBUTTON b, int e);
     protected:
         void draw();
         void real_draw();
-        hook_p draw_hook;
+        int handle(int e);
+        int real_handle(int e);
+        d_hook_p draw_hook;
+        h_hook_p handle_hook;
 };
 
 
@@ -32,13 +43,33 @@ void My_Check_Button::real_draw() {
 }
 
 
+int My_Check_Button::handle(int e) {
+    return (*handle_hook)(this->user_data(), e);
+}
+
+
+int My_Check_Button::real_handle(int e) {
+    return Fl_Check_Button::handle(e);
+}
+
+
 void check_button_set_draw_hook(CHECKBUTTON b, void * d) {
-    reinterpret_cast<My_Check_Button*>(b)->draw_hook = reinterpret_cast<hook_p>(d);
+    reinterpret_cast<My_Check_Button*>(b)->draw_hook = reinterpret_cast<d_hook_p>(d);
 }
 
 
 void fl_check_button_draw(CHECKBUTTON b) {
     reinterpret_cast<My_Check_Button*>(b)->real_draw();
+}
+
+
+void check_button_set_handle_hook(CHECKBUTTON b, void * h) {
+    reinterpret_cast<My_Check_Button*>(b)->handle_hook = reinterpret_cast<h_hook_p>(h);
+}
+
+
+int fl_check_button_handle(CHECKBUTTON b, int e) {
+    return reinterpret_cast<My_Check_Button*>(b)->real_handle(e);
 }
 
 

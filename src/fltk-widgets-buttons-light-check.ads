@@ -16,6 +16,12 @@ package FLTK.Widgets.Buttons.Light.Check is
            (This : in out Check_Button);
 
 
+    function Handle
+           (This  : in out Check_Button;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

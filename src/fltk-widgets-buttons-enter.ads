@@ -19,6 +19,12 @@ package FLTK.Widgets.Buttons.Enter is
            (This : in out Enter_Button);
 
 
+    function Handle
+           (This  : in out Enter_Button;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

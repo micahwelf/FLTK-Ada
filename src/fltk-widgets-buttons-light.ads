@@ -16,6 +16,12 @@ package FLTK.Widgets.Buttons.Light is
            (This : in out Light_Button);
 
 
+    function Handle
+           (This  : in out Light_Button;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 
