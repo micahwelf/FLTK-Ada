@@ -2,16 +2,7 @@
 
 #include <FL/Fl_Return_Button.H>
 #include "c_fl_return_button.h"
-
-
-
-
-typedef void (d_hook)(void*);
-typedef d_hook* d_hook_p;
-
-
-typedef int (h_hook)(void*,int);
-typedef h_hook* h_hook_p;
+#include "c_fl_type.h"
 
 
 

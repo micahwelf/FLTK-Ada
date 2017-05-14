@@ -2,16 +2,7 @@
 
 #include <FL/Fl_Menu_Window.H>
 #include "c_fl_menu_window.h"
-
-
-
-
-typedef void (d_hook)(void*);
-typedef d_hook* d_hook_p;
-
-
-typedef int (h_hook)(void*,int);
-typedef h_hook* h_hook_p;
+#include "c_fl_type.h"
 
 
 
