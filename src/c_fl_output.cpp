@@ -4,8 +4,14 @@
 #include "c_fl_output.h"
 
 
-typedef void (hook)(void*);
-typedef hook* hook_p;
+
+
+typedef void (d_hook)(void*);
+typedef d_hook* d_hook_p;
+
+
+typedef int (h_hook)(void*,int);
+typedef h_hook* h_hook_p;
 
 
 
@@ -13,12 +19,17 @@ typedef hook* hook_p;
 class My_Output : public Fl_Output {
     public:
         using Fl_Output::Fl_Output;
-        friend void output_set_draw_hook(OUTPUTT n, void * d);
-        friend void fl_output_draw(OUTPUTT n);
+        friend void output_set_draw_hook(OUTPUTT i, void * d);
+        friend void fl_output_draw(OUTPUTT i);
+        friend void output_set_handle_hook(OUTPUTT i, void * h);
+        friend int fl_output_handle(OUTPUTT i, int e);
     protected:
         void draw();
         void real_draw();
-        hook_p draw_hook;
+        int handle(int e);
+        int real_handle(int e);
+        d_hook_p draw_hook;
+        h_hook_p handle_hook;
 };
 
 
@@ -32,13 +43,33 @@ void My_Output::real_draw() {
 }
 
 
-void output_set_draw_hook(OUTPUTT n, void * d) {
-    reinterpret_cast<My_Output*>(n)->draw_hook = reinterpret_cast<hook_p>(d);
+int My_Output::handle(int e) {
+    return (*handle_hook)(this->user_data(), e);
 }
 
 
-void fl_output_draw(OUTPUTT n) {
-    reinterpret_cast<My_Output*>(n)->real_draw();
+int My_Output::real_handle(int e) {
+    return Fl_Output::handle(e);
+}
+
+
+void output_set_draw_hook(OUTPUTT i, void * d) {
+    reinterpret_cast<My_Output*>(i)->draw_hook = reinterpret_cast<d_hook_p>(d);
+}
+
+
+void fl_output_draw(OUTPUTT i) {
+    reinterpret_cast<My_Output*>(i)->real_draw();
+}
+
+
+void output_set_handle_hook(OUTPUTT i, void * h) {
+    reinterpret_cast<My_Output*>(i)->handle_hook = reinterpret_cast<h_hook_p>(h);
+}
+
+
+int fl_output_handle(OUTPUTT i, int e) {
+    return reinterpret_cast<My_Output*>(i)->real_handle(e);
 }
 
 

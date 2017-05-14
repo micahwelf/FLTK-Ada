@@ -16,6 +16,12 @@ package FLTK.Widgets.Menus.Menu_Bars is
            (This : in out Menu_Bar);
 
 
+    function Handle
+           (This  : in out Menu_Bar;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

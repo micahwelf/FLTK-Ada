@@ -25,6 +25,12 @@ package FLTK.Widgets.Menus.Menu_Buttons is
            (This : in out Menu_Button);
 
 
+    function Handle
+           (This  : in out Menu_Button;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

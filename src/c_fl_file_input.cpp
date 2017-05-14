@@ -4,8 +4,14 @@
 #include "c_fl_file_input.h"
 
 
-typedef void (hook)(void*);
-typedef hook* hook_p;
+
+
+typedef void (d_hook)(void*);
+typedef d_hook* d_hook_p;
+
+
+typedef int (h_hook)(void*,int);
+typedef h_hook* h_hook_p;
 
 
 
@@ -13,12 +19,17 @@ typedef hook* hook_p;
 class My_File_Input : public Fl_File_Input {
     public:
         using Fl_File_Input::Fl_File_Input;
-        friend void file_input_set_draw_hook(FILE_INPUT n, void * d);
-        friend void fl_file_input_draw(FILE_INPUT n);
+        friend void file_input_set_draw_hook(FILE_INPUT i, void * d);
+        friend void fl_file_input_draw(FILE_INPUT i);
+        friend void file_input_set_handle_hook(FILE_INPUT i, void * h);
+        friend int fl_file_input_handle(FILE_INPUT i, int e);
     protected:
         void draw();
         void real_draw();
-        hook_p draw_hook;
+        int handle(int e);
+        int real_handle(int e);
+        d_hook_p draw_hook;
+        h_hook_p handle_hook;
 };
 
 
@@ -32,13 +43,33 @@ void My_File_Input::real_draw() {
 }
 
 
-void file_input_set_draw_hook(FILE_INPUT n, void * d) {
-    reinterpret_cast<My_File_Input*>(n)->draw_hook = reinterpret_cast<hook_p>(d);
+int My_File_Input::handle(int e) {
+    return (*handle_hook)(this->user_data(), e);
 }
 
 
-void fl_file_input_draw(FILE_INPUT n) {
-    reinterpret_cast<My_File_Input*>(n)->real_draw();
+int My_File_Input::real_handle(int e) {
+    return Fl_File_Input::handle(e);
+}
+
+
+void file_input_set_draw_hook(FILE_INPUT i, void * d) {
+    reinterpret_cast<My_File_Input*>(i)->draw_hook = reinterpret_cast<d_hook_p>(d);
+}
+
+
+void fl_file_input_draw(FILE_INPUT i) {
+    reinterpret_cast<My_File_Input*>(i)->real_draw();
+}
+
+
+void file_input_set_handle_hook(FILE_INPUT i, void * h) {
+    reinterpret_cast<My_File_Input*>(i)->handle_hook = reinterpret_cast<h_hook_p>(h);
+}
+
+
+int fl_file_input_handle(FILE_INPUT i, int e) {
+    return reinterpret_cast<My_File_Input*>(i)->real_handle(e);
 }
 
 

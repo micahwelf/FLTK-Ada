@@ -75,6 +75,12 @@ package FLTK.Widgets.Menus is
            (This : in out Menu) is null;
 
 
+    function Handle
+           (This  : in out Menu;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

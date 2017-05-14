@@ -16,6 +16,12 @@ package FLTK.Widgets.Inputs.Multiline is
            (This : in out Multiline_Input);
 
 
+    function Handle
+           (This  : in out Multiline_Input;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

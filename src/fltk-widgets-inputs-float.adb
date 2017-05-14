@@ -12,9 +12,19 @@ package body FLTK.Widgets.Inputs.Float is
            (W, D : in System.Address);
     pragma Import (C, float_input_set_draw_hook, "float_input_set_draw_hook");
 
+    procedure float_input_set_handle_hook
+           (W, H : in System.Address);
+    pragma Import (C, float_input_set_handle_hook, "float_input_set_handle_hook");
+
     procedure fl_float_input_draw
            (W : in System.Address);
     pragma Import (C, fl_float_input_draw, "fl_float_input_draw");
+
+    function fl_float_input_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_float_input_handle, "fl_float_input_handle");
 
     function new_fl_float_input
            (X, Y, W, H : in Interfaces.C.int;
@@ -56,6 +66,18 @@ package body FLTK.Widgets.Inputs.Float is
 
 
 
+    function Handle
+           (This  : in out Float_Input;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_float_input_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
+
+
+
+
     procedure Finalize
            (This : in out Float_Input) is
     begin
@@ -87,6 +109,7 @@ package body FLTK.Widgets.Inputs.Float is
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
             float_input_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+            float_input_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
 

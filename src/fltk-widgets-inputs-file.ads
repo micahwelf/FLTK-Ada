@@ -16,6 +16,12 @@ package FLTK.Widgets.Inputs.File is
            (This : in out File_Input);
 
 
+    function Handle
+           (This  : in out File_Input;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

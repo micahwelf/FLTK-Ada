@@ -21,6 +21,12 @@ package FLTK.Widgets.Inputs.Float is
            (This : in out Float_Input);
 
 
+    function Handle
+           (This  : in out Float_Input;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

@@ -5,8 +5,14 @@
 #include "c_fl_menu.h"
 
 
-typedef void (hook)(void*);
-typedef hook* hook_p;
+
+
+typedef void (d_hook)(void*);
+typedef d_hook* d_hook_p;
+
+
+typedef int (h_hook)(void*,int);
+typedef h_hook* h_hook_p;
 
 
 
@@ -15,9 +21,12 @@ class My_Menu : public Fl_Menu_ {
     public:
         using Fl_Menu_::Fl_Menu_;
         friend void menu_set_draw_hook(MENU m, void * d);
+        friend void menu_set_handle_hook(MENU m, void * h);
     protected:
         void draw();
-        hook_p draw_hook;
+        int handle(int e);
+        d_hook_p draw_hook;
+        h_hook_p handle_hook;
 };
 
 
@@ -26,8 +35,18 @@ void My_Menu::draw() {
 }
 
 
+int My_Menu::handle(int e) {
+    return (*handle_hook)(this->user_data(), e);
+}
+
+
 void menu_set_draw_hook(MENU m, void * d) {
-    reinterpret_cast<My_Menu*>(m)->draw_hook = reinterpret_cast<hook_p>(d);
+    reinterpret_cast<My_Menu*>(m)->draw_hook = reinterpret_cast<d_hook_p>(d);
+}
+
+
+void menu_set_handle_hook(MENU m, void * h) {
+    reinterpret_cast<My_Menu*>(m)->handle_hook = reinterpret_cast<h_hook_p>(h);
 }
 
 

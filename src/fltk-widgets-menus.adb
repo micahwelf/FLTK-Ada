@@ -25,6 +25,10 @@ package body FLTK.Widgets.Menus is
            (W, D : in System.Address);
     pragma Import (C, menu_set_draw_hook, "menu_set_draw_hook");
 
+    procedure menu_set_handle_hook
+           (W, H : in System.Address);
+    pragma Import (C, menu_set_handle_hook, "menu_set_handle_hook");
+
     function new_fl_menu
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -88,6 +92,17 @@ package body FLTK.Widgets.Menus is
 
 
 
+    function Handle
+           (This  : in out Menu;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Not_Handled;
+    end Handle;
+
+
+
+
     procedure Finalize
            (This : in out Menu) is
     begin
@@ -119,6 +134,7 @@ package body FLTK.Widgets.Menus is
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
             menu_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+            menu_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
 

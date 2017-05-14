@@ -21,6 +21,12 @@ package FLTK.Widgets.Inputs.Integer is
            (This : in out Integer_Input);
 
 
+    function Handle
+           (This  : in out Integer_Input;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

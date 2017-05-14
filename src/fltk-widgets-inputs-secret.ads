@@ -16,6 +16,12 @@ package FLTK.Widgets.Inputs.Secret is
            (This : in out Secret_Input);
 
 
+    function Handle
+           (This  : in out Secret_Input;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

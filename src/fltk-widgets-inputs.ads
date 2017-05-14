@@ -25,6 +25,12 @@ package FLTK.Widgets.Inputs is
            (This : in out Input);
 
 
+    function Handle
+           (This  : in out Input;
+            Event : in     Event_Kind)
+        return Event_Outcome;
+
+
 private
 
 

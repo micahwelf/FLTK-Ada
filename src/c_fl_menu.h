@@ -9,6 +9,7 @@ typedef void* MENU;
 
 
 extern "C" void menu_set_draw_hook(MENU m, void * d);
+extern "C" void menu_set_handle_hook(MENU m, void * h);
 
 
 extern "C" MENU new_fl_menu(int x, int y, int w, int h, char* label);
