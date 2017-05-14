@@ -16,15 +16,6 @@ package body FLTK.Widgets.Menus.Menu_Bars is
            (W, H : in System.Address);
     pragma Import (C, menu_bar_set_handle_hook, "menu_bar_set_handle_hook");
 
-    procedure fl_menu_bar_draw
-           (W : in System.Address);
-    pragma Import (C, fl_menu_bar_draw, "fl_menu_bar_draw");
-
-    function fl_menu_bar_handle
-           (W : in System.Address;
-            E : in Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_menu_bar_handle, "fl_menu_bar_handle");
 
     function new_fl_menu_bar
            (X, Y, W, H : in Interfaces.C.int;
@@ -37,43 +28,15 @@ package body FLTK.Widgets.Menus.Menu_Bars is
     pragma Import (C, free_fl_menu_bar, "free_fl_menu_bar");
 
 
+    procedure fl_menu_bar_draw
+           (W : in System.Address);
+    pragma Import (C, fl_menu_bar_draw, "fl_menu_bar_draw");
 
-
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
-    is
-        package Menu_Bar_Convert is new
-            System.Address_To_Access_Conversions (Menu_Bar'Class);
-
-        Ada_Menu_Bar : access Menu_Bar'Class :=
-            Menu_Bar_Convert.To_Pointer (U);
-    begin
-        Ada_Menu_Bar.Draw;
-    end Draw_Hook;
-
-
-
-
-    procedure Draw
-           (This : in out Menu_Bar) is
-    begin
-        fl_menu_bar_draw (This.Void_Ptr);
-    end Draw;
-
-
-
-
-    function Handle
-           (This  : in out Menu_Bar;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Event_Outcome'Val
-               (fl_menu_bar_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
-    end Handle;
+    function fl_menu_bar_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_menu_bar_handle, "fl_menu_bar_handle");
 
 
 
@@ -112,6 +75,27 @@ package body FLTK.Widgets.Menus.Menu_Bars is
             menu_bar_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
+
+
+
+
+    procedure Draw
+           (This : in out Menu_Bar) is
+    begin
+        fl_menu_bar_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    function Handle
+           (This  : in out Menu_Bar;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_menu_bar_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
 
 
 end FLTK.Widgets.Menus.Menu_Bars;

@@ -16,15 +16,6 @@ package body FLTK.Widgets.Buttons.Repeat is
            (W, H : in System.Address);
     pragma Import (C, repeat_button_set_handle_hook, "repeat_button_set_handle_hook");
 
-    procedure fl_repeat_button_draw
-           (W : in System.Address);
-    pragma Import (C, fl_repeat_button_draw, "fl_repeat_button_draw");
-
-    function fl_repeat_button_handle
-           (W : in System.Address;
-            E : in Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_repeat_button_handle, "fl_repeat_button_handle");
 
     function new_fl_repeat_button
            (X, Y, W, H : in Interfaces.C.int;
@@ -37,43 +28,15 @@ package body FLTK.Widgets.Buttons.Repeat is
     pragma Import (C, free_fl_repeat_button, "free_fl_repeat_button");
 
 
+    procedure fl_repeat_button_draw
+           (W : in System.Address);
+    pragma Import (C, fl_repeat_button_draw, "fl_repeat_button_draw");
 
-
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
-    is
-        package Repeat_Button_Convert is new
-            System.Address_To_Access_Conversions (Repeat_Button'Class);
-
-        Ada_Repeat_Button : access Repeat_Button'Class :=
-            Repeat_Button_Convert.To_Pointer (U);
-    begin
-        Ada_Repeat_Button.Draw;
-    end Draw_Hook;
-
-
-
-
-    procedure Draw
-           (This : in out Repeat_Button) is
-    begin
-        fl_repeat_button_draw (This.Void_Ptr);
-    end Draw;
-
-
-
-
-    function Handle
-           (This  : in out Repeat_Button;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Event_Outcome'Val
-               (fl_repeat_button_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
-    end Handle;
+    function fl_repeat_button_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_repeat_button_handle, "fl_repeat_button_handle");
 
 
 
@@ -112,6 +75,27 @@ package body FLTK.Widgets.Buttons.Repeat is
             repeat_button_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
+
+
+
+
+    procedure Draw
+           (This : in out Repeat_Button) is
+    begin
+        fl_repeat_button_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    function Handle
+           (This  : in out Repeat_Button;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_repeat_button_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
 
 
 end FLTK.Widgets.Buttons.Repeat;

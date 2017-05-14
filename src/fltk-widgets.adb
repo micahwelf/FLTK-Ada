@@ -26,6 +26,7 @@ package body FLTK.Widgets is
            (W, H : in System.Address);
     pragma Import (C, widget_set_handle_hook, "widget_set_handle_hook");
 
+
     function new_fl_widget
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -35,6 +36,7 @@ package body FLTK.Widgets is
     procedure free_fl_widget
            (F : in System.Address);
     pragma Import (C, free_fl_widget, "free_fl_widget");
+
 
     function fl_widget_get_box
            (W : in System.Address)
@@ -132,8 +134,17 @@ package body FLTK.Widgets is
 
 
 
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
+    procedure Callback_Hook
+           (W, U : in System.Address)
+    is
+        Ada_Widget : access Widget'Class :=
+            Widget_Convert.To_Pointer (U);
+    begin
+        Ada_Widget.Callback.all (Ada_Widget.all);
+    end Callback_Hook;
+
+
+
 
     procedure Draw_Hook
            (U : in System.Address)
@@ -157,17 +168,6 @@ package body FLTK.Widgets is
     begin
         return Event_Outcome'Pos (Ada_Widget.Handle (Event_Kind'Val (E)));
     end Handle_Hook;
-
-
-
-
-    function Handle
-           (This  : in out Widget;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Not_Handled;
-    end Handle;
 
 
 
@@ -326,23 +326,6 @@ package body FLTK.Widgets is
 
 
 
-    --  this is the part called by FLTK callbacks
-    --  note that the user data portion is a reference back to the Ada binding
-    procedure Callback_Hook (W, U : in System.Address);
-    pragma Convention (C, Callback_Hook);
-
-    procedure Callback_Hook
-           (W, U : in System.Address)
-    is
-        Ada_Widget : access Widget'Class :=
-            Widget_Convert.To_Pointer (U);
-    begin
-        Ada_Widget.Callback.all (Ada_Widget.all);
-    end Callback_Hook;
-
-
-
-
     procedure Set_Callback
            (This : in out Widget;
             Func : in     Widget_Callback) is
@@ -441,6 +424,17 @@ package body FLTK.Widgets is
                (This.Void_Ptr,
                 Wrapper (Pic).Void_Ptr);
     end Set_Image;
+
+
+
+
+    function Handle
+           (This  : in out Widget;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Not_Handled;
+    end Handle;
 
 
 end FLTK.Widgets;

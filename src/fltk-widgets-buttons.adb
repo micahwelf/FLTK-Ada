@@ -16,15 +16,6 @@ package body FLTK.Widgets.Buttons is
            (W, H : in System.Address);
     pragma Import (C, button_set_handle_hook, "button_set_handle_hook");
 
-    procedure fl_button_draw
-           (W : in System.Address);
-    pragma Import (C, fl_button_draw, "fl_button_draw");
-
-    function fl_button_handle
-           (W : in System.Address;
-            E : in Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_button_handle, "fl_button_handle");
 
     function new_fl_button
            (X, Y, W, H : in Interfaces.C.int;
@@ -35,6 +26,7 @@ package body FLTK.Widgets.Buttons is
     procedure free_fl_button
            (B : in System.Address);
     pragma Import (C, free_fl_button, "free_fl_button");
+
 
     function fl_button_get_state
            (B : in System.Address)
@@ -50,43 +42,15 @@ package body FLTK.Widgets.Buttons is
            (B : in System.Address);
     pragma Import (C, fl_button_set_only, "fl_button_set_only");
 
+    procedure fl_button_draw
+           (W : in System.Address);
+    pragma Import (C, fl_button_draw, "fl_button_draw");
 
-
-
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
-    is
-        package Button_Convert is new System.Address_To_Access_Conversions (Button'Class);
-
-        Ada_Button : access Button'Class :=
-            Button_Convert.To_Pointer (U);
-    begin
-        Ada_Button.Draw;
-    end Draw_Hook;
-
-
-
-
-    procedure Draw
-           (This : in out Button) is
-    begin
-        fl_button_draw (This.Void_Ptr);
-    end Draw;
-
-
-
-
-    function Handle
-           (This  : in out Button;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Event_Outcome'Val
-               (fl_button_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
-    end Handle;
+    function fl_button_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_button_handle, "fl_button_handle");
 
 
 
@@ -154,6 +118,27 @@ package body FLTK.Widgets.Buttons is
     begin
         fl_button_set_only (This.Void_Ptr);
     end Set_Only;
+
+
+
+
+    procedure Draw
+           (This : in out Button) is
+    begin
+        fl_button_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    function Handle
+           (This  : in out Button;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_button_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
 
 
 end FLTK.Widgets.Buttons;

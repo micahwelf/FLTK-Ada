@@ -16,15 +16,6 @@ package body FLTK.Widgets.Groups is
            (W, H : in System.Address);
     pragma Import (C, group_set_handle_hook, "group_set_handle_hook");
 
-    procedure fl_group_draw
-           (W : in System.Address);
-    pragma Import (C, fl_group_draw, "fl_group_draw");
-
-    function fl_group_handle
-           (W : in System.Address;
-            E : in Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_group_handle, "fl_group_handle");
 
     function new_fl_group
            (X, Y, W, H : in Interfaces.C.int;
@@ -35,6 +26,7 @@ package body FLTK.Widgets.Groups is
     procedure free_fl_group
            (G : in System.Address);
     pragma Import (C, free_fl_group, "free_fl_group");
+
 
     procedure fl_group_add
            (G, W : in System.Address);
@@ -74,43 +66,15 @@ package body FLTK.Widgets.Groups is
            (G, W : in System.Address);
     pragma Import (C, fl_group_resizable, "fl_group_resizable");
 
+    procedure fl_group_draw
+           (W : in System.Address);
+    pragma Import (C, fl_group_draw, "fl_group_draw");
 
-
-
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
-    is
-        package Group_Convert is new System.Address_To_Access_Conversions (Group'Class);
-
-        Ada_Group : access Group'Class :=
-            Group_Convert.To_Pointer (U);
-    begin
-        Ada_Group.Draw;
-    end Draw_Hook;
-
-
-
-
-    procedure Draw
-           (This : in out Group) is
-    begin
-        fl_group_draw (This.Void_Ptr);
-    end Draw;
-
-
-
-
-    function Handle
-           (This  : in out Group;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Event_Outcome'Val
-               (fl_group_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
-    end Handle;
+    function fl_group_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_group_handle, "fl_group_handle");
 
 
 
@@ -255,6 +219,27 @@ package body FLTK.Widgets.Groups is
     begin
         fl_group_resizable (This.Void_Ptr, Item.Void_Ptr);
     end Set_Resizable;
+
+
+
+
+    procedure Draw
+           (This : in out Group) is
+    begin
+        fl_group_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    function Handle
+           (This  : in out Group;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_group_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
 
 
 end FLTK.Widgets.Groups;

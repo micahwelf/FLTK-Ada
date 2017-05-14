@@ -17,15 +17,6 @@ package body FLTK.Widgets.Groups.Windows is
            (W, H : in System.Address);
     pragma Import (C, window_set_handle_hook, "window_set_handle_hook");
 
-    procedure fl_window_draw
-           (W : in System.Address);
-    pragma Import (C, fl_window_draw, "fl_window_draw");
-
-    function fl_window_handle
-           (W : in System.Address;
-            E : in Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_window_handle, "fl_window_handle");
 
     function new_fl_window
            (X, Y, W, H : in Interfaces.C.int;
@@ -41,6 +32,7 @@ package body FLTK.Widgets.Groups.Windows is
     procedure free_fl_window
            (W : in System.Address);
     pragma Import (C, free_fl_window, "free_fl_window");
+
 
     procedure fl_window_show
            (W : in System.Address);
@@ -72,43 +64,15 @@ package body FLTK.Widgets.Groups.Windows is
            (W : in System.Address);
     pragma Import (C, fl_window_set_non_modal, "fl_window_set_non_modal");
 
+    procedure fl_window_draw
+           (W : in System.Address);
+    pragma Import (C, fl_window_draw, "fl_window_draw");
 
-
-
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
-    is
-        package Window_Convert is new System.Address_To_Access_Conversions (Window'Class);
-
-        Ada_Window : access Window'Class :=
-            Window_Convert.To_Pointer (U);
-    begin
-        Ada_Window.Draw;
-    end Draw_Hook;
-
-
-
-
-    procedure Draw
-           (This : in out Window) is
-    begin
-        fl_window_draw (This.Void_Ptr);
-    end Draw;
-
-
-
-
-    function Handle
-           (This  : in out Window;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Event_Outcome'Val
-               (fl_window_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
-    end Handle;
+    function fl_window_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_window_handle, "fl_window_handle");
 
 
 
@@ -246,6 +210,27 @@ package body FLTK.Widgets.Groups.Windows is
     begin
         fl_window_set_non_modal (This.Void_Ptr);
     end Set_Non_Modal;
+
+
+
+
+    procedure Draw
+           (This : in out Window) is
+    begin
+        fl_window_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    function Handle
+           (This  : in out Window;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_window_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
 
 
 end FLTK.Widgets.Groups.Windows;

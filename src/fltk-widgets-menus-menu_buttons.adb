@@ -16,15 +16,6 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
            (W, H : in System.Address);
     pragma Import (C, menu_button_set_handle_hook, "menu_button_set_handle_hook");
 
-    procedure fl_menu_button_draw
-           (W : in System.Address);
-    pragma Import (C, fl_menu_button_draw, "fl_menu_button_draw");
-
-    function fl_menu_button_handle
-           (W : in System.Address;
-            E : in Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_menu_button_handle, "fl_menu_button_handle");
 
     function new_fl_menu_button
            (X, Y, W, H : in Interfaces.C.int;
@@ -36,49 +27,21 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
            (M : in System.Address);
     pragma Import (C, free_fl_menu_button, "free_fl_menu_button");
 
+
     procedure fl_menu_button_type
            (M : in System.Address;
             T : in Interfaces.C.unsigned);
     pragma Import (C, fl_menu_button_type, "fl_menu_button_type");
 
+    procedure fl_menu_button_draw
+           (W : in System.Address);
+    pragma Import (C, fl_menu_button_draw, "fl_menu_button_draw");
 
-
-
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
-    is
-        package Menu_Button_Convert is new
-            System.Address_To_Access_Conversions (Menu_Button'Class);
-
-        Ada_Menu_Button : access Menu_Button'Class :=
-            Menu_Button_Convert.To_Pointer (U);
-    begin
-        Ada_Menu_Button.Draw;
-    end Draw_Hook;
-
-
-
-
-    procedure Draw
-           (This : in out Menu_Button) is
-    begin
-        fl_menu_button_draw (This.Void_Ptr);
-    end Draw;
-
-
-
-
-    function Handle
-           (This  : in out Menu_Button;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Event_Outcome'Val
-               (fl_menu_button_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
-    end Handle;
+    function fl_menu_button_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_menu_button_handle, "fl_menu_button_handle");
 
 
 
@@ -127,6 +90,27 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
     begin
         fl_menu_button_type (This.Void_Ptr, Popup_Buttons'Pos (Pop));
     end Set_Popup_Kind;
+
+
+
+
+    procedure Draw
+           (This : in out Menu_Button) is
+    begin
+        fl_menu_button_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    function Handle
+           (This  : in out Menu_Button;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_menu_button_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
 
 
 end FLTK.Widgets.Menus.Menu_Buttons;

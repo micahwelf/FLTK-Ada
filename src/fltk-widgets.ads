@@ -152,6 +152,17 @@ private
         end record;
 
 
+    --  the user data portion should always be a reference back to the Ada binding
+    procedure Callback_Hook
+           (W, U : in System.Address);
+    pragma Convention (C, Callback_Hook);
+
+
+    procedure Draw_Hook
+           (U : in System.Address);
+    pragma Convention (C, Draw_Hook);
+
+
     function Handle_Hook
            (U : in System.Address;
             E : in Interfaces.C.int)

@@ -16,15 +16,6 @@ package body FLTK.Widgets.Inputs.File is
            (W, H : in System.Address);
     pragma Import (C, file_input_set_handle_hook, "file_input_set_handle_hook");
 
-    procedure fl_file_input_draw
-           (W : in System.Address);
-    pragma Import (C, fl_file_input_draw, "fl_file_input_draw");
-
-    function fl_file_input_handle
-           (W : in System.Address;
-            E : in Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_file_input_handle, "fl_file_input_handle");
 
     function new_fl_file_input
            (X, Y, W, H : in Interfaces.C.int;
@@ -37,43 +28,15 @@ package body FLTK.Widgets.Inputs.File is
     pragma Import (C, free_fl_file_input, "free_fl_file_input");
 
 
+    procedure fl_file_input_draw
+           (W : in System.Address);
+    pragma Import (C, fl_file_input_draw, "fl_file_input_draw");
 
-
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
-    is
-        package File_Input_Convert is new
-            System.Address_To_Access_Conversions (File_Input'Class);
-
-        Ada_Input : access File_Input'Class :=
-            File_Input_Convert.To_Pointer (U);
-    begin
-        Ada_Input.Draw;
-    end Draw_Hook;
-
-
-
-
-    procedure Draw
-           (This : in out File_Input) is
-    begin
-        fl_file_input_draw (This.Void_Ptr);
-    end Draw;
-
-
-
-
-    function Handle
-           (This  : in out File_Input;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Event_Outcome'Val
-               (fl_file_input_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
-    end Handle;
+    function fl_file_input_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_file_input_handle, "fl_file_input_handle");
 
 
 
@@ -112,6 +75,27 @@ package body FLTK.Widgets.Inputs.File is
             file_input_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
+
+
+
+
+    procedure Draw
+           (This : in out File_Input) is
+    begin
+        fl_file_input_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    function Handle
+           (This  : in out File_Input;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_file_input_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
 
 
 end FLTK.Widgets.Inputs.File;

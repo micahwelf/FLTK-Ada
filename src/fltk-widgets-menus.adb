@@ -29,6 +29,7 @@ package body FLTK.Widgets.Menus is
            (W, H : in System.Address);
     pragma Import (C, menu_set_handle_hook, "menu_set_handle_hook");
 
+
     function new_fl_menu
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -38,6 +39,7 @@ package body FLTK.Widgets.Menus is
     procedure free_fl_menu
            (F : in System.Address);
     pragma Import (C, free_fl_menu, "free_fl_menu");
+
 
     function fl_menu_add
            (M    : in System.Address;
@@ -59,6 +61,7 @@ package body FLTK.Widgets.Menus is
         return System.Address;
     pragma Import (C, fl_menu_mvalue, "fl_menu_mvalue");
 
+
     function fl_menuitem_value
            (MI : in System.Address)
         return Interfaces.C.int;
@@ -75,30 +78,15 @@ package body FLTK.Widgets.Menus is
 
 
 
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
+    procedure Item_Hook
+           (M, U : in System.Address)
     is
-        package Menu_Convert is new System.Address_To_Access_Conversions (Menu'Class);
-
-        Ada_Menu : access Menu'Class :=
-            Menu_Convert.To_Pointer (U);
+        Ada_Widget : access Widget'Class :=
+            Widget_Convert.To_Pointer (fl_widget_get_user_data (M));
+        Action : Widget_Callback := Callback_Convert.To_Pointer (U);
     begin
-        Ada_Menu.Draw;
-    end Draw_Hook;
-
-
-
-
-    function Handle
-           (This  : in out Menu;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Not_Handled;
-    end Handle;
+        Action.all (Ada_Widget.all);
+    end Item_Hook;
 
 
 
@@ -137,22 +125,6 @@ package body FLTK.Widgets.Menus is
             menu_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
-
-
-
-
-    procedure Item_Hook (M, U : in System.Address);
-    pragma Convention (C, Item_Hook);
-
-    procedure Item_Hook
-           (M, U : in System.Address)
-    is
-        Ada_Widget : access Widget'Class :=
-            Widget_Convert.To_Pointer (fl_widget_get_user_data (M));
-        Action : Widget_Callback := Callback_Convert.To_Pointer (U);
-    begin
-        Action.all (Ada_Widget.all);
-    end Item_Hook;
 
 
 
@@ -210,6 +182,17 @@ package body FLTK.Widgets.Menus is
             Item.Void_Ptr := fl_menu_mvalue (This.Void_Ptr);
         end return;
     end Chosen;
+
+
+
+
+    function Handle
+           (This  : in out Menu;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Not_Handled;
+    end Handle;
 
 
 

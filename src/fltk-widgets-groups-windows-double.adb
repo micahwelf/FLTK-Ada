@@ -16,15 +16,6 @@ package body FLTK.Widgets.Groups.Windows.Double is
            (W, H : in System.Address);
     pragma Import (C, double_window_set_handle_hook, "double_window_set_handle_hook");
 
-    procedure fl_double_window_draw
-           (W : in System.Address);
-    pragma Import (C, fl_double_window_draw, "fl_double_window_draw");
-
-    function fl_double_window_handle
-           (W : in System.Address;
-            E : in Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_double_window_handle, "fl_double_window_handle");
 
     function new_fl_double_window
            (X, Y, W, H : in Interfaces.C.int;
@@ -41,6 +32,7 @@ package body FLTK.Widgets.Groups.Windows.Double is
             (W : in System.Address);
     pragma Import (C, free_fl_double_window, "free_fl_double_window");
 
+
     procedure fl_double_window_show
             (W : in System.Address);
     pragma Import (C, fl_double_window_show, "fl_double_window_show");
@@ -49,44 +41,15 @@ package body FLTK.Widgets.Groups.Windows.Double is
             (W : in System.Address);
     pragma Import (C, fl_double_window_hide, "fl_double_window_hide");
 
+    procedure fl_double_window_draw
+           (W : in System.Address);
+    pragma Import (C, fl_double_window_draw, "fl_double_window_draw");
 
-
-
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
-    is
-        package Double_Window_Convert is new
-            System.Address_To_Access_Conversions (Double_Window'Class);
-
-        Ada_Window : access Double_Window'Class :=
-            Double_Window_Convert.To_Pointer (U);
-    begin
-        Ada_Window.Draw;
-    end Draw_Hook;
-
-
-
-
-    procedure Draw
-           (This : in out Double_Window) is
-    begin
-        fl_double_window_draw (This.Void_Ptr);
-    end Draw;
-
-
-
-
-    function Handle
-           (This  : in out Double_Window;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Event_Outcome'Val
-               (fl_double_window_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
-    end Handle;
+    function fl_double_window_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_double_window_handle, "fl_double_window_handle");
 
 
 
@@ -164,6 +127,27 @@ package body FLTK.Widgets.Groups.Windows.Double is
     begin
         fl_double_window_hide (This.Void_Ptr);
     end Hide;
+
+
+
+
+    procedure Draw
+           (This : in out Double_Window) is
+    begin
+        fl_double_window_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    function Handle
+           (This  : in out Double_Window;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_double_window_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
 
 
 end FLTK.Widgets.Groups.Windows.Double;

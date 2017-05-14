@@ -87,6 +87,10 @@ private
     type Menu is new Widget with null record;
 
 
+    procedure Item_Hook (M, U : in System.Address);
+    pragma Convention (C, Item_Hook);
+
+
     overriding procedure Finalize
            (This : in out Menu);
 

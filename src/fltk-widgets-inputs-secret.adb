@@ -16,15 +16,6 @@ package body FLTK.Widgets.Inputs.Secret is
            (W, H : in System.Address);
     pragma Import (C, secret_input_set_handle_hook, "secret_input_set_handle_hook");
 
-    procedure fl_secret_input_draw
-           (W : in System.Address);
-    pragma Import (C, fl_secret_input_draw, "fl_secret_input_draw");
-
-    function fl_secret_input_handle
-           (W : in System.Address;
-            E : in Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_secret_input_handle, "fl_secret_input_handle");
 
     function new_fl_secret_input
            (X, Y, W, H : in Interfaces.C.int;
@@ -37,43 +28,15 @@ package body FLTK.Widgets.Inputs.Secret is
     pragma Import (C, free_fl_secret_input, "free_fl_secret_input");
 
 
+    procedure fl_secret_input_draw
+           (W : in System.Address);
+    pragma Import (C, fl_secret_input_draw, "fl_secret_input_draw");
 
-
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
-    is
-        package Secret_Input_Convert is new
-            System.Address_To_Access_Conversions (Secret_Input'Class);
-
-        Ada_Input : access Secret_Input'Class :=
-            Secret_Input_Convert.To_Pointer (U);
-    begin
-        Ada_Input.Draw;
-    end Draw_Hook;
-
-
-
-
-    procedure Draw
-           (This : in out Secret_Input) is
-    begin
-        fl_secret_input_draw (This.Void_Ptr);
-    end Draw;
-
-
-
-
-    function Handle
-           (This  : in out Secret_Input;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Event_Outcome'Val
-               (fl_secret_input_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
-    end Handle;
+    function fl_secret_input_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_secret_input_handle, "fl_secret_input_handle");
 
 
 
@@ -112,6 +75,27 @@ package body FLTK.Widgets.Inputs.Secret is
             secret_input_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
+
+
+
+
+    procedure Draw
+           (This : in out Secret_Input) is
+    begin
+        fl_secret_input_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    function Handle
+           (This  : in out Secret_Input;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_secret_input_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
 
 
 end FLTK.Widgets.Inputs.Secret;

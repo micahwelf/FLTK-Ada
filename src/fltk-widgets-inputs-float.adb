@@ -16,15 +16,6 @@ package body FLTK.Widgets.Inputs.Float is
            (W, H : in System.Address);
     pragma Import (C, float_input_set_handle_hook, "float_input_set_handle_hook");
 
-    procedure fl_float_input_draw
-           (W : in System.Address);
-    pragma Import (C, fl_float_input_draw, "fl_float_input_draw");
-
-    function fl_float_input_handle
-           (W : in System.Address;
-            E : in Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_float_input_handle, "fl_float_input_handle");
 
     function new_fl_float_input
            (X, Y, W, H : in Interfaces.C.int;
@@ -37,43 +28,15 @@ package body FLTK.Widgets.Inputs.Float is
     pragma Import (C, free_fl_float_input, "free_fl_float_input");
 
 
+    procedure fl_float_input_draw
+           (W : in System.Address);
+    pragma Import (C, fl_float_input_draw, "fl_float_input_draw");
 
-
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
-    is
-        package Float_Input_Convert is new
-            System.Address_To_Access_Conversions (Float_Input'Class);
-
-        Ada_Input : access Float_Input'Class :=
-            Float_Input_Convert.To_Pointer (U);
-    begin
-        Ada_Input.Draw;
-    end Draw_Hook;
-
-
-
-
-    procedure Draw
-           (This : in out Float_Input) is
-    begin
-        fl_float_input_draw (This.Void_Ptr);
-    end Draw;
-
-
-
-
-    function Handle
-           (This  : in out Float_Input;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Event_Outcome'Val
-               (fl_float_input_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
-    end Handle;
+    function fl_float_input_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_float_input_handle, "fl_float_input_handle");
 
 
 
@@ -123,6 +86,27 @@ package body FLTK.Widgets.Inputs.Float is
         return Standard.Float'Value
                (Interfaces.C.Strings.Value (fl_input_get_value (This.Void_Ptr)));
     end Get_Value;
+
+
+
+
+    procedure Draw
+           (This : in out Float_Input) is
+    begin
+        fl_float_input_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    function Handle
+           (This  : in out Float_Input;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_float_input_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
 
 
 end FLTK.Widgets.Inputs.Float;

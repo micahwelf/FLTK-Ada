@@ -16,15 +16,6 @@ package body FLTK.Widgets.Boxes is
            (W, H : in System.Address);
     pragma Import (C, box_set_handle_hook, "box_set_handle_hook");
 
-    procedure fl_box_draw
-           (W : in System.Address);
-    pragma Import (C, fl_box_draw, "fl_box_draw");
-
-    function fl_box_handle
-           (W : in System.Address;
-            E : in Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_box_handle, "fl_box_handle");
 
     function new_fl_box
            (X, Y, W, H : in Interfaces.C.int;
@@ -37,42 +28,15 @@ package body FLTK.Widgets.Boxes is
     pragma Import (C, free_fl_box, "free_fl_box");
 
 
+    procedure fl_box_draw
+           (W : in System.Address);
+    pragma Import (C, fl_box_draw, "fl_box_draw");
 
-
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
-    is
-        package Box_Convert is new System.Address_To_Access_Conversions (Box'Class);
-
-        Ada_Box : access Box'Class :=
-            Box_Convert.To_Pointer (U);
-    begin
-        Ada_Box.Draw;
-    end Draw_Hook;
-
-
-
-
-    procedure Draw
-           (This : in out Box) is
-    begin
-        fl_box_draw (This.Void_Ptr);
-    end Draw;
-
-
-
-
-    function Handle
-           (This  : in out Box;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Event_Outcome'Val
-               (fl_box_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
-    end Handle;
+    function fl_box_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_box_handle, "fl_box_handle");
 
 
 
@@ -111,6 +75,27 @@ package body FLTK.Widgets.Boxes is
             box_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
+
+
+
+
+    procedure Draw
+           (This : in out Box) is
+    begin
+        fl_box_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    function Handle
+           (This  : in out Box;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_box_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
 
 
 end FLTK.Widgets.Boxes;

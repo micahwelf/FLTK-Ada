@@ -16,15 +16,6 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
            (W, H : in System.Address);
     pragma Import (C, text_editor_set_handle_hook, "text_editor_set_handle_hook");
 
-    procedure fl_text_editor_draw
-           (W : in System.Address);
-    pragma Import (C, fl_text_editor_draw, "fl_text_editor_draw");
-
-    function fl_text_editor_handle
-           (W : in System.Address;
-            E : in Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_text_editor_handle, "fl_text_editor_handle");
 
     function new_fl_text_editor
            (X, Y, W, H : in Interfaces.C.int;
@@ -35,6 +26,7 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     procedure free_fl_text_editor
            (TE : in System.Address);
     pragma Import (C, free_fl_text_editor, "free_fl_text_editor");
+
 
     procedure fl_text_editor_undo
            (TE : in System.Address);
@@ -62,44 +54,15 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
             M  : in Interfaces.C.unsigned_long);
     pragma Import (C, fl_text_editor_remove_key_binding, "fl_text_editor_remove_key_binding");
 
+    procedure fl_text_editor_draw
+           (W : in System.Address);
+    pragma Import (C, fl_text_editor_draw, "fl_text_editor_draw");
 
-
-
-    procedure Draw_Hook (U : in System.Address);
-    pragma Convention (C, Draw_Hook);
-
-    procedure Draw_Hook
-           (U : in System.Address)
-    is
-        package Text_Editor_Convert is new
-            System.Address_To_Access_Conversions (Text_Editor'Class);
-
-        Ada_Text_Editor : access Text_Editor'Class :=
-            Text_Editor_Convert.To_Pointer (U);
-    begin
-        Ada_Text_Editor.Draw;
-    end Draw_Hook;
-
-
-
-
-    procedure Draw
-           (This : in out Text_Editor) is
-    begin
-        fl_text_editor_draw (This.Void_Ptr);
-    end Draw;
-
-
-
-
-    function Handle
-           (This  : in out Text_Editor;
-            Event : in     Event_Kind)
-        return Event_Outcome is
-    begin
-        return Event_Outcome'Val
-               (fl_text_editor_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
-    end Handle;
+    function fl_text_editor_handle
+           (W : in System.Address;
+            E : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_editor_handle, "fl_text_editor_handle");
 
 
 
@@ -200,6 +163,27 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
                 Character'Pos (Key.Keypress),
                 Interfaces.C.unsigned_long (Key.Modifier) * 65536);
     end Remove_Key_Binding;
+
+
+
+
+    procedure Draw
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_draw (This.Void_Ptr);
+    end Draw;
+
+
+
+
+    function Handle
+           (This  : in out Text_Editor;
+            Event : in     Event_Kind)
+        return Event_Outcome is
+    begin
+        return Event_Outcome'Val
+               (fl_text_editor_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
+    end Handle;
 
 
 end FLTK.Widgets.Groups.Text_Displays.Text_Editors;
