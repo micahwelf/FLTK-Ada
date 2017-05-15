@@ -128,6 +128,9 @@ package FLTK.Enums is
             Fullscreen);
 
 
+    type Color is new Natural;
+
+
     --  type Modifier_Key is private;
     type Modifier_Key is new Interfaces.Unsigned_8;
 

@@ -17,6 +17,32 @@ package body FLTK.Images is
            (I : in System.Address);
     pragma Import (C, free_fl_image, "free_fl_image");
 
+    function fl_image_copy
+           (I    : in System.Address;
+            W, H : in Interfaces.C.int)
+        return System.Address;
+    pragma Import (C, fl_image_copy, "fl_image_copy");
+
+    function fl_image_copy2
+           (I : in System.Address)
+        return System.Address;
+    pragma Import (C, fl_image_copy2, "fl_image_copy2");
+
+
+    procedure fl_image_color_average
+           (I : in System.Address;
+            C : in Interfaces.C.int;
+            B : in Interfaces.C.C_float);
+    pragma Import (C, fl_image_color_average, "fl_image_color_average");
+
+    procedure fl_image_desaturate
+           (I : in System.Address);
+    pragma Import (C, fl_image_desaturate, "fl_image_desaturate");
+
+    procedure fl_image_inactive
+           (I : in System.Address);
+    pragma Import (C, fl_image_inactive, "fl_image_inactive");
+
     function fl_image_w
            (I : in System.Address)
         return Interfaces.C.int;
@@ -61,6 +87,66 @@ package body FLTK.Images is
                     Interfaces.C.int (Depth));
         end return;
     end Create;
+
+
+
+
+    function Copy
+           (This          : in Image;
+            Width, Height : in Natural)
+        return Image is
+    begin
+        return Copied : Image do
+            Copied.Void_Ptr := fl_image_copy
+                   (This.Void_Ptr,
+                    Interfaces.C.int (Width),
+                    Interfaces.C.int (Height));
+        end return;
+    end Copy;
+
+
+
+
+    function Copy
+           (This : in Image)
+        return Image is
+    begin
+        return Copied : Image do
+            Copied.Void_Ptr := fl_image_copy2 (This.Void_Ptr);
+        end return;
+    end Copy;
+
+
+
+
+    procedure Color_Average
+           (This   : in out Image;
+            Col    : in     Color;
+            Amount : in     Blend) is
+    begin
+        fl_image_color_average
+               (This.Void_Ptr,
+                Interfaces.C.int (Col),
+                Interfaces.C.C_float (Amount));
+    end Color_Average;
+
+
+
+
+    procedure Desaturate
+           (This : in out Image) is
+    begin
+        fl_image_desaturate (This.Void_Ptr);
+    end Desaturate;
+
+
+
+
+    procedure Inactive
+           (This : in out Image) is
+    begin
+        fl_image_inactive (This.Void_Ptr);
+    end Inactive;
 
 
 

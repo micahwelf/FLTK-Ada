@@ -21,7 +21,7 @@ package FLTK.Widgets is
 
     type Font_Size is new Natural;
     Normal_Size : constant Font_Size := 14;
-    type Color is new Natural;
+
 
     type Event_Outcome is (Not_Handled, Handled);
 
