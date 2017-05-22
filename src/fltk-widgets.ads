@@ -32,6 +32,24 @@ package FLTK.Widgets is
         return Widget;
 
 
+    procedure Activate
+           (This : in out Widget);
+
+
+    procedure Deactivate
+           (This : in out Widget);
+
+
+    function Is_Active
+           (This : in Widget)
+        return Boolean;
+
+
+    function Is_Tree_Active
+           (This : in Widget)
+        return Boolean;
+
+
     function Parent
            (This : in Widget)
         return access FLTK.Widgets.Groups.Group'Class;

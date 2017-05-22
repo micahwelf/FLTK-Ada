@@ -6,6 +6,7 @@ with System;
 with System.Address_To_Access_Conversions;
 with FLTK.Widgets.Groups;
 with FLTK.Images;
+use type Interfaces.C.int;
 use type System.Address;
 
 
@@ -37,6 +38,29 @@ package body FLTK.Widgets is
            (F : in System.Address);
     pragma Import (C, free_fl_widget, "free_fl_widget");
 
+
+    procedure fl_widget_activate
+           (W : in System.Address);
+    pragma Import (C, fl_widget_activate, "fl_widget_activate");
+
+    procedure fl_widget_deactivate
+           (W : in System.Address);
+    pragma Import (C, fl_widget_deactivate, "fl_widget_deactivate");
+
+    function fl_widget_active
+           (W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_widget_active, "fl_widget_active");
+
+    function fl_widget_active_r
+           (W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_widget_active_r, "fl_widget_active_r");
+
+    function fl_widget_get_parent
+           (W : in System.Address)
+        return System.Address;
+    pragma Import (C, fl_widget_get_parent, "fl_widget_get_parent");
 
     function fl_widget_get_box
            (W : in System.Address)
@@ -87,11 +111,6 @@ package body FLTK.Widgets is
            (W : in System.Address;
             L : in Interfaces.C.int);
     pragma Import (C, fl_widget_set_label_type, "fl_widget_set_label_type");
-
-    function fl_widget_get_parent
-           (W : in System.Address)
-        return System.Address;
-    pragma Import (C, fl_widget_get_parent, "fl_widget_get_parent");
 
     procedure fl_widget_set_callback
            (W, C : in System.Address);
@@ -205,6 +224,44 @@ package body FLTK.Widgets is
             widget_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
+
+
+
+
+    procedure Activate
+           (This : in out Widget) is
+    begin
+        fl_widget_activate (This.Void_Ptr);
+    end Activate;
+
+
+
+
+    procedure Deactivate
+           (This : in out Widget) is
+    begin
+        fl_widget_deactivate (This.Void_Ptr);
+    end Deactivate;
+
+
+
+
+    function Is_Active
+           (This : in Widget)
+        return Boolean is
+    begin
+        return fl_widget_active (This.Void_Ptr) /= 0;
+    end Is_Active;
+
+
+
+
+    function Is_Tree_Active
+           (This : in Widget)
+        return Boolean is
+    begin
+        return fl_widget_active_r (This.Void_Ptr) /= 0;
+    end Is_Tree_Active;
 
 
 

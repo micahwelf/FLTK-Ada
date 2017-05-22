@@ -69,6 +69,35 @@ void fl_widget_set_user_data(WIDGET w, void * d) {
 
 
 
+void fl_widget_activate(WIDGET w) {
+    reinterpret_cast<Fl_Widget*>(w)->activate();
+}
+
+
+void fl_widget_deactivate(WIDGET w) {
+    reinterpret_cast<Fl_Widget*>(w)->deactivate();
+}
+
+
+int fl_widget_active(WIDGET w) {
+    return reinterpret_cast<Fl_Widget*>(w)->active();
+}
+
+
+int fl_widget_active_r(WIDGET w) {
+    return reinterpret_cast<Fl_Widget*>(w)->active_r();
+}
+
+
+
+
+void * fl_widget_get_parent(WIDGET w) {
+    return reinterpret_cast<Fl_Widget*>(w)->parent();
+}
+
+
+
+
 int fl_widget_get_box(WIDGET w) {
     return reinterpret_cast<Fl_Widget*>(w)->box();
 }
@@ -119,11 +148,6 @@ void fl_widget_set_label_type(WIDGET w, int l) {
 }
 
 
-void * fl_widget_get_parent(WIDGET w) {
-    return reinterpret_cast<Fl_Widget*>(w)->parent();
-}
-
-
 
 
 void fl_widget_set_callback(WIDGET w, void * cb) {
@@ -161,6 +185,8 @@ void fl_widget_size(WIDGET w, int d, int h) {
 void fl_widget_position(WIDGET w, int x, int y) {
     reinterpret_cast<Fl_Widget*>(w)->position(x, y);
 }
+
+
 
 
 void fl_widget_set_image(WIDGET w, void * img) {
