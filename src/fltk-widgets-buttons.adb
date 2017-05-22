@@ -86,7 +86,7 @@ package body FLTK.Widgets.Buttons is
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
             button_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
-            button_set_handle_hook (This.Void_Ptr, Draw_Hook'Address);
+            button_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
 
