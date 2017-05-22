@@ -70,7 +70,6 @@ package body FLTK.Images is
             free_fl_image (This.Void_Ptr);
             This.Void_Ptr := System.Null_Address;
         end if;
-        Finalize (Wrapper (This));
     end Finalize;
 
 
