@@ -1,7 +1,6 @@
 
 
 with FLTK.Text_Buffers;
-with FLTK.Enums; use FLTK.Enums;
 
 
 package FLTK.Widgets.Groups.Text_Displays is

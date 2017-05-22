@@ -1,8 +1,5 @@
 
 
-with FLTK.Enums; use FLTK.Enums;
-
-
 package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 

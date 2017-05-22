@@ -1,6 +1,5 @@
 
 
-with FLTK.Enums; use FLTK.Enums;
 with FLTK.Images;
 limited with FLTK.Widgets.Groups;
 private with System;

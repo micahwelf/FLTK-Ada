@@ -1,6 +1,5 @@
 
 
-with FLTK.Enums; use FLTK.Enums;
 private with Interfaces;
 private with System;
 
