@@ -207,7 +207,7 @@ package body FLTK.Widgets.Groups is
            (This  : in out Group;
             Place : in     Index) is
     begin
-        fl_group_remove2 (This.Void_Ptr, Interfaces.C.int (Place));
+        fl_group_remove2 (This.Void_Ptr, Interfaces.C.int (Place - 1));
     end Remove;
 
 
