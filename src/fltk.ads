@@ -21,7 +21,12 @@ package FLTK is
     type Color is new Natural;
 
 
-    type Alignment is new Natural;
+    type Alignment is private;
+    Align_Center : constant Alignment;
+    Align_Top    : constant Alignment;
+    Align_Bottom : constant Alignment;
+    Align_Left   : constant Alignment;
+    Align_Right  : constant Alignment;
 
 
     type Shortcut_Key is private;
@@ -181,6 +186,14 @@ private
 
     overriding procedure Initialize
            (This : in out Wrapper);
+
+
+    type Alignment is new Interfaces.Unsigned_16;
+    Align_Center : constant Alignment := 0;
+    Align_Top    : constant Alignment := 1;
+    Align_Bottom : constant Alignment := 2;
+    Align_Left   : constant Alignment := 4;
+    Align_Right  : constant Alignment := 8;
 
 
     type Modifier_Key is new Interfaces.Unsigned_8;

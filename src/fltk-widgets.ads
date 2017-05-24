@@ -49,9 +49,38 @@ package FLTK.Widgets is
         return Boolean;
 
 
+    procedure Clear_Active
+           (This : in out Widget);
+
+
+    function Has_Changed
+           (This : in Widget)
+        return Boolean;
+
+
+    procedure Clear_Changed
+           (This : in out Widget);
+
+
     function Parent
            (This : in Widget)
         return access FLTK.Widgets.Groups.Group'Class;
+
+
+    function Contains
+           (This : in Widget;
+            Item : in Widget'Class)
+        return Boolean;
+
+
+    function Get_Alignment
+           (This : in Widget)
+        return Alignment;
+
+
+    procedure Set_Alignment
+           (This      : in out Widget;
+            New_Align : in     Alignment);
 
 
     function Get_Box
@@ -102,6 +131,11 @@ package FLTK.Widgets is
     procedure Set_Label_Type
            (This  : in out Widget;
             Label : in     Label_Kind);
+
+
+    function Get_Callback
+           (This : in Widget)
+        return Widget_Callback;
 
 
     procedure Set_Callback

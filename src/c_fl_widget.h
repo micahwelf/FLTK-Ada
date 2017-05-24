@@ -23,11 +23,17 @@ extern "C" void fl_widget_activate(WIDGET w);
 extern "C" void fl_widget_deactivate(WIDGET w);
 extern "C" int fl_widget_active(WIDGET w);
 extern "C" int fl_widget_active_r(WIDGET w);
+extern "C" void fl_widget_clear_active(WIDGET w);
+extern "C" unsigned int fl_widget_changed(WIDGET w);
+extern "C" void fl_widget_clear_changed(WIDGET w);
 
 
 extern "C" void * fl_widget_get_parent(WIDGET w);
+extern "C" int fl_widget_contains(WIDGET w, WIDGET i);
 
 
+extern "C" unsigned int fl_widget_get_align(WIDGET w);
+extern "C" void fl_widget_set_align(WIDGET w, unsigned int a);
 extern "C" int fl_widget_get_box(WIDGET w);
 extern "C" void fl_widget_set_box(WIDGET w, int b);
 extern "C" const char* fl_widget_get_label(WIDGET w);

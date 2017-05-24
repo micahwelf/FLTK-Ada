@@ -7,6 +7,7 @@ with System.Address_To_Access_Conversions;
 with FLTK.Widgets.Groups;
 with FLTK.Images;
 use type Interfaces.C.int;
+use type Interfaces.C.unsigned;
 use type System.Address;
 
 
@@ -57,10 +58,38 @@ package body FLTK.Widgets is
         return Interfaces.C.int;
     pragma Import (C, fl_widget_active_r, "fl_widget_active_r");
 
+    procedure fl_widget_clear_active
+           (W : in System.Address);
+    pragma Import (C, fl_widget_clear_active, "fl_widget_clear_active");
+
+    function fl_widget_changed
+           (W : in System.Address)
+        return Interfaces.C.unsigned;
+    pragma Import (C, fl_widget_changed, "fl_widget_changed");
+
+    procedure fl_widget_clear_changed
+           (W : in System.Address);
+    pragma Import (C, fl_widget_clear_changed, "fl_widget_clear_changed");
+
     function fl_widget_get_parent
            (W : in System.Address)
         return System.Address;
     pragma Import (C, fl_widget_get_parent, "fl_widget_get_parent");
+
+    function fl_widget_contains
+           (W, I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_widget_contains, "fl_widget_contains");
+
+    function fl_widget_get_align
+           (W : in System.Address)
+        return Interfaces.C.unsigned;
+    pragma Import (C, fl_widget_get_align, "fl_widget_get_align");
+
+    procedure fl_widget_set_align
+           (W : in System.Address;
+            A : in Interfaces.C.unsigned);
+    pragma Import (C, fl_widget_set_align, "fl_widget_set_align");
 
     function fl_widget_get_box
            (W : in System.Address)
@@ -266,6 +295,34 @@ package body FLTK.Widgets is
 
 
 
+    procedure Clear_Active
+           (This : in out Widget) is
+    begin
+        fl_widget_clear_active (This.Void_Ptr);
+    end Clear_Active;
+
+
+
+
+    function Has_Changed
+           (This : in Widget)
+        return Boolean is
+    begin
+        return fl_widget_changed (This.Void_Ptr) /= 0;
+    end Has_Changed;
+
+
+
+
+    procedure Clear_Changed
+           (This : in out Widget) is
+    begin
+        fl_widget_clear_changed (This.Void_Ptr);
+    end Clear_Changed;
+
+
+
+
     function Parent
            (This : in Widget)
         return access FLTK.Widgets.Groups.Group'Class
@@ -279,6 +336,37 @@ package body FLTK.Widgets is
         end if;
         return Actual_Parent;
     end Parent;
+
+
+
+
+    function Contains
+           (This : in Widget;
+            Item : in Widget'Class)
+        return Boolean is
+    begin
+        return fl_widget_contains (This.Void_Ptr, Item.Void_Ptr) /= 0;
+    end Contains;
+
+
+
+
+    function Get_Alignment
+           (This : in Widget)
+        return Alignment is
+    begin
+        return Alignment (fl_widget_get_align (This.Void_Ptr));
+    end Get_Alignment;
+
+
+
+
+    procedure Set_Alignment
+           (This      : in out Widget;
+            New_Align : in     Alignment) is
+    begin
+        fl_widget_set_align (This.Void_Ptr, Interfaces.C.unsigned (New_Align));
+    end Set_Alignment;
 
 
 
@@ -379,6 +467,16 @@ package body FLTK.Widgets is
     begin
         fl_widget_set_label_type (This.Void_Ptr, Label_Kind'Pos (Label));
     end Set_Label_Type;
+
+
+
+
+    function Get_Callback
+           (This : in Widget)
+        return Widget_Callback is
+    begin
+        return This.Callback;
+    end Get_Callback;
 
 
 

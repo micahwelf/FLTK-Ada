@@ -89,6 +89,21 @@ int fl_widget_active_r(WIDGET w) {
 }
 
 
+void fl_widget_clear_active(WIDGET w) {
+    reinterpret_cast<Fl_Widget*>(w)->clear_active();
+}
+
+
+unsigned int fl_widget_changed(WIDGET w) {
+    return reinterpret_cast<Fl_Widget*>(w)->changed();
+}
+
+
+void fl_widget_clear_changed(WIDGET w) {
+    reinterpret_cast<Fl_Widget*>(w)->clear_changed();
+}
+
+
 
 
 void * fl_widget_get_parent(WIDGET w) {
@@ -96,6 +111,21 @@ void * fl_widget_get_parent(WIDGET w) {
 }
 
 
+int fl_widget_contains(WIDGET w, WIDGET i) {
+    return reinterpret_cast<Fl_Widget*>(w)->contains(reinterpret_cast<Fl_Widget*>(i));
+}
+
+
+
+
+unsigned int fl_widget_get_align(WIDGET w) {
+    return reinterpret_cast<Fl_Widget*>(w)->align();
+}
+
+
+void fl_widget_set_align(WIDGET w, unsigned int a) {
+    reinterpret_cast<Fl_Widget*>(w)->align(a);
+}
 
 
 int fl_widget_get_box(WIDGET w) {
