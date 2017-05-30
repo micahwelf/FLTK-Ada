@@ -9,6 +9,9 @@ package FLTK.Widgets.Groups.Windows is
     type Window is new Group with private;
 
 
+    type Border_State is (None, Visible);
+
+
     function Create
            (X, Y, W, H : in Integer;
             Text       : in String)
@@ -26,6 +29,16 @@ package FLTK.Widgets.Groups.Windows is
 
     procedure Hide
            (This : in Window);
+
+
+    function Get_Border
+           (This : in Window)
+        return Border_State;
+
+
+    procedure Set_Border
+           (This : in out Window;
+            To   : in     Border_State);
 
 
     procedure Set_Label

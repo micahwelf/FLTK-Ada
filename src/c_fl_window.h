@@ -20,6 +20,8 @@ extern "C" void free_fl_window(WINDOW n);
 
 extern "C" void fl_window_show(WINDOW n);
 extern "C" void fl_window_hide(WINDOW n);
+extern "C" unsigned int fl_window_get_border(WINDOW n);
+extern "C" void fl_window_set_border(WINDOW n, int b);
 extern "C" void fl_window_set_label(WINDOW n, char* text);
 extern "C" void fl_window_size_range(WINDOW n, int lw, int lh, int hw, int hh, int dw, int dh, int a);
 extern "C" void fl_window_set_icon(WINDOW n, void * img);

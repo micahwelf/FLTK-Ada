@@ -42,6 +42,16 @@ package body FLTK.Widgets.Groups.Windows is
            (W : in System.Address);
     pragma Import (C, fl_window_hide, "fl_window_hide");
 
+    function fl_window_get_border
+           (W : in System.Address)
+        return Interfaces.C.unsigned;
+    pragma Import (C, fl_window_get_border, "fl_window_get_border");
+
+    procedure fl_window_set_border
+           (W : in System.Address;
+            S : in Interfaces.C.int);
+    pragma Import (C, fl_window_set_border, "fl_window_set_border");
+
     procedure fl_window_set_label
            (W : in System.Address;
             T : in Interfaces.C.char_array);
@@ -150,6 +160,25 @@ package body FLTK.Widgets.Groups.Windows is
     begin
         fl_window_hide (This.Void_Ptr);
     end Hide;
+
+
+
+
+    function Get_Border
+           (This : in Window)
+        return Border_State is
+    begin
+        return Border_State'Val (fl_window_get_border (This.Void_Ptr));
+    end Get_Border;
+
+
+
+    procedure Set_Border
+           (This : in out Window;
+            To   : in     Border_State) is
+    begin
+        fl_window_set_border (This.Void_Ptr, Border_State'Pos (To));
+    end Set_Border;
 
 
 

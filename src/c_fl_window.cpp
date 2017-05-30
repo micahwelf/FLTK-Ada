@@ -96,6 +96,16 @@ void fl_window_hide(WINDOW n) {
 }
 
 
+unsigned int fl_window_get_border(WINDOW n) {
+    return reinterpret_cast<Fl_Window*>(n)->border();
+}
+
+
+void fl_window_set_border(WINDOW n, int b) {
+    reinterpret_cast<Fl_Window*>(n)->border(b);
+}
+
+
 void fl_window_set_label(WINDOW n, char* text) {
     reinterpret_cast<Fl_Window*>(n)->copy_label(text);
 }
