@@ -7,7 +7,10 @@ package FLTK.Widgets.Groups is
 
 
     type Group is new Widget with private;
+
+
     type Index is new Positive;
+    type Clip_Mode is (No_Clip, Clip);
 
 
     function Create
@@ -32,6 +35,16 @@ package FLTK.Widgets.Groups is
         return Natural;
 
 
+    function Get_Clip_Mode
+           (This : in Group)
+        return Clip_Mode;
+
+
+    procedure Set_Clip_Mode
+           (This : in out Group;
+            Mode : in     Clip_Mode);
+
+
     procedure Clear
            (This : in out Group);
 
@@ -42,10 +55,20 @@ package FLTK.Widgets.Groups is
         return Index;
 
 
+    procedure Reset_Initial_Sizes
+           (This : in out Group);
+
+
     procedure Insert
            (This  : in out Group;
             Item  : in out Widget'Class;
             Place : in     Index);
+
+
+    procedure Insert
+           (This   : in out Group;
+            Item   : in out Widget'Class;
+            Before : in     Widget'Class);
 
 
     procedure Remove
@@ -56,6 +79,11 @@ package FLTK.Widgets.Groups is
     procedure Remove
            (This  : in out Group;
             Place : in     Index);
+
+
+    function Get_Resizable
+           (This : in Group)
+        return access Widget'Class;
 
 
     procedure Set_Resizable

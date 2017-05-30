@@ -37,10 +37,18 @@ package body FLTK.Widgets.Groups is
         return Interfaces.C.int;
     pragma Import (C, fl_group_find, "fl_group_find");
 
+    procedure fl_group_init_sizes
+           (G : in System.Address);
+    pragma Import (C, fl_group_init_sizes, "fl_group_init_sizes");
+
     procedure fl_group_insert
            (G, W : in System.Address;
             P    : in Interfaces.C.int);
     pragma Import (C, fl_group_insert, "fl_group_insert");
+
+    procedure fl_group_insert2
+           (G, W, B : in System.Address);
+    pragma Import (C, fl_group_insert2, "fl_group_insert2");
 
     procedure fl_group_remove
            (G, W : in System.Address);
@@ -62,9 +70,24 @@ package body FLTK.Widgets.Groups is
         return System.Address;
     pragma Import (C, fl_group_child, "fl_group_child");
 
-    procedure fl_group_resizable
+    function fl_group_get_clip_children
+           (G : in System.Address)
+        return Interfaces.C.unsigned;
+    pragma Import (C, fl_group_get_clip_children, "fl_group_get_clip_children");
+
+    procedure fl_group_set_clip_children
+           (G : in System.Address;
+            C : in Interfaces.C.unsigned);
+    pragma Import (C, fl_group_set_clip_children, "fl_group_set_clip_children");
+
+    function fl_group_get_resizable
+           (G : in System.Address)
+        return System.Address;
+    pragma Import (C, fl_group_get_resizable, "fl_group_get_resizable");
+
+    procedure fl_group_set_resizable
            (G, W : in System.Address);
-    pragma Import (C, fl_group_resizable, "fl_group_resizable");
+    pragma Import (C, fl_group_set_resizable, "fl_group_set_resizable");
 
     procedure fl_group_draw
            (W : in System.Address);
@@ -156,6 +179,26 @@ package body FLTK.Widgets.Groups is
 
 
 
+    function Get_Clip_Mode
+           (This : in Group)
+        return Clip_Mode is
+    begin
+        return Clip_Mode'Val (fl_group_get_clip_children (This.Void_Ptr));
+    end Get_Clip_Mode;
+
+
+
+
+    procedure Set_Clip_Mode
+           (This : in out Group;
+            Mode : in     Clip_Mode) is
+    begin
+        fl_group_set_clip_children (This.Void_Ptr, Clip_Mode'Pos (Mode));
+    end Set_Clip_Mode;
+
+
+
+
     procedure Clear
            (This : in out Group) is
     begin
@@ -179,6 +222,15 @@ package body FLTK.Widgets.Groups is
 
 
 
+    procedure Reset_Initial_Sizes
+           (This : in out Group) is
+    begin
+        fl_group_init_sizes (This.Void_Ptr);
+    end Reset_Initial_Sizes;
+
+
+
+
     procedure Insert
            (This  : in out Group;
             Item  : in out Widget'Class;
@@ -188,6 +240,20 @@ package body FLTK.Widgets.Groups is
                (This.Void_Ptr,
                 Item.Void_Ptr,
                 Interfaces.C.int (Place));
+    end Insert;
+
+
+
+
+    procedure Insert
+           (This   : in out Group;
+            Item   : in out Widget'Class;
+            Before : in     Widget'Class) is
+    begin
+        fl_group_insert2
+               (This.Void_Ptr,
+                Item.Void_Ptr,
+                Before.Void_Ptr);
     end Insert;
 
 
@@ -213,11 +279,27 @@ package body FLTK.Widgets.Groups is
 
 
 
+    function Get_Resizable
+           (This : in Group)
+        return access Widget'Class
+    is
+        Widget_Ptr : System.Address :=
+                fl_group_get_resizable (This.Void_Ptr);
+
+        Actual_Widget : access Widget'Class :=
+                Widget_Convert.To_Pointer (fl_widget_get_user_data (Widget_Ptr));
+    begin
+        return Actual_Widget;
+    end Get_Resizable;
+
+
+
+
     procedure Set_Resizable
            (This : in out Group;
             Item : in     Widget'Class) is
     begin
-        fl_group_resizable (This.Void_Ptr, Item.Void_Ptr);
+        fl_group_set_resizable (This.Void_Ptr, Item.Void_Ptr);
     end Set_Resizable;
 
 

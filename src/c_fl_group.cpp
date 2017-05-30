@@ -98,8 +98,18 @@ int fl_group_find(GROUP g, WIDGET item) {
 }
 
 
+void fl_group_init_sizes(GROUP g) {
+    reinterpret_cast<Fl_Group*>(g)->init_sizes();
+}
+
+
 void fl_group_insert(GROUP g, WIDGET item, int place) {
     reinterpret_cast<Fl_Group*>(g)->insert(*(reinterpret_cast<Fl_Widget*>(item)), place);
+}
+
+
+void fl_group_insert2(GROUP g, WIDGET item, WIDGET before) {
+    reinterpret_cast<Fl_Group*>(g)->insert(*(reinterpret_cast<Fl_Widget*>(item)), reinterpret_cast<Fl_Widget*>(before));
 }
 
 
@@ -113,7 +123,12 @@ void fl_group_remove2(GROUP g, int place) {
 }
 
 
-void fl_group_resizable(GROUP g, WIDGET item) {
+void * fl_group_get_resizable(GROUP g) {
+    return reinterpret_cast<Fl_Group*>(g)->resizable();
+}
+
+
+void fl_group_set_resizable(GROUP g, WIDGET item) {
     reinterpret_cast<Fl_Group*>(g)->resizable(reinterpret_cast<Fl_Widget*>(item));
 }
 
@@ -127,5 +142,15 @@ int fl_group_children(GROUP g) {
 
 void * fl_group_child(GROUP g, int place) {
     return reinterpret_cast<Fl_Group*>(g)->child(place);
+}
+
+
+unsigned int flt_group_get_clip_children(GROUP g) {
+    return reinterpret_cast<Fl_Group*>(g)->clip_children();
+}
+
+
+void fl_group_set_clip_children(GROUP g, int c) {
+    reinterpret_cast<Fl_Group*>(g)->clip_children(c);
 }
 

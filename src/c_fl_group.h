@@ -21,13 +21,18 @@ extern "C" void fl_group_end(GROUP g);
 
 extern "C" void fl_group_add(GROUP g, WIDGET item);
 extern "C" int fl_group_find(GROUP g, WIDGET item);
+extern "C" void fl_group_init_sizes(GROUP g);
 extern "C" void fl_group_insert(GROUP g, WIDGET item, int place);
+extern "C" void fl_group_insert2(GROUP g, WIDGET item, WIDGET before);
 extern "C" void fl_group_remove(GROUP g, WIDGET item);
 extern "C" void fl_group_remove2(GROUP g, int place);
-extern "C" void fl_group_resizable(GROUP g, WIDGET item);
+extern "C" void * fl_group_get_resizable(GROUP g);
+extern "C" void fl_group_set_resizable(GROUP g, WIDGET item);
 
 extern "C" int fl_group_children(GROUP g);
 extern "C" void * fl_group_child(GROUP g, int place);
+extern "C" unsigned int fl_group_get_clip_children(GROUP g);
+extern "C" void fl_group_set_clip_children(GROUP g, int c);
 
 
 #endif
