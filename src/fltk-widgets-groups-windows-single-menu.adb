@@ -132,7 +132,7 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
 
 
     procedure Show
-           (This : in Menu_Window) is
+           (This : in out Menu_Window) is
     begin
         fl_menu_window_show (This.Void_Ptr);
     end Show;
@@ -141,7 +141,7 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
 
 
     procedure Hide
-           (This : in Menu_Window) is
+           (This : in out Menu_Window) is
     begin
         fl_menu_window_hide (This.Void_Ptr);
     end Hide;

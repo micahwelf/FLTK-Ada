@@ -20,6 +20,7 @@ extern "C" void free_fl_double_window(DOUBLEWINDOW d);
 
 extern "C" void fl_double_window_show(DOUBLEWINDOW d);
 extern "C" void fl_double_window_hide(DOUBLEWINDOW d);
+extern "C" void fl_double_window_flush(DOUBLEWINDOW d);
 
 
 #endif

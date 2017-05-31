@@ -33,11 +33,11 @@ package FLTK.Widgets.Groups.Windows is
 
 
     procedure Show
-           (This : in Window);
+           (This : in out Window);
 
 
     procedure Hide
-           (This : in Window);
+           (This : in out Window);
 
 
     procedure Make_Current

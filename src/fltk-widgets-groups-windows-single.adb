@@ -114,7 +114,7 @@ package body FLTK.Widgets.Groups.Windows.Single is
 
 
     procedure Show
-           (This : in Single_Window) is
+           (This : in out Single_Window) is
     begin
         fl_single_window_show (This.Void_Ptr);
     end Show;

@@ -94,3 +94,8 @@ void fl_double_window_hide(DOUBLEWINDOW d) {
     reinterpret_cast<Fl_Double_Window*>(d)->hide();
 }
 
+
+void fl_double_window_flush(DOUBLEWINDOW d) {
+    reinterpret_cast<Fl_Double_Window*>(d)->flush();
+}
+

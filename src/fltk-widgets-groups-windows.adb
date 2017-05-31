@@ -181,7 +181,7 @@ package body FLTK.Widgets.Groups.Windows is
 
 
     procedure Show
-           (This : in Window) is
+           (This : in out Window) is
     begin
         fl_window_show (This.Void_Ptr);
     end Show;
@@ -190,7 +190,7 @@ package body FLTK.Widgets.Groups.Windows is
 
 
     procedure Hide
-           (This : in Window) is
+           (This : in out Window) is
     begin
         fl_window_hide (This.Void_Ptr);
     end Hide;

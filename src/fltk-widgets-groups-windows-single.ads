@@ -18,7 +18,7 @@ package FLTK.Widgets.Groups.Windows.Single is
 
 
     procedure Show
-           (This : in Single_Window);
+           (This : in out Single_Window);
 
 
     procedure Flush

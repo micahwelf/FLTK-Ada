@@ -18,11 +18,15 @@ package FLTK.Widgets.Groups.Windows.Double is
 
 
     procedure Show
-           (This : in Double_Window);
+           (This : in out Double_Window);
 
 
     procedure Hide
-           (This : in Double_Window);
+           (This : in out Double_Window);
+
+
+    procedure Flush
+           (This : in out Double_Window);
 
 
     procedure Draw

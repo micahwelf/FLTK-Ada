@@ -18,11 +18,11 @@ package FLTK.Widgets.Groups.Windows.Single.Menu is
 
 
     procedure Show
-           (This : in Menu_Window);
+           (This : in out Menu_Window);
 
 
     procedure Hide
-           (This : in Menu_Window);
+           (This : in out Menu_Window);
 
 
     procedure Flush

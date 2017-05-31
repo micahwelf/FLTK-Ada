@@ -41,6 +41,10 @@ package body FLTK.Widgets.Groups.Windows.Double is
             (W : in System.Address);
     pragma Import (C, fl_double_window_hide, "fl_double_window_hide");
 
+    procedure fl_double_window_flush
+            (W : in System.Address);
+    pragma Import (C, fl_double_window_flush, "fl_double_window_flush");
+
     procedure fl_double_window_draw
            (W : in System.Address);
     pragma Import (C, fl_double_window_draw, "fl_double_window_draw");
@@ -114,7 +118,7 @@ package body FLTK.Widgets.Groups.Windows.Double is
 
 
     procedure Show
-           (This : in Double_Window) is
+           (This : in out Double_Window) is
     begin
         fl_double_window_show (This.Void_Ptr);
     end Show;
@@ -123,10 +127,19 @@ package body FLTK.Widgets.Groups.Windows.Double is
 
 
     procedure Hide
-           (This : in Double_Window) is
+           (This : in out Double_Window) is
     begin
         fl_double_window_hide (This.Void_Ptr);
     end Hide;
+
+
+
+
+    procedure Flush
+           (This : in out Double_Window) is
+    begin
+        fl_double_window_flush (This.Void_Ptr);
+    end Flush;
 
 
 
