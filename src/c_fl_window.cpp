@@ -96,6 +96,11 @@ void fl_window_hide(WINDOW n) {
 }
 
 
+void fl_window_make_current(WINDOW n) {
+    reinterpret_cast<Fl_Window*>(n)->make_current();
+}
+
+
 unsigned int fl_window_get_border(WINDOW n) {
     return reinterpret_cast<Fl_Window*>(n)->border();
 }
@@ -128,5 +133,37 @@ void fl_window_set_modal(WINDOW n) {
 
 void fl_window_set_non_modal(WINDOW n) {
     reinterpret_cast<Fl_Window*>(n)->set_non_modal();
+}
+
+
+void fl_window_set_cursor(WINDOW n, int c) {
+    reinterpret_cast<Fl_Window*>(n)->cursor(static_cast<Fl_Cursor>(c));
+}
+
+
+void fl_window_set_default_cursor(WINDOW n, int c) {
+    reinterpret_cast<Fl_Window*>(n)->default_cursor(static_cast<Fl_Cursor>(c));
+}
+
+
+
+
+int fl_window_get_x_root(WINDOW n) {
+    return reinterpret_cast<Fl_Window*>(n)->x_root();
+}
+
+
+int fl_window_get_y_root(WINDOW n) {
+    return reinterpret_cast<Fl_Window*>(n)->y_root();
+}
+
+
+int fl_window_get_decorated_w(WINDOW n) {
+    return reinterpret_cast<Fl_Window*>(n)->decorated_w();
+}
+
+
+int fl_window_get_decorated_h(WINDOW n) {
+    return reinterpret_cast<Fl_Window*>(n)->decorated_h();
 }
 

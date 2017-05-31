@@ -42,6 +42,10 @@ package body FLTK.Widgets.Groups.Windows is
            (W : in System.Address);
     pragma Import (C, fl_window_hide, "fl_window_hide");
 
+    procedure fl_window_make_current
+           (W : in System.Address);
+    pragma Import (C, fl_window_make_current, "fl_window_make_current");
+
     function fl_window_get_border
            (W : in System.Address)
         return Interfaces.C.unsigned;
@@ -73,6 +77,36 @@ package body FLTK.Widgets.Groups.Windows is
     procedure fl_window_set_non_modal
            (W : in System.Address);
     pragma Import (C, fl_window_set_non_modal, "fl_window_set_non_modal");
+
+    procedure fl_window_set_cursor
+           (W : in System.Address;
+            C : in Interfaces.C.int);
+    pragma Import (C, fl_window_set_cursor, "fl_window_set_cursor");
+
+    procedure fl_window_set_default_cursor
+           (W : in System.Address;
+            C : in Interfaces.C.int);
+    pragma Import (C, fl_window_set_default_cursor, "fl_window_set_default_cursor");
+
+    function fl_window_get_x_root
+           (W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_window_get_x_root, "fl_window_get_x_root");
+
+    function fl_window_get_y_root
+           (W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_window_get_y_root, "fl_window_get_y_root");
+
+    function fl_window_get_decorated_w
+           (W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_window_get_decorated_w, "fl_window_get_decorated_w");
+
+    function fl_window_get_decorated_h
+           (W : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_window_get_decorated_h, "fl_window_get_decorated_h");
 
     procedure fl_window_draw
            (W : in System.Address);
@@ -164,6 +198,15 @@ package body FLTK.Widgets.Groups.Windows is
 
 
 
+    procedure Make_Current
+           (This : in out Window) is
+    begin
+        fl_window_make_current (This.Void_Ptr);
+    end Make_Current;
+
+
+
+
     function Get_Border
            (This : in Window)
         return Border_State is
@@ -239,6 +282,66 @@ package body FLTK.Widgets.Groups.Windows is
     begin
         fl_window_set_non_modal (This.Void_Ptr);
     end Set_Non_Modal;
+
+
+
+
+    procedure Set_Cursor
+           (This : in out Window;
+            To   : in     Cursor) is
+    begin
+        fl_window_set_cursor (This.Void_Ptr, Cursor_Values (To));
+    end Set_Cursor;
+
+
+
+
+    procedure Set_Default_Cursor
+           (This : in out Window;
+            To   : in     Cursor) is
+    begin
+        fl_window_set_default_cursor (This.Void_Ptr, Cursor_Values (To));
+    end Set_Default_Cursor;
+
+
+
+
+    function Get_X_Root
+           (This : in Window)
+        return Integer is
+    begin
+        return Integer (fl_window_get_x_root (This.Void_Ptr));
+    end Get_X_Root;
+
+
+
+
+    function Get_Y_Root
+           (This : in Window)
+        return Integer is
+    begin
+        return Integer (fl_window_get_y_root (This.Void_Ptr));
+    end Get_Y_Root;
+
+
+
+
+    function Get_Decorated_W
+           (This : in Window)
+        return Integer is
+    begin
+        return Integer (fl_window_get_decorated_w (This.Void_Ptr));
+    end Get_Decorated_W;
+
+
+
+
+    function Get_Decorated_H
+           (This : in Window)
+        return Integer is
+    begin
+        return Integer (fl_window_get_decorated_h (This.Void_Ptr));
+    end Get_Decorated_H;
 
 
 
