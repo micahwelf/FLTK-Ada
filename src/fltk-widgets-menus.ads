@@ -2,6 +2,7 @@
 
 private with Interfaces;
 private with System;
+with FLTK.Menu_Items;
 
 
 package FLTK.Widgets.Menus is
@@ -12,9 +13,6 @@ package FLTK.Widgets.Menus is
 
     type Menu_Cursor (Data : access Menu'Class) is limited null record
         with Implicit_Dereference => Data;
-
-
-    type Menu_Item is tagged limited private;
 
 
     type Index is new Positive;
@@ -49,25 +47,12 @@ package FLTK.Widgets.Menus is
     function Find_Item
            (This : in Menu'Class;
             Name : in String)
-        return Menu_Item;
+        return FLTK.Menu_Items.Menu_Item;
 
 
     function Chosen
            (This : in Menu'Class)
-        return Menu_Item;
-
-
-    function Value
-           (Item : in Menu_Item)
-        return Boolean;
-
-
-    procedure Activate
-           (Item : in Menu_Item);
-
-
-    procedure Deactivate
-           (Item : in Menu_Item);
+        return FLTK.Menu_Items.Menu_Item;
 
 
     procedure Draw
@@ -92,12 +77,6 @@ private
 
     overriding procedure Finalize
            (This : in out Menu);
-
-
-    type Menu_Item is tagged limited
-        record
-            Void_Ptr : System.Address;
-        end record;
 
 
     type Menu_Flag is new Interfaces.Unsigned_8;
