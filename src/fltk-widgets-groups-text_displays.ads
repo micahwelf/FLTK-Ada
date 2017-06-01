@@ -10,6 +10,7 @@ package FLTK.Widgets.Groups.Text_Displays is
 
 
     type Wrap_Mode is (Wrap_None, Wrap_At_Column, Wrap_At_Pixel, Wrap_At_Bounds);
+    type Cursor_Style is (Normal, Caret, Dim, Block, Heavy, Simple);
 
 
     function Create
@@ -26,6 +27,33 @@ package FLTK.Widgets.Groups.Text_Displays is
     procedure Set_Buffer
            (This : in out Text_Display;
             Buff : in out FLTK.Text_Buffers.Text_Buffer);
+
+
+    function Col_To_X
+           (This    : in Text_Display;
+            Col_Num : in Integer)
+        return Integer;
+
+
+    function X_To_Col
+           (This  : in Text_Display;
+            X_Pos : in Integer)
+        return Integer;
+
+
+    function Get_Cursor_Color
+           (This : in Text_Display)
+        return Color;
+
+
+    procedure Set_Cursor_Color
+           (This : in out Text_Display;
+            Col  : in     Color);
+
+
+    procedure Set_Cursor_Style
+           (This  : in out Text_Display;
+            Style : in     Cursor_Style);
 
 
     function Get_Text_Color
@@ -84,6 +112,13 @@ package FLTK.Widgets.Groups.Text_Displays is
            (This   : in out Text_Display;
             Mode   : in     Wrap_Mode;
             Margin : in     Natural := 0);
+
+
+    function Count_Lines
+           (This                    : in Text_Display;
+            Start, Finish           : in Natural;
+            Start_Pos_Is_Line_Start : in Boolean := False)
+        return Natural;
 
 
     --  takes into account word wrap as well as newline characters

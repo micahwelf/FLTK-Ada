@@ -93,6 +93,31 @@ void fl_text_display_set_buffer(TEXTDISPLAY td, TEXTBUFFER tb) {
 }
 
 
+double fl_text_display_col_to_x(TEXTDISPLAY td, double c) {
+    return reinterpret_cast<Fl_Text_Display*>(td)->col_to_x(c);
+}
+
+
+double fl_text_display_x_to_col(TEXTDISPLAY td, double x) {
+    return reinterpret_cast<Fl_Text_Display*>(td)->x_to_col(x);
+}
+
+
+int fl_text_display_get_cursor_color(TEXTDISPLAY td) {
+    return reinterpret_cast<Fl_Text_Display*>(td)->cursor_color();
+}
+
+
+void fl_text_display_set_cursor_color(TEXTDISPLAY td, int c) {
+    reinterpret_cast<Fl_Text_Display*>(td)->cursor_color(c);
+}
+
+
+void fl_text_display_set_cursor_style(TEXTDISPLAY td, int s) {
+    reinterpret_cast<Fl_Text_Display*>(td)->cursor_style(s);
+}
+
+
 int fl_text_display_get_text_color(TEXTDISPLAY td) {
     return reinterpret_cast<Fl_Text_Display*>(td)->textcolor();
 }
@@ -150,6 +175,11 @@ void fl_text_display_previous_word(TEXTDISPLAY td) {
 
 void fl_text_display_wrap_mode(TEXTDISPLAY td, int w, int m) {
     reinterpret_cast<Fl_Text_Display*>(td)->wrap_mode(w, m);
+}
+
+
+int fl_text_display_count_lines(TEXTDISPLAY td, int s, int f, int p) {
+    return reinterpret_cast<Fl_Text_Display*>(td)->count_lines(s, f, p);
 }
 
 

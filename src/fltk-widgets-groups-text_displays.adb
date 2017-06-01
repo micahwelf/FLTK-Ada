@@ -38,6 +38,33 @@ package body FLTK.Widgets.Groups.Text_Displays is
            (TD, TB : in System.Address);
     pragma Import (C, fl_text_display_set_buffer, "fl_text_display_set_buffer");
 
+    function fl_text_display_col_to_x
+           (TD : in System.Address;
+            C  : in Interfaces.C.double)
+        return Interfaces.C.double;
+    pragma Import (C, fl_text_display_col_to_x, "fl_text_display_col_to_x");
+
+    function fl_text_display_x_to_col
+           (TD : in System.Address;
+            X  : in Interfaces.C.double)
+        return Interfaces.C.double;
+    pragma Import (C, fl_text_display_x_to_col, "fl_text_display_x_to_col");
+
+    function fl_text_display_get_cursor_color
+           (TD : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_display_get_cursor_color, "fl_text_display_get_cursor_color");
+
+    procedure fl_text_display_set_cursor_color
+           (TD : in System.Address;
+            C  : in Interfaces.C.int);
+    pragma Import (C, fl_text_display_set_cursor_color, "fl_text_display_set_cursor_color");
+
+    procedure fl_text_display_set_cursor_style
+           (TD : in System.Address;
+            S  : in Interfaces.C.int);
+    pragma Import (C, fl_text_display_set_cursor_style, "fl_text_display_set_cursor_style");
+
     function fl_text_display_get_text_color
            (TD : in System.Address)
         return Interfaces.C.int;
@@ -94,6 +121,12 @@ package body FLTK.Widgets.Groups.Text_Displays is
            (TD    : in System.Address;
             W, M  : in Interfaces.C.int);
     pragma Import (C, fl_text_display_wrap_mode, "fl_text_display_wrap_mode");
+
+    function fl_text_display_count_lines
+           (TD      : in System.Address;
+            S, F, P : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_display_count_lines, "fl_text_display_count_lines");
 
     function fl_text_display_skip_lines
            (TD      : in System.Address;
@@ -182,6 +215,60 @@ package body FLTK.Widgets.Groups.Text_Displays is
         This.Buffer := Buff'Unchecked_Access;
         fl_text_display_set_buffer (This.Void_Ptr, Wrapper (Buff).Void_Ptr);
     end Set_Buffer;
+
+
+
+
+    function Col_To_X
+           (This    : in Text_Display;
+            Col_Num : in Integer)
+        return Integer is
+    begin
+        return Integer (Interfaces.C.double'Rounding
+               (fl_text_display_col_to_x (This.Void_Ptr, Interfaces.C.double (Col_Num))));
+    end Col_To_X;
+
+
+
+
+    function X_To_Col
+           (This  : in Text_Display;
+            X_Pos : in Integer)
+        return Integer is
+    begin
+        return Integer (Interfaces.C.double'Rounding
+               (fl_text_display_x_to_col (This.Void_Ptr, Interfaces.C.double (X_Pos))));
+    end X_To_Col;
+
+
+
+
+    function Get_Cursor_Color
+           (This : in Text_Display)
+        return Color is
+    begin
+        return Color (fl_text_display_get_cursor_color (This.Void_Ptr));
+    end Get_Cursor_Color;
+
+
+
+
+    procedure Set_Cursor_Color
+           (This : in out Text_Display;
+            Col  : in     Color) is
+    begin
+        fl_text_display_set_cursor_color (This.Void_Ptr, Interfaces.C.int (Col));
+    end Set_Cursor_Color;
+
+
+
+
+    procedure Set_Cursor_Style
+           (This  : in out Text_Display;
+            Style : in     Cursor_Style) is
+    begin
+        fl_text_display_set_cursor_style (This.Void_Ptr, Cursor_Style'Pos (Style));
+    end Set_Cursor_Style;
 
 
 
@@ -303,6 +390,22 @@ package body FLTK.Widgets.Groups.Text_Displays is
                 Wrap_Mode'Pos (Mode),
                 Interfaces.C.int (Margin));
     end Set_Wrap_Mode;
+
+
+
+
+    function Count_Lines
+           (This                    : in Text_Display;
+            Start, Finish           : in Natural;
+            Start_Pos_Is_Line_Start : in Boolean := False)
+        return Natural is
+    begin
+        return Natural (fl_text_display_count_lines
+               (This.Void_Ptr,
+                Interfaces.C.int (Start),
+                Interfaces.C.int (Finish),
+                Boolean'Pos (Start_Pos_Is_Line_Start)));
+    end Count_Lines;
 
 
 
