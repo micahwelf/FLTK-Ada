@@ -10,7 +10,7 @@ package FLTK.Widgets.Groups is
 
 
     type Index is new Positive;
-    type Clip_Mode is (No_Clip, Clip);
+    --  type Clip_Mode is (No_Clip, Clip);
 
 
     function Create
@@ -35,14 +35,14 @@ package FLTK.Widgets.Groups is
         return Natural;
 
 
-    function Get_Clip_Mode
-           (This : in Group)
-        return Clip_Mode;
+    --  function Get_Clip_Mode
+    --         (This : in Group)
+    --      return Clip_Mode;
 
 
-    procedure Set_Clip_Mode
-           (This : in out Group;
-            Mode : in     Clip_Mode);
+    --  procedure Set_Clip_Mode
+    --         (This : in out Group;
+    --          Mode : in     Clip_Mode);
 
 
     procedure Clear

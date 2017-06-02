@@ -179,22 +179,22 @@ package body FLTK.Widgets.Groups is
 
 
 
-    function Get_Clip_Mode
-           (This : in Group)
-        return Clip_Mode is
-    begin
-        return Clip_Mode'Val (fl_group_get_clip_children (This.Void_Ptr));
-    end Get_Clip_Mode;
+    --  function Get_Clip_Mode
+    --         (This : in Group)
+    --      return Clip_Mode is
+    --  begin
+    --      return Clip_Mode'Val (fl_group_get_clip_children (This.Void_Ptr));
+    --  end Get_Clip_Mode;
 
 
 
 
-    procedure Set_Clip_Mode
-           (This : in out Group;
-            Mode : in     Clip_Mode) is
-    begin
-        fl_group_set_clip_children (This.Void_Ptr, Clip_Mode'Pos (Mode));
-    end Set_Clip_Mode;
+    --  procedure Set_Clip_Mode
+    --         (This : in out Group;
+    --          Mode : in     Clip_Mode) is
+    --  begin
+    --      fl_group_set_clip_children (This.Void_Ptr, Clip_Mode'Pos (Mode));
+    --  end Set_Clip_Mode;
 
 
 
