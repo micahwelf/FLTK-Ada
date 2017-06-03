@@ -17,6 +17,8 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     pragma Import (C, text_editor_set_handle_hook, "text_editor_set_handle_hook");
 
 
+
+
     function new_fl_text_editor
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -26,6 +28,8 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     procedure free_fl_text_editor
            (TE : in System.Address);
     pragma Import (C, free_fl_text_editor, "free_fl_text_editor");
+
+
 
 
     procedure fl_text_editor_undo
@@ -48,11 +52,85 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
            (TE : in System.Address);
     pragma Import (C, fl_text_editor_delete, "fl_text_editor_delete");
 
+
+
+    procedure fl_text_editor_backspace
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_backspace, "fl_text_editor_backspace");
+
+    procedure fl_text_editor_home
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_home, "fl_text_editor_home");
+
+    procedure fl_text_editor_end
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_end, "fl_text_editor_end");
+
+    procedure fl_text_editor_insert
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_insert, "fl_text_editor_insert");
+
+    procedure fl_text_editor_page_down
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_page_down, "fl_text_editor_page_down");
+
+    procedure fl_text_editor_page_up
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_page_up, "fl_text_editor_page_up");
+
+    procedure fl_text_editor_down
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_down, "fl_text_editor_down");
+
+    procedure fl_text_editor_left
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_left, "fl_text_editor_left");
+
+    procedure fl_text_editor_right
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_right, "fl_text_editor_right");
+
+    procedure fl_text_editor_up
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_up, "fl_text_editor_up");
+
+
+
+
     procedure fl_text_editor_remove_key_binding
            (TE : in System.Address;
             K  : in Interfaces.C.unsigned;
             M  : in Interfaces.C.unsigned_long);
     pragma Import (C, fl_text_editor_remove_key_binding, "fl_text_editor_remove_key_binding");
+
+
+
+
+    function fl_text_editor_get_insert_mode
+           (TE : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_editor_get_insert_mode, "fl_text_editor_get_insert_mode");
+
+    procedure fl_text_editor_set_insert_mode
+           (TE : in System.Address;
+            I  : in Interfaces.C.int);
+    pragma Import (C, fl_text_editor_set_insert_mode, "fl_text_editor_set_insert_mode");
+
+
+
+
+    --  function fl_text_editor_get_tab_nav
+    --         (TE : in System.Address)
+    --      return Interfaces.C.int;
+    --  pragma Import (C, fl_text_editor_get_tab_nav, "fl_text_editor_get_tab_nav");
+
+    --  procedure fl_text_editor_set_tab_nav
+    --         (TE : in System.Address;
+    --          T  : in Interfaces.C.int);
+    --  pragma Import (C, fl_text_editor_set_tab_nav, "fl_text_editor_set_tab_nav");
+
+
+
 
     procedure fl_text_editor_draw
            (W : in System.Address);
@@ -114,15 +192,11 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     end Undo;
 
 
-
-
     procedure Cut
            (This : in out Text_Editor) is
     begin
         fl_text_editor_cut (This.Void_Ptr);
     end Cut;
-
-
 
 
     procedure Copy
@@ -132,8 +206,6 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     end Copy;
 
 
-
-
     procedure Paste
            (This : in out Text_Editor) is
     begin
@@ -141,13 +213,83 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     end Paste;
 
 
-
-
     procedure Delete
            (This : in out Text_Editor) is
     begin
         fl_text_editor_delete (This.Void_Ptr);
     end Delete;
+
+
+
+
+    procedure Backspace_Key
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_backspace (This.Void_Ptr);
+    end Backspace_Key;
+
+
+    procedure Home_Key
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_home (This.Void_Ptr);
+    end Home_Key;
+
+
+    procedure End_Key
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_end (This.Void_Ptr);
+    end End_Key;
+
+
+    procedure Insert_Key
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_insert (This.Void_Ptr);
+    end Insert_Key;
+
+
+    procedure Page_Down_Key
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_page_down (This.Void_Ptr);
+    end Page_Down_Key;
+
+
+    procedure Page_Up_Key
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_page_up (This.Void_Ptr);
+    end Page_Up_Key;
+
+
+    procedure Down_Key
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_down (This.Void_Ptr);
+    end Down_Key;
+
+
+    procedure Left_Key
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_left (This.Void_Ptr);
+    end Left_Key;
+
+
+    procedure Right_Key
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_right (This.Void_Ptr);
+    end Right_Key;
+
+
+    procedure Up_Key
+           (This : in out Text_Editor) is
+    begin
+        fl_text_editor_up (This.Void_Ptr);
+    end Up_Key;
 
 
 
@@ -167,13 +309,47 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
 
+    function Get_Insert_Mode
+           (This : in Text_Editor)
+        return Insert_Mode is
+    begin
+        return Insert_Mode'Val (fl_text_editor_get_insert_mode (This.Void_Ptr));
+    end Get_Insert_Mode;
+
+
+    procedure Set_Insert_Mode
+           (This : in out Text_Editor;
+            To   : in     Insert_Mode) is
+    begin
+        fl_text_editor_set_insert_mode (This.Void_Ptr, Insert_Mode'Pos (To));
+    end Set_Insert_Mode;
+
+
+
+
+    --  function Get_Tab_Nav_Mode
+    --         (This : in Text_Editor)
+    --      return Tab_Navigation is
+    --  begin
+    --      return Tab_Navigation'Val (fl_text_editor_get_tab_nav (This.Void_Ptr));
+    --  end Get_Tab_Nav_Mode;
+
+
+    --  procedure Set_Tab_Nav_Mode
+    --         (This : in out Text_Editor;
+    --          To   : in     Tab_Navigation) is
+    --  begin
+    --      fl_text_editor_set_tab_nav (This.Void_Ptr, Tab_Navigation'Pos (To));
+    --  end Set_Tab_Nav_Mode;
+
+
+
+
     procedure Draw
            (This : in out Text_Editor) is
     begin
         fl_text_editor_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle
