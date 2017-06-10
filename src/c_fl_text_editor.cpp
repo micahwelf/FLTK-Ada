@@ -70,6 +70,13 @@ void free_fl_text_editor(TEXTEDITOR te) {
 
 
 
+void fl_text_editor_default(TEXTEDITOR te, int k) {
+    Fl_Text_Editor::kf_default(k, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+
+
+
 void fl_text_editor_undo(TEXTEDITOR te) {
     Fl_Text_Editor::kf_undo(0, reinterpret_cast<Fl_Text_Editor*>(te));
 }
@@ -90,6 +97,10 @@ void fl_text_editor_delete(TEXTEDITOR te) {
     Fl_Text_Editor::kf_delete(0, reinterpret_cast<Fl_Text_Editor*>(te));
 }
 
+void fl_text_editor_select_all(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_select_all(0, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
 
 
 
@@ -97,16 +108,27 @@ void fl_text_editor_backspace(TEXTEDITOR te) {
     Fl_Text_Editor::kf_backspace(0, reinterpret_cast<Fl_Text_Editor*>(te));
 }
 
+void fl_text_editor_insert(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_insert(0, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_enter(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_enter(0, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ignore(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_ignore(0, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+
+
+
 void fl_text_editor_home(TEXTEDITOR te) {
     Fl_Text_Editor::kf_home(0, reinterpret_cast<Fl_Text_Editor*>(te));
 }
 
 void fl_text_editor_end(TEXTEDITOR te) {
     Fl_Text_Editor::kf_end(0, reinterpret_cast<Fl_Text_Editor*>(te));
-}
-
-void fl_text_editor_insert(TEXTEDITOR te) {
-    Fl_Text_Editor::kf_insert(0, reinterpret_cast<Fl_Text_Editor*>(te));
 }
 
 void fl_text_editor_page_down(TEXTEDITOR te) {
@@ -131,6 +153,111 @@ void fl_text_editor_right(TEXTEDITOR te) {
 
 void fl_text_editor_up(TEXTEDITOR te) {
     Fl_Text_Editor::kf_up(0, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+
+
+
+void fl_text_editor_shift_home(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_shift_move(FL_Home, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_shift_end(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_shift_move(FL_End, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_shift_page_down(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_shift_move(FL_Page_Down, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_shift_page_up(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_shift_move(FL_Page_Up, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_shift_down(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_shift_move(FL_Down, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_shift_left(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_shift_move(FL_Left, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_shift_right(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_shift_move(FL_Right, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_shift_up(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_shift_move(FL_Up, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+
+
+
+void fl_text_editor_ctrl_home(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_ctrl_move(FL_Home, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_end(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_ctrl_move(FL_End, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_page_down(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_ctrl_move(FL_Page_Down, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_page_up(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_ctrl_move(FL_Page_Up, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_down(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_ctrl_move(FL_Down, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_left(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_ctrl_move(FL_Left, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_right(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_ctrl_move(FL_Right, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_up(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_ctrl_move(FL_Up, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+
+
+
+void fl_text_editor_ctrl_shift_home(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_c_s_move(FL_Home, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_shift_end(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_c_s_move(FL_End, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_shift_page_down(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_c_s_move(FL_Page_Down, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_shift_page_up(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_c_s_move(FL_Page_Up, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_shift_down(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_c_s_move(FL_Down, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_shift_left(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_c_s_move(FL_Left, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_shift_right(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_c_s_move(FL_Right, reinterpret_cast<Fl_Text_Editor*>(te));
+}
+
+void fl_text_editor_ctrl_shift_up(TEXTEDITOR te) {
+    Fl_Text_Editor::kf_c_s_move(FL_Up, reinterpret_cast<Fl_Text_Editor*>(te));
 }
 
 

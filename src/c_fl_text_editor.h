@@ -23,23 +23,61 @@ extern "C" void free_fl_text_editor(TEXTEDITOR te);
 
 
 
+extern "C" void fl_text_editor_default(TEXTEDITOR te, int k);
+
+
 extern "C" void fl_text_editor_undo(TEXTEDITOR te);
 extern "C" void fl_text_editor_cut(TEXTEDITOR te);
 extern "C" void fl_text_editor_copy(TEXTEDITOR te);
 extern "C" void fl_text_editor_paste(TEXTEDITOR te);
 extern "C" void fl_text_editor_delete(TEXTEDITOR te);
+extern "C" void fl_text_editor_select_all(TEXTEDITOR te);
 
 
 extern "C" void fl_text_editor_backspace(TEXTEDITOR te);
+extern "C" void fl_text_editor_insert(TEXTEDITOR te);
+extern "C" void fl_text_editor_enter(TEXTEDITOR te);
+extern "C" void fl_text_editor_ignore(TEXTEDITOR te);
+
+
 extern "C" void fl_text_editor_home(TEXTEDITOR te);
 extern "C" void fl_text_editor_end(TEXTEDITOR te);
-extern "C" void fl_text_editor_insert(TEXTEDITOR te);
 extern "C" void fl_text_editor_page_down(TEXTEDITOR te);
 extern "C" void fl_text_editor_page_up(TEXTEDITOR te);
 extern "C" void fl_text_editor_down(TEXTEDITOR te);
 extern "C" void fl_text_editor_left(TEXTEDITOR te);
 extern "C" void fl_text_editor_right(TEXTEDITOR te);
 extern "C" void fl_text_editor_up(TEXTEDITOR te);
+
+
+extern "C" void fl_text_editor_shift_home(TEXTEDITOR te);
+extern "C" void fl_text_editor_shift_end(TEXTEDITOR te);
+extern "C" void fl_text_editor_shift_page_down(TEXTEDITOR te);
+extern "C" void fl_text_editor_shift_page_up(TEXTEDITOR te);
+extern "C" void fl_text_editor_shift_down(TEXTEDITOR te);
+extern "C" void fl_text_editor_shift_left(TEXTEDITOR te);
+extern "C" void fl_text_editor_shift_right(TEXTEDITOR te);
+extern "C" void fl_text_editor_shift_up(TEXTEDITOR te);
+
+
+extern "C" void fl_text_editor_ctrl_home(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_end(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_page_down(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_page_up(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_down(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_left(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_right(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_up(TEXTEDITOR te);
+
+
+extern "C" void fl_text_editor_ctrl_shift_home(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_shift_end(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_shift_page_down(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_shift_page_up(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_shift_down(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_shift_left(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_shift_right(TEXTEDITOR te);
+extern "C" void fl_text_editor_ctrl_shift_up(TEXTEDITOR te);
 
 
 extern "C" void fl_text_editor_remove_key_binding(TEXTEDITOR te, unsigned int k, unsigned long m);
