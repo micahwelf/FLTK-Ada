@@ -50,7 +50,7 @@ package body FLTK is
     begin
         return This : Shortcut_Key do
             This.Modifier := Mod_None;
-            This.Keypress := Key;
+            This.Keypress := Character'Pos (Key);
         end return;
     end Shortcut;
 
@@ -74,7 +74,7 @@ package body FLTK is
     begin
         return This : Shortcut_Key do
             This.Modifier := Left;
-            This.Keypress := Right;
+            This.Keypress := Character'Pos (Right);
         end return;
     end "+";
 
@@ -96,12 +96,25 @@ package body FLTK is
 
 
     function Key_To_C
-           (Key : Shortcut_Key)
+           (Key : in Shortcut_Key)
         return Interfaces.C.unsigned_long is
     begin
         return Interfaces.C.unsigned_long (Key.Modifier) *
-               65536 + Character'Pos (Key.Keypress);
+               65536 + Interfaces.C.unsigned_long (Key.Keypress);
     end Key_To_C;
+
+
+
+
+    function C_To_Key
+           (Key : in Interfaces.C.unsigned_long)
+        return Shortcut_Key is
+    begin
+        return Result : Shortcut_Key do
+            Result.Modifier := Modifier_Key (Key / 65536);
+            Result.Keypress := Interfaces.Unsigned_16 (Key mod 65536);
+        end return;
+    end C_To_Key;
 
 
 end FLTK;

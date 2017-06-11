@@ -226,11 +226,15 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
 
-    procedure fl_text_editor_remove_key_binding
-           (TE : in System.Address;
-            K  : in Interfaces.C.unsigned;
-            M  : in Interfaces.C.unsigned_long);
-    pragma Import (C, fl_text_editor_remove_key_binding, "fl_text_editor_remove_key_binding");
+    procedure fl_text_editor_remove_all_key_bindings
+           (TE : in System.Address);
+    pragma Import (C, fl_text_editor_remove_all_key_bindings,
+            "fl_text_editor_remove_all_key_bindings");
+
+    procedure fl_text_editor_set_default_key_function
+           (TE, F : in System.Address);
+    pragma Import (C, fl_text_editor_set_default_key_function,
+            "fl_text_editor_set_default_key_function");
 
 
 
@@ -274,6 +278,33 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
 
+    function Key_Func_Hook
+           (K : in Interfaces.C.int;
+            U : in System.Address)
+        return Interfaces.C.int
+    is
+        Ada_Editor : access Text_Editor'Class :=
+            Editor_Convert.To_Pointer (U);
+        Ada_Key : Shortcut_Key :=
+            C_To_Key (Interfaces.C.unsigned_long (K));
+
+        Found_Binding : Boolean := False;
+    begin
+        for B of Ada_Editor.Bindings loop
+            if B.Key = Ada_Key then
+                B.Func (Ada_Editor.all);
+                Found_Binding := True;
+            end if;
+        end loop;
+        if not Found_Binding and then Ada_Editor.Default_Func /= null then
+            Ada_Editor.Default_Func (Ada_Editor.all, Ada_Key);
+        end if;
+        return 1;
+    end Key_Func_Hook;
+
+
+
+
     procedure Finalize
            (This : in out Text_Editor) is
     begin
@@ -308,6 +339,15 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
                     Widget_Convert.To_Address (This'Unchecked_Access));
             text_editor_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
             text_editor_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
+
+            This.Bindings := Binding_Vectors.Empty_Vector;
+            for B of Default_Key_Bindings loop
+                This.Bindings.Append (B);
+            end loop;
+            This.Default_Func := Default'Access;
+
+            fl_text_editor_remove_all_key_bindings (This.Void_Ptr);
+            fl_text_editor_set_default_key_function (This.Void_Ptr, Key_Func_Hook'Address);
         end return;
     end Create;
 
@@ -320,7 +360,7 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     begin
         fl_text_editor_default
                (This.Void_Ptr,
-                Character'Pos (Key.Keypress));
+                Interfaces.C.int (Key.Keypress));
     end Default;
 
 
@@ -370,279 +410,345 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
 
-    procedure Backspace_Key
+    procedure KF_Backspace
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_backspace (This.Void_Ptr);
-    end Backspace_Key;
+    end KF_Backspace;
 
 
-    procedure Insert_Key
+    procedure KF_Insert
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_insert (This.Void_Ptr);
-    end Insert_Key;
+    end KF_Insert;
 
 
-    procedure Enter_Key
+    procedure KF_Enter
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_enter (This.Void_Ptr);
-    end Enter_Key;
+    end KF_Enter;
 
 
-    procedure Ignore_Key
+    procedure KF_Ignore
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ignore (This.Void_Ptr);
-    end Ignore_Key;
+    end KF_Ignore;
 
 
 
 
-    procedure Home_Key
+    procedure KF_Home
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_home (This.Void_Ptr);
-    end Home_Key;
+    end KF_Home;
 
 
-    procedure End_Key
+    procedure KF_End
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_end (This.Void_Ptr);
-    end End_Key;
+    end KF_End;
 
 
-    procedure Page_Down_Key
+    procedure KF_Page_Down
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_page_down (This.Void_Ptr);
-    end Page_Down_Key;
+    end KF_Page_Down;
 
 
-    procedure Page_Up_Key
+    procedure KF_Page_Up
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_page_up (This.Void_Ptr);
-    end Page_Up_Key;
+    end KF_Page_Up;
 
 
-    procedure Down_Key
+    procedure KF_Down
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_down (This.Void_Ptr);
-    end Down_Key;
+    end KF_Down;
 
 
-    procedure Left_Key
+    procedure KF_Left
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_left (This.Void_Ptr);
-    end Left_Key;
+    end KF_Left;
 
 
-    procedure Right_Key
+    procedure KF_Right
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_right (This.Void_Ptr);
-    end Right_Key;
+    end KF_Right;
 
 
-    procedure Up_Key
+    procedure KF_Up
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_up (This.Void_Ptr);
-    end Up_Key;
+    end KF_Up;
 
 
 
 
-    procedure Shift_Home_Key
+    procedure KF_Shift_Home
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_shift_home (This.Void_Ptr);
-    end Shift_Home_Key;
+    end KF_Shift_Home;
 
 
-    procedure Shift_End_Key
+    procedure KF_Shift_End
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_shift_end (This.Void_Ptr);
-    end Shift_End_Key;
+    end KF_Shift_End;
 
 
-    procedure Shift_Page_Down_Key
+    procedure KF_Shift_Page_Down
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_shift_page_down (This.Void_Ptr);
-    end Shift_Page_Down_Key;
+    end KF_Shift_Page_Down;
 
 
-    procedure Shift_Page_Up_Key
+    procedure KF_Shift_Page_Up
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_shift_page_up (This.Void_Ptr);
-    end Shift_Page_Up_Key;
+    end KF_Shift_Page_Up;
 
 
-    procedure Shift_Down_Key
+    procedure KF_Shift_Down
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_shift_down (This.Void_Ptr);
-    end Shift_Down_Key;
+    end KF_Shift_Down;
 
 
-    procedure Shift_Left_Key
+    procedure KF_Shift_Left
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_shift_left (This.Void_Ptr);
-    end Shift_Left_Key;
+    end KF_Shift_Left;
 
 
-    procedure Shift_Right_Key
+    procedure KF_Shift_Right
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_shift_right (This.Void_Ptr);
-    end Shift_Right_Key;
+    end KF_Shift_Right;
 
 
-    procedure Shift_Up_Key
+    procedure KF_Shift_Up
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_shift_up (This.Void_Ptr);
-    end Shift_Up_Key;
+    end KF_Shift_Up;
 
 
 
 
-    procedure Ctrl_Home_Key
+    procedure KF_Ctrl_Home
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_home (This.Void_Ptr);
-    end Ctrl_Home_Key;
+    end KF_Ctrl_Home;
 
 
-    procedure Ctrl_End_Key
+    procedure KF_Ctrl_End
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_end (This.Void_Ptr);
-    end Ctrl_End_Key;
+    end KF_Ctrl_End;
 
 
-    procedure Ctrl_Page_Down_Key
+    procedure KF_Ctrl_Page_Down
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_page_down (This.Void_Ptr);
-    end Ctrl_Page_Down_Key;
+    end KF_Ctrl_Page_Down;
 
 
-    procedure Ctrl_Page_Up_Key
+    procedure KF_Ctrl_Page_Up
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_page_up (This.Void_Ptr);
-    end Ctrl_Page_Up_Key;
+    end KF_Ctrl_Page_Up;
 
 
-    procedure Ctrl_Down_Key
+    procedure KF_Ctrl_Down
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_down (This.Void_Ptr);
-    end Ctrl_Down_Key;
+    end KF_Ctrl_Down;
 
 
-    procedure Ctrl_Left_Key
+    procedure KF_Ctrl_Left
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_left (This.Void_Ptr);
-    end Ctrl_Left_Key;
+    end KF_Ctrl_Left;
 
 
-    procedure Ctrl_Right_Key
+    procedure KF_Ctrl_Right
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_right (This.Void_Ptr);
-    end Ctrl_Right_Key;
+    end KF_Ctrl_Right;
 
 
-    procedure Ctrl_Up_Key
+    procedure KF_Ctrl_Up
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_up (This.Void_Ptr);
-    end Ctrl_Up_Key;
+    end KF_Ctrl_Up;
 
 
 
 
-    procedure Ctrl_Shift_Home_Key
+    procedure KF_Ctrl_Shift_Home
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_shift_home (This.Void_Ptr);
-    end Ctrl_Shift_Home_Key;
+    end KF_Ctrl_Shift_Home;
 
 
-    procedure Ctrl_Shift_End_Key
+    procedure KF_Ctrl_Shift_End
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_shift_end (This.Void_Ptr);
-    end Ctrl_Shift_End_Key;
+    end KF_Ctrl_Shift_End;
 
 
-    procedure Ctrl_Shift_Page_Down_Key
+    procedure KF_Ctrl_Shift_Page_Down
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_shift_page_down (This.Void_Ptr);
-    end Ctrl_Shift_Page_Down_Key;
+    end KF_Ctrl_Shift_Page_Down;
 
 
-    procedure Ctrl_Shift_Page_Up_Key
+    procedure KF_Ctrl_Shift_Page_Up
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_shift_page_up (This.Void_Ptr);
-    end Ctrl_Shift_Page_Up_Key;
+    end KF_Ctrl_Shift_Page_Up;
 
 
-    procedure Ctrl_Shift_Down_Key
+    procedure KF_Ctrl_Shift_Down
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_shift_down (This.Void_Ptr);
-    end Ctrl_Shift_Down_Key;
+    end KF_Ctrl_Shift_Down;
 
 
-    procedure Ctrl_Shift_Left_Key
+    procedure KF_Ctrl_Shift_Left
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_shift_left (This.Void_Ptr);
-    end Ctrl_Shift_Left_Key;
+    end KF_Ctrl_Shift_Left;
 
 
-    procedure Ctrl_Shift_Right_Key
+    procedure KF_Ctrl_Shift_Right
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_shift_right (This.Void_Ptr);
-    end Ctrl_Shift_Right_Key;
+    end KF_Ctrl_Shift_Right;
 
 
-    procedure Ctrl_Shift_Up_Key
+    procedure KF_Ctrl_Shift_Up
            (This : in out Text_Editor'Class) is
     begin
         fl_text_editor_ctrl_shift_up (This.Void_Ptr);
-    end Ctrl_Shift_Up_Key;
+    end KF_Ctrl_Shift_Up;
 
 
+
+
+    procedure Add_Key_Binding
+           (This : in out Text_Editor;
+            Key  : in     Shortcut_Key;
+            Func : in     Key_Func) is
+    begin
+        This.Bindings.Append ((Key, Func));
+    end Add_Key_Binding;
+
+
+    procedure Add_Key_Binding
+           (This : in out Text_Editor;
+            Bind : in     Key_Binding) is
+    begin
+        This.Bindings.Append (Bind);
+    end Add_Key_Binding;
+
+
+    function Get_Bound_Key_Function
+           (This : in Text_Editor;
+            Key  : in Shortcut_Key)
+        return Key_Func is
+    begin
+        for I in 1 .. Integer (This.Bindings.Length) loop
+            if This.Bindings.Element (I).Key = Key then
+                return This.Bindings.Element (I).Func;
+            end if;
+        end loop;
+        return null;
+    end Get_Bound_Key_Function;
 
 
     procedure Remove_Key_Binding
            (This : in out Text_Editor;
-            Key  : in     Shortcut_Key)
-    is
-        use type Interfaces.C.unsigned_long;
+            Key  : in     Shortcut_Key) is
     begin
-        fl_text_editor_remove_key_binding
-               (This.Void_Ptr,
-                Character'Pos (Key.Keypress),
-                Interfaces.C.unsigned_long (Key.Modifier) * 65536);
+        for I in reverse 1 .. Integer (This.Bindings.Length) loop
+            if This.Bindings.Reference (I).Key = Key then
+                This.Bindings.Delete (I);
+            end if;
+        end loop;
     end Remove_Key_Binding;
+
+
+    procedure Remove_Key_Binding
+           (This : in out Text_Editor;
+            Bind : in     Key_Binding) is
+    begin
+        for I in reverse 1 .. Integer (This.Bindings.Length) loop
+            if This.Bindings.Reference (I).Key = Bind.Key then
+                This.Bindings.Delete (I);
+            end if;
+        end loop;
+    end Remove_Key_Binding;
+
+
+    procedure Remove_All_Key_Bindings
+           (This : in out Text_Editor) is
+    begin
+        This.Bindings := Binding_Vectors.Empty_Vector;
+        This.Default_Func := null;
+    end Remove_All_Key_Bindings;
+
+
+    function Get_Default_Key_Function
+           (This : in Text_Editor)
+        return Default_Key_Func is
+    begin
+        return This.Default_Func;
+    end Get_Default_Key_Function;
+
+
+    procedure Set_Default_Key_Function
+           (This : in out Text_Editor;
+            Func : in     Default_Key_Func) is
+    begin
+        This.Default_Func := Func;
+    end Set_Default_Key_Function;
 
 
 

@@ -80,7 +80,8 @@ extern "C" void fl_text_editor_ctrl_shift_right(TEXTEDITOR te);
 extern "C" void fl_text_editor_ctrl_shift_up(TEXTEDITOR te);
 
 
-extern "C" void fl_text_editor_remove_key_binding(TEXTEDITOR te, unsigned int k, unsigned long m);
+extern "C" void fl_text_editor_remove_all_key_bindings(TEXTEDITOR te);
+extern "C" void fl_text_editor_set_default_key_function(TEXTEDITOR te, void * f);
 
 
 extern "C" int fl_text_editor_get_insert_mode(TEXTEDITOR te);

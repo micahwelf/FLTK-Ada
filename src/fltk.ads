@@ -32,7 +32,20 @@ package FLTK is
     type Shortcut_Key is private;
     subtype Pressable_Key is Character range Character'Val (32) .. Character'Val (126);
     function Shortcut (Key : Pressable_Key) return Shortcut_Key;
-    No_Key : constant Shortcut_Key;
+    No_Key           : constant Shortcut_Key;
+    Enter_Key        : constant Shortcut_Key;
+    Keypad_Enter_Key : constant Shortcut_Key;
+    Backspace_Key    : constant Shortcut_Key;
+    Insert_Key       : constant Shortcut_Key;
+    Delete_Key       : constant Shortcut_Key;
+    Home_Key         : constant Shortcut_Key;
+    End_Key          : constant Shortcut_Key;
+    Page_Down_Key    : constant Shortcut_Key;
+    Page_Up_Key      : constant Shortcut_Key;
+    Down_Key         : constant Shortcut_Key;
+    Left_Key         : constant Shortcut_Key;
+    Right_Key        : constant Shortcut_Key;
+    Up_Key           : constant Shortcut_Key;
 
 
     type Modifier_Key is private;
@@ -202,13 +215,18 @@ private
     type Shortcut_Key is
         record
             Modifier : Modifier_Key;
-            Keypress : Character;
+            Keypress : Interfaces.Unsigned_16;
         end record;
 
 
     function Key_To_C
-           (Key : Shortcut_Key)
+           (Key : in Shortcut_Key)
         return Interfaces.C.unsigned_long;
+
+
+    function C_To_Key
+           (Key : in Interfaces.C.unsigned_long)
+        return Shortcut_Key;
 
 
     --  these values designed to align with FLTK enumeration types
@@ -218,8 +236,23 @@ private
     Mod_Alt   : constant Modifier_Key := 2#00001000#;
 
 
-    No_Key : constant Shortcut_Key :=
-        (Modifier => Mod_None, Keypress => Character'Val (0));
+    No_Key           : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 0);
+
+
+    --  these values correspond to constants defined in FLTK Enumerations.H
+    Enter_Key        : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff0d#);
+    Keypad_Enter_Key : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff8d#);
+    Backspace_Key    : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff08#);
+    Insert_Key       : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff63#);
+    Delete_Key       : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ffff#);
+    Home_Key         : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff50#);
+    End_Key          : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff57#);
+    Page_Down_Key    : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff56#);
+    Page_Up_Key      : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff55#);
+    Down_Key         : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff54#);
+    Left_Key         : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff51#);
+    Right_Key        : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff53#);
+    Up_Key           : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff52#);
 
 
 end FLTK;
