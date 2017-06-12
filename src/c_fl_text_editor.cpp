@@ -263,6 +263,14 @@ void fl_text_editor_ctrl_shift_up(TEXTEDITOR te) {
 
 
 
+void fl_text_editor_add_key_binding(TEXTEDITOR te, int k, int s, void * f) {
+    reinterpret_cast<Fl_Text_Editor*>(te)->add_key_binding(k, s, reinterpret_cast<Fl_Text_Editor::Key_Func>(f));
+}
+
+void fl_text_editor_remove_key_binding(TEXTEDITOR te, int k, int s) {
+    reinterpret_cast<Fl_Text_Editor*>(te)->remove_key_binding(k, s);
+}
+
 void fl_text_editor_remove_all_key_bindings(TEXTEDITOR te) {
     reinterpret_cast<Fl_Text_Editor*>(te)->remove_all_key_bindings();
 }

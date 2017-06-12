@@ -226,6 +226,18 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
 
+    procedure fl_text_editor_add_key_binding
+           (TE : in System.Address;
+            K, S : in Interfaces.C.int;
+            F : in System.Address);
+    pragma Import (C, fl_text_editor_add_key_binding, "fl_text_editor_add_key_binding");
+
+    --  this particular procedure won't be necessary when FLTK keybindings fixed
+    procedure fl_text_editor_remove_key_binding
+           (TE   : in System.Address;
+            K, S : in Interfaces.C.int);
+    pragma Import (C, fl_text_editor_remove_key_binding, "fl_text_editor_remove_key_binding");
+
     procedure fl_text_editor_remove_all_key_bindings
            (TE : in System.Address);
     pragma Import (C, fl_text_editor_remove_all_key_bindings,
@@ -280,11 +292,11 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
     function Key_Func_Hook
            (K : in Interfaces.C.int;
-            U : in System.Address)
+            E : in System.Address)
         return Interfaces.C.int
     is
         Ada_Editor : access Text_Editor'Class :=
-            Editor_Convert.To_Pointer (U);
+            Editor_Convert.To_Pointer (fl_widget_get_user_data (E));
         Ada_Key : Shortcut_Key :=
             C_To_Key (Interfaces.C.unsigned_long (K));
 
@@ -321,10 +333,44 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
 
+    --  remove this type and array once FLTK keybindings fixed
+    type To_Remove is record
+        Press : Interfaces.Unsigned_16;
+        Modif : Interfaces.C.int;
+    end record;
+
+    To_Remove_List : array (Positive range <>) of To_Remove :=
+           ((Home_Key.Keypress,      0),
+            (End_Key.Keypress,       0),
+            (Page_Down_Key.Keypress, 0),
+            (Page_Up_Key.Keypress,   0),
+            (Down_Key.Keypress,      0),
+            (Left_Key.Keypress,      0),
+            (Right_Key.Keypress,     0),
+            (Up_Key.Keypress,        0),
+            (Character'Pos ('/'),    Interfaces.C.int (Mod_Ctrl)),
+            (Delete_Key.Keypress,    Interfaces.C.int (Mod_Shift)),
+            (Insert_Key.Keypress,    Interfaces.C.int (Mod_Ctrl)),
+            (Insert_Key.Keypress,    Interfaces.C.int (Mod_Shift)));
+
+    use type Interfaces.C.int;
+    To_Remove_Weird : array (Positive range <>) of To_Remove :=
+           ((Enter_Key.Keypress,        -1),
+            (Keypad_Enter_Key.Keypress, -1),
+            (Backspace_Key.Keypress,    -1),
+            (Insert_Key.Keypress,       -1),
+            (Delete_Key.Keypress,       -1),
+            (Escape_Key.Keypress,       -1));
+
+
+
+
     function Create
            (X, Y, W, H : in Integer;
             Text       : in String)
-        return Text_Editor is
+        return Text_Editor
+    is
+        use type Interfaces.C.int;
     begin
         return This : Text_Editor do
             This.Void_Ptr := new_fl_text_editor
@@ -340,14 +386,42 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
             text_editor_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
             text_editor_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
 
+            --  change things over so key bindings are all handled from the Ada side
             This.Bindings := Binding_Vectors.Empty_Vector;
             for B of Default_Key_Bindings loop
                 This.Bindings.Append (B);
             end loop;
             This.Default_Func := Default'Access;
 
-            fl_text_editor_remove_all_key_bindings (This.Void_Ptr);
+            --  remove these loops and uncomment subsequent "remove_all_key_bindings"
+            --  when FLTK keybindings fixed
+            for B of To_Remove_List loop
+                fl_text_editor_remove_key_binding
+                       (This.Void_Ptr,
+                        Interfaces.C.int (B.Press),
+                        B.Modif * 65536);
+            end loop;
+            for B of To_Remove_Weird loop
+                fl_text_editor_remove_key_binding
+                       (This.Void_Ptr,
+                        Interfaces.C.int (B.Press),
+                        B.Modif);
+            end loop;
+            --  fl_text_editor_remove_all_key_bindings (This.Void_Ptr);
+
             fl_text_editor_set_default_key_function (This.Void_Ptr, Key_Func_Hook'Address);
+
+            --  this is irritatingly required due to how FLTK handles certain keys
+            for B of Default_Key_Bindings loop
+                --  remove this conditional once FLTK keybindings fixed
+                if B.Key.Modifier = Mod_None then
+                    fl_text_editor_add_key_binding
+                           (This.Void_Ptr,
+                            Interfaces.C.int (B.Key.Keypress),
+                            Interfaces.C.int (B.Key.Modifier) * 65536,
+                            Key_Func_Hook'Address);
+                end if;
+            end loop;
         end return;
     end Create;
 
@@ -705,25 +779,45 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
     procedure Remove_Key_Binding
            (This : in out Text_Editor;
-            Key  : in     Shortcut_Key) is
+            Key  : in     Shortcut_Key)
+    is
+        use type Interfaces.C.int;
     begin
         for I in reverse 1 .. Integer (This.Bindings.Length) loop
             if This.Bindings.Reference (I).Key = Key then
                 This.Bindings.Delete (I);
             end if;
         end loop;
+
+        --  remove this once FLTK keybindings fixed
+        if Key.Modifier /= Mod_None then
+            fl_text_editor_remove_key_binding
+                   (This.Void_Ptr,
+                    Interfaces.C.int (Key.Keypress),
+                    Interfaces.C.int (Key.Modifier) * 65536);
+        end if;
     end Remove_Key_Binding;
 
 
     procedure Remove_Key_Binding
            (This : in out Text_Editor;
-            Bind : in     Key_Binding) is
+            Bind : in     Key_Binding)
+    is
+        use type Interfaces.C.int;
     begin
         for I in reverse 1 .. Integer (This.Bindings.Length) loop
             if This.Bindings.Reference (I).Key = Bind.Key then
                 This.Bindings.Delete (I);
             end if;
         end loop;
+
+        --  remove this once FLTK keybindings fixed
+        if Bind.Key.Modifier /= Mod_None then
+            fl_text_editor_remove_key_binding
+                   (This.Void_Ptr,
+                    Interfaces.C.int (Bind.Key.Keypress),
+                    Interfaces.C.int (Bind.Key.Modifier) * 65536);
+        end if;
     end Remove_Key_Binding;
 
 
@@ -732,6 +826,9 @@ package body FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     begin
         This.Bindings := Binding_Vectors.Empty_Vector;
         This.Default_Func := null;
+
+        --  remove this once FLTK keybindings fixed
+        fl_text_editor_remove_all_key_bindings (This.Void_Ptr);
     end Remove_All_Key_Bindings;
 
 

@@ -46,6 +46,7 @@ package FLTK is
     Left_Key         : constant Shortcut_Key;
     Right_Key        : constant Shortcut_Key;
     Up_Key           : constant Shortcut_Key;
+    Escape_Key       : constant Shortcut_Key;
 
 
     type Modifier_Key is private;
@@ -209,7 +210,7 @@ private
     Align_Right  : constant Alignment := 8;
 
 
-    type Modifier_Key is new Interfaces.Unsigned_8;
+    type Modifier_Key is new Interfaces.Unsigned_16;
 
 
     type Shortcut_Key is
@@ -253,6 +254,7 @@ private
     Left_Key         : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff51#);
     Right_Key        : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff53#);
     Up_Key           : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff52#);
+    Escape_Key       : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff1b#);
 
 
 end FLTK;

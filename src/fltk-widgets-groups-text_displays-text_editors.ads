@@ -240,6 +240,19 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
 
+    --  NOTE NOTE NOTE NOTE NOTE
+    --
+    --  Changing the keybindings for Shortcut_Keys that include modifiers
+    --  currently does not work due to some bugbear in the FLTK side of things.
+    --
+    --  Until that's fixed, the default keybindings for those key combinations
+    --  that include modifiers have been left in place.
+    --
+    --  NOTE NOTE NOTE NOTE NOTE
+
+
+
+
     procedure Add_Key_Binding
            (This : in out Text_Editor;
             Key  : in     Shortcut_Key;
@@ -327,7 +340,7 @@ private
 
     function Key_Func_Hook
            (K : in Interfaces.C.int;
-            U : in System.Address)
+            E : in System.Address)
         return Interfaces.C.int;
     pragma Convention (C, Key_Func_Hook);
 
