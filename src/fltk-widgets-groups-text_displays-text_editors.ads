@@ -1,7 +1,9 @@
 
 
-private with Interfaces.C;
-private with Ada.Containers.Vectors;
+private with
+
+    Interfaces.C,
+    Ada.Containers.Vectors;
 
 
 package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
@@ -327,15 +329,18 @@ private
            (Index_Type => Positive, Element_Type => Key_Binding);
 
 
+
+
     type Text_Editor is new Text_Display with
         record
             Bindings     : Binding_Vectors.Vector;
             Default_Func : Default_Key_Func;
         end record;
 
-
     overriding procedure Finalize
            (This : in out Text_Editor);
+
+
 
 
     function Key_Func_Hook
@@ -343,6 +348,8 @@ private
             E : in System.Address)
         return Interfaces.C.int;
     pragma Convention (C, Key_Func_Hook);
+
+
 
 
     package Editor_Convert is new System.Address_To_Access_Conversions (Text_Editor'Class);

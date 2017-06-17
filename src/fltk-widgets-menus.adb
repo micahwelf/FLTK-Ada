@@ -1,11 +1,16 @@
 
 
-with Interfaces.C;
-with System;
-with FLTK.Menu_Items;
-use type System.Address;
-use type Interfaces.C.int;
-use type Interfaces.C.unsigned_long;
+with
+
+    Interfaces.C,
+    System,
+    FLTK.Menu_Items;
+
+use type
+
+    System.Address,
+    Interfaces.C.int,
+    Interfaces.C.unsigned_long;
 
 
 package body FLTK.Widgets.Menus is
@@ -30,6 +35,8 @@ package body FLTK.Widgets.Menus is
     pragma Import (C, menu_set_handle_hook, "menu_set_handle_hook");
 
 
+
+
     function new_fl_menu
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -39,6 +46,8 @@ package body FLTK.Widgets.Menus is
     procedure free_fl_menu
            (F : in System.Address);
     pragma Import (C, free_fl_menu, "free_fl_menu");
+
+
 
 
     function fl_menu_add
@@ -143,8 +152,6 @@ package body FLTK.Widgets.Menus is
     end Add;
 
 
-
-
     function Find_Item
            (This : in Menu'Class;
             Name : in String)
@@ -156,8 +163,6 @@ package body FLTK.Widgets.Menus is
                     Interfaces.C.To_C (Name));
         end return;
     end Find_Item;
-
-
 
 
     function Chosen

@@ -11,10 +11,11 @@ int fl_menuitem_value(MENUITEM mi) {
 }
 
 
+
+
 void fl_menuitem_activate(MENUITEM mi) {
     reinterpret_cast<Fl_Menu_Item*>(mi)->activate();
 }
-
 
 void fl_menuitem_deactivate(MENUITEM mi) {
     reinterpret_cast<Fl_Menu_Item*>(mi)->deactivate();

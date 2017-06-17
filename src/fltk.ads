@@ -1,8 +1,13 @@
 
 
-with Ada.Finalization;
-private with Interfaces.C;
-private with System;
+with
+
+    Ada.Finalization;
+
+private with
+
+    Interfaces.C,
+    System;
 
 
 package FLTK is
@@ -187,7 +192,6 @@ private
            (This : in Wrapper)
         return Boolean;
 
-
     type Wrapper is abstract new Ada.Finalization.Limited_Controlled with
         record
             Void_Ptr : System.Address;
@@ -196,7 +200,6 @@ private
 
     --  unsure if the above invariant is doing what I'm after
     --  oh well, something to work on
-
 
     overriding procedure Initialize
            (This : in out Wrapper);
@@ -219,11 +222,9 @@ private
             Keypress : Interfaces.Unsigned_16;
         end record;
 
-
     function Key_To_C
            (Key : in Shortcut_Key)
         return Interfaces.C.unsigned_long;
-
 
     function C_To_Key
            (Key : in Interfaces.C.unsigned_long)

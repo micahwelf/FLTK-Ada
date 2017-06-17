@@ -1,8 +1,13 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Widgets.Groups.Windows.Double is
@@ -15,6 +20,8 @@ package body FLTK.Widgets.Groups.Windows.Double is
     procedure double_window_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, double_window_set_handle_hook, "double_window_set_handle_hook");
+
+
 
 
     function new_fl_double_window
@@ -33,6 +40,8 @@ package body FLTK.Widgets.Groups.Windows.Double is
     pragma Import (C, free_fl_double_window, "free_fl_double_window");
 
 
+
+
     procedure fl_double_window_show
             (W : in System.Address);
     pragma Import (C, fl_double_window_show, "fl_double_window_show");
@@ -44,6 +53,9 @@ package body FLTK.Widgets.Groups.Windows.Double is
     procedure fl_double_window_flush
             (W : in System.Address);
     pragma Import (C, fl_double_window_flush, "fl_double_window_flush");
+
+
+
 
     procedure fl_double_window_draw
            (W : in System.Address);
@@ -96,8 +108,6 @@ package body FLTK.Widgets.Groups.Windows.Double is
     end Create;
 
 
-
-
     function Create
            (W, H : in Integer)
         return Double_Window is
@@ -124,15 +134,11 @@ package body FLTK.Widgets.Groups.Windows.Double is
     end Show;
 
 
-
-
     procedure Hide
            (This : in out Double_Window) is
     begin
         fl_double_window_hide (This.Void_Ptr);
     end Hide;
-
-
 
 
     procedure Flush
@@ -149,8 +155,6 @@ package body FLTK.Widgets.Groups.Windows.Double is
     begin
         fl_double_window_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle

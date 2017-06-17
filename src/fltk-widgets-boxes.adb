@@ -1,8 +1,13 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Widgets.Boxes is
@@ -17,6 +22,8 @@ package body FLTK.Widgets.Boxes is
     pragma Import (C, box_set_handle_hook, "box_set_handle_hook");
 
 
+
+
     function new_fl_box
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -26,6 +33,8 @@ package body FLTK.Widgets.Boxes is
     procedure free_fl_box
            (B : in System.Address);
     pragma Import (C, free_fl_box, "free_fl_box");
+
+
 
 
     procedure fl_box_draw
@@ -84,8 +93,6 @@ package body FLTK.Widgets.Boxes is
     begin
         fl_box_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle

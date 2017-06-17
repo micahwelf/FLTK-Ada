@@ -1,8 +1,13 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Widgets.Buttons.Enter is
@@ -17,6 +22,8 @@ package body FLTK.Widgets.Buttons.Enter is
     pragma Import (C, return_button_set_handle_hook, "return_button_set_handle_hook");
 
 
+
+
     function new_fl_return_button
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -26,6 +33,8 @@ package body FLTK.Widgets.Buttons.Enter is
     procedure free_fl_return_button
            (B : in System.Address);
     pragma Import (C, free_fl_return_button, "free_fl_return_button");
+
+
 
 
     procedure fl_return_button_draw
@@ -84,8 +93,6 @@ package body FLTK.Widgets.Buttons.Enter is
     begin
         fl_return_button_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle

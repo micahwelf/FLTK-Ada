@@ -1,10 +1,15 @@
 
 
-with Interfaces.C;
-with System;
-with FLTK.Text_Buffers;
-use type Interfaces.C.int;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System,
+    FLTK.Text_Buffers;
+
+use type
+
+    Interfaces.C.int,
+    System.Address;
 
 
 package body FLTK.Widgets.Groups.Text_Displays is

@@ -1,9 +1,14 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
-use type Interfaces.C.unsigned;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    System.Address,
+    Interfaces.C.unsigned;
 
 
 package body FLTK.Widgets.Groups.Windows.Single.Menu is
@@ -16,6 +21,8 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     procedure menu_window_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, menu_window_set_handle_hook, "menu_window_set_handle_hook");
+
+
 
 
     function new_fl_menu_window
@@ -34,6 +41,8 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     pragma Import (C, free_fl_menu_window, "free_fl_menu_window");
 
 
+
+
     procedure fl_menu_window_show
            (M : in System.Address);
     pragma Import (C, fl_menu_window_show, "fl_menu_window_show");
@@ -45,6 +54,9 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     procedure fl_menu_window_flush
            (M : in System.Address);
     pragma Import (C, fl_menu_window_flush, "fl_menu_window_flush");
+
+
+
 
     procedure fl_menu_window_set_overlay
            (M : in System.Address);
@@ -58,6 +70,9 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
            (M : in System.Address)
         return Interfaces.C.unsigned;
     pragma Import (C, fl_menu_window_overlay, "fl_menu_window_overlay");
+
+
+
 
     procedure fl_menu_window_draw
            (W : in System.Address);
@@ -110,8 +125,6 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     end Create;
 
 
-
-
     function Create
            (W, H : in Integer)
         return Menu_Window is
@@ -138,15 +151,11 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     end Show;
 
 
-
-
     procedure Hide
            (This : in out Menu_Window) is
     begin
         fl_menu_window_hide (This.Void_Ptr);
     end Hide;
-
-
 
 
     procedure Flush
@@ -164,7 +173,6 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     begin
         return fl_menu_window_overlay (This.Void_Ptr) /= 0;
     end Get_Overlay;
-
 
 
     procedure Set_Overlay
@@ -186,8 +194,6 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     begin
         fl_menu_window_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle

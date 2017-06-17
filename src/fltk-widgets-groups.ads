@@ -1,6 +1,8 @@
 
 
-private with System;
+private with
+
+    System;
 
 
 package FLTK.Widgets.Groups is
@@ -8,9 +10,10 @@ package FLTK.Widgets.Groups is
 
     type Group is new Widget with private;
 
-
     type Index is new Positive;
     --  type Clip_Mode is (No_Clip, Clip);
+
+
 
 
     function Create
@@ -19,9 +22,34 @@ package FLTK.Widgets.Groups is
         return Group;
 
 
+
+
     procedure Add
            (This : in out Group;
             Item : in out Widget'Class);
+
+    procedure Insert
+           (This  : in out Group;
+            Item  : in out Widget'Class;
+            Place : in     Index);
+
+    procedure Insert
+           (This   : in out Group;
+            Item   : in out Widget'Class;
+            Before : in     Widget'Class);
+
+    procedure Remove
+           (This : in out Group;
+            Item : in out Widget'Class);
+
+    procedure Remove
+           (This  : in out Group;
+            Place : in     Index);
+
+    procedure Clear
+           (This : in out Group);
+
+
 
 
     function Child
@@ -29,71 +57,45 @@ package FLTK.Widgets.Groups is
             Place : in Index)
         return access Widget'Class;
 
+    function Find
+           (This : in     Group;
+            Item : in out Widget'Class)
+        return Index;
 
     function Number_Of_Children
            (This : in Group)
         return Natural;
 
 
+
+
     --  function Get_Clip_Mode
     --         (This : in Group)
     --      return Clip_Mode;
-
 
     --  procedure Set_Clip_Mode
     --         (This : in out Group;
     --          Mode : in     Clip_Mode);
 
 
-    procedure Clear
-           (This : in out Group);
-
-
-    function Find
-           (This : in     Group;
-            Item : in out Widget'Class)
-        return Index;
-
-
-    procedure Reset_Initial_Sizes
-           (This : in out Group);
-
-
-    procedure Insert
-           (This  : in out Group;
-            Item  : in out Widget'Class;
-            Place : in     Index);
-
-
-    procedure Insert
-           (This   : in out Group;
-            Item   : in out Widget'Class;
-            Before : in     Widget'Class);
-
-
-    procedure Remove
-           (This : in out Group;
-            Item : in out Widget'Class);
-
-
-    procedure Remove
-           (This  : in out Group;
-            Place : in     Index);
 
 
     function Get_Resizable
            (This : in Group)
         return access Widget'Class;
 
-
     procedure Set_Resizable
            (This : in out Group;
             Item : in     Widget'Class);
 
+    procedure Reset_Initial_Sizes
+           (This : in out Group);
+
+
+
 
     procedure Draw
            (This : in out Group);
-
 
     function Handle
            (This  : in out Group;
@@ -106,9 +108,10 @@ private
 
     type Group is new Widget with null record;
 
-
     overriding procedure Finalize
            (This : in out Group);
+
+
 
 
     procedure fl_group_end

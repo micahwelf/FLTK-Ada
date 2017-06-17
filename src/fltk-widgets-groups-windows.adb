@@ -1,9 +1,14 @@
 
 
-with Interfaces.C;
-with System;
-with FLTK.Images.RGB;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System,
+    FLTK.Images.RGB;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Widgets.Groups.Windows is
@@ -16,6 +21,8 @@ package body FLTK.Widgets.Groups.Windows is
     procedure window_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, window_set_handle_hook, "window_set_handle_hook");
+
+
 
 
     function new_fl_window
@@ -34,6 +41,8 @@ package body FLTK.Widgets.Groups.Windows is
     pragma Import (C, free_fl_window, "free_fl_window");
 
 
+
+
     procedure fl_window_show
            (W : in System.Address);
     pragma Import (C, fl_window_show, "fl_window_show");
@@ -45,6 +54,9 @@ package body FLTK.Widgets.Groups.Windows is
     procedure fl_window_make_current
            (W : in System.Address);
     pragma Import (C, fl_window_make_current, "fl_window_make_current");
+
+
+
 
     function fl_window_get_border
            (W : in System.Address)
@@ -88,6 +100,9 @@ package body FLTK.Widgets.Groups.Windows is
             C : in Interfaces.C.int);
     pragma Import (C, fl_window_set_default_cursor, "fl_window_set_default_cursor");
 
+
+
+
     function fl_window_get_x_root
            (W : in System.Address)
         return Interfaces.C.int;
@@ -107,6 +122,9 @@ package body FLTK.Widgets.Groups.Windows is
            (W : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_window_get_decorated_h, "fl_window_get_decorated_h");
+
+
+
 
     procedure fl_window_draw
            (W : in System.Address);
@@ -159,8 +177,6 @@ package body FLTK.Widgets.Groups.Windows is
     end Create;
 
 
-
-
     function Create
            (W, H : in Integer)
         return Window is
@@ -187,15 +203,11 @@ package body FLTK.Widgets.Groups.Windows is
     end Show;
 
 
-
-
     procedure Hide
            (This : in out Window) is
     begin
         fl_window_hide (This.Void_Ptr);
     end Hide;
-
-
 
 
     procedure Make_Current
@@ -215,7 +227,6 @@ package body FLTK.Widgets.Groups.Windows is
     end Get_Border;
 
 
-
     procedure Set_Border
            (This : in out Window;
             To   : in     Border_State) is
@@ -224,16 +235,12 @@ package body FLTK.Widgets.Groups.Windows is
     end Set_Border;
 
 
-
-
     procedure Set_Label
            (This : in out Window;
             Text : in     String) is
     begin
         fl_window_set_label (This.Void_Ptr, Interfaces.C.To_C (Text));
     end Set_Label;
-
-
 
 
     procedure Set_Size_Range
@@ -254,8 +261,6 @@ package body FLTK.Widgets.Groups.Windows is
     end Set_Size_Range;
 
 
-
-
     procedure Set_Icon
            (This : in out Window;
             Pic  : in out FLTK.Images.RGB.RGB_Image'Class) is
@@ -266,15 +271,11 @@ package body FLTK.Widgets.Groups.Windows is
     end Set_Icon;
 
 
-
-
     procedure Set_Modal
            (This : in out Window) is
     begin
         fl_window_set_modal (This.Void_Ptr);
     end Set_Modal;
-
-
 
 
     procedure Set_Non_Modal
@@ -284,16 +285,12 @@ package body FLTK.Widgets.Groups.Windows is
     end Set_Non_Modal;
 
 
-
-
     procedure Set_Cursor
            (This : in out Window;
             To   : in     Cursor) is
     begin
         fl_window_set_cursor (This.Void_Ptr, Cursor_Values (To));
     end Set_Cursor;
-
-
 
 
     procedure Set_Default_Cursor
@@ -314,8 +311,6 @@ package body FLTK.Widgets.Groups.Windows is
     end Get_X_Root;
 
 
-
-
     function Get_Y_Root
            (This : in Window)
         return Integer is
@@ -324,16 +319,12 @@ package body FLTK.Widgets.Groups.Windows is
     end Get_Y_Root;
 
 
-
-
     function Get_Decorated_W
            (This : in Window)
         return Integer is
     begin
         return Integer (fl_window_get_decorated_w (This.Void_Ptr));
     end Get_Decorated_W;
-
-
 
 
     function Get_Decorated_H
@@ -351,8 +342,6 @@ package body FLTK.Widgets.Groups.Windows is
     begin
         fl_window_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle

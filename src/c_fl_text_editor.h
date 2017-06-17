@@ -4,6 +4,8 @@
 #define FL_TEXT_EDITOR_GUARD
 
 
+
+
 typedef void* TEXTEDITOR;
 
 

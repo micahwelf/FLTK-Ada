@@ -1,6 +1,8 @@
 
 
-with FLTK.Text_Buffers;
+with
+
+    FLTK.Text_Buffers;
 
 
 package FLTK.Widgets.Groups.Text_Displays is

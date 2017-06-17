@@ -23,41 +23,33 @@ class My_Multiline_Output : public Fl_Multiline_Output {
         h_hook_p handle_hook;
 };
 
-
 void My_Multiline_Output::draw() {
     (*draw_hook)(this->user_data());
 }
-
 
 void My_Multiline_Output::real_draw() {
     Fl_Multiline_Output::draw();
 }
 
-
 int My_Multiline_Output::handle(int e) {
     return (*handle_hook)(this->user_data(), e);
 }
-
 
 int My_Multiline_Output::real_handle(int e) {
     return Fl_Multiline_Output::handle(e);
 }
 
-
 void multiline_output_set_draw_hook(MULTILINE_OUTPUT i, void * d) {
     reinterpret_cast<My_Multiline_Output*>(i)->draw_hook = reinterpret_cast<d_hook_p>(d);
 }
-
 
 void fl_multiline_output_draw(MULTILINE_OUTPUT i) {
     reinterpret_cast<My_Multiline_Output*>(i)->real_draw();
 }
 
-
 void multiline_output_set_handle_hook(MULTILINE_OUTPUT i, void * h) {
     reinterpret_cast<My_Multiline_Output*>(i)->handle_hook = reinterpret_cast<h_hook_p>(h);
 }
-
 
 int fl_multiline_output_handle(MULTILINE_OUTPUT i, int e) {
     return reinterpret_cast<My_Multiline_Output*>(i)->real_handle(e);
@@ -70,7 +62,6 @@ MULTILINE_OUTPUT new_fl_multiline_output(int x, int y, int w, int h, char* label
     My_Multiline_Output *i = new My_Multiline_Output(x, y, w, h, label);
     return i;
 }
-
 
 void free_fl_multiline_output(MULTILINE_OUTPUT i) {
     delete reinterpret_cast<My_Multiline_Output*>(i);

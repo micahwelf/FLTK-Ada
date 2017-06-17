@@ -1,8 +1,13 @@
 
 
-with Interfaces.C.Strings;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C.Strings,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Widgets.Inputs.Integer is
@@ -17,6 +22,8 @@ package body FLTK.Widgets.Inputs.Integer is
     pragma Import (C, int_input_set_handle_hook, "int_input_set_handle_hook");
 
 
+
+
     function new_fl_int_input
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -26,6 +33,8 @@ package body FLTK.Widgets.Inputs.Integer is
     procedure free_fl_int_input
            (F : in System.Address);
     pragma Import (C, free_fl_int_input, "free_fl_int_input");
+
+
 
 
     procedure fl_int_input_draw
@@ -95,8 +104,6 @@ package body FLTK.Widgets.Inputs.Integer is
     begin
         fl_int_input_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle

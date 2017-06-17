@@ -1,8 +1,13 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Widgets.Buttons.Light.Check is
@@ -17,6 +22,8 @@ package body FLTK.Widgets.Buttons.Light.Check is
     pragma Import (C, check_button_set_handle_hook, "check_button_set_handle_hook");
 
 
+
+
     function new_fl_check_button
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -26,6 +33,8 @@ package body FLTK.Widgets.Buttons.Light.Check is
     procedure free_fl_check_button
            (B : in System.Address);
     pragma Import (C, free_fl_check_button, "free_fl_check_button");
+
+
 
 
     procedure fl_check_button_draw
@@ -84,8 +93,6 @@ package body FLTK.Widgets.Buttons.Light.Check is
     begin
         fl_check_button_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle

@@ -1,8 +1,12 @@
 
 
-with Interfaces.C;
-with Interfaces.C.Strings;
-use type Interfaces.C.Strings.chars_ptr;
+with
+
+    Interfaces.C.Strings;
+
+use type
+
+    Interfaces.C.Strings.chars_ptr;
 
 
 package body FLTK.Dialogs is

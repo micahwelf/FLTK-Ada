@@ -1,8 +1,13 @@
 
 
-private with Interfaces;
-private with System;
-with FLTK.Menu_Items;
+with
+
+    FLTK.Menu_Items;
+
+private with
+
+    Interfaces,
+    System;
 
 
 package FLTK.Widgets.Menus is
@@ -10,13 +15,10 @@ package FLTK.Widgets.Menus is
 
     type Menu is new Widget with private;
 
-
     type Menu_Cursor (Data : access Menu'Class) is limited null record
         with Implicit_Dereference => Data;
 
-
     type Index is new Positive;
-
 
     type Menu_Flag is private;
     function "+" (Left, Right : in Menu_Flag) return Menu_Flag;
@@ -30,10 +32,14 @@ package FLTK.Widgets.Menus is
     Flag_Divider   : constant Menu_Flag;
 
 
+
+
     function Create
            (X, Y, W, H : in Integer;
             Text       : in String)
         return Menu;
+
+
 
 
     procedure Add
@@ -43,21 +49,20 @@ package FLTK.Widgets.Menus is
             Shortcut : in     Shortcut_Key := No_Key;
             Flags    : in     Menu_Flag := Flag_Normal);
 
-
     function Find_Item
            (This : in Menu'Class;
             Name : in String)
         return FLTK.Menu_Items.Menu_Item;
-
 
     function Chosen
            (This : in Menu'Class)
         return FLTK.Menu_Items.Menu_Item;
 
 
+
+
     procedure Draw
            (This : in out Menu) is null;
-
 
     function Handle
            (This  : in out Menu;
@@ -70,13 +75,16 @@ private
 
     type Menu is new Widget with null record;
 
+    overriding procedure Finalize
+           (This : in out Menu);
+
+
+
 
     procedure Item_Hook (M, U : in System.Address);
     pragma Convention (C, Item_Hook);
 
 
-    overriding procedure Finalize
-           (This : in out Menu);
 
 
     type Menu_Flag is new Interfaces.Unsigned_8;

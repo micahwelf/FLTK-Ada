@@ -1,8 +1,13 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Images.Bitmaps is
@@ -53,8 +58,6 @@ package body FLTK.Images.Bitmaps is
                     Interfaces.C.int (Height));
         end return;
     end Copy;
-
-
 
 
     function Copy

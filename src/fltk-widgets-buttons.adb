@@ -1,8 +1,13 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Widgets.Buttons is
@@ -17,6 +22,8 @@ package body FLTK.Widgets.Buttons is
     pragma Import (C, button_set_handle_hook, "button_set_handle_hook");
 
 
+
+
     function new_fl_button
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -26,6 +33,8 @@ package body FLTK.Widgets.Buttons is
     procedure free_fl_button
            (B : in System.Address);
     pragma Import (C, free_fl_button, "free_fl_button");
+
+
 
 
     function fl_button_get_state
@@ -41,6 +50,9 @@ package body FLTK.Widgets.Buttons is
     procedure fl_button_set_only
            (B : in System.Address);
     pragma Import (C, fl_button_set_only, "fl_button_set_only");
+
+
+
 
     procedure fl_button_draw
            (W : in System.Address);
@@ -101,16 +113,12 @@ package body FLTK.Widgets.Buttons is
     end Get_State;
 
 
-
-
     procedure Set_State
            (This : in out Button;
             St   : in     State) is
     begin
         fl_button_set_state (This.Void_Ptr, State'Pos (St));
     end Set_State;
-
-
 
 
     procedure Set_Only
@@ -127,8 +135,6 @@ package body FLTK.Widgets.Buttons is
     begin
         fl_button_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle

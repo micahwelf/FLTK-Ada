@@ -1,9 +1,14 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
-use type Interfaces.C.unsigned_long;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    Interfaces.C.unsigned_long,
+    System.Address;
 
 
 package body FLTK is
@@ -30,8 +35,6 @@ package body FLTK is
     begin
         return This.Void_Ptr /= System.Null_Address;
     end Has_Valid_Ptr;
-
-
 
 
     procedure Initialize
@@ -65,8 +68,6 @@ package body FLTK is
     end "+";
 
 
-
-
     function "+"
            (Left  : in Modifier_Key;
             Right : in Pressable_Key)
@@ -77,8 +78,6 @@ package body FLTK is
             This.Keypress := Character'Pos (Right);
         end return;
     end "+";
-
-
 
 
     function "+"
@@ -102,8 +101,6 @@ package body FLTK is
         return Interfaces.C.unsigned_long (Key.Modifier) *
                65536 + Interfaces.C.unsigned_long (Key.Keypress);
     end Key_To_C;
-
-
 
 
     function C_To_Key

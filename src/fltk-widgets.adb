@@ -1,14 +1,17 @@
 
 
-with Interfaces.C;
-with Interfaces.C.Strings;
-with System;
-with System.Address_To_Access_Conversions;
-with FLTK.Widgets.Groups;
-with FLTK.Images;
-use type Interfaces.C.int;
-use type Interfaces.C.unsigned;
-use type System.Address;
+with
+
+    Interfaces.C.Strings,
+    System.Address_To_Access_Conversions,
+    FLTK.Widgets.Groups,
+    FLTK.Images;
+
+use type
+
+    Interfaces.C.int,
+    Interfaces.C.unsigned,
+    System.Address;
 
 
 package body FLTK.Widgets is
@@ -29,6 +32,8 @@ package body FLTK.Widgets is
     pragma Import (C, widget_set_handle_hook, "widget_set_handle_hook");
 
 
+
+
     function new_fl_widget
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -38,6 +43,8 @@ package body FLTK.Widgets is
     procedure free_fl_widget
            (F : in System.Address);
     pragma Import (C, free_fl_widget, "free_fl_widget");
+
+
 
 
     procedure fl_widget_activate
@@ -62,6 +69,9 @@ package body FLTK.Widgets is
            (W : in System.Address);
     pragma Import (C, fl_widget_clear_active, "fl_widget_clear_active");
 
+
+
+
     function fl_widget_changed
            (W : in System.Address)
         return Interfaces.C.unsigned;
@@ -70,6 +80,9 @@ package body FLTK.Widgets is
     procedure fl_widget_clear_changed
            (W : in System.Address);
     pragma Import (C, fl_widget_clear_changed, "fl_widget_clear_changed");
+
+
+
 
     function fl_widget_get_parent
            (W : in System.Address)
@@ -80,6 +93,9 @@ package body FLTK.Widgets is
            (W, I : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_widget_contains, "fl_widget_contains");
+
+
+
 
     function fl_widget_get_align
            (W : in System.Address)
@@ -145,6 +161,9 @@ package body FLTK.Widgets is
            (W, C : in System.Address);
     pragma Import (C, fl_widget_set_callback, "fl_widget_set_callback");
 
+
+
+
     function fl_widget_get_x
            (W : in System.Address)
         return Interfaces.C.int;
@@ -175,6 +194,9 @@ package body FLTK.Widgets is
             X, Y : in Interfaces.C.int);
     pragma Import (C, fl_widget_position, "fl_widget_position");
 
+
+
+
     procedure fl_widget_set_image
            (W, I : in System.Address);
     pragma Import (C, fl_widget_set_image, "fl_widget_set_image");
@@ -192,8 +214,6 @@ package body FLTK.Widgets is
     end Callback_Hook;
 
 
-
-
     procedure Draw_Hook
            (U : in System.Address)
     is
@@ -202,8 +222,6 @@ package body FLTK.Widgets is
     begin
         Ada_Widget.Draw;
     end Draw_Hook;
-
-
 
 
     function Handle_Hook
@@ -264,15 +282,11 @@ package body FLTK.Widgets is
     end Activate;
 
 
-
-
     procedure Deactivate
            (This : in out Widget) is
     begin
         fl_widget_deactivate (This.Void_Ptr);
     end Deactivate;
-
-
 
 
     function Is_Active
@@ -283,16 +297,12 @@ package body FLTK.Widgets is
     end Is_Active;
 
 
-
-
     function Is_Tree_Active
            (This : in Widget)
         return Boolean is
     begin
         return fl_widget_active_r (This.Void_Ptr) /= 0;
     end Is_Tree_Active;
-
-
 
 
     procedure Clear_Active
@@ -310,8 +320,6 @@ package body FLTK.Widgets is
     begin
         return fl_widget_changed (This.Void_Ptr) /= 0;
     end Has_Changed;
-
-
 
 
     procedure Clear_Changed
@@ -338,8 +346,6 @@ package body FLTK.Widgets is
     end Parent;
 
 
-
-
     function Contains
            (This : in Widget;
             Item : in Widget'Class)
@@ -359,16 +365,12 @@ package body FLTK.Widgets is
     end Get_Alignment;
 
 
-
-
     procedure Set_Alignment
            (This      : in out Widget;
             New_Align : in     Alignment) is
     begin
         fl_widget_set_align (This.Void_Ptr, Interfaces.C.unsigned (New_Align));
     end Set_Alignment;
-
-
 
 
     function Get_Box
@@ -379,16 +381,12 @@ package body FLTK.Widgets is
     end Get_Box;
 
 
-
-
     procedure Set_Box
            (This : in out Widget;
             Box  : in     Box_Kind) is
     begin
         fl_widget_set_box (This.Void_Ptr, Box_Kind'Pos (Box));
     end Set_Box;
-
-
 
 
     function Get_Label
@@ -399,16 +397,12 @@ package body FLTK.Widgets is
     end Get_Label;
 
 
-
-
     procedure Set_Label
            (This : in out Widget;
             Text : in     String) is
     begin
         fl_widget_set_label (This.Void_Ptr, Interfaces.C.To_C (Text));
     end Set_Label;
-
-
 
 
     function Get_Label_Font
@@ -419,16 +413,12 @@ package body FLTK.Widgets is
     end Get_Label_Font;
 
 
-
-
     procedure Set_Label_Font
            (This : in out Widget;
             Font : in     Font_Kind) is
     begin
         fl_widget_set_label_font (This.Void_Ptr, Font_Kind'Pos (Font));
     end Set_Label_Font;
-
-
 
 
     function Get_Label_Size
@@ -439,16 +429,12 @@ package body FLTK.Widgets is
     end Get_Label_Size;
 
 
-
-
     procedure Set_Label_Size
            (This : in out Widget;
             Size : in     Font_Size) is
     begin
         fl_widget_set_label_size (This.Void_Ptr, Interfaces.C.int (Size));
     end Set_Label_Size;
-
-
 
 
     function Get_Label_Type
@@ -459,8 +445,6 @@ package body FLTK.Widgets is
     end Get_Label_Type;
 
 
-
-
     procedure Set_Label_Type
            (This  : in out Widget;
             Label : in     Label_Kind) is
@@ -469,16 +453,12 @@ package body FLTK.Widgets is
     end Set_Label_Type;
 
 
-
-
     function Get_Callback
            (This : in Widget)
         return Widget_Callback is
     begin
         return This.Callback;
     end Get_Callback;
-
-
 
 
     procedure Set_Callback
@@ -502,16 +482,12 @@ package body FLTK.Widgets is
     end Get_X;
 
 
-
-
     function Get_Y
            (This : in Widget)
         return Integer is
     begin
         return Integer (fl_widget_get_y (This.Void_Ptr));
     end Get_Y;
-
-
 
 
     function Get_W
@@ -522,16 +498,12 @@ package body FLTK.Widgets is
     end Get_W;
 
 
-
-
     function Get_H
            (This : in Widget)
         return Integer is
     begin
         return Integer (fl_widget_get_h (This.Void_Ptr));
     end Get_H;
-
-
 
 
     procedure Resize
@@ -543,8 +515,6 @@ package body FLTK.Widgets is
                 Interfaces.C.int (W),
                 Interfaces.C.int (H));
     end Resize;
-
-
 
 
     procedure Reposition
@@ -566,8 +536,6 @@ package body FLTK.Widgets is
     begin
         return This.Current_Image;
     end Get_Image;
-
-
 
 
     procedure Set_Image

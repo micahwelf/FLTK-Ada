@@ -1,7 +1,12 @@
 
 
-with Interfaces.C;
-use type Interfaces.C.int;
+with
+
+    Interfaces.C;
+
+use type
+
+    Interfaces.C.int;
 
 
 package body FLTK.Menu_Items is
@@ -11,6 +16,9 @@ package body FLTK.Menu_Items is
            (MI : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_menuitem_value, "fl_menuitem_value");
+
+
+
 
     procedure fl_menuitem_activate
            (MI : in System.Address);
@@ -38,8 +46,6 @@ package body FLTK.Menu_Items is
     begin
         fl_menuitem_activate (Item.Void_Ptr);
     end Activate;
-
-
 
 
     procedure Deactivate

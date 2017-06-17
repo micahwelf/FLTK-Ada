@@ -23,41 +23,33 @@ class My_Box : public Fl_Box {
         h_hook_p handle_hook;
 };
 
-
 void My_Box::draw() {
     (*draw_hook)(this->user_data());
 }
-
 
 void My_Box::real_draw() {
     Fl_Box::draw();
 }
 
-
 int My_Box::handle(int e) {
     return (*handle_hook)(this->user_data(), e);
 }
-
 
 int My_Box::real_handle(int e) {
     return Fl_Box::handle(e);
 }
 
-
 void box_set_draw_hook(BOX n, void * d) {
     reinterpret_cast<My_Box*>(n)->draw_hook = reinterpret_cast<d_hook_p>(d);
 }
-
 
 void fl_box_draw(BOX n) {
     reinterpret_cast<My_Box*>(n)->real_draw();
 }
 
-
 void box_set_handle_hook(BOX n, void * h) {
     reinterpret_cast<My_Box*>(n)->handle_hook = reinterpret_cast<h_hook_p>(h);
 }
-
 
 int fl_box_handle(BOX n, int e) {
     return reinterpret_cast<My_Box*>(n)->real_handle(e);
@@ -70,7 +62,6 @@ BOX new_fl_box(int x, int y, int w, int h, char* label) {
     My_Box *b = new My_Box(x, y, w, h, label);
     return b;
 }
-
 
 void free_fl_box(BOX b) {
     delete reinterpret_cast<My_Box*>(b);

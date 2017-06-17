@@ -1,8 +1,13 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Images.RGB is
@@ -22,6 +27,8 @@ package body FLTK.Images.RGB is
            (I : in System.Address)
         return System.Address;
     pragma Import (C, fl_rgb_image_copy2, "fl_rgb_image_copy2");
+
+
 
 
     procedure fl_rgb_image_color_average
@@ -66,8 +73,6 @@ package body FLTK.Images.RGB is
     end Copy;
 
 
-
-
     function Copy
            (This : in RGB_Image)
         return RGB_Image is
@@ -90,8 +95,6 @@ package body FLTK.Images.RGB is
                 Interfaces.C.int (Col),
                 Interfaces.C.C_float (Amount));
     end Color_Average;
-
-
 
 
     procedure Desaturate

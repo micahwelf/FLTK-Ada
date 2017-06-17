@@ -1,8 +1,13 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Widgets.Buttons.Light is
@@ -17,6 +22,8 @@ package body FLTK.Widgets.Buttons.Light is
     pragma Import (C, light_button_set_handle_hook, "light_button_set_handle_hook");
 
 
+
+
     function new_fl_light_button
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -26,6 +33,8 @@ package body FLTK.Widgets.Buttons.Light is
     procedure free_fl_light_button
            (B : in System.Address);
     pragma Import (C, free_fl_light_button, "free_fl_light_button");
+
+
 
 
     procedure fl_light_button_draw
@@ -84,8 +93,6 @@ package body FLTK.Widgets.Buttons.Light is
     begin
         fl_light_button_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle

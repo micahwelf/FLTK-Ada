@@ -1,8 +1,13 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Images is
@@ -29,6 +34,8 @@ package body FLTK.Images is
     pragma Import (C, fl_image_copy2, "fl_image_copy2");
 
 
+
+
     procedure fl_image_color_average
            (I : in System.Address;
             C : in Interfaces.C.int;
@@ -39,9 +46,15 @@ package body FLTK.Images is
            (I : in System.Address);
     pragma Import (C, fl_image_desaturate, "fl_image_desaturate");
 
+
+
+
     procedure fl_image_inactive
            (I : in System.Address);
     pragma Import (C, fl_image_inactive, "fl_image_inactive");
+
+
+
 
     function fl_image_w
            (I : in System.Address)
@@ -88,8 +101,6 @@ package body FLTK.Images is
     end Create;
 
 
-
-
     function Copy
            (This          : in Image;
             Width, Height : in Natural)
@@ -102,8 +113,6 @@ package body FLTK.Images is
                     Interfaces.C.int (Height));
         end return;
     end Copy;
-
-
 
 
     function Copy
@@ -128,8 +137,6 @@ package body FLTK.Images is
                 Interfaces.C.int (Col),
                 Interfaces.C.C_float (Amount));
     end Color_Average;
-
-
 
 
     procedure Desaturate
@@ -158,16 +165,12 @@ package body FLTK.Images is
     end Get_W;
 
 
-
-
     function Get_H
            (This : in Image)
         return Natural is
     begin
         return Natural (fl_image_h (This.Void_Ptr));
     end Get_H;
-
-
 
 
     function Get_D

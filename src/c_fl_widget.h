@@ -4,15 +4,23 @@
 #define FL_WIDGET_GUARD
 
 
+
+
 typedef void* WIDGET;
+
+
 
 
 extern "C" void widget_set_draw_hook(WIDGET w, void * d);
 extern "C" void widget_set_handle_hook(WIDGET w, void * h);
 
 
+
+
 extern "C" WIDGET new_fl_widget(int x, int y, int w, int h, char* label);
 extern "C" void free_fl_widget(WIDGET w);
+
+
 
 
 extern "C" void * fl_widget_get_user_data(WIDGET w);
@@ -24,6 +32,8 @@ extern "C" void fl_widget_deactivate(WIDGET w);
 extern "C" int fl_widget_active(WIDGET w);
 extern "C" int fl_widget_active_r(WIDGET w);
 extern "C" void fl_widget_clear_active(WIDGET w);
+
+
 extern "C" unsigned int fl_widget_changed(WIDGET w);
 extern "C" void fl_widget_clear_changed(WIDGET w);
 
@@ -44,8 +54,6 @@ extern "C" int fl_widget_get_label_size(WIDGET w);
 extern "C" void fl_widget_set_label_size(WIDGET w, int s);
 extern "C" int fl_widget_get_label_type(WIDGET w);
 extern "C" void fl_widget_set_label_type(WIDGET w, int l);
-
-
 extern "C" void fl_widget_set_callback(WIDGET w, void * cb);
 
 

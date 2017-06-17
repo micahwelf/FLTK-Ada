@@ -1,8 +1,13 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Widgets.Menus.Menu_Buttons is
@@ -17,6 +22,8 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
     pragma Import (C, menu_button_set_handle_hook, "menu_button_set_handle_hook");
 
 
+
+
     function new_fl_menu_button
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -28,10 +35,15 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
     pragma Import (C, free_fl_menu_button, "free_fl_menu_button");
 
 
+
+
     procedure fl_menu_button_type
            (M : in System.Address;
             T : in Interfaces.C.unsigned);
     pragma Import (C, fl_menu_button_type, "fl_menu_button_type");
+
+
+
 
     procedure fl_menu_button_draw
            (W : in System.Address);
@@ -99,8 +111,6 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
     begin
         fl_menu_button_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle

@@ -1,8 +1,13 @@
 
 
-with Interfaces.C.Strings;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C.Strings,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Widgets.Inputs.Outputs.Multiline is
@@ -17,6 +22,8 @@ package body FLTK.Widgets.Inputs.Outputs.Multiline is
     pragma Import (C, multiline_output_set_handle_hook, "multiline_output_set_handle_hook");
 
 
+
+
     function new_fl_multiline_output
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -26,6 +33,8 @@ package body FLTK.Widgets.Inputs.Outputs.Multiline is
     procedure free_fl_multiline_output
            (F : in System.Address);
     pragma Import (C, free_fl_multiline_output, "free_fl_multiline_output");
+
+
 
 
     procedure fl_multiline_output_draw
@@ -84,8 +93,6 @@ package body FLTK.Widgets.Inputs.Outputs.Multiline is
     begin
         fl_multiline_output_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle

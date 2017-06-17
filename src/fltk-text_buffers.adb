@@ -1,13 +1,22 @@
 
 
-with Interfaces.C.Strings;
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-with Ada.Containers;
-with System;
-use type System.Address;
-use type Interfaces.C.int;
-use type Interfaces.C.Strings.chars_ptr;
-use type Ada.Containers.Count_Type;
+with
+
+    Interfaces.C.Strings,
+    Ada.Strings.Unbounded,
+    Ada.Containers,
+    System;
+
+use
+
+    Ada.Strings.Unbounded;
+
+use type
+
+    System.Address,
+    Interfaces.C.int,
+    Interfaces.C.Strings.chars_ptr,
+    Ada.Containers.Count_Type;
 
 
 package body FLTK.Text_Buffers is
@@ -21,6 +30,9 @@ package body FLTK.Text_Buffers is
     procedure free_fl_text_buffer
            (TB : in System.Address);
     pragma Import (C, free_fl_text_buffer, "free_fl_text_buffer");
+
+
+
 
     procedure fl_text_buffer_add_modify_callback
            (TB, CB, UD : in System.Address);
@@ -42,6 +54,24 @@ package body FLTK.Text_Buffers is
     pragma Import (C, fl_text_buffer_call_predelete_callbacks,
                     "fl_text_buffer_call_predelete_callbacks");
 
+
+
+
+    function fl_text_buffer_loadfile
+           (TB : in System.Address;
+            N  : in Interfaces.C.char_array)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_buffer_loadfile, "fl_text_buffer_loadfile");
+
+    function fl_text_buffer_savefile
+           (TB : in System.Address;
+            N  : in Interfaces.C.char_array)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_buffer_savefile, "fl_text_buffer_savefile");
+
+
+
+
     procedure fl_text_buffer_insert
            (TB : in System.Address;
             P  : in Interfaces.C.int;
@@ -53,26 +83,48 @@ package body FLTK.Text_Buffers is
             S, F : in Interfaces.C.int);
     pragma Import (C, fl_text_buffer_remove, "fl_text_buffer_remove");
 
+    function fl_text_buffer_char_at
+           (TB : in System.Address;
+            P  : in Interfaces.C.int)
+        return Interfaces.C.unsigned;
+    pragma Import (C, fl_text_buffer_char_at, "fl_text_buffer_char_at");
+
+    function fl_text_buffer_text_range
+           (TB   : in System.Address;
+            S, F : in Interfaces.C.int)
+        return Interfaces.C.Strings.chars_ptr;
+    pragma Import (C, fl_text_buffer_text_range, "fl_text_buffer_text_range");
+
     function fl_text_buffer_length
            (TB : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_text_buffer_length, "fl_text_buffer_length");
 
-    function fl_text_buffer_loadfile
-           (TB : in System.Address;
-            N  : in Interfaces.C.char_array)
+
+
+
+    function fl_text_buffer_selection_position
+           (TB   : in     System.Address;
+            S, E :    out Interfaces.C.int)
         return Interfaces.C.int;
-    pragma Import (C, fl_text_buffer_loadfile, "fl_text_buffer_loadfile");
+    pragma Import (C, fl_text_buffer_selection_position, "fl_text_buffer_selection_position");
+
+    procedure fl_text_buffer_select
+           (TB   : in System.Address;
+            S, E : in Interfaces.C.int);
+    pragma Import (C, fl_text_buffer_select, "fl_text_buffer_select");
+
+    function fl_text_buffer_selected
+           (TB : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_text_buffer_selected, "fl_text_buffer_selected");
 
     procedure fl_text_buffer_remove_selection
            (TB : in System.Address);
     pragma Import (C, fl_text_buffer_remove_selection, "fl_text_buffer_remove_selection");
 
-    function fl_text_buffer_savefile
-           (TB : in System.Address;
-            N  : in Interfaces.C.char_array)
-        return Interfaces.C.int;
-    pragma Import (C, fl_text_buffer_savefile, "fl_text_buffer_savefile");
+
+
 
     function fl_text_buffer_search_forward
            (TB : in     System.Address;
@@ -92,22 +144,6 @@ package body FLTK.Text_Buffers is
         return Interfaces.C.int;
     pragma Import (C, fl_text_buffer_search_backward, "fl_text_buffer_search_backward");
 
-    procedure fl_text_buffer_select
-           (TB   : in System.Address;
-            S, E : in Interfaces.C.int);
-    pragma Import (C, fl_text_buffer_select, "fl_text_buffer_select");
-
-    function fl_text_buffer_selection_position
-           (TB   : in     System.Address;
-            S, E :    out Interfaces.C.int)
-        return Interfaces.C.int;
-    pragma Import (C, fl_text_buffer_selection_position, "fl_text_buffer_selection_position");
-
-    function fl_text_buffer_selected
-           (TB : in System.Address)
-        return Interfaces.C.int;
-    pragma Import (C, fl_text_buffer_selected, "fl_text_buffer_selected");
-
     function fl_text_buffer_skip_lines
            (TB   : in System.Address;
             S, L : in Interfaces.C.int)
@@ -120,40 +156,8 @@ package body FLTK.Text_Buffers is
         return Interfaces.C.int;
     pragma Import (C, fl_text_buffer_rewind_lines, "fl_text_buffer_rewind_lines");
 
-    function fl_text_buffer_char_at
-           (TB : in System.Address;
-            P  : in Interfaces.C.int)
-        return Interfaces.C.unsigned;
-    pragma Import (C, fl_text_buffer_char_at, "fl_text_buffer_char_at");
-
-    function fl_text_buffer_text_range
-           (TB   : in System.Address;
-            S, F : in Interfaces.C.int)
-        return Interfaces.C.Strings.chars_ptr;
-    pragma Import (C, fl_text_buffer_text_range, "fl_text_buffer_text_range");
 
 
-
-
-    procedure Finalize
-           (This : in out Text_Buffer) is
-    begin
-        if  This.Void_Ptr /= System.Null_Address and then
-            This in Text_Buffer'Class
-        then
-            free_fl_text_buffer (This.Void_Ptr);
-            This.Void_Ptr := System.Null_Address;
-        end if;
-    end Finalize;
-
-
-
-
-    procedure Modify_Callback_Hook
-           (Pos, Inserted, Deleted, Restyled : in Interfaces.C.int;
-            Text                             : in Interfaces.C.Strings.chars_ptr;
-            UD                               : in System.Address);
-    pragma Convention (C, Modify_Callback_Hook);
 
     procedure Modify_Callback_Hook
            (Pos                         : in Interfaces.C.int;
@@ -194,13 +198,6 @@ package body FLTK.Text_Buffers is
     end Modify_Callback_Hook;
 
 
-
-
-    procedure Predelete_Callback_Hook
-           (Pos, Deleted : in Interfaces.C.int;
-            UD : in System.Address);
-    pragma Convention (C, Predelete_Callback_Hook);
-
     procedure Predelete_Callback_Hook
            (Pos, Deleted : in Interfaces.C.int;
             UD           : in System.Address)
@@ -217,6 +214,20 @@ package body FLTK.Text_Buffers is
             end loop;
         end if;
     end Predelete_Callback_Hook;
+
+
+
+
+    procedure Finalize
+           (This : in out Text_Buffer) is
+    begin
+        if  This.Void_Ptr /= System.Null_Address and then
+            This in Text_Buffer'Class
+        then
+            free_fl_text_buffer (This.Void_Ptr);
+            This.Void_Ptr := System.Null_Address;
+        end if;
+    end Finalize;
 
 
 
@@ -254,8 +265,6 @@ package body FLTK.Text_Buffers is
     end Add_Modify_Callback;
 
 
-
-
     procedure Add_Predelete_Callback
            (This : in out Text_Buffer;
             Func : in     Predelete_Callback) is
@@ -270,15 +279,11 @@ package body FLTK.Text_Buffers is
     end Add_Predelete_Callback;
 
 
-
-
     procedure Call_Modify_Callbacks
            (This : in out Text_Buffer) is
     begin
         fl_text_buffer_call_modify_callbacks (This.Void_Ptr);
     end Call_Modify_Callbacks;
-
-
 
 
     procedure Call_Predelete_Callbacks
@@ -288,8 +293,6 @@ package body FLTK.Text_Buffers is
     end Call_Predelete_Callbacks;
 
 
-
-
     procedure Enable_Callbacks
            (This : in out Text_Buffer) is
     begin
@@ -297,50 +300,11 @@ package body FLTK.Text_Buffers is
     end Enable_Callbacks;
 
 
-
-
     procedure Disable_Callbacks
            (This : in out Text_Buffer) is
     begin
         This.CB_Active := False;
     end Disable_Callbacks;
-
-
-
-
-    procedure Insert_Text
-           (This : in out Text_Buffer;
-            Pos  : in     Natural;
-            Item : in     String) is
-    begin
-        fl_text_buffer_insert
-               (This.Void_Ptr,
-                Interfaces.C.int (Pos),
-                Interfaces.C.To_C (Item));
-    end Insert_Text;
-
-
-
-
-    procedure Remove_Text
-           (This          : in out Text_Buffer;
-            Start, Finish : in     Natural) is
-    begin
-        fl_text_buffer_remove
-               (This.Void_Ptr,
-                Interfaces.C.int (Start),
-                Interfaces.C.int (Finish));
-    end Remove_Text;
-
-
-
-
-    function Length
-           (This : in Text_Buffer)
-        return Natural is
-    begin
-        return Natural (fl_text_buffer_length (This.Void_Ptr));
-    end Length;
 
 
 
@@ -359,17 +323,6 @@ package body FLTK.Text_Buffers is
     end Load_File;
 
 
-
-
-    procedure Remove_Selected_Text
-           (This : in out Text_Buffer) is
-    begin
-        fl_text_buffer_remove_selection (This.Void_Ptr);
-    end Remove_Selected_Text;
-
-
-
-
     procedure Save_File
            (This : in Text_Buffer;
             Name : in String)
@@ -382,6 +335,113 @@ package body FLTK.Text_Buffers is
             raise Storage_Error;
         end if;
     end Save_File;
+
+
+
+
+    procedure Insert_Text
+           (This : in out Text_Buffer;
+            Pos  : in     Natural;
+            Item : in     String) is
+    begin
+        fl_text_buffer_insert
+               (This.Void_Ptr,
+                Interfaces.C.int (Pos),
+                Interfaces.C.To_C (Item));
+    end Insert_Text;
+
+
+    procedure Remove_Text
+           (This          : in out Text_Buffer;
+            Start, Finish : in     Natural) is
+    begin
+        fl_text_buffer_remove
+               (This.Void_Ptr,
+                Interfaces.C.int (Start),
+                Interfaces.C.int (Finish));
+    end Remove_Text;
+
+
+    function Character_At
+           (This : in Text_Buffer;
+            Pos  : in Natural)
+        return Character is
+    begin
+        return Character'Val (fl_text_buffer_char_at
+               (This.Void_Ptr,
+                Interfaces.C.int (Pos)));
+    end Character_At;
+
+
+    function Text_At
+           (This          : in Text_Buffer;
+            Start, Finish : in Natural)
+        return String
+    is
+        C_Str : Interfaces.C.Strings.chars_ptr := fl_text_buffer_text_range
+               (This.Void_Ptr,
+                Interfaces.C.int (Start),
+                Interfaces.C.int (Finish));
+        The_Text : String := Interfaces.C.Strings.Value (C_Str);
+    begin
+        Interfaces.C.Strings.Free (C_Str);
+        return The_Text;
+    end Text_At;
+
+
+    function Length
+           (This : in Text_Buffer)
+        return Natural is
+    begin
+        return Natural (fl_text_buffer_length (This.Void_Ptr));
+    end Length;
+
+
+
+
+    function Get_Selection
+           (This          : in     Text_Buffer;
+            Start, Finish :    out Natural)
+        return Boolean
+    is
+        Result, Start_Raw, Finish_Raw : Interfaces.C.int;
+    begin
+        Result := fl_text_buffer_selection_position
+               (This.Void_Ptr,
+                Start_Raw,
+                Finish_Raw);
+        if Result /= 0 then
+            Start := Natural (Start_Raw);
+            Finish := Natural (Finish_Raw);
+        end if;
+        return Result /= 0;
+    end Get_Selection;
+
+
+    procedure Set_Selection
+           (This          : in out Text_Buffer;
+            Start, Finish : in     Natural) is
+    begin
+        fl_text_buffer_select
+               (This.Void_Ptr,
+                Interfaces.C.int (Start),
+                Interfaces.C.int (Finish));
+    end Set_Selection;
+
+
+    function Has_Selection
+           (This : in Text_Buffer)
+        return Boolean is
+    begin
+        return fl_text_buffer_selected (This.Void_Ptr) /= 0;
+    end Has_Selection;
+
+
+    procedure Remove_Selected_Text
+           (This : in out Text_Buffer) is
+    begin
+        fl_text_buffer_remove_selection (This.Void_Ptr);
+    end Remove_Selected_Text;
 
 
 
@@ -409,8 +469,6 @@ package body FLTK.Text_Buffers is
     end Search_Forward;
 
 
-
-
     function Search_Backward
            (This       : in     Text_Buffer;
             Start_At   : in     Natural;
@@ -434,52 +492,6 @@ package body FLTK.Text_Buffers is
     end Search_Backward;
 
 
-
-
-    procedure Set_Selection
-           (This          : in out Text_Buffer;
-            Start, Finish : in     Natural) is
-    begin
-        fl_text_buffer_select
-               (This.Void_Ptr,
-                Interfaces.C.int (Start),
-                Interfaces.C.int (Finish));
-    end Set_Selection;
-
-
-
-
-    function Get_Selection
-           (This          : in     Text_Buffer;
-            Start, Finish :    out Natural)
-        return Boolean
-    is
-        Result, Start_Raw, Finish_Raw : Interfaces.C.int;
-    begin
-        Result := fl_text_buffer_selection_position
-               (This.Void_Ptr,
-                Start_Raw,
-                Finish_Raw);
-        if Result /= 0 then
-            Start := Natural (Start_Raw);
-            Finish := Natural (Finish_Raw);
-        end if;
-        return Result /= 0;
-    end Get_Selection;
-
-
-
-
-    function Has_Selection
-           (This : in Text_Buffer)
-        return Boolean is
-    begin
-        return fl_text_buffer_selected (This.Void_Ptr) /= 0;
-    end Has_Selection;
-
-
-
-
     function Skip_Lines
            (This         : in out Text_Buffer;
             Start, Lines : in     Natural)
@@ -492,8 +504,6 @@ package body FLTK.Text_Buffers is
     end Skip_Lines;
 
 
-
-
     function Rewind_Lines
            (This         : in out Text_Buffer;
             Start, Lines : in     Natural)
@@ -504,37 +514,6 @@ package body FLTK.Text_Buffers is
                 Interfaces.C.int (Start),
                 Interfaces.C.int (Lines)));
     end Rewind_Lines;
-
-
-
-
-    function Character_At
-           (This : in Text_Buffer;
-            Pos  : in Natural)
-        return Character is
-    begin
-        return Character'Val (fl_text_buffer_char_at
-               (This.Void_Ptr,
-                Interfaces.C.int (Pos)));
-    end Character_At;
-
-
-
-
-    function Text_At
-           (This          : in Text_Buffer;
-            Start, Finish : in Natural)
-        return String
-    is
-        C_Str : Interfaces.C.Strings.chars_ptr := fl_text_buffer_text_range
-               (This.Void_Ptr,
-                Interfaces.C.int (Start),
-                Interfaces.C.int (Finish));
-        The_Text : String := Interfaces.C.Strings.Value (C_Str);
-    begin
-        Interfaces.C.Strings.Free (C_Str);
-        return The_Text;
-    end Text_At;
 
 
 end FLTK.Text_Buffers;

@@ -4,7 +4,11 @@
 #define FL_BITMAP_GUARD
 
 
+
+
 typedef void* BITMAP;
+
+
 
 
 extern "C" void free_fl_bitmap(BITMAP b);

@@ -1,8 +1,13 @@
 
 
-with Interfaces.C;
-with System;
-use type System.Address;
+with
+
+    Interfaces.C,
+    System;
+
+use type
+
+    System.Address;
 
 
 package body FLTK.Widgets.Groups.Scrolls is
@@ -17,6 +22,8 @@ package body FLTK.Widgets.Groups.Scrolls is
     pragma Import (C, scroll_set_handle_hook, "scroll_set_handle_hook");
 
 
+
+
     function new_fl_scroll
            (X, Y, W, H : in Interfaces.C.int;
             Text       : in Interfaces.C.char_array)
@@ -28,10 +35,20 @@ package body FLTK.Widgets.Groups.Scrolls is
     pragma Import (C, free_fl_scroll, "free_fl_scroll");
 
 
+
+
     procedure fl_scroll_to
            (S    : in System.Address;
             X, Y : in Interfaces.C.int);
     pragma Import (C, fl_scroll_to, "fl_scroll_to");
+
+    procedure fl_scroll_set_type
+           (S : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_scroll_set_type, "fl_scroll_set_type");
+
+
+
 
     function fl_scroll_get_size
            (S : in System.Address)
@@ -53,10 +70,8 @@ package body FLTK.Widgets.Groups.Scrolls is
         return Interfaces.C.int;
     pragma Import (C, fl_scroll_yposition, "fl_scroll_yposition");
 
-    procedure fl_scroll_set_type
-           (S : in System.Address;
-            T : in Interfaces.C.int);
-    pragma Import (C, fl_scroll_set_type, "fl_scroll_set_type");
+
+
 
     procedure fl_scroll_draw
            (S : in System.Address);
@@ -111,55 +126,12 @@ package body FLTK.Widgets.Groups.Scrolls is
 
 
 
-
     procedure Scroll_To
            (This : in out Scroll;
             X, Y : in     Integer) is
     begin
         fl_scroll_to (This.Void_Ptr, Interfaces.C.int (X), Interfaces.C.int (Y));
     end Scroll_To;
-
-
-
-
-    function Get_Scrollbar_Size
-           (This : in Scroll)
-        return Integer is
-    begin
-        return Integer (fl_scroll_get_size (This.Void_Ptr));
-    end Get_Scrollbar_Size;
-
-
-
-
-    procedure Set_Scrollbar_Size
-           (This : in out Scroll;
-            To   : in     Integer) is
-    begin
-        fl_scroll_set_size (This.Void_Ptr, Interfaces.C.int (To));
-    end Set_Scrollbar_Size;
-
-
-
-
-    function Get_Scroll_X
-           (This : in Scroll)
-        return Integer is
-    begin
-        return Integer (fl_scroll_xposition (This.Void_Ptr));
-    end Get_Scroll_X;
-
-
-
-
-    function Get_Scroll_Y
-           (This : in Scroll)
-        return Integer is
-    begin
-        return Integer (fl_scroll_yposition (This.Void_Ptr));
-    end Get_Scroll_Y;
-
-
 
 
     procedure Set_Type
@@ -172,13 +144,45 @@ package body FLTK.Widgets.Groups.Scrolls is
 
 
 
+    function Get_Scrollbar_Size
+           (This : in Scroll)
+        return Integer is
+    begin
+        return Integer (fl_scroll_get_size (This.Void_Ptr));
+    end Get_Scrollbar_Size;
+
+
+    procedure Set_Scrollbar_Size
+           (This : in out Scroll;
+            To   : in     Integer) is
+    begin
+        fl_scroll_set_size (This.Void_Ptr, Interfaces.C.int (To));
+    end Set_Scrollbar_Size;
+
+
+    function Get_Scroll_X
+           (This : in Scroll)
+        return Integer is
+    begin
+        return Integer (fl_scroll_xposition (This.Void_Ptr));
+    end Get_Scroll_X;
+
+
+    function Get_Scroll_Y
+           (This : in Scroll)
+        return Integer is
+    begin
+        return Integer (fl_scroll_yposition (This.Void_Ptr));
+    end Get_Scroll_Y;
+
+
+
+
     procedure Draw
            (This : in out Scroll) is
     begin
         fl_scroll_draw (This.Void_Ptr);
     end Draw;
-
-
 
 
     function Handle

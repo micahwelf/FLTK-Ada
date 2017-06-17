@@ -9,7 +9,6 @@ BMP_IMAGE new_fl_bmp_image(const char * f) {
     return b;
 }
 
-
 void free_fl_bmp_image(BMP_IMAGE b) {
     delete reinterpret_cast<Fl_BMP_Image*>(b);
 }
