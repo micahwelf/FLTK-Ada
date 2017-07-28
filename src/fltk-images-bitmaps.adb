@@ -31,6 +31,14 @@ package body FLTK.Images.Bitmaps is
 
 
 
+    procedure fl_bitmap_draw
+           (I                  : in System.Address;
+            X, Y, W, H, CX, CY : in Interfaces.C.int);
+    pragma Import (C, fl_bitmap_draw, "fl_bitmap_draw");
+
+
+
+
     overriding procedure Finalize
            (This : in out Bitmap) is
     begin
@@ -68,6 +76,24 @@ package body FLTK.Images.Bitmaps is
             Copied.Void_Ptr := fl_bitmap_copy2 (This.Void_Ptr);
         end return;
     end Copy;
+
+
+
+
+    procedure Draw
+           (This       : in Bitmap;
+            X, Y, W, H : in Integer;
+            CX, CY     : in Integer := 0) is
+    begin
+        fl_bitmap_draw
+               (This.Void_Ptr,
+                Interfaces.C.int (X),
+                Interfaces.C.int (Y),
+                Interfaces.C.int (W),
+                Interfaces.C.int (H),
+                Interfaces.C.int (CX),
+                Interfaces.C.int (CY));
+    end Draw;
 
 
 end FLTK.Images.Bitmaps;

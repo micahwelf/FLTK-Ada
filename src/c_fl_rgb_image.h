@@ -22,5 +22,8 @@ extern "C" void fl_rgb_image_color_average(RGB_IMAGE i, int c, float b);
 extern "C" void fl_rgb_image_desaturate(RGB_IMAGE i);
 
 
+extern "C" void fl_rgb_image_draw(RGB_IMAGE i, int x, int y, int w, int h, int cx, int cy);
+
+
 #endif
 

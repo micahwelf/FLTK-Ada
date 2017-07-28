@@ -18,6 +18,14 @@ package FLTK.Images.Bitmaps is
         return Bitmap;
 
 
+
+
+    procedure Draw
+           (This       : in Bitmap;
+            X, Y, W, H : in Integer;
+            CX, CY     : in Integer := 0);
+
+
 private
 
 

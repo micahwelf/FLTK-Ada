@@ -7,6 +7,7 @@ with
 
 use type
 
+    Interfaces.C.int,
     System.Address;
 
 
@@ -53,6 +54,11 @@ package body FLTK.Images is
            (I : in System.Address);
     pragma Import (C, fl_image_inactive, "fl_image_inactive");
 
+    function fl_image_fail
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_image_fail, "fl_image_fail");
+
 
 
 
@@ -70,6 +76,24 @@ package body FLTK.Images is
            (I : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_image_d, "fl_image_d");
+
+
+
+
+    procedure fl_image_draw
+           (I    : in System.Address;
+            X, Y : in Interfaces.C.int);
+    pragma Import (C, fl_image_draw, "fl_image_draw");
+
+    procedure fl_image_draw2
+           (I                  : in System.Address;
+            X, Y, W, H, CX, CY : in Interfaces.C.int);
+    pragma Import (C, fl_image_draw2, "fl_image_draw2");
+
+    procedure fl_image_draw_empty
+           (I    : in System.Address;
+            X, Y : in Interfaces.C.int);
+    pragma Import (C, fl_image_draw_empty, "fl_image_draw_empty");
 
 
 
@@ -97,6 +121,16 @@ package body FLTK.Images is
                    (Interfaces.C.int (Width),
                     Interfaces.C.int (Height),
                     Interfaces.C.int (Depth));
+            case fl_image_fail (This.Void_Ptr) is
+                when 1 =>
+                    raise No_Image_Error;
+                when 2 =>
+                    raise File_Access_Error;
+                when 3 =>
+                    raise Format_Error;
+                when others =>
+                    null;
+            end case;
         end return;
     end Create;
 
@@ -155,6 +189,14 @@ package body FLTK.Images is
     end Inactive;
 
 
+    function Is_Empty
+           (This : in Image)
+        return Boolean is
+    begin
+        return fl_image_fail (This.Void_Ptr) /= 0;
+    end Is_Empty;
+
+
 
 
     function Get_W
@@ -179,6 +221,46 @@ package body FLTK.Images is
     begin
         return Natural (fl_image_d (This.Void_Ptr));
     end Get_D;
+
+
+
+
+    procedure Draw
+           (This : in Image;
+            X, Y : in Integer) is
+    begin
+        fl_image_draw
+               (This.Void_Ptr,
+                Interfaces.C.int (X),
+                Interfaces.C.int (Y));
+    end Draw;
+
+
+    procedure Draw
+           (This       : in Image;
+            X, Y, W, H : in Integer;
+            CX, CY     : in Integer := 0) is
+    begin
+        fl_image_draw2
+               (This.Void_Ptr,
+                Interfaces.C.int (X),
+                Interfaces.C.int (Y),
+                Interfaces.C.int (W),
+                Interfaces.C.int (H),
+                Interfaces.C.int (CX),
+                Interfaces.C.int (CY));
+    end Draw;
+
+
+    procedure Draw_Empty
+           (This : in Image;
+            X, Y : in Integer) is
+    begin
+        fl_image_draw_empty
+               (This.Void_Ptr,
+                Interfaces.C.int (X),
+                Interfaces.C.int (Y));
+    end Draw_Empty;
 
 
 end FLTK.Images;

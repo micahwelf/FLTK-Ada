@@ -7,6 +7,8 @@ package FLTK.Images is
 
     type Blend is new Float range 0.0 .. 1.0;
 
+    No_Image_Error, File_Access_Error, Format_Error : exception;
+
 
 
 
@@ -40,6 +42,10 @@ package FLTK.Images is
     procedure Inactive
            (This : in out Image);
 
+    function Is_Empty
+           (This : in Image)
+        return Boolean;
+
 
 
 
@@ -54,6 +60,22 @@ package FLTK.Images is
     function Get_D
            (This : in Image)
         return Natural;
+
+
+
+
+    procedure Draw
+           (This : in Image;
+            X, Y : in Integer);
+
+    procedure Draw
+           (This       : in Image;
+            X, Y, W, H : in Integer;
+            CX, CY     : in Integer := 0);
+
+    procedure Draw_Empty
+           (This : in Image;
+            X, Y : in Integer);
 
 
 private

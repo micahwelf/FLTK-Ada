@@ -16,3 +16,10 @@ BITMAP fl_bitmap_copy2(BITMAP b) {
     return reinterpret_cast<Fl_Bitmap*>(b)->copy();
 }
 
+
+
+
+void fl_bitmap_draw(BITMAP b, int x, int y, int w, int h, int cx, int cy) {
+    reinterpret_cast<Fl_Bitmap*>(b)->draw(x, y, w, h, cx, cy);
+}
+

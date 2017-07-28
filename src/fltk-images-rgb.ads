@@ -29,6 +29,14 @@ package FLTK.Images.RGB is
            (This : in out RGB_Image);
 
 
+
+
+    procedure Draw
+           (This       : in RGB_Image;
+            X, Y, W, H : in Integer;
+            CX, CY     : in Integer := 0);
+
+
 private
 
 

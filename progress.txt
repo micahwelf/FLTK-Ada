@@ -12,6 +12,14 @@ Overall estimate: 40-45%
 
 Done:
 
+FLTK.Images
+FLTK.Images.Bitmaps
+FLTK.Images.Bitmaps.XBM
+FLTK.Images.RGB
+FLTK.Images.RGB.BMP
+FLTK.Images.RGB.JPEG
+FLTK.Images.RGB.PNG
+FLTK.Images.RGB.PNM
 FLTK.Widgets.Boxes
 FLTK.Widgets.Buttons.Enter
 FLTK.Widgets.Buttons.Light
@@ -42,14 +50,6 @@ Partially Done:
 
 FLTK
 FLTK.Dialogs
-FLTK.Images
-FLTK.Images.Bitmaps
-FLTK.Images.Bitmaps.XBM
-FLTK.Images.RGB
-FLTK.Images.RGB.BMP
-FLTK.Images.RGB.JPEG
-FLTK.Images.RGB.PNG
-FLTK.Images.RGB.PNM
 FLTK.Menu_Items
 FLTK.Text_Buffers;
 FLTK.Widgets

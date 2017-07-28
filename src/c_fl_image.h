@@ -24,11 +24,17 @@ extern "C" void fl_image_desaturate(IMAGE i);
 
 
 extern "C" void fl_image_inactive(IMAGE i);
+extern "C" int fl_image_fail(IMAGE i);
 
 
 extern "C" int fl_image_w(IMAGE i);
 extern "C" int fl_image_h(IMAGE i);
 extern "C" int fl_image_d(IMAGE i);
+
+
+extern "C" void fl_image_draw(IMAGE i, int x, int y);
+extern "C" void fl_image_draw2(IMAGE i, int x, int y, int w, int h, int cx, int cy);
+extern "C" void fl_image_draw_empty(IMAGE i, int x, int y);
 
 
 #endif

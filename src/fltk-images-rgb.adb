@@ -44,6 +44,14 @@ package body FLTK.Images.RGB is
 
 
 
+    procedure fl_rgb_image_draw
+           (I                  : in System.Address;
+            X, Y, W, H, CX, CY : in Interfaces.C.int);
+    pragma Import (C, fl_rgb_image_draw, "fl_rgb_image_draw");
+
+
+
+
     overriding procedure Finalize
            (This : in out RGB_Image) is
     begin
@@ -102,6 +110,24 @@ package body FLTK.Images.RGB is
     begin
         fl_rgb_image_desaturate (This.Void_Ptr);
     end Desaturate;
+
+
+
+
+    procedure Draw
+           (This       : in RGB_Image;
+            X, Y, W, H : in Integer;
+            CX, CY     : in Integer := 0) is
+    begin
+        fl_rgb_image_draw
+               (This.Void_Ptr,
+                Interfaces.C.int (X),
+                Interfaces.C.int (Y),
+                Interfaces.C.int (W),
+                Interfaces.C.int (H),
+                Interfaces.C.int (CX),
+                Interfaces.C.int (CY));
+    end Draw;
 
 
 end FLTK.Images.RGB;
