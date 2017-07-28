@@ -54,11 +54,6 @@ package body FLTK.Images is
            (I : in System.Address);
     pragma Import (C, fl_image_inactive, "fl_image_inactive");
 
-    function fl_image_fail
-           (I : in System.Address)
-        return Interfaces.C.int;
-    pragma Import (C, fl_image_fail, "fl_image_fail");
-
 
 
 

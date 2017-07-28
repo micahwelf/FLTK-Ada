@@ -47,6 +47,16 @@ package body FLTK.Images.RGB.JPEG is
         return This : JPEG_Image do
             This.Void_Ptr := new_fl_jpeg_image
                    (Interfaces.C.To_C (Filename));
+            case fl_image_fail (This.Void_Ptr) is
+                when 1 =>
+                    raise No_Image_Error;
+                when 2 =>
+                    raise File_Access_Error;
+                when 3 =>
+                    raise Format_Error;
+                when others =>
+                    null;
+            end case;
         end return;
     end Create;
 

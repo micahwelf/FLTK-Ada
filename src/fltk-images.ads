@@ -87,5 +87,13 @@ private
            (This : in out Image);
 
 
+
+
+    function fl_image_fail
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_image_fail, "fl_image_fail");
+
+
 end FLTK.Images;
 
