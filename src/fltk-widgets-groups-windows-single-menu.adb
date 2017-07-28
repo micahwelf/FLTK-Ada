@@ -138,6 +138,7 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
                    (This.Void_Ptr,
                     Widget_Convert.To_Address (This'Unchecked_Access));
             menu_window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+            menu_window_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
         end return;
     end Create;
 
