@@ -181,6 +181,12 @@ package FLTK.Widgets is
     procedure Draw
            (This : in out Widget) is null;
 
+    procedure Redraw
+           (This : in out Widget);
+
+    procedure Redraw_Label
+           (This : in out Widget);
+
     function Handle
            (This  : in out Widget;
             Event : in     Event_Kind)

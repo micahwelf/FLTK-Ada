@@ -68,5 +68,9 @@ extern "C" void fl_widget_position(WIDGET w, int x, int y);
 extern "C" void fl_widget_set_image(WIDGET w, void * img);
 
 
+extern "C" void fl_widget_redraw(WIDGET w);
+extern "C" void fl_widget_redraw_label(WIDGET w);
+
+
 #endif
 

@@ -194,3 +194,14 @@ void fl_widget_set_image(WIDGET w, void * img) {
     reinterpret_cast<Fl_Widget*>(w)->image(reinterpret_cast<Fl_Image*>(img));
 }
 
+
+
+
+void fl_widget_redraw(WIDGET w) {
+    reinterpret_cast<Fl_Widget*>(w)->redraw();
+}
+
+void fl_widget_redraw_label(WIDGET w) {
+    reinterpret_cast<Fl_Widget*>(w)->redraw_label();
+}
+

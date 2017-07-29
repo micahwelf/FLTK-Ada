@@ -204,6 +204,17 @@ package body FLTK.Widgets is
 
 
 
+    procedure fl_widget_redraw
+           (W : in System.Address);
+    pragma Import (C, fl_widget_redraw, "fl_widget_redraw");
+
+    procedure fl_widget_redraw_label
+           (W : in System.Address);
+    pragma Import (C, fl_widget_redraw_label, "fl_widget_redraw_label");
+
+
+
+
     procedure Callback_Hook
            (W, U : in System.Address)
     is
@@ -549,6 +560,20 @@ package body FLTK.Widgets is
     end Set_Image;
 
 
+
+
+    procedure Redraw
+           (This : in out Widget) is
+    begin
+        fl_widget_redraw (This.Void_Ptr);
+    end Redraw;
+
+
+    procedure Redraw_Label
+           (This : in out Widget) is
+    begin
+        fl_widget_redraw_label (This.Void_Ptr);
+    end Redraw_Label;
 
 
     function Handle
