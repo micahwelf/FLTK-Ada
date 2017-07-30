@@ -12,53 +12,53 @@ use type
 package body FLTK.Screen is
 
 
-    function screen_x return Interfaces.C.int;
-    pragma Import (C, screen_x, "screen_x");
+    function fl_screen_x return Interfaces.C.int;
+    pragma Import (C, fl_screen_x, "fl_screen_x");
 
-    function screen_y return Interfaces.C.int;
-    pragma Import (C, screen_y, "screen_y");
+    function fl_screen_y return Interfaces.C.int;
+    pragma Import (C, fl_screen_y, "fl_screen_y");
 
-    function screen_w return Interfaces.C.int;
-    pragma Import (C, screen_w, "screen_w");
+    function fl_screen_w return Interfaces.C.int;
+    pragma Import (C, fl_screen_w, "fl_screen_w");
 
-    function screen_h return Interfaces.C.int;
-    pragma Import (C, screen_h, "screen_h");
-
-
+    function fl_screen_h return Interfaces.C.int;
+    pragma Import (C, fl_screen_h, "fl_screen_h");
 
 
-    function screen_count return Interfaces.C.int;
-    pragma Import (C, screen_count, "screen_count");
 
-    procedure screen_dpi
+
+    function fl_screen_count return Interfaces.C.int;
+    pragma Import (C, fl_screen_count, "fl_screen_count");
+
+    procedure fl_screen_dpi
            (H, V :    out Interfaces.C.C_float;
             N    : in     Interfaces.C.int);
-    pragma Import (C, screen_dpi, "screen_dpi");
+    pragma Import (C, fl_screen_dpi, "fl_screen_dpi");
 
 
 
 
     function Get_X return Integer is
     begin
-        return Integer (screen_x);
+        return Integer (fl_screen_x);
     end Get_X;
 
 
     function Get_Y return Integer is
     begin
-        return Integer (screen_y);
+        return Integer (fl_screen_y);
     end Get_Y;
 
 
     function Get_W return Integer is
     begin
-        return Integer (screen_w);
+        return Integer (fl_screen_w);
     end Get_W;
 
 
     function Get_H return Integer is
     begin
-        return Integer (screen_h);
+        return Integer (fl_screen_h);
     end Get_H;
 
 
@@ -66,7 +66,7 @@ package body FLTK.Screen is
 
     function Get_Count return Integer is
     begin
-        return Integer (screen_count);
+        return Integer (fl_screen_count);
     end Get_Count;
 
 
@@ -77,7 +77,7 @@ package body FLTK.Screen is
     is
         H, V : Interfaces.C.C_float;
     begin
-        screen_dpi (H, V, Interfaces.C.int (Screen_Number) - 1);
+        fl_screen_dpi (H, V, Interfaces.C.int (Screen_Number) - 1);
         Horizontal := Float (H);
         Vertical := Float (V);
     end Get_DPI;
