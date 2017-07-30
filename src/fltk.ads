@@ -138,8 +138,8 @@ package FLTK is
             Times_Italic,
             Times_Bold_Italic,
             Symbol,
-            Screen,
-            Screen_Bold,
+            Monospace,
+            Monospace_Bold,
             Zapf_Dingbats,
             Free_Font);
 
