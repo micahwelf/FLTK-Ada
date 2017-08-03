@@ -23,11 +23,6 @@ package FLTK.Widgets is
     type Widget_Callback is access procedure
            (Item : in out Widget'Class);
 
-    type Font_Size is new Natural;
-    Normal_Size : constant Font_Size := 14;
-
-    type Event_Outcome is (Not_Handled, Handled);
-
 
 
 

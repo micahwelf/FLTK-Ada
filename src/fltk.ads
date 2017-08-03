@@ -144,6 +144,10 @@ package FLTK is
             Free_Font);
 
 
+    type Font_Size is new Natural;
+    Normal_Size : constant Font_Size := 14;
+
+
     type Label_Kind is
            (Normal_Label,
             No_Label,
@@ -183,6 +187,9 @@ package FLTK is
             DnD_Release,
             Screen_Config_Changed,
             Fullscreen);
+
+
+    type Event_Outcome is (Not_Handled, Handled);
 
 
 private
