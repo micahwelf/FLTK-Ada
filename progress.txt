@@ -31,6 +31,8 @@ FLTK.Widgets.Buttons.Radio
 FLTK.Widgets.Buttons.Repeat
 FLTK.Widgets.Buttons.Toggle
 FLTK.Widgets.Clocks
+FLTK.Widgets.Clocks.Updated
+FLTK.Widgets.Clocks.Updated.Round
 FLTK.Widgets.Groups.Scrolls
 FLTK.Widgets.Groups.Text_Displays.Text_Editors
 FLTK.Widgets.Groups.Windows.Double
@@ -74,8 +76,6 @@ FL_XPM_Image
 FL_Shared_Image
 FL_Tiled_Image
 FL_Chart
-FL_Clock
-FL_Round_Clock
 FL_Browser
 FL_Check_Browser
 FL_File_Browser
