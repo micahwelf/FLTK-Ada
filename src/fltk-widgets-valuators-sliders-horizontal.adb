@@ -59,7 +59,7 @@ package body FLTK.Widgets.Valuators.Sliders.Horizontal is
             free_fl_horizontal_slider (This.Void_Ptr);
             This.Void_Ptr := System.Null_Address;
         end if;
-        Finalize (Valuator (This));
+        Finalize (Slider (This));
     end Finalize;
 
 
