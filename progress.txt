@@ -46,6 +46,7 @@ FLTK.Widgets.Inputs.Outputs.Multiline
 FLTK.Widgets.Inputs.Secret
 FLTK.Widgets.Menus.Menu_Bars
 FLTK.Widgets.Progress_Bars
+FLTK.Widgets.Valuators.Adjusters
 
 
 
@@ -95,7 +96,6 @@ FL_Tabs
 FL_Tile
 FL_Tree
 FL_Wizard
-FL_Adjuster
 FL_Counter
 FL_Simple_Counter
 FL_Dial
