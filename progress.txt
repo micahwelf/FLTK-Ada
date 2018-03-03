@@ -48,6 +48,7 @@ FLTK.Widgets.Menus.Menu_Bars
 FLTK.Widgets.Progress_Bars
 FLTK.Widgets.Valuators.Adjusters
 FLTK.Widgets.Valuators.Counters
+FLTK.Widgets.Valuators.Counters.Simple
 
 
 
@@ -97,7 +98,6 @@ FL_Tabs
 FL_Tile
 FL_Tree
 FL_Wizard
-FL_Simple_Counter
 FL_Dial
 FL_Fill_Dial
 FL_Line_Dial
