@@ -77,7 +77,7 @@ private
     type Counter is new Valuator with record
         --  Needed because Fl_Counter doesn't have
         --  a way to retrieve this value otherwise.
-        Long_Step : Long_Float;
+        Long_Step : Long_Float := 1.0;
     end record;
 
     overriding procedure Finalize
