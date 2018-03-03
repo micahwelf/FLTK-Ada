@@ -51,6 +51,7 @@ FLTK.Widgets.Valuators.Counters
 FLTK.Widgets.Valuators.Counters.Simple
 FLTK.Widgets.Valuators.Dials
 FLTK.Widgets.Valuators.Dials.Fill
+FLTK.Widgets.Valuators.Dials.Line
 
 
 
@@ -100,7 +101,6 @@ FL_Tabs
 FL_Tile
 FL_Tree
 FL_Wizard
-FL_Line_Dial
 FL_Roller
 FL_Slider
 FL_Fill_Slider
