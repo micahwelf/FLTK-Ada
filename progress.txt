@@ -53,6 +53,7 @@ FLTK.Widgets.Valuators.Dials
 FLTK.Widgets.Valuators.Dials.Fill
 FLTK.Widgets.Valuators.Dials.Line
 FLTK.Widgets.Valuators.Rollers
+FLTK.Widgets.Valuators.Sliders.Fill
 
 
 
@@ -103,7 +104,6 @@ FL_Tabs
 FL_Tile
 FL_Tree
 FL_Wizard
-FL_Fill_Slider
 FL_Hor_Fill_Slider
 FL_Hor_Nice_Slider
 FL_Hor_Slider
