@@ -65,6 +65,7 @@ FLTK.Widgets.Inputs
 FLTK.Widgets.Inputs.File
 FLTK.Widgets.Menus
 FLTK.Widgets.Menus.Menu_Buttons
+FLTK.Widgets.Valuators
 
 
 
@@ -94,7 +95,6 @@ FL_Tabs
 FL_Tile
 FL_Tree
 FL_Wizard
-FL_Valuator
 FL_Adjuster
 FL_Counter
 FL_Simple_Counter
