@@ -73,6 +73,7 @@ FLTK.Widgets.Inputs.File
 FLTK.Widgets.Menus
 FLTK.Widgets.Menus.Menu_Buttons
 FLTK.Widgets.Valuators
+FLTK.Widgets.Valuators.Sliders
 
 
 
@@ -102,7 +103,6 @@ FL_Tabs
 FL_Tile
 FL_Tree
 FL_Wizard
-FL_Slider
 FL_Fill_Slider
 FL_Hor_Fill_Slider
 FL_Hor_Nice_Slider
