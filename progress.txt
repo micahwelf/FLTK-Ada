@@ -39,6 +39,7 @@ FLTK.Widgets.Groups.Text_Displays.Text_Editors
 FLTK.Widgets.Groups.Windows.Double
 FLTK.Widgets.Groups.Windows.Single
 FLTK.Widgets.Groups.Windows.Single.Menu
+FLTK.Widgets.Groups.Wizards
 FLTK.Widgets.Inputs.Float
 FLTK.Widgets.Inputs.Integer
 FLTK.Widgets.Inputs.Multiline
@@ -107,7 +108,6 @@ FL_Table
 FL_Table_Row
 FL_Tile
 FL_Tree
-FL_Wizard
 FL_Scrollbar
 FL_Value_Slider
 FL_Hor_Value_Slider
