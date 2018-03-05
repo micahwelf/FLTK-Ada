@@ -34,6 +34,7 @@ FLTK.Widgets.Clocks
 FLTK.Widgets.Clocks.Updated
 FLTK.Widgets.Clocks.Updated.Round
 FLTK.Widgets.Groups.Scrolls
+FLTK.Widgets.Groups.Tabbed
 FLTK.Widgets.Groups.Text_Displays.Text_Editors
 FLTK.Widgets.Groups.Windows.Double
 FLTK.Widgets.Groups.Windows.Single
@@ -104,7 +105,6 @@ FL_Pack
 FL_Spinner
 FL_Table
 FL_Table_Row
-FL_Tabs
 FL_Tile
 FL_Tree
 FL_Wizard
@@ -124,4 +124,20 @@ FL_Free
 FL_Sys_Menu_Bar
 FL_Positioner
 FL_Timer
+
+
+
+
+A note on callbacks and overriding:
+
+As part of its normal operation, FLTK calls a Widget's Draw and Handle methods from its
+main loop to deal with draw and input events. Since it's another part of the program
+that is invoking them, even if it's a part the programmer has no direct control over,
+this binding is set up so that if you override Draw or Handle, the behaviour will change.
+
+On the other hand, something like the Push method in tabbed groups is usually invoked
+from within that same tabbed group widget's Handle method. Therefore, keeping consistency
+with Ada semantics, overriding the Push method will NOT change the behaviour of the
+corresponding Handle method. You must also override Handle.
+
 
