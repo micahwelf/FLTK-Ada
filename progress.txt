@@ -100,8 +100,8 @@ FL_Hold_Browser
 FL_Multi_Browser
 FL_Select_Browser
 FL_Color_Chooser
-FL_Help_View
 FL_Input_Choice
+FL_Help_View (several methods have ABI_VERSION bugs)
 FL_Pack
 FL_Spinner
 FL_Table

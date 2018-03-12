@@ -61,6 +61,21 @@ void free_fl_valuator(VALUATOR v) {
 
 
 
+double fl_valuator_clamp(VALUATOR v, double a) {
+    return reinterpret_cast<My_Valuator*>(v)->clamp(a);
+}
+
+double fl_valuator_round(VALUATOR v, double a) {
+    return reinterpret_cast<My_Valuator*>(v)->round(a);
+}
+
+double fl_valuator_increment(VALUATOR v, double a, int s) {
+    return reinterpret_cast<My_Valuator*>(v)->increment(a,s);
+}
+
+
+
+
 double fl_valuator_get_minimum(VALUATOR v) {
     return reinterpret_cast<My_Valuator*>(v)->minimum();
 }
