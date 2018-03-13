@@ -8,9 +8,13 @@ package FLTK.Images.RGB.PNM is
 
 
 
-    function Create
-           (Filename : in String)
-        return PNM_Image;
+    package Forge is
+
+        function Create
+               (Filename : in String)
+            return PNM_Image;
+
+    end Forge;
 
 
 private

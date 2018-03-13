@@ -14,10 +14,14 @@ package FLTK.Widgets.Clocks is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Clock;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Clock;
+
+    end Forge;
 
 
 

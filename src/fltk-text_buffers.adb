@@ -232,21 +232,25 @@ package body FLTK.Text_Buffers is
 
 
 
-    function Create
-           (Requested_Size     : in Natural := 0;
-            Preferred_Gap_Size : in Natural := 1024)
-        return Text_Buffer is
-    begin
-        return This : Text_Buffer do
-            This.Void_Ptr := new_fl_text_buffer
-                   (Interfaces.C.int (Requested_Size),
-                    Interfaces.C.int (Preferred_Gap_Size));
+    package body Forge is
 
-            This.Modify_CBs := Modify_Vectors.Empty_Vector;
-            This.Predelete_CBs := Predelete_Vectors.Empty_Vector;
-            This.CB_Active := True;
-        end return;
-    end Create;
+        function Create
+               (Requested_Size     : in Natural := 0;
+                Preferred_Gap_Size : in Natural := 1024)
+            return Text_Buffer is
+        begin
+            return This : Text_Buffer do
+                This.Void_Ptr := new_fl_text_buffer
+                       (Interfaces.C.int (Requested_Size),
+                        Interfaces.C.int (Preferred_Gap_Size));
+
+                This.Modify_CBs := Modify_Vectors.Empty_Vector;
+                This.Predelete_CBs := Predelete_Vectors.Empty_Vector;
+                This.CB_Active := True;
+            end return;
+        end Create;
+
+    end Forge;
 
 
 

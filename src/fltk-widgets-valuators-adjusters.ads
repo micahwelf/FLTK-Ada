@@ -8,10 +8,14 @@ package FLTK.Widgets.Valuators.Adjusters is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Adjuster;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Adjuster;
+
+    end Forge;
 
 
 

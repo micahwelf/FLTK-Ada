@@ -93,25 +93,29 @@ package body FLTK.Widgets.Valuators.Sliders is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Slider is
-    begin
-        return This : Slider do
-            This.Void_Ptr := new_fl_slider
-                   (Interfaces.C.int (X),
-                    Interfaces.C.int (Y),
-                    Interfaces.C.int (W),
-                    Interfaces.C.int (H),
-                    Interfaces.C.To_C (Text));
-            fl_widget_set_user_data
-                   (This.Void_Ptr,
-                    Widget_Convert.To_Address (This'Unchecked_Access));
-            slider_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
-            slider_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
-        end return;
-    end Create;
+    package body Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Slider is
+        begin
+            return This : Slider do
+                This.Void_Ptr := new_fl_slider
+                       (Interfaces.C.int (X),
+                        Interfaces.C.int (Y),
+                        Interfaces.C.int (W),
+                        Interfaces.C.int (H),
+                        Interfaces.C.To_C (Text));
+                fl_widget_set_user_data
+                       (This.Void_Ptr,
+                        Widget_Convert.To_Address (This'Unchecked_Access));
+                slider_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+                slider_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
+            end return;
+        end Create;
+
+    end Forge;
 
 
 

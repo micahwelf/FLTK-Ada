@@ -8,10 +8,14 @@ package FLTK.Widgets.Valuators.Sliders.Nice is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Nice_Slider;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Nice_Slider;
+
+    end Forge;
 
 
 

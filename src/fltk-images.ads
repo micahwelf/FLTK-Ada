@@ -12,18 +12,25 @@ package FLTK.Images is
 
 
 
-    function Create
-           (Width, Height, Depth : in Natural)
-        return Image;
+    package Forge is
+
+        function Create
+               (Width, Height, Depth : in Natural)
+            return Image;
+
+    end Forge;
+
+
+
 
     function Copy
            (This          : in Image;
             Width, Height : in Natural)
-        return Image;
+        return Image'Class;
 
     function Copy
            (This : in Image)
-        return Image;
+        return Image'Class;
 
 
 

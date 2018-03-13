@@ -8,10 +8,14 @@ package FLTK.Widgets.Buttons.Repeat is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Repeat_Button;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Repeat_Button;
+
+    end Forge;
 
 
 

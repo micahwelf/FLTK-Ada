@@ -32,10 +32,14 @@ package FLTK.Text_Buffers is
 
 
 
-    function Create
-           (Requested_Size     : in Natural := 0;
-            Preferred_Gap_Size : in Natural := 1024)
-        return Text_Buffer;
+    package Forge is
+
+        function Create
+               (Requested_Size     : in Natural := 0;
+                Preferred_Gap_Size : in Natural := 1024)
+            return Text_Buffer;
+
+    end Forge;
 
 
 

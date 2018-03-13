@@ -8,10 +8,14 @@ package FLTK.Widgets.Buttons.Light.Round is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Round_Button;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Round_Button;
+
+    end Forge;
 
 
 

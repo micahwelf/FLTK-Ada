@@ -8,10 +8,14 @@ package FLTK.Widgets.Inputs.Secret is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Secret_Input;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Secret_Input;
+
+    end Forge;
 
 
 

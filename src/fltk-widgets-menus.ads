@@ -34,10 +34,14 @@ package FLTK.Widgets.Menus is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Menu;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Menu;
+
+    end Forge;
 
 
 

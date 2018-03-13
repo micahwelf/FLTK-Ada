@@ -8,10 +8,14 @@ package FLTK.Widgets.Inputs.File is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return File_Input;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return File_Input;
+
+    end Forge;
 
 
 

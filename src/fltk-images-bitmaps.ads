@@ -11,11 +11,11 @@ package FLTK.Images.Bitmaps is
     function Copy
            (This          : in Bitmap;
             Width, Height : in Natural)
-        return Bitmap;
+        return Bitmap'Class;
 
     function Copy
            (This : in Bitmap)
-        return Bitmap;
+        return Bitmap'Class;
 
 
 

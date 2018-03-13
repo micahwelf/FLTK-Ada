@@ -8,10 +8,14 @@ package FLTK.Widgets.Menus.Menu_Bars is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Menu_Bar;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Menu_Bar;
+
+    end Forge;
 
 
 

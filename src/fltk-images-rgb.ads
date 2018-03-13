@@ -11,11 +11,11 @@ package FLTK.Images.RGB is
     function Copy
            (This          : in RGB_Image;
             Width, Height : in Natural)
-        return RGB_Image;
+        return RGB_Image'Class;
 
     function Copy
            (This : in RGB_Image)
-        return RGB_Image;
+        return RGB_Image'Class;
 
 
 

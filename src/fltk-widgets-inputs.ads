@@ -14,10 +14,14 @@ package FLTK.Widgets.Inputs is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Input;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Input;
+
+    end Forge;
 
 
 

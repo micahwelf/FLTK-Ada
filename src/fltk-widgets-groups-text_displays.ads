@@ -18,10 +18,14 @@ package FLTK.Widgets.Groups.Text_Displays is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Text_Display;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Text_Display;
+
+    end Forge;
 
 
 

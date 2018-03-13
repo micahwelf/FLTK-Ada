@@ -8,10 +8,14 @@ package FLTK.Widgets.Progress_Bars is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Progress_Bar;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Progress_Bar;
+
+    end Forge;
 
 
 

@@ -8,10 +8,14 @@ package FLTK.Widgets.Valuators is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Valuator;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Valuator;
+
+    end Forge;
 
 
 

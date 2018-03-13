@@ -8,10 +8,14 @@ package FLTK.Widgets.Valuators.Sliders.Hor_Fill is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Hor_Fill_Slider;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Hor_Fill_Slider;
+
+    end Forge;
 
 
 

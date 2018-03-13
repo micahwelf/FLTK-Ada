@@ -8,10 +8,14 @@ package FLTK.Widgets.Valuators.Rollers is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Roller;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Roller;
+
+    end Forge;
 
 
 

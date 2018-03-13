@@ -70,7 +70,7 @@ package body FLTK.Images.RGB is
     function Copy
            (This          : in RGB_Image;
             Width, Height : in Natural)
-        return RGB_Image is
+        return RGB_Image'Class is
     begin
         return Copied : RGB_Image do
             Copied.Void_Ptr := fl_rgb_image_copy
@@ -83,7 +83,7 @@ package body FLTK.Images.RGB is
 
     function Copy
            (This : in RGB_Image)
-        return RGB_Image is
+        return RGB_Image'Class is
     begin
         return Copied : RGB_Image do
             Copied.Void_Ptr := fl_rgb_image_copy2 (This.Void_Ptr);

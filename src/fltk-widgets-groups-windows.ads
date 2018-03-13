@@ -26,14 +26,18 @@ package FLTK.Widgets.Groups.Windows is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Window;
+    package Forge is
 
-    function Create
-           (W, H : in Integer)
-        return Window;
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Window;
+
+        function Create
+               (W, H : in Integer)
+            return Window;
+
+    end Forge;
 
 
 

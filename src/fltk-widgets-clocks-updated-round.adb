@@ -65,25 +65,29 @@ package body FLTK.Widgets.Clocks.Updated.Round is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Round_Clock is
-    begin
-        return This : Round_Clock do
-            This.Void_Ptr := new_fl_round_clock
-                   (Interfaces.C.int (X),
-                    Interfaces.C.int (Y),
-                    Interfaces.C.int (W),
-                    Interfaces.C.int (H),
-                    Interfaces.C.To_C (Text));
-            fl_widget_set_user_data
-                   (This.Void_Ptr,
-                    Widget_Convert.To_Address (This'Unchecked_Access));
-            round_clock_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
-            round_clock_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
-        end return;
-    end Create;
+    package body Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Round_Clock is
+        begin
+            return This : Round_Clock do
+                This.Void_Ptr := new_fl_round_clock
+                       (Interfaces.C.int (X),
+                        Interfaces.C.int (Y),
+                        Interfaces.C.int (W),
+                        Interfaces.C.int (H),
+                        Interfaces.C.To_C (Text));
+                fl_widget_set_user_data
+                       (This.Void_Ptr,
+                        Widget_Convert.To_Address (This'Unchecked_Access));
+                round_clock_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+                round_clock_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
+            end return;
+        end Create;
+
+    end Forge;
 
 
 

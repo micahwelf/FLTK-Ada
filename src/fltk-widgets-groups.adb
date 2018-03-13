@@ -139,26 +139,30 @@ package body FLTK.Widgets.Groups is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Group is
-    begin
-        return This : Group do
-            This.Void_Ptr := new_fl_group
-                   (Interfaces.C.int (X),
-                    Interfaces.C.int (Y),
-                    Interfaces.C.int (W),
-                    Interfaces.C.int (H),
-                    Interfaces.C.To_C (Text));
-            fl_group_end (This.Void_Ptr);
-            fl_widget_set_user_data
-                   (This.Void_Ptr,
-                    Widget_Convert.To_Address (This'Unchecked_Access));
-            group_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
-            group_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
-        end return;
-    end Create;
+    package body Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Group is
+        begin
+            return This : Group do
+                This.Void_Ptr := new_fl_group
+                       (Interfaces.C.int (X),
+                        Interfaces.C.int (Y),
+                        Interfaces.C.int (W),
+                        Interfaces.C.int (H),
+                        Interfaces.C.To_C (Text));
+                fl_group_end (This.Void_Ptr);
+                fl_widget_set_user_data
+                       (This.Void_Ptr,
+                        Widget_Convert.To_Address (This'Unchecked_Access));
+                group_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+                group_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
+            end return;
+        end Create;
+
+    end Forge;
 
 
 

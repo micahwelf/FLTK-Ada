@@ -8,10 +8,14 @@ package FLTK.Widgets.Inputs.Multiline is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Multiline_Input;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Multiline_Input;
+
+    end Forge;
 
 
 

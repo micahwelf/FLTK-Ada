@@ -8,14 +8,18 @@ package FLTK.Widgets.Groups.Windows.Single.Menu is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Menu_Window;
+    package Forge is
 
-    function Create
-           (W, H : in Integer)
-        return Menu_Window;
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Menu_Window;
+
+        function Create
+               (W, H : in Integer)
+            return Menu_Window;
+
+    end Forge;
 
 
 

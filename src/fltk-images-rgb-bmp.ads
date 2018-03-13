@@ -8,9 +8,13 @@ package FLTK.Images.RGB.BMP is
 
 
 
-    function Create
-           (Filename : in String)
-        return BMP_Image;
+    package Forge is
+
+        function Create
+               (Filename : in String)
+            return BMP_Image;
+
+    end Forge;
 
 
 private

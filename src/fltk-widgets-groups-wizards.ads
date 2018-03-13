@@ -8,10 +8,14 @@ package FLTK.Widgets.Groups.Wizards is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Wizard;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Wizard;
+
+    end Forge;
 
 
 

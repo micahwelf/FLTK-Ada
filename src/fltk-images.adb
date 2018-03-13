@@ -107,33 +107,39 @@ package body FLTK.Images is
 
 
 
-    function Create
-           (Width, Height, Depth : in Natural)
-        return Image is
-    begin
-        return This : Image do
-            This.Void_Ptr := new_fl_image
-                   (Interfaces.C.int (Width),
-                    Interfaces.C.int (Height),
-                    Interfaces.C.int (Depth));
-            case fl_image_fail (This.Void_Ptr) is
-                when 1 =>
-                    raise No_Image_Error;
-                when 2 =>
-                    raise File_Access_Error;
-                when 3 =>
-                    raise Format_Error;
-                when others =>
-                    null;
-            end case;
-        end return;
-    end Create;
+    package body Forge is
+
+        function Create
+               (Width, Height, Depth : in Natural)
+            return Image is
+        begin
+            return This : Image do
+                This.Void_Ptr := new_fl_image
+                       (Interfaces.C.int (Width),
+                        Interfaces.C.int (Height),
+                        Interfaces.C.int (Depth));
+                case fl_image_fail (This.Void_Ptr) is
+                    when 1 =>
+                        raise No_Image_Error;
+                    when 2 =>
+                        raise File_Access_Error;
+                    when 3 =>
+                        raise Format_Error;
+                    when others =>
+                        null;
+                end case;
+            end return;
+        end Create;
+
+    end Forge;
+
+
 
 
     function Copy
            (This          : in Image;
             Width, Height : in Natural)
-        return Image is
+        return Image'Class is
     begin
         return Copied : Image do
             Copied.Void_Ptr := fl_image_copy
@@ -146,7 +152,7 @@ package body FLTK.Images is
 
     function Copy
            (This : in Image)
-        return Image is
+        return Image'Class is
     begin
         return Copied : Image do
             Copied.Void_Ptr := fl_image_copy2 (This.Void_Ptr);

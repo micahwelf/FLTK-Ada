@@ -16,10 +16,14 @@ package FLTK.Widgets.Groups is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Group;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Group;
+
+    end Forge;
 
 
 

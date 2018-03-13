@@ -8,10 +8,14 @@ package FLTK.Widgets.Boxes is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Box;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Box;
+
+    end Forge;
 
 
 

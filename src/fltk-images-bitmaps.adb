@@ -57,7 +57,7 @@ package body FLTK.Images.Bitmaps is
     function Copy
            (This          : in Bitmap;
             Width, Height : in Natural)
-        return Bitmap is
+        return Bitmap'Class is
     begin
         return Copied : Bitmap do
             Copied.Void_Ptr := fl_bitmap_copy
@@ -70,7 +70,7 @@ package body FLTK.Images.Bitmaps is
 
     function Copy
            (This : in Bitmap)
-        return Bitmap is
+        return Bitmap'Class is
     begin
         return Copied : Bitmap do
             Copied.Void_Ptr := fl_bitmap_copy2 (This.Void_Ptr);

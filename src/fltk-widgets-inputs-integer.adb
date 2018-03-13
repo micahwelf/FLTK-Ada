@@ -65,25 +65,29 @@ package body FLTK.Widgets.Inputs.Integer is
 
 
 
-    function Create
-           (X, Y, W, H : in Standard.Integer;
-            Text       : in String)
-        return Integer_Input is
-    begin
-        return This : Integer_Input do
-            This.Void_Ptr := new_fl_int_input
-                   (Interfaces.C.int (X),
-                    Interfaces.C.int (Y),
-                    Interfaces.C.int (W),
-                    Interfaces.C.int (H),
-                    Interfaces.C.To_C (Text));
-            fl_widget_set_user_data
-                   (This.Void_Ptr,
-                    Widget_Convert.To_Address (This'Unchecked_Access));
-            int_input_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
-            int_input_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
-        end return;
-    end Create;
+    package body Forge is
+
+        function Create
+               (X, Y, W, H : in Standard.Integer;
+                Text       : in String)
+            return Integer_Input is
+        begin
+            return This : Integer_Input do
+                This.Void_Ptr := new_fl_int_input
+                       (Interfaces.C.int (X),
+                        Interfaces.C.int (Y),
+                        Interfaces.C.int (W),
+                        Interfaces.C.int (H),
+                        Interfaces.C.To_C (Text));
+                fl_widget_set_user_data
+                       (This.Void_Ptr,
+                        Widget_Convert.To_Address (This'Unchecked_Access));
+                int_input_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+                int_input_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
+            end return;
+        end Create;
+
+    end Forge;
 
 
 

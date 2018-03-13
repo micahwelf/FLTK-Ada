@@ -26,10 +26,14 @@ package FLTK.Widgets is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Widget;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Widget;
+
+    end Forge;
 
 
 

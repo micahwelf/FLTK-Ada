@@ -8,10 +8,14 @@ package FLTK.Widgets.Buttons.Toggle is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Toggle_Button;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Toggle_Button;
+
+    end Forge;
 
 
 

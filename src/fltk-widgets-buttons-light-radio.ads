@@ -8,10 +8,14 @@ package FLTK.Widgets.Buttons.Light.Radio is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Radio_Light_Button;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Radio_Light_Button;
+
+    end Forge;
 
 
 

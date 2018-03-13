@@ -82,44 +82,48 @@ package body FLTK.Widgets.Groups.Windows.Single is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Single_Window is
-    begin
-        return This : Single_Window do
-            This.Void_Ptr := new_fl_single_window
-                   (Interfaces.C.int (X),
-                    Interfaces.C.int (Y),
-                    Interfaces.C.int (W),
-                    Interfaces.C.int (H),
-                    Interfaces.C.To_C (Text));
-            fl_group_end (This.Void_Ptr);
-            fl_widget_set_user_data
-                   (This.Void_Ptr,
-                    Widget_Convert.To_Address (This'Unchecked_Access));
-            single_window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
-            single_window_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
-        end return;
-    end Create;
+    package body Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Single_Window is
+        begin
+            return This : Single_Window do
+                This.Void_Ptr := new_fl_single_window
+                       (Interfaces.C.int (X),
+                        Interfaces.C.int (Y),
+                        Interfaces.C.int (W),
+                        Interfaces.C.int (H),
+                        Interfaces.C.To_C (Text));
+                fl_group_end (This.Void_Ptr);
+                fl_widget_set_user_data
+                       (This.Void_Ptr,
+                        Widget_Convert.To_Address (This'Unchecked_Access));
+                single_window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+                single_window_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
+            end return;
+        end Create;
 
 
-    function Create
-           (W, H : in Integer)
-        return Single_Window is
-    begin
-        return This : Single_Window do
-            This.Void_Ptr := new_fl_single_window2
-                   (Interfaces.C.int (W),
-                    Interfaces.C.int (H));
-            fl_group_end (This.Void_Ptr);
-            fl_widget_set_user_data
-                   (This.Void_Ptr,
-                    Widget_Convert.To_Address (This'Unchecked_Access));
-            single_window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
-            single_window_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
-        end return;
-    end Create;
+        function Create
+               (W, H : in Integer)
+            return Single_Window is
+        begin
+            return This : Single_Window do
+                This.Void_Ptr := new_fl_single_window2
+                       (Interfaces.C.int (W),
+                        Interfaces.C.int (H));
+                fl_group_end (This.Void_Ptr);
+                fl_widget_set_user_data
+                       (This.Void_Ptr,
+                        Widget_Convert.To_Address (This'Unchecked_Access));
+                single_window_set_draw_hook (This.Void_Ptr, Draw_Hook'Address);
+                single_window_set_handle_hook (This.Void_Ptr, Handle_Hook'Address);
+            end return;
+        end Create;
+
+    end Forge;
 
 
 

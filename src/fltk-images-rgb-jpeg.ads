@@ -8,9 +8,13 @@ package FLTK.Images.RGB.JPEG is
 
 
 
-    function Create
-           (Filename : in String)
-        return JPEG_Image;
+    package Forge is
+
+        function Create
+               (Filename : in String)
+            return JPEG_Image;
+
+    end Forge;
 
 
 private

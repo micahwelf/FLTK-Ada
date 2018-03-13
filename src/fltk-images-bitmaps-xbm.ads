@@ -8,9 +8,13 @@ package FLTK.Images.Bitmaps.XBM is
 
 
 
-    function Create
-           (Filename : in String)
-        return XBM_Image;
+    package Forge is
+
+        function Create
+               (Filename : in String)
+            return XBM_Image;
+
+    end Forge;
 
 
 private

@@ -8,14 +8,18 @@ package FLTK.Widgets.Groups.Windows.Single is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Single_Window;
+    package Forge is
 
-    function Create
-           (W, H : in Integer)
-        return Single_Window;
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Single_Window;
+
+        function Create
+               (W, H : in Integer)
+            return Single_Window;
+
+    end Forge;
 
 
 

@@ -11,10 +11,14 @@ package FLTK.Widgets.Buttons.Enter is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Enter_Button;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Enter_Button;
+
+    end Forge;
 
 
 

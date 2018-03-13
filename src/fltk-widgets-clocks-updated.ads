@@ -8,10 +8,14 @@ package FLTK.Widgets.Clocks.Updated is
 
 
 
-    function Create
-           (X, Y, W, H : in Integer;
-            Text       : in String)
-        return Updated_Clock;
+    package Forge is
+
+        function Create
+               (X, Y, W, H : in Integer;
+                Text       : in String)
+            return Updated_Clock;
+
+    end Forge;
 
 
 
