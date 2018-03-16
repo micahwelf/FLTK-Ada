@@ -34,6 +34,7 @@ FLTK.Widgets.Clocks
 FLTK.Widgets.Clocks.Updated
 FLTK.Widgets.Clocks.Updated.Round
 FLTK.Widgets.Groups.Scrolls
+FLTK.Widgets.Groups.Spinners
 FLTK.Widgets.Groups.Tabbed
 FLTK.Widgets.Groups.Text_Displays.Text_Editors
 FLTK.Widgets.Groups.Windows.Double
@@ -106,7 +107,6 @@ FL_Color_Chooser
 FL_Input_Choice
 FL_Help_View (several methods have ABI_VERSION bugs)
 FL_Pack
-FL_Spinner
 FL_Table
 FL_Table_Row
 FL_Tile
