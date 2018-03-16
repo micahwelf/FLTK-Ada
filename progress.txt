@@ -61,6 +61,7 @@ FLTK.Widgets.Valuators.Sliders.Hor_Nice
 FLTK.Widgets.Valuators.Sliders.Horizontal
 FLTK.Widgets.Valuators.Sliders.Nice
 FLTK.Widgets.Valuators.Sliders.Scrollbars
+FLTK.Widgets.Valuators.Sliders.Value
 
 
 
@@ -109,7 +110,6 @@ FL_Table
 FL_Table_Row
 FL_Tile
 FL_Tree
-FL_Value_Slider
 FL_Hor_Value_Slider
 
 
