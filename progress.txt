@@ -33,6 +33,7 @@ FLTK.Widgets.Buttons.Toggle
 FLTK.Widgets.Clocks
 FLTK.Widgets.Clocks.Updated
 FLTK.Widgets.Clocks.Updated.Round
+FLTK.Widgets.Groups.Input_Choices
 FLTK.Widgets.Groups.Scrolls
 FLTK.Widgets.Groups.Spinners
 FLTK.Widgets.Groups.Tabbed
@@ -104,7 +105,6 @@ FL_Hold_Browser
 FL_Multi_Browser
 FL_Select_Browser
 FL_Color_Chooser
-FL_Input_Choice
 FL_Help_View (several methods have ABI_VERSION bugs)
 FL_Pack
 FL_Table

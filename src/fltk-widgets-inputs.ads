@@ -11,6 +11,9 @@ package FLTK.Widgets.Inputs is
 
     type Input is new Widget with private;
 
+    type Input_Cursor (Data : access Input'Class) is limited null record
+        with Implicit_Dereference => Data;
+
 
 
 

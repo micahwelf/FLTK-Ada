@@ -64,7 +64,9 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
         if  This.Void_Ptr /= System.Null_Address and then
             This in Menu_Button'Class
         then
-            free_fl_menu_button (This.Void_Ptr);
+            if This.Needs_Dealloc then
+                free_fl_menu_button (This.Void_Ptr);
+            end if;
             This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Menu (This));

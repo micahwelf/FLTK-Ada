@@ -201,7 +201,8 @@ private
 
     type Wrapper is abstract new Ada.Finalization.Limited_Controlled with
         record
-            Void_Ptr : System.Address;
+            Void_Ptr      : System.Address;
+            Needs_Dealloc : Boolean := True;
         end record;
         --  with Type_Invariant => Has_Valid_Ptr (Wrapper);
 
