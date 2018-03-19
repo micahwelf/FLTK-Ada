@@ -36,6 +36,7 @@ FLTK.Widgets.Clocks.Updated
 FLTK.Widgets.Clocks.Updated.Round
 FLTK.Widgets.Groups.Color_Choosers
 FLTK.Widgets.Groups.Input_Choices
+FLTK.Widgets.Groups.Packed
 FLTK.Widgets.Groups.Scrolls
 FLTK.Widgets.Groups.Spinners
 FLTK.Widgets.Groups.Tabbed
@@ -107,7 +108,6 @@ FL_Hold_Browser
 FL_Multi_Browser
 FL_Select_Browser
 FL_Help_View (several methods have ABI_VERSION bugs)
-FL_Pack
 FL_Table
 FL_Table_Row
 FL_Tree
