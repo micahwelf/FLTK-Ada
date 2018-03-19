@@ -24,6 +24,7 @@ package FLTK is
 
 
     type Color is new Natural;
+    No_Color : constant Color;
 
 
     type Alignment is private;
@@ -211,6 +212,9 @@ private
 
     overriding procedure Initialize
            (This : in out Wrapper);
+
+
+    No_Color : constant Color := 0;
 
 
     type Alignment is new Interfaces.Unsigned_16;
