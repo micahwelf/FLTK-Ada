@@ -40,6 +40,7 @@ FLTK.Widgets.Groups.Scrolls
 FLTK.Widgets.Groups.Spinners
 FLTK.Widgets.Groups.Tabbed
 FLTK.Widgets.Groups.Text_Displays.Text_Editors
+FLTK.Widgets.Groups.Tiled
 FLTK.Widgets.Groups.Windows.Double
 FLTK.Widgets.Groups.Windows.Single
 FLTK.Widgets.Groups.Windows.Single.Menu
@@ -109,7 +110,6 @@ FL_Help_View (several methods have ABI_VERSION bugs)
 FL_Pack
 FL_Table
 FL_Table_Row
-FL_Tile
 FL_Tree
 
 
