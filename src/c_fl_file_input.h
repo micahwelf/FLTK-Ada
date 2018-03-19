@@ -23,5 +23,13 @@ extern "C" FILE_INPUT new_fl_file_input(int x, int y, int w, int h, char* label)
 extern "C" void free_fl_file_input(FILE_INPUT i);
 
 
+
+
+extern "C" int fl_file_input_get_down_box(FILE_INPUT i);
+extern "C" void fl_file_input_set_down_box(FILE_INPUT i, int t);
+extern "C" unsigned int fl_file_input_get_errorcolor(FILE_INPUT i);
+extern "C" void fl_file_input_set_errorcolor(FILE_INPUT i, unsigned int t);
+
+
 #endif
 

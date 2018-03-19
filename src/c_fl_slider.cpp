@@ -71,22 +71,27 @@ void free_fl_slider(SLIDER s) {
 
 
 void fl_slider_set_bounds(SLIDER s, double a, double b) {
-    reinterpret_cast<My_Slider*>(s)->bounds(a,b);
+    reinterpret_cast<Fl_Slider*>(s)->bounds(a,b);
 }
 
 int fl_slider_get_slider(SLIDER s) {
-    return reinterpret_cast<My_Slider*>(s)->slider();
+    return reinterpret_cast<Fl_Slider*>(s)->slider();
 }
 
 void fl_slider_set_slider(SLIDER s, int t) {
-    reinterpret_cast<My_Slider*>(s)->slider(static_cast<Fl_Boxtype>(t));
+    reinterpret_cast<Fl_Slider*>(s)->slider(static_cast<Fl_Boxtype>(t));
 }
 
 float fl_slider_get_slider_size(SLIDER s) {
-    return reinterpret_cast<My_Slider*>(s)->slider_size();
+    return reinterpret_cast<Fl_Slider*>(s)->slider_size();
 }
 
 void fl_slider_set_slider_size(SLIDER s, float t) {
-    reinterpret_cast<My_Slider*>(s)->slider_size(t);
+    reinterpret_cast<Fl_Slider*>(s)->slider_size(t);
 }
+
+int fl_slider_scrollvalue(SLIDER s, int p, int z, int f, int t) {
+    return reinterpret_cast<Fl_Slider*>(s)->scrollvalue(p,z,f,t);
+}
+
 

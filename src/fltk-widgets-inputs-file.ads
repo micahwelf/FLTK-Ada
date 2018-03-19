@@ -20,6 +20,25 @@ package FLTK.Widgets.Inputs.File is
 
 
 
+    function Get_Down_Box
+           (This : in File_Input)
+        return Box_Kind;
+
+    procedure Set_Down_Box
+           (This : in out File_Input;
+            To   : in     Box_Kind);
+
+    function Get_Error_Color
+           (This : in File_Input)
+        return Color;
+
+    procedure Set_Error_Color
+           (This : in out File_Input;
+            To   : in     Color);
+
+
+
+
     procedure Draw
            (This : in out File_Input);
 

@@ -70,7 +70,73 @@ void free_fl_input(INPUT i) {
 
 
 
+int fl_input_copy(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->copy(1);
+}
+
+int fl_input_cut(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->cut();
+}
+
+int fl_input_cut2(INPUT i, int b) {
+    return reinterpret_cast<Fl_Input*>(i)->cut(b);
+}
+
+int fl_input_cut3(INPUT i, int a, int b) {
+    return reinterpret_cast<Fl_Input*>(i)->cut(a,b);
+}
+
+int fl_input_copy_cuts(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->copy_cuts();
+}
+
+
+
+
+int fl_input_get_readonly(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->readonly();
+}
+
+void fl_input_set_readonly(INPUT i, int t) {
+    reinterpret_cast<Fl_Input*>(i)->readonly(t);
+}
+
+
+
+
 const char * fl_input_get_value(INPUT i) {
     return reinterpret_cast<Fl_Input*>(i)->value();
 }
+
+void fl_input_set_value(INPUT i, char * s, int len) {
+    reinterpret_cast<Fl_Input*>(i)->value(s,len);
+}
+
+
+
+
+unsigned int fl_input_get_textcolor(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->textcolor();
+}
+
+void fl_input_set_textcolor(INPUT i, unsigned int t) {
+    reinterpret_cast<Fl_Input*>(i)->textcolor(t);
+}
+
+int fl_input_get_textfont(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->textfont();
+}
+
+void fl_input_set_textfont(INPUT i, int t) {
+    reinterpret_cast<Fl_Input*>(i)->textfont(t);
+}
+
+int fl_input_get_textsize(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->textsize();
+}
+
+void fl_input_set_textsize(INPUT i, int t) {
+    reinterpret_cast<Fl_Input*>(i)->textsize(t);
+}
+
 

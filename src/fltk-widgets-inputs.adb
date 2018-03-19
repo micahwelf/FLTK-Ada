@@ -7,6 +7,7 @@ with
 
 use type
 
+    Interfaces.C.int,
     System.Address;
 
 
@@ -33,6 +34,91 @@ package body FLTK.Widgets.Inputs is
     procedure free_fl_input
            (F : in System.Address);
     pragma Import (C, free_fl_input, "free_fl_input");
+
+
+
+
+    function fl_input_copy
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_copy, "fl_input_copy");
+
+    function fl_input_cut
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_cut, "fl_input_cut");
+
+    function fl_input_cut2
+           (I : in System.Address;
+            B : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_cut2, "fl_input_cut2");
+
+    function fl_input_cut3
+           (I    : in System.Address;
+            A, B : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_cut3, "fl_input_cut3");
+
+    function fl_input_copy_cuts
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_copy_cuts, "fl_input_copy_cuts");
+
+
+
+
+    function fl_input_get_readonly
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_get_readonly, "fl_input_get_readonly");
+
+    procedure fl_input_set_readonly
+           (I : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_input_set_readonly, "fl_input_set_readonly");
+
+
+
+
+    procedure fl_input_set_value
+           (I : in System.Address;
+            T : in Interfaces.C.char_array;
+            L : in Interfaces.C.int);
+    pragma Import (C, fl_input_set_value, "fl_input_set_value");
+
+
+
+
+    function fl_input_get_textcolor
+           (I : in System.Address)
+        return Interfaces.C.unsigned;
+    pragma Import (C, fl_input_get_textcolor, "fl_input_get_textcolor");
+
+    procedure fl_input_set_textcolor
+           (I : in System.Address;
+            T : in Interfaces.C.unsigned);
+    pragma Import (C, fl_input_set_textcolor, "fl_input_set_textcolor");
+
+    function fl_input_get_textfont
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_get_textfont, "fl_input_get_textfont");
+
+    procedure fl_input_set_textfont
+           (I : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_input_set_textfont, "fl_input_set_textfont");
+
+    function fl_input_get_textsize
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_get_textsize, "fl_input_get_textsize");
+
+    procedure fl_input_set_textsize
+           (I : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_input_set_textsize, "fl_input_set_textsize");
 
 
 
@@ -94,12 +180,147 @@ package body FLTK.Widgets.Inputs is
 
 
 
+    procedure Copy
+           (This : in out Input) is
+    begin
+        This.Was_Changed := fl_input_copy (This.Void_Ptr) /= 0;
+    end Copy;
+
+
+    procedure Cut
+           (This : in out Input) is
+    begin
+        This.Was_Changed := fl_input_cut (This.Void_Ptr) /= 0;
+    end Cut;
+
+
+    procedure Cut
+           (This      : in out Input;
+            Num_Bytes : in     Integer) is
+    begin
+        This.Was_Changed := fl_input_cut2
+           (This.Void_Ptr,
+            Interfaces.C.int (Num_Bytes)) /= 0;
+    end Cut;
+
+
+    procedure Cut
+           (This          : in out Input;
+            Start, Finish : in     Integer) is
+    begin
+        This.Was_Changed := fl_input_cut3
+           (This.Void_Ptr,
+            Interfaces.C.int (Start),
+            Interfaces.C.int (Finish)) /= 0;
+    end Cut;
+
+
+    procedure Copy_Cuts
+           (This : in out Input) is
+    begin
+        This.Was_Changed := fl_input_copy_cuts (This.Void_Ptr) /= 0;
+    end Copy_Cuts;
+
+
+
+
+    function Has_Changed
+           (This : in Input)
+        return Boolean is
+    begin
+        return This.Was_Changed;
+    end Has_Changed;
+
+
+    procedure Clear_Changed
+           (This : in out Input) is
+    begin
+        This.Was_Changed := False;
+    end Clear_Changed;
+
+
+    function Is_Readonly
+           (This : in Input)
+        return Boolean is
+    begin
+        return fl_input_get_readonly (This.Void_Ptr) /= 0;
+    end Is_Readonly;
+
+
+    procedure Set_Readonly
+           (This : in out Input;
+            To   : in     Boolean) is
+    begin
+        fl_input_set_readonly (This.Void_Ptr, Boolean'Pos (To));
+    end Set_Readonly;
+
+
+
+
     function Get_Value
            (This : in Input)
         return String is
     begin
         return Interfaces.C.Strings.Value (fl_input_get_value (This.Void_Ptr));
     end Get_Value;
+
+
+    procedure Set_Value
+           (This : in out Input;
+            To   : in     String) is
+    begin
+        fl_input_set_value (This.Void_Ptr, Interfaces.C.To_C (To), To'Length);
+    end Set_Value;
+
+
+
+
+    function Get_Text_Color
+           (This : in Input)
+        return Color is
+    begin
+        return Color (fl_input_get_textcolor (This.Void_Ptr));
+    end Get_Text_Color;
+
+
+    procedure Set_Text_Color
+           (This : in out Input;
+            To   : in     Color) is
+    begin
+        fl_input_set_textcolor (This.Void_Ptr, Interfaces.C.unsigned (To));
+    end Set_Text_Color;
+
+
+    function Get_Text_Font
+           (This : in Input)
+        return Font_Kind is
+    begin
+        return Font_Kind'Val (fl_input_get_textfont (This.Void_Ptr));
+    end Get_Text_Font;
+
+
+    procedure Set_Text_Font
+           (This : in out Input;
+            To   : in     Font_Kind) is
+    begin
+        fl_input_set_textfont (This.Void_Ptr, Font_Kind'Pos (To));
+    end Set_Text_Font;
+
+
+    function Get_Text_Size
+           (This : in Input)
+        return Font_Size is
+    begin
+        return Font_Size (fl_input_get_textsize (This.Void_Ptr));
+    end Get_Text_Size;
+
+
+    procedure Set_Text_Size
+           (This : in out Input;
+            To   : in     Font_Size) is
+    begin
+        fl_input_set_textsize (This.Void_Ptr, Interfaces.C.int (To));
+    end Set_Text_Size;
 
 
 

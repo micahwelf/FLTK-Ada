@@ -64,6 +64,9 @@ package FLTK.Widgets.Groups.Color_Choosers is
            (This : in Color_Chooser)
         return Boolean;
 
+    procedure Clear_Changed
+           (This : in out Color_Chooser);
+
 
 
 

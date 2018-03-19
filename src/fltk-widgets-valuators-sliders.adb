@@ -62,6 +62,12 @@ package body FLTK.Widgets.Valuators.Sliders is
             T : in Interfaces.C.C_float);
     pragma Import (C, fl_slider_set_slider_size, "fl_slider_set_slider_size");
 
+    function fl_slider_scrollvalue
+           (S          : in System.Address;
+            P, Z, F, T : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_slider_scrollvalue, "fl_slider_scrollvalue");
+
 
 
 
@@ -161,6 +167,24 @@ package body FLTK.Widgets.Valuators.Sliders is
     begin
         fl_slider_set_slider_size (This.Void_Ptr, Interfaces.C.C_float (To));
     end Set_Slide_Size;
+
+
+    procedure Set_Scrollvalue
+           (This            : in out Slider;
+            Pos_First_Line  : in     Natural;
+            Lines_In_Window : in     Natural;
+            First_Line_Num  : in     Natural;
+            Total_Lines     : in     Natural)
+    is
+        Ignore_Me : Interfaces.C.int;
+    begin
+        Ignore_Me := fl_slider_scrollvalue
+           (This.Void_Ptr,
+            Interfaces.C.int (Pos_First_Line),
+            Interfaces.C.int (Lines_In_Window),
+            Interfaces.C.int (First_Line_Num),
+            Interfaces.C.int (Total_Lines));
+    end Set_Scrollvalue;
 
 
 

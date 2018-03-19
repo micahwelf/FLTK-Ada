@@ -30,6 +30,7 @@ extern "C" int fl_slider_get_slider(SLIDER s);
 extern "C" void fl_slider_set_slider(SLIDER s, int t);
 extern "C" float fl_slider_get_slider_size(SLIDER s);
 extern "C" void fl_slider_set_slider_size(SLIDER s, float t);
+extern "C" int fl_slider_scrollvalue(SLIDER s, int p, int z, int f, int t);
 
 
 #endif

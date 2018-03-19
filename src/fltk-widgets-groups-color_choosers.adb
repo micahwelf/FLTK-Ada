@@ -240,6 +240,13 @@ package body FLTK.Widgets.Groups.Color_Choosers is
     end Color_Was_Changed;
 
 
+    procedure Clear_Changed
+           (This : in out Color_Chooser) is
+    begin
+        This.Was_Changed := False;
+    end Clear_Changed;
+
+
 
 
     function Get_Mode

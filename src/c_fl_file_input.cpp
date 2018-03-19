@@ -68,3 +68,22 @@ void free_fl_file_input(FILE_INPUT i) {
 }
 
 
+
+
+int fl_file_input_get_down_box(FILE_INPUT i) {
+    return reinterpret_cast<Fl_File_Input*>(i)->down_box();
+}
+
+void fl_file_input_set_down_box(FILE_INPUT i, int t) {
+    reinterpret_cast<Fl_File_Input*>(i)->down_box(static_cast<Fl_Boxtype>(t));
+}
+
+unsigned int fl_file_input_get_errorcolor(FILE_INPUT i) {
+    return reinterpret_cast<Fl_File_Input*>(i)->errorcolor();
+}
+
+void fl_file_input_set_errorcolor(FILE_INPUT i, unsigned int t) {
+    reinterpret_cast<Fl_File_Input*>(i)->errorcolor(t);
+}
+
+

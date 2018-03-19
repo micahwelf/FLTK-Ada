@@ -37,6 +37,29 @@ package body FLTK.Widgets.Inputs.File is
 
 
 
+    function fl_file_input_get_down_box
+           (F : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_file_input_get_down_box, "fl_file_input_get_down_box");
+
+    procedure fl_file_input_set_down_box
+           (F : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_file_input_set_down_box, "fl_file_input_set_down_box");
+
+    function fl_file_input_get_errorcolor
+           (F : in System.Address)
+        return Interfaces.C.unsigned;
+    pragma Import (C, fl_file_input_get_errorcolor, "fl_file_input_get_errorcolor");
+
+    procedure fl_file_input_set_errorcolor
+           (F : in System.Address;
+            T : in Interfaces.C.unsigned);
+    pragma Import (C, fl_file_input_set_errorcolor, "fl_file_input_set_errorcolor");
+
+
+
+
     procedure fl_file_input_draw
            (W : in System.Address);
     pragma Import (C, fl_file_input_draw, "fl_file_input_draw");
@@ -88,6 +111,40 @@ package body FLTK.Widgets.Inputs.File is
         end Create;
 
     end Forge;
+
+
+
+
+    function Get_Down_Box
+           (This : in File_Input)
+        return Box_Kind is
+    begin
+        return Box_Kind'Val (fl_file_input_get_down_box (This.Void_Ptr));
+    end Get_Down_Box;
+
+
+    procedure Set_Down_Box
+           (This : in out File_Input;
+            To   : in     Box_Kind) is
+    begin
+        fl_file_input_set_down_box (This.Void_Ptr, Box_Kind'Pos (To));
+    end Set_Down_Box;
+
+
+    function Get_Error_Color
+           (This : in File_Input)
+        return Color is
+    begin
+        return Color (fl_file_input_get_errorcolor (This.Void_Ptr));
+    end Get_Error_Color;
+
+
+    procedure Set_Error_Color
+           (This : in out File_Input;
+            To   : in     Color) is
+    begin
+        fl_file_input_set_errorcolor (This.Void_Ptr, Interfaces.C.unsigned (To));
+    end Set_Error_Color;
 
 
 

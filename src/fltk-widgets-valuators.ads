@@ -55,6 +55,14 @@ package FLTK.Widgets.Valuators is
            (This : in out Valuator;
             To   : in     Long_Float);
 
+    function Get_Step
+           (This : in Valuator)
+        return Long_Float;
+
+    procedure Set_Step
+           (This : in out Valuator;
+            To   : in     Long_Float);
+
     function Get_Value
            (This : in Valuator)
         return Long_Float;

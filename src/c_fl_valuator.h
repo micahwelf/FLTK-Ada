@@ -35,6 +35,8 @@ extern "C" double fl_valuator_get_minimum(VALUATOR v);
 extern "C" void fl_valuator_set_minimum(VALUATOR v, double t);
 extern "C" double fl_valuator_get_maximum(VALUATOR v);
 extern "C" void fl_valuator_set_maximum(VALUATOR v, double t);
+extern "C" double fl_valuator_get_step(VALUATOR v);
+extern "C" void fl_valuator_set_step(VALUATOR v, double t);
 extern "C" double fl_valuator_get_value(VALUATOR v);
 extern "C" void fl_valuator_set_value(VALUATOR v, double t);
 extern "C" void fl_valuator_bounds(VALUATOR v, double a, double b);

@@ -25,7 +25,27 @@ extern "C" void free_fl_input(INPUT i);
 
 
 
+extern "C" int fl_input_copy(INPUT i);
+extern "C" int fl_input_cut(INPUT i);
+extern "C" int fl_input_cut2(INPUT i, int b);
+extern "C" int fl_input_cut3(INPUT i, int a, int b);
+extern "C" int fl_input_copy_cuts(INPUT i);
+
+
+extern "C" int fl_input_get_readonly(INPUT i);
+extern "C" void fl_input_set_readonly(INPUT i, int t);
+
+
 extern "C" const char * fl_input_get_value(INPUT i);
+extern "C" void fl_input_set_value(INPUT i, char * s, int len);
+
+
+extern "C" unsigned int fl_input_get_textcolor(INPUT i);
+extern "C" void fl_input_set_textcolor(INPUT i, unsigned int t);
+extern "C" int fl_input_get_textfont(INPUT i);
+extern "C" void fl_input_set_textfont(INPUT i, int t);
+extern "C" int fl_input_get_textsize(INPUT i);
+extern "C" void fl_input_set_textsize(INPUT i, int t);
 
 
 #endif

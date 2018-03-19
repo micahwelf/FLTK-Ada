@@ -79,6 +79,16 @@ package body FLTK.Widgets.Valuators is
             D : in Interfaces.C.double);
     pragma Import (C, fl_valuator_set_maximum, "fl_valuator_set_maximum");
 
+    function fl_valuator_get_step
+           (V : in System.Address)
+        return Interfaces.C.double;
+    pragma Import (C, fl_valuator_get_step, "fl_valuator_get_step");
+
+    procedure fl_valuator_set_step
+           (V : in System.Address;
+            T : in Interfaces.C.double);
+    pragma Import (C, fl_valuator_set_step, "fl_valuator_set_step");
+
     function fl_valuator_get_value
            (V : in System.Address)
         return Interfaces.C.double;
@@ -221,6 +231,22 @@ package body FLTK.Widgets.Valuators is
     begin
         fl_valuator_set_maximum (This.Void_Ptr, Interfaces.C.double (To));
     end Set_Maximum;
+
+
+    function Get_Step
+           (This : in Valuator)
+        return Long_Float is
+    begin
+        return Long_Float (fl_valuator_get_step (This.Void_Ptr));
+    end Get_Step;
+
+
+    procedure Set_Step
+           (This : in out Valuator;
+            To   : in     Long_Float) is
+    begin
+        fl_valuator_set_step (This.Void_Ptr, Interfaces.C.double (To));
+    end Set_Step;
 
 
     function Get_Value

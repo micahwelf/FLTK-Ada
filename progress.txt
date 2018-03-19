@@ -10,6 +10,11 @@ Overall estimate: ???%
 
 
 
+Polished:
+
+
+
+
 Done:
 
 FLTK.Images
@@ -46,6 +51,7 @@ FLTK.Widgets.Groups.Windows.Double
 FLTK.Widgets.Groups.Windows.Single
 FLTK.Widgets.Groups.Windows.Single.Menu
 FLTK.Widgets.Groups.Wizards
+FLTK.Widgets.Inputs.File
 FLTK.Widgets.Inputs.Float
 FLTK.Widgets.Inputs.Integer
 FLTK.Widgets.Inputs.Multiline
@@ -54,6 +60,7 @@ FLTK.Widgets.Inputs.Outputs.Multiline
 FLTK.Widgets.Inputs.Secret
 FLTK.Widgets.Menus.Menu_Bars
 FLTK.Widgets.Progress_Bars
+FLTK.Widgets.Valuators
 FLTK.Widgets.Valuators.Adjusters
 FLTK.Widgets.Valuators.Counters
 FLTK.Widgets.Valuators.Counters.Simple
@@ -61,6 +68,7 @@ FLTK.Widgets.Valuators.Dials
 FLTK.Widgets.Valuators.Dials.Fill
 FLTK.Widgets.Valuators.Dials.Line
 FLTK.Widgets.Valuators.Rollers
+FLTK.Widgets.Valuators.Sliders
 FLTK.Widgets.Valuators.Sliders.Fill
 FLTK.Widgets.Valuators.Sliders.Hor_Fill
 FLTK.Widgets.Valuators.Sliders.Hor_Nice
@@ -78,6 +86,7 @@ Partially Done:
 FLTK
 FLTK.Dialogs
 FLTK.Menu_Items
+FLTK.Screen
 FLTK.Text_Buffers;
 FLTK.Widgets
 FLTK.Widgets.Buttons (70%)
@@ -85,11 +94,8 @@ FLTK.Widgets.Groups
 FLTK.Widgets.Groups.Text_Displays (94%)
 FLTK.Widgets.Groups.Windows
 FLTK.Widgets.Inputs
-FLTK.Widgets.Inputs.File
 FLTK.Widgets.Menus
 FLTK.Widgets.Menus.Menu_Buttons
-FLTK.Widgets.Valuators
-FLTK.Widgets.Valuators.Sliders
 
 
 
@@ -111,6 +117,9 @@ FL_Help_View (several methods have ABI_VERSION bugs)
 FL_Table
 FL_Table_Row
 FL_Tree
+
+- mark all methods as inline
+- make sure all C++ reinterpret_cast for methods is to the Fl object, not the My object, because inheriting
 
 
 

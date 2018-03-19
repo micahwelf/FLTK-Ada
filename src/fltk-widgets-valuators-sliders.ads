@@ -40,6 +40,13 @@ package FLTK.Widgets.Valuators.Sliders is
            (This : in out Slider;
             To   : in     Float);
 
+    procedure Set_Scrollvalue
+           (This            : in out Slider;
+            Pos_First_Line  : in     Natural;
+            Lines_In_Window : in     Natural;
+            First_Line_Num  : in     Natural;
+            Total_Lines     : in     Natural);
+
 
 
 
