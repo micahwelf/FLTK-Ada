@@ -36,6 +36,25 @@ package FLTK.Widgets.Buttons is
 
 
 
+    function Get_Down_Box
+           (This : in Button)
+        return Box_Kind;
+
+    procedure Set_Down_Box
+           (This : in out Button;
+            To   : in     Box_Kind);
+
+    function Get_Shortcut
+           (This : in Button)
+        return Shortcut_Key;
+
+    procedure Set_Shortcut
+           (This : in out Button;
+            Key  : in     Shortcut_Key);
+
+
+
+
     procedure Draw
            (This : in out Button);
 

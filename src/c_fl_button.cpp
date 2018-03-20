@@ -82,3 +82,23 @@ void fl_button_set_only(BUTTON b) {
     reinterpret_cast<Fl_Button*>(b)->setonly();
 }
 
+
+
+
+int fl_button_get_down_box(BUTTON b) {
+    return reinterpret_cast<Fl_Button*>(b)->down_box();
+}
+
+void fl_button_set_down_box(BUTTON b, int t) {
+    reinterpret_cast<Fl_Button*>(b)->down_box(static_cast<Fl_Boxtype>(t));
+}
+
+int fl_button_get_shortcut(BUTTON b) {
+    return reinterpret_cast<Fl_Button*>(b)->shortcut();
+}
+
+void fl_button_set_shortcut(BUTTON b, int k) {
+    reinterpret_cast<Fl_Button*>(b)->shortcut(k);
+}
+
+

@@ -26,6 +26,7 @@ extern "C" void free_fl_menu_button(MENUBUTTON m);
 
 
 extern "C" void fl_menu_button_type(MENUBUTTON m, unsigned int t);
+extern "C" const void * fl_menu_button_popup(MENUBUTTON m);
 
 
 #endif

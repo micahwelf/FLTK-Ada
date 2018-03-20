@@ -26,6 +26,7 @@ FLTK.Images.RGB.JPEG
 FLTK.Images.RGB.PNG
 FLTK.Images.RGB.PNM
 FLTK.Widgets.Boxes
+FLTK.Widgets.Buttons
 FLTK.Widgets.Buttons.Enter
 FLTK.Widgets.Buttons.Light
 FLTK.Widgets.Buttons.Light.Check
@@ -59,6 +60,7 @@ FLTK.Widgets.Inputs.Outputs
 FLTK.Widgets.Inputs.Outputs.Multiline
 FLTK.Widgets.Inputs.Secret
 FLTK.Widgets.Menus.Menu_Bars
+FLTK.Widgets.Menus.Menu_Buttons
 FLTK.Widgets.Progress_Bars
 FLTK.Widgets.Valuators
 FLTK.Widgets.Valuators.Adjusters
@@ -89,13 +91,11 @@ FLTK.Menu_Items
 FLTK.Screen
 FLTK.Text_Buffers;
 FLTK.Widgets
-FLTK.Widgets.Buttons (70%)
 FLTK.Widgets.Groups
 FLTK.Widgets.Groups.Text_Displays (94%)
 FLTK.Widgets.Groups.Windows
 FLTK.Widgets.Inputs
 FLTK.Widgets.Menus
-FLTK.Widgets.Menus.Menu_Buttons
 
 
 
@@ -117,6 +117,16 @@ FL_Help_View (several methods have ABI_VERSION bugs)
 FL_Table
 FL_Table_Row
 FL_Tree
+FL_Device
+FL_Graphics_Driver
+FL_Surface_Device
+FL_Copy_Surface
+FL_Image_Surface
+FL_Paged_Device
+FL_Printer
+FL_Tooltip
+FL_Preferences
+FL_Label
 
 - mark all methods as inline
 - make sure all C++ reinterpret_cast for methods is to the Fl object, not the My object, because inheriting
@@ -133,6 +143,20 @@ FL_Free
 FL_Sys_Menu_Bar
 FL_Positioner
 FL_Timer
+FL_Postscript_File_Device
+FL_Postscript_Printer
+FL_System_Printer
+FL_GDI_Graphics_Driver
+FL_Postscript_Graphics_Driver
+FL_Quartz_Graphics_Driver
+FL_Xlib_Graphics_Driver
+FL_Plugin
+FL_Plugin_Manager
+FL_Device_Plugin
+FL_Overlay_Window
+FL_GL_Window
+FL_Glut_Window
+FL_Cairo_Window
 
 
 

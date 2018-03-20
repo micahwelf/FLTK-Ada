@@ -1,5 +1,10 @@
 
 
+with
+
+    FLTK.Menu_Items;
+
+
 package FLTK.Widgets.Menus.Menu_Buttons is
 
 
@@ -29,6 +34,10 @@ package FLTK.Widgets.Menus.Menu_Buttons is
     procedure Set_Popup_Kind
            (This : in out Menu_Button;
             Pop  : in     Popup_Buttons);
+
+    function Popup
+           (This : in out Menu_Button)
+        return FLTK.Menu_Items.Menu_Item;
 
 
 

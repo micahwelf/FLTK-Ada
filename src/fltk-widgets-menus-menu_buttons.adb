@@ -42,6 +42,11 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
             T : in Interfaces.C.unsigned);
     pragma Import (C, fl_menu_button_type, "fl_menu_button_type");
 
+    function fl_menu_button_popup
+           (M : in System.Address)
+        return System.Address;
+    pragma Import (C, fl_menu_button_popup, "fl_menu_button_popup");
+
 
 
 
@@ -108,6 +113,16 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
     begin
         fl_menu_button_type (This.Void_Ptr, Popup_Buttons'Pos (Pop));
     end Set_Popup_Kind;
+
+
+    function Popup
+           (This : in out Menu_Button)
+        return FLTK.Menu_Items.Menu_Item is
+    begin
+        return Item : FLTK.Menu_Items.Menu_Item do
+            Wrapper (Item).Void_Ptr := fl_menu_button_popup (This.Void_Ptr);
+        end return;
+    end Popup;
 
 
 

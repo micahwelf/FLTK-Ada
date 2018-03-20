@@ -54,6 +54,29 @@ package body FLTK.Widgets.Buttons is
 
 
 
+    function fl_button_get_down_box
+           (B : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_button_get_down_box, "fl_button_get_down_box");
+
+    procedure fl_button_set_down_box
+           (B : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_button_set_down_box, "fl_button_set_down_box");
+
+    function fl_button_get_shortcut
+           (B : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_button_get_shortcut, "fl_button_get_shortcut");
+
+    procedure fl_button_set_shortcut
+           (B : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_button_set_shortcut, "fl_button_set_shortcut");
+
+
+
+
     procedure fl_button_draw
            (W : in System.Address);
     pragma Import (C, fl_button_draw, "fl_button_draw");
@@ -130,6 +153,40 @@ package body FLTK.Widgets.Buttons is
     begin
         fl_button_set_only (This.Void_Ptr);
     end Set_Only;
+
+
+
+
+    function Get_Down_Box
+           (This : in Button)
+        return Box_Kind is
+    begin
+        return Box_Kind'Val (fl_button_get_down_box (This.Void_Ptr));
+    end Get_Down_Box;
+
+
+    procedure Set_Down_Box
+           (This : in out Button;
+            To   : in     Box_Kind) is
+    begin
+        fl_button_set_down_box (This.Void_Ptr, Box_Kind'Pos (To));
+    end Set_Down_Box;
+
+
+    function Get_Shortcut
+           (This : in Button)
+        return Shortcut_Key is
+    begin
+        return C_To_Key (Interfaces.C.unsigned_long (fl_button_get_shortcut (This.Void_Ptr)));
+    end Get_Shortcut;
+
+
+    procedure Set_Shortcut
+           (This : in out Button;
+            Key  : in     Shortcut_Key) is
+    begin
+        fl_button_set_shortcut (This.Void_Ptr, Interfaces.C.int (Key_To_C (Key)));
+    end Set_Shortcut;
 
 
 

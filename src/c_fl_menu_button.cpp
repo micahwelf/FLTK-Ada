@@ -74,3 +74,8 @@ void fl_menu_button_type(MENUBUTTON m, unsigned int t) {
     reinterpret_cast<Fl_Menu_Button*>(m)->type(t);
 }
 
+const void * fl_menu_button_popup(MENUBUTTON m) {
+    return reinterpret_cast<Fl_Menu_Button*>(m)->popup();
+}
+
+
