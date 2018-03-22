@@ -65,6 +65,11 @@ package body FLTK.Widgets.Inputs is
         return Interfaces.C.int;
     pragma Import (C, fl_input_copy_cuts, "fl_input_copy_cuts");
 
+    function fl_input_undo
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_undo, "fl_input_undo");
+
 
 
 
@@ -78,8 +83,94 @@ package body FLTK.Widgets.Inputs is
             T : in Interfaces.C.int);
     pragma Import (C, fl_input_set_readonly, "fl_input_set_readonly");
 
+    function fl_input_get_tab_nav
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_get_tab_nav, "fl_input_get_tab_nav");
+
+    procedure fl_input_set_tab_nav
+           (I : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_input_set_tab_nav, "fl_input_set_tab_nav");
+
+    function fl_input_get_wrap
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_get_wrap, "fl_input_get_wrap");
+
+    procedure fl_input_set_wrap
+           (I : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_input_set_wrap, "fl_input_set_wrap");
 
 
+
+
+    function fl_input_get_input_type
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_get_input_type, "fl_input_get_input_type");
+
+    procedure fl_input_set_input_type
+           (I : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_input_set_input_type, "fl_input_set_input_type");
+
+    function fl_input_get_shortcut
+           (I : in System.Address)
+        return Interfaces.C.unsigned_long;
+    pragma Import (C, fl_input_get_shortcut, "fl_input_get_shortcut");
+
+    procedure fl_input_set_shortcut
+           (I : in System.Address;
+            T : in Interfaces.C.unsigned_long);
+    pragma Import (C, fl_input_set_shortcut, "fl_input_set_shortcut");
+
+    function fl_input_get_mark
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_get_mark, "fl_input_get_mark");
+
+    function fl_input_set_mark
+           (I : in System.Address;
+            T : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_set_mark, "fl_input_set_mark");
+
+    function fl_input_get_position
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_get_position, "fl_input_get_position");
+
+    function fl_input_set_position
+           (I : in System.Address;
+            T : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_set_position, "fl_input_set_position");
+
+
+
+
+    function fl_input_index
+           (I : in System.Address;
+            P : in Interfaces.C.int)
+        return Interfaces.C.unsigned;
+    pragma Import (C, fl_input_index, "fl_input_index");
+
+    function fl_input_insert
+           (I : in System.Address;
+            S : in Interfaces.C.char_array;
+            L : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_insert, "fl_input_insert");
+
+    function fl_input_replace
+           (I    : in System.Address;
+            B, E : in Interfaces.C.int;
+            S    : in Interfaces.C.char_array;
+            L    : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_replace, "fl_input_replace");
 
     procedure fl_input_set_value
            (I : in System.Address;
@@ -89,6 +180,34 @@ package body FLTK.Widgets.Inputs is
 
 
 
+
+    function fl_input_get_maximum_size
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_get_maximum_size, "fl_input_get_maximum_size");
+
+    procedure fl_input_set_maximum_size
+           (I : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_input_set_maximum_size, "fl_input_set_maximum_size");
+
+    function fl_input_get_size
+           (I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_input_get_size, "fl_input_get_size");
+
+
+
+
+    function fl_input_get_cursor_color
+           (I : in System.Address)
+        return Interfaces.C.unsigned;
+    pragma Import (C, fl_input_get_cursor_color, "fl_input_get_cursor_color");
+
+    procedure fl_input_set_cursor_color
+           (I : in System.Address;
+            T : in Interfaces.C.unsigned);
+    pragma Import (C, fl_input_set_cursor_color, "fl_input_set_cursor_color");
 
     function fl_input_get_textcolor
            (I : in System.Address)
@@ -119,6 +238,14 @@ package body FLTK.Widgets.Inputs is
            (I : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_input_set_textsize, "fl_input_set_textsize");
+
+
+
+
+    procedure fl_input_set_size
+           (I    : in System.Address;
+            W, H : in Interfaces.C.int);
+    pragma Import (C, fl_input_set_size, "fl_input_set_size");
 
 
 
@@ -222,6 +349,13 @@ package body FLTK.Widgets.Inputs is
     end Copy_Cuts;
 
 
+    procedure Undo
+           (This : in out Input) is
+    begin
+        This.Was_Changed := fl_input_undo (This.Void_Ptr) /= 0;
+    end Undo;
+
+
 
 
     function Has_Changed
@@ -255,6 +389,139 @@ package body FLTK.Widgets.Inputs is
     end Set_Readonly;
 
 
+    function Is_Tab_Nav
+           (This : in Input)
+        return Boolean is
+    begin
+        return fl_input_get_tab_nav (This.Void_Ptr) /= 0;
+    end Is_Tab_Nav;
+
+
+    procedure Set_Tab_Nav
+           (This : in out Input;
+            To   : in     Boolean) is
+    begin
+        fl_input_set_tab_nav (This.Void_Ptr, Boolean'Pos (To));
+    end Set_Tab_Nav;
+
+
+    function Is_Wrap
+           (This : in Input)
+        return Boolean is
+    begin
+        return fl_input_get_wrap (This.Void_Ptr) /= 0;
+    end Is_Wrap;
+
+
+    procedure Set_Wrap
+           (This : in out Input;
+            To   : in     Boolean) is
+    begin
+        fl_input_set_wrap (This.Void_Ptr, Boolean'Pos (To));
+    end Set_Wrap;
+
+
+
+
+    function Get_Input_Type
+           (This : in Input)
+        return Input_Kind
+    is
+        C_Val : Interfaces.C.int := fl_input_get_input_type (This.Void_Ptr);
+    begin
+        for V in Input_Kind loop
+            if Input_Kind_Values (V) = C_Val then
+                return V;
+            end if;
+        end loop;
+        return Normal_Kind;
+    end Get_Input_Type;
+
+
+    function Get_Shortcut_Key
+           (This : in Input)
+        return Shortcut_Key is
+    begin
+        return C_To_Key (fl_input_get_shortcut (This.Void_Ptr));
+    end Get_Shortcut_Key;
+
+
+    procedure Set_Shortcut_Key
+           (This : in out Input;
+            To   : in     Shortcut_Key) is
+    begin
+        fl_input_set_shortcut (This.Void_Ptr, Key_To_C (To));
+    end Set_Shortcut_Key;
+
+
+    function Get_Mark
+           (This : in Input)
+        return Natural is
+    begin
+        return Natural (fl_input_get_mark (This.Void_Ptr));
+    end Get_Mark;
+
+
+    procedure Set_Mark
+           (This : in out Input;
+            To   : in     Natural) is
+    begin
+        This.Was_Changed := fl_input_set_mark
+           (This.Void_Ptr, Interfaces.C.int (To)) /= 0;
+    end Set_Mark;
+
+
+    function Get_Position
+           (This : in Input)
+        return Natural is
+    begin
+        return Natural (fl_input_get_position (This.Void_Ptr));
+    end Get_Position;
+
+
+    procedure Set_Position
+           (This : in out Input;
+            To   : in     Natural) is
+    begin
+        This.Was_Changed := fl_input_set_position
+           (This.Void_Ptr, Interfaces.C.int (To)) /= 0;
+    end Set_Position;
+
+
+
+
+    function Index
+           (This  : in Input;
+            Place : in Integer)
+        return Character is
+    begin
+        return Character'Val (fl_input_index (This.Void_Ptr, Interfaces.C.int (Place)));
+    end Index;
+
+
+    procedure Insert
+           (This : in out Input;
+            Str  : in     String) is
+    begin
+        This.Was_Changed := fl_input_insert
+           (This.Void_Ptr,
+            Interfaces.C.To_C (Str),
+            Str'Length) /= 0;
+    end Insert;
+
+
+    procedure Replace
+           (This     : in out Input;
+            From, To : in     Natural;
+            New_Text : in     String) is
+    begin
+        This.Was_Changed := fl_input_replace
+           (This.Void_Ptr,
+            Interfaces.C.int (From),
+            Interfaces.C.int (To),
+            Interfaces.C.To_C (New_Text),
+            New_Text'Length) /= 0;
+    end Replace;
 
 
     function Get_Value
@@ -273,6 +540,48 @@ package body FLTK.Widgets.Inputs is
     end Set_Value;
 
 
+
+
+    function Get_Maximum_Size
+           (This : in Input)
+        return Natural is
+    begin
+        return Natural (fl_input_get_maximum_size (This.Void_Ptr));
+    end Get_Maximum_Size;
+
+
+    procedure Set_Maximum_Size
+           (This : in out Input;
+            To   : in     Natural) is
+    begin
+        fl_input_set_maximum_size (This.Void_Ptr, Interfaces.C.int (To));
+    end Set_Maximum_Size;
+
+
+    function Size
+           (This : in Input)
+        return Natural is
+    begin
+        return Natural (fl_input_get_size (This.Void_Ptr));
+    end Size;
+
+
+
+
+    function Get_Cursor_Color
+           (This : in Input)
+        return Color is
+    begin
+        return Color (fl_input_get_cursor_color (This.Void_Ptr));
+    end Get_Cursor_Color;
+
+
+    procedure Set_Cursor_Color
+           (This : in out Input;
+            To   : in     Color) is
+    begin
+        fl_input_set_cursor_color (This.Void_Ptr, Interfaces.C.unsigned (To));
+    end Set_Cursor_Color;
 
 
     function Get_Text_Color
@@ -325,6 +634,16 @@ package body FLTK.Widgets.Inputs is
 
 
 
+    procedure Resize
+           (This : in out Input;
+            W, H : in     Integer) is
+    begin
+        fl_input_set_size (This.Void_Ptr, Interfaces.C.int (W), Interfaces.C.int (H));
+    end Resize;
+
+
+
+
     procedure Draw
            (This : in out Input) is
     begin
@@ -340,6 +659,20 @@ package body FLTK.Widgets.Inputs is
         return Event_Outcome'Val
                (fl_input_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
     end Handle;
+
+
+
+
+    package body Extra is
+
+        procedure Set_Input_Type
+               (This : in out Input;
+                To   : in     Input_Kind) is
+        begin
+            fl_input_set_input_type (This.Void_Ptr, Input_Kind_Values (To));
+        end Set_Input_Type;
+
+    end Extra;
 
 
 end FLTK.Widgets.Inputs;

@@ -14,6 +14,10 @@ package FLTK.Widgets.Inputs is
     type Input_Cursor (Data : access Input'Class) is limited null record
         with Implicit_Dereference => Data;
 
+    type Input_Kind is
+       (Normal_Kind, Float_Kind, Integer_Kind, Multiline_Kind,
+        Secret_Kind, Readonly_Kind, Wrap_Kind);
+
 
 
 
@@ -46,6 +50,9 @@ package FLTK.Widgets.Inputs is
     procedure Copy_Cuts
            (This : in out Input);
 
+    procedure Undo
+           (This : in out Input);
+
 
 
 
@@ -64,8 +71,69 @@ package FLTK.Widgets.Inputs is
            (This : in out Input;
             To   : in     Boolean);
 
+    function Is_Tab_Nav
+           (This : in Input)
+        return Boolean;
+
+    procedure Set_Tab_Nav
+           (This : in out Input;
+            To   : in     Boolean);
+
+    function Is_Wrap
+           (This : in Input)
+        return Boolean;
+
+    procedure Set_Wrap
+           (This : in out Input;
+            To   : in     Boolean);
 
 
+
+
+    function Get_Input_Type
+           (This : in Input)
+        return Input_Kind;
+
+    function Get_Shortcut_Key
+           (This : in Input)
+        return Shortcut_Key;
+
+    procedure Set_Shortcut_Key
+           (This : in out Input;
+            To   : in     Shortcut_Key);
+
+    function Get_Mark
+           (This : in Input)
+        return Natural;
+
+    procedure Set_Mark
+           (This : in out Input;
+            To   : in     Natural);
+
+    function Get_Position
+           (This : in Input)
+        return Natural;
+
+    procedure Set_Position
+           (This : in out Input;
+            To   : in     Natural);
+
+
+
+
+    function Index
+           (This  : in Input;
+            Place : in Integer)
+        return Character;
+
+    procedure Insert
+           (This : in out Input;
+            Str  : in     String);
+
+    procedure Replace
+           (This     : in out Input;
+            From, To : in     Natural;
+            New_Text : in     String);
 
     function Get_Value
            (This : in Input)
@@ -77,6 +145,29 @@ package FLTK.Widgets.Inputs is
 
 
 
+
+    function Get_Maximum_Size
+           (This : in Input)
+        return Natural;
+
+    procedure Set_Maximum_Size
+           (This : in out Input;
+            To   : in     Natural);
+
+    function Size
+           (This : in Input)
+        return Natural;
+
+
+
+
+    function Get_Cursor_Color
+           (This : in Input)
+        return Color;
+
+    procedure Set_Cursor_Color
+           (This : in out Input;
+            To   : in     Color);
 
     function Get_Text_Color
            (This : in Input)
@@ -105,6 +196,13 @@ package FLTK.Widgets.Inputs is
 
 
 
+    procedure Resize
+           (This : in out Input;
+            W, H : in     Integer);
+
+
+
+
     procedure Draw
            (This : in out Input);
 
@@ -112,6 +210,17 @@ package FLTK.Widgets.Inputs is
            (This  : in out Input;
             Event : in     Event_Kind)
         return Event_Outcome;
+
+
+
+
+    package Extra is
+
+        procedure Set_Input_Type
+               (This : in out Input;
+                To   : in     Input_Kind);
+
+    end Extra;
 
 
 private
@@ -123,6 +232,18 @@ private
 
     overriding procedure Finalize
            (This : in out Input);
+
+
+
+
+    Input_Kind_Values : array (Input_Kind) of Interfaces.C.int :=
+       (Normal_Kind    => 0,
+        Float_Kind     => 1,
+        Integer_Kind   => 2,
+        Multiline_Kind => 4,
+        Secret_Kind    => 5,
+        Readonly_Kind  => 8,
+        Wrap_Kind      => 16);
 
 
 

@@ -90,6 +90,10 @@ int fl_input_copy_cuts(INPUT i) {
     return reinterpret_cast<Fl_Input*>(i)->copy_cuts();
 }
 
+int fl_input_undo(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->undo();
+}
+
 
 
 
@@ -101,8 +105,71 @@ void fl_input_set_readonly(INPUT i, int t) {
     reinterpret_cast<Fl_Input*>(i)->readonly(t);
 }
 
+int fl_input_get_tab_nav(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->tab_nav();
+}
+
+void fl_input_set_tab_nav(INPUT i, int t) {
+    reinterpret_cast<Fl_Input*>(i)->tab_nav(t);
+}
+
+int fl_input_get_wrap(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->wrap();
+}
+
+void fl_input_set_wrap(INPUT i, int t) {
+    reinterpret_cast<Fl_Input*>(i)->wrap(t);
+}
 
 
+
+
+int fl_input_get_input_type(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->input_type();
+}
+
+void fl_input_set_input_type(INPUT i, int t) {
+    reinterpret_cast<Fl_Input*>(i)->input_type(t);
+}
+
+unsigned long fl_input_get_shortcut(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->shortcut();
+}
+
+void fl_input_set_shortcut(INPUT i, unsigned long t) {
+    reinterpret_cast<Fl_Input*>(i)->shortcut(t);
+}
+
+int fl_input_get_mark(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->mark();
+}
+
+int fl_input_set_mark(INPUT i, int t) {
+    return reinterpret_cast<Fl_Input*>(i)->mark(t);
+}
+
+int fl_input_get_position(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->position();
+}
+
+int fl_input_set_position(INPUT i, int t) {
+    return reinterpret_cast<Fl_Input*>(i)->position(t);
+}
+
+
+
+
+unsigned int fl_input_index(INPUT i, int p) {
+    return reinterpret_cast<Fl_Input*>(i)->index(p);
+}
+
+int fl_input_insert(INPUT i, const char * s, int l) {
+    return reinterpret_cast<Fl_Input*>(i)->insert(s,l);
+}
+
+int fl_input_replace(INPUT i, int b, int e, const char * s, int l) {
+    return reinterpret_cast<Fl_Input*>(i)->replace(b,e,s,l);
+}
 
 const char * fl_input_get_value(INPUT i) {
     return reinterpret_cast<Fl_Input*>(i)->value();
@@ -114,6 +181,29 @@ void fl_input_set_value(INPUT i, char * s, int len) {
 
 
 
+
+int fl_input_get_maximum_size(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->maximum_size();
+}
+
+void fl_input_set_maximum_size(INPUT i, int t) {
+    reinterpret_cast<Fl_Input*>(i)->maximum_size(t);
+}
+
+int fl_input_get_size(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->size();
+}
+
+
+
+
+unsigned int fl_input_get_cursor_color(INPUT i) {
+    return reinterpret_cast<Fl_Input*>(i)->cursor_color();
+}
+
+void fl_input_set_cursor_color(INPUT i, unsigned int t) {
+    reinterpret_cast<Fl_Input*>(i)->cursor_color(t);
+}
 
 unsigned int fl_input_get_textcolor(INPUT i) {
     return reinterpret_cast<Fl_Input*>(i)->textcolor();
@@ -137,6 +227,13 @@ int fl_input_get_textsize(INPUT i) {
 
 void fl_input_set_textsize(INPUT i, int t) {
     reinterpret_cast<Fl_Input*>(i)->textsize(t);
+}
+
+
+
+
+void fl_input_set_size(INPUT i, int w, int h) {
+    reinterpret_cast<Fl_Input*>(i)->size(w,h);
 }
 
 

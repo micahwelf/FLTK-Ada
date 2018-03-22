@@ -17,6 +17,7 @@ Polished:
 
 Done:
 
+FLTK.Dialogs
 FLTK.Images
 FLTK.Images.Bitmaps
 FLTK.Images.Bitmaps.XBM
@@ -52,6 +53,7 @@ FLTK.Widgets.Groups.Windows.Double
 FLTK.Widgets.Groups.Windows.Single
 FLTK.Widgets.Groups.Windows.Single.Menu
 FLTK.Widgets.Groups.Wizards
+FLTK.Widgets.Inputs
 FLTK.Widgets.Inputs.File
 FLTK.Widgets.Inputs.Float
 FLTK.Widgets.Inputs.Integer
@@ -86,7 +88,6 @@ FLTK.Widgets.Valuators.Sliders.Value.Horizontal
 Partially Done:
 
 FLTK
-FLTK.Dialogs
 FLTK.Menu_Items
 FLTK.Screen
 FLTK.Text_Buffers;
@@ -94,7 +95,6 @@ FLTK.Widgets
 FLTK.Widgets.Groups
 FLTK.Widgets.Groups.Text_Displays (94%)
 FLTK.Widgets.Groups.Windows
-FLTK.Widgets.Inputs
 FLTK.Widgets.Menus
 
 
@@ -130,6 +130,8 @@ FL_Label
 
 - mark all methods as inline
 - make sure all C++ reinterpret_cast for methods is to the Fl object, not the My object, because inheriting
+- consistent unicode utf-8 support (is this even fully supported by FLTK?)
+- make all protected methods available
 
 
 

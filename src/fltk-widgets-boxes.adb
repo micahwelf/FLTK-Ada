@@ -56,7 +56,9 @@ package body FLTK.Widgets.Boxes is
         if  This.Void_Ptr /= System.Null_Address and then
             This in Box'Class
         then
-            free_fl_box (This.Void_Ptr);
+            if This.Needs_Dealloc then
+                free_fl_box (This.Void_Ptr);
+            end if;
             This.Void_Ptr := System.Null_Address;
         end if;
         Finalize (Widget (This));

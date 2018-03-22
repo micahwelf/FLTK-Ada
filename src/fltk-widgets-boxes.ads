@@ -5,6 +5,9 @@ package FLTK.Widgets.Boxes is
 
     type Box is new Widget with private;
 
+    type Box_Cursor (Data : access Box'Class) is limited null record
+        with Implicit_Dereference => Data;
+
 
 
 
