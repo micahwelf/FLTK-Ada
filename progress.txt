@@ -17,6 +17,7 @@ Polished:
 
 Done:
 
+FLTK.Devices
 FLTK.Dialogs
 FLTK.Images
 FLTK.Images.Bitmaps
@@ -88,9 +89,10 @@ FLTK.Widgets.Valuators.Sliders.Value.Horizontal
 Partially Done:
 
 FLTK
+FLTK.Devices.Graphics
 FLTK.Menu_Items
 FLTK.Screen
-FLTK.Text_Buffers;
+FLTK.Text_Buffers
 FLTK.Widgets
 FLTK.Widgets.Groups
 FLTK.Widgets.Groups.Text_Displays (94%)
@@ -117,8 +119,6 @@ FL_Help_View (several methods have ABI_VERSION bugs)
 FL_Table
 FL_Table_Row
 FL_Tree
-FL_Device
-FL_Graphics_Driver
 FL_Surface_Device
 FL_Copy_Surface
 FL_Image_Surface
