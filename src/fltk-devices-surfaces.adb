@@ -69,14 +69,14 @@ package body FLTK.Devices.Surfaces is
 
 
     function Get_Current
-        return access Surface_Device is
+        return access Surface_Device'Class is
     begin
         return Current_Ptr;
     end Get_Current;
 
 
     procedure Set_Current
-           (This : in out Surface_Device) is
+           (This : in out Surface_Device'Class) is
     begin
         fl_surface_set_current (This.Void_Ptr);
         Current_Ptr := This'Unchecked_Access;

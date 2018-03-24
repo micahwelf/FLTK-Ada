@@ -25,10 +25,10 @@ package FLTK.Devices.Surfaces is
 
 
     function Get_Current
-        return access Surface_Device;
+        return access Surface_Device'Class;
 
     procedure Set_Current
-           (This : in out Surface_Device);
+           (This : in out Surface_Device'Class);
 
 
 private
@@ -41,7 +41,7 @@ private
 
 
     Original_Surface : aliased Surface_Device;
-    Current_Ptr : access Surface_Device := Original_Surface'Access;
+    Current_Ptr : access Surface_Device'Class := Original_Surface'Access;
 
 
 end FLTK.Devices.Surfaces;

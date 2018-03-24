@@ -18,6 +18,7 @@ Polished:
 Done:
 
 FLTK.Devices
+FLTK.Devices.Surfaces.Paged
 FLTK.Dialogs
 FLTK.Images
 FLTK.Images.Bitmaps
@@ -122,7 +123,6 @@ FL_Table_Row
 FL_Tree
 FL_Copy_Surface
 FL_Image_Surface
-FL_Paged_Device
 FL_Printer
 FL_Tooltip
 FL_Preferences
