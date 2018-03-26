@@ -19,6 +19,7 @@ Done:
 
 FLTK.Devices
 FLTK.Devices.Surfaces.Paged
+FLTK.Devices.Surfaces.Paged.Printers
 FLTK.Dialogs
 FLTK.Images
 FLTK.Images.Bitmaps
@@ -123,7 +124,6 @@ FL_Table_Row
 FL_Tree
 FL_Copy_Surface
 FL_Image_Surface
-FL_Printer
 FL_Tooltip
 FL_Preferences
 FL_Label

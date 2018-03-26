@@ -28,7 +28,7 @@ package FLTK.Devices.Surfaces is
         return access Surface_Device'Class;
 
     procedure Set_Current
-           (This : in out Surface_Device'Class);
+           (This : in out Surface_Device);
 
 
 private

@@ -76,7 +76,7 @@ package body FLTK.Devices.Surfaces is
 
 
     procedure Set_Current
-           (This : in out Surface_Device'Class) is
+           (This : in out Surface_Device) is
     begin
         fl_surface_set_current (This.Void_Ptr);
         Current_Ptr := This'Unchecked_Access;
