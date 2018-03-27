@@ -30,6 +30,7 @@ FLTK.Images.RGB.BMP
 FLTK.Images.RGB.JPEG
 FLTK.Images.RGB.PNG
 FLTK.Images.RGB.PNM
+FLTK.Tooltips
 FLTK.Widgets.Boxes
 FLTK.Widgets.Buttons
 FLTK.Widgets.Buttons.Enter
@@ -120,11 +121,10 @@ FL_File_Browser
 FL_Hold_Browser
 FL_Multi_Browser
 FL_Select_Browser
-FL_Help_View (several methods have ABI_VERSION bugs)
+FL_Help_View
 FL_Table
 FL_Table_Row
 FL_Tree
-FL_Tooltip
 FL_Preferences
 FL_Label
 
@@ -132,6 +132,15 @@ FL_Label
 - make sure all C++ reinterpret_cast for methods is to the Fl object, not the My object, because inheriting
 - consistent unicode utf-8 support (is this even fully supported by FLTK?)
 - make all protected methods available
+
+
+
+
+Bugs to fix:
+
+Fl_Help_View ABI_VERSION checks
+Fl_Tooltip ABI_VERSION checks
+Fl_Wizard draw() method private/protected
 
 
 
