@@ -94,6 +94,7 @@ Partially Done:
 FLTK
 FLTK.Devices.Graphics
 FLTK.Devices.Surfaces
+FLTK.Devices.Surfaces.Image
 FLTK.Menu_Items
 FLTK.Screen
 FLTK.Text_Buffers
@@ -123,7 +124,6 @@ FL_Help_View (several methods have ABI_VERSION bugs)
 FL_Table
 FL_Table_Row
 FL_Tree
-FL_Image_Surface
 FL_Tooltip
 FL_Preferences
 FL_Label
