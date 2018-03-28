@@ -22,6 +22,7 @@ extern "C" void fl_image_surface_draw_decorated_window(IMAGE_SURFACE s, void * w
 
 
 extern "C" void * fl_image_surface_image(IMAGE_SURFACE s);
+extern "C" void * fl_image_surface_highres_image(IMAGE_SURFACE s);
 
 
 extern "C" void fl_image_surface_set_current(IMAGE_SURFACE s);

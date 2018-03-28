@@ -35,6 +35,10 @@ void * fl_image_surface_image(IMAGE_SURFACE s) {
     return reinterpret_cast<Fl_Image_Surface*>(s)->image();
 }
 
+void * fl_image_surface_highres_image(IMAGE_SURFACE s) {
+    return reinterpret_cast<Fl_Image_Surface*>(s)->highres_image();
+}
+
 
 
 

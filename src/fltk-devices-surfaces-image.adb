@@ -44,6 +44,11 @@ package body FLTK.Devices.Surfaces.Image is
         return System.Address;
     pragma Import (C, fl_image_surface_image, "fl_image_surface_image");
 
+    function fl_image_surface_highres_image
+           (S : in System.Address)
+        return System.Address;
+    pragma Import (C, fl_image_surface_highres_image, "fl_image_surface_highres_image");
+
 
 
 
@@ -136,6 +141,16 @@ package body FLTK.Devices.Surfaces.Image is
             Wrapper (Img).Void_Ptr := fl_image_surface_image (This.Void_Ptr);
         end return;
     end Get_Image;
+
+
+    function Get_Highres_Image
+           (This : in Image_Surface)
+        return FLTK.Images.Shared.Shared_Image is
+    begin
+        return Img : FLTK.Images.Shared.Shared_Image do
+            Wrapper (Img).Void_Ptr := fl_image_surface_highres_image (This.Void_Ptr);
+        end return;
+    end Get_Highres_Image;
 
 
 

@@ -19,6 +19,7 @@ Done:
 
 FLTK.Devices
 FLTK.Devices.Surfaces.Copy
+FLTK.Devices.Surfaces.Image
 FLTK.Devices.Surfaces.Paged
 FLTK.Devices.Surfaces.Paged.Printers
 FLTK.Dialogs
@@ -30,6 +31,7 @@ FLTK.Images.RGB.BMP
 FLTK.Images.RGB.JPEG
 FLTK.Images.RGB.PNG
 FLTK.Images.RGB.PNM
+FLTK.Images.Shared
 FLTK.Tooltips
 FLTK.Widgets.Boxes
 FLTK.Widgets.Buttons
@@ -95,7 +97,6 @@ Partially Done:
 FLTK
 FLTK.Devices.Graphics
 FLTK.Devices.Surfaces
-FLTK.Devices.Surfaces.Image
 FLTK.Environment
 FLTK.Menu_Items
 FLTK.Screen
@@ -114,7 +115,6 @@ To-Do:
 FL_Pixmap
 FL_GIF_Image
 FL_XPM_Image
-FL_Shared_Image
 FL_Tiled_Image
 FL_Browser
 FL_Check_Browser

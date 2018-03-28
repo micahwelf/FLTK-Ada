@@ -3,6 +3,7 @@
 with
 
     FLTK.Images.RGB,
+    FLTK.Images.Shared,
     FLTK.Widgets.Groups.Windows;
 
 
@@ -50,7 +51,9 @@ package FLTK.Devices.Surfaces.Image is
            (This : in Image_Surface)
         return FLTK.Images.RGB.RGB_Image;
 
-    --  Get_Highres_Image
+    function Get_Highres_Image
+           (This : in Image_Surface)
+        return FLTK.Images.Shared.Shared_Image;
 
 
 
