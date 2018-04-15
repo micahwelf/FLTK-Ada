@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Box Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Box Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Box</td>
+    <td>FLTK.Widgets.Boxes</td>
+  </tr>
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Box</td>
+    <td>Box</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Box_Reference</td>
+  </tr>
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Box (int X, int Y, int W, int H, const char *l=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Box;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int handle(int);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Box;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Box);
+</pre></td>
+  </tr>
+</table>
+
+
+  </body>
+</html>
+

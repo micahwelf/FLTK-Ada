@@ -12,6 +12,19 @@ Overall estimate: ???%
 
 Polished:
 
+FLTK.Tooltips
+FLTK.Widgets.Boxes
+FLTK.Widgets.Buttons
+FLTK.Widgets.Buttons.Enter
+FLTK.Widgets.Buttons.Light
+FLTK.Widgets.Buttons.Light.Check
+FLTK.Widgets.Buttons.Light.Radio
+FLTK.Widgets.Buttons.Light.Round
+FLTK.Widgets.Buttons.Light.Round.Radio
+FLTK.Widgets.Buttons.Radio
+FLTK.Widgets.Buttons.Repeat
+FLTK.Widgets.Buttons.Toggle
+
 
 
 
@@ -32,18 +45,6 @@ FLTK.Images.RGB.JPEG
 FLTK.Images.RGB.PNG
 FLTK.Images.RGB.PNM
 FLTK.Images.Shared
-FLTK.Tooltips
-FLTK.Widgets.Boxes
-FLTK.Widgets.Buttons
-FLTK.Widgets.Buttons.Enter
-FLTK.Widgets.Buttons.Light
-FLTK.Widgets.Buttons.Light.Check
-FLTK.Widgets.Buttons.Light.Radio
-FLTK.Widgets.Buttons.Light.Round
-FLTK.Widgets.Buttons.Light.Round.Radio
-FLTK.Widgets.Buttons.Radio
-FLTK.Widgets.Buttons.Repeat
-FLTK.Widgets.Buttons.Toggle
 FLTK.Widgets.Charts
 FLTK.Widgets.Clocks
 FLTK.Widgets.Clocks.Updated
@@ -134,12 +135,17 @@ FL_GL_Window
 FL_Glut_Window
 FL_Cairo_Window
 
+
+(all these have to be done to put something in the polished category)
+
 - mark all methods as inline
 - make sure all C++ reinterpret_cast for methods is to the Fl object, not the My object, because inheriting
-- consistent unicode utf-8 support (is this even fully supported by FLTK?)
+- consistent unicode utf-8 support (is this even fully supported by FLTK? if not, nevermind...)
 - make all protected methods available
 - check FLTK library internals to see which char* return values need dealloc
 - remove custom exception types in favour of Program_Error?
+- qualify all C++ virtual method calls with the class name to prevent dynamic dispatch on C++ side
+- provide documentation for how C++ methods map to Ada functions and procedures
 
 
 

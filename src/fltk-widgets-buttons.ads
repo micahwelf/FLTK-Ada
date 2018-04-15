@@ -5,6 +5,9 @@ package FLTK.Widgets.Buttons is
 
     type Button is new Widget with private;
 
+    type Button_Reference (Data : not null access Button'Class) is limited null record
+        with Implicit_Dereference => Data;
+
     type State is (Off, On);
 
 
@@ -71,6 +74,19 @@ private
 
     overriding procedure Finalize
            (This : in out Button);
+
+
+
+
+    pragma Inline (Get_State);
+    pragma Inline (Set_State);
+    pragma Inline (Set_Only);
+    pragma Inline (Get_Down_Box);
+    pragma Inline (Set_Down_Box);
+    pragma Inline (Get_Shortcut);
+    pragma Inline (Set_Shortcut);
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Buttons;

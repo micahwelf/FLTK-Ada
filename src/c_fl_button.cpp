@@ -71,34 +71,34 @@ void free_fl_button(BUTTON b) {
 
 
 int fl_button_get_state(BUTTON b) {
-    return reinterpret_cast<Fl_Button*>(b)->value();
+    return reinterpret_cast<Fl_Button*>(b)->Fl_Button::value();
 }
 
 void fl_button_set_state(BUTTON b, int s) {
-    reinterpret_cast<Fl_Button*>(b)->value(s);
+    reinterpret_cast<Fl_Button*>(b)->Fl_Button::value(s);
 }
 
 void fl_button_set_only(BUTTON b) {
-    reinterpret_cast<Fl_Button*>(b)->setonly();
+    reinterpret_cast<Fl_Button*>(b)->Fl_Button::setonly();
 }
 
 
 
 
 int fl_button_get_down_box(BUTTON b) {
-    return reinterpret_cast<Fl_Button*>(b)->down_box();
+    return reinterpret_cast<Fl_Button*>(b)->Fl_Button::down_box();
 }
 
 void fl_button_set_down_box(BUTTON b, int t) {
-    reinterpret_cast<Fl_Button*>(b)->down_box(static_cast<Fl_Boxtype>(t));
+    reinterpret_cast<Fl_Button*>(b)->Fl_Button::down_box(static_cast<Fl_Boxtype>(t));
 }
 
 int fl_button_get_shortcut(BUTTON b) {
-    return reinterpret_cast<Fl_Button*>(b)->shortcut();
+    return reinterpret_cast<Fl_Button*>(b)->Fl_Button::shortcut();
 }
 
 void fl_button_set_shortcut(BUTTON b, int k) {
-    reinterpret_cast<Fl_Button*>(b)->shortcut(k);
+    reinterpret_cast<Fl_Button*>(b)->Fl_Button::shortcut(k);
 }
 
 

@@ -16,10 +16,12 @@ package body FLTK.Widgets.Buttons.Light.Round.Radio is
     procedure radio_round_button_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, radio_round_button_set_draw_hook, "radio_round_button_set_draw_hook");
+    pragma Inline (radio_round_button_set_draw_hook);
 
     procedure radio_round_button_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, radio_round_button_set_handle_hook, "radio_round_button_set_handle_hook");
+    pragma Inline (radio_round_button_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Buttons.Light.Round.Radio is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_radio_round_button, "new_fl_radio_round_button");
+    pragma Inline (new_fl_radio_round_button);
 
     procedure free_fl_radio_round_button
            (B : in System.Address);
     pragma Import (C, free_fl_radio_round_button, "free_fl_radio_round_button");
+    pragma Inline (free_fl_radio_round_button);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Buttons.Light.Round.Radio is
     procedure fl_radio_round_button_draw
            (W : in System.Address);
     pragma Import (C, fl_radio_round_button_draw, "fl_radio_round_button_draw");
+    pragma Inline (fl_radio_round_button_draw);
 
     function fl_radio_round_button_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_radio_round_button_handle, "fl_radio_round_button_handle");
+    pragma Inline (fl_radio_round_button_handle);
 
 
 

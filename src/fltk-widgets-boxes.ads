@@ -5,7 +5,7 @@ package FLTK.Widgets.Boxes is
 
     type Box is new Widget with private;
 
-    type Box_Cursor (Data : access Box'Class) is limited null record
+    type Box_Reference (Data : not null access Box'Class) is limited null record
         with Implicit_Dereference => Data;
 
 
@@ -39,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Box);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Boxes;

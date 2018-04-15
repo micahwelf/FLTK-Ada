@@ -89,5 +89,39 @@ package FLTK.Tooltips is
            (To : in Font_Size);
 
 
+private
+
+
+    pragma Inline (Get_Target);
+    pragma Inline (Set_Target);
+    pragma Inline (Is_Enabled);
+    pragma Inline (Set_Enabled);
+    pragma Inline (Enter_Area);
+
+
+    pragma Inline (Get_Delay);
+    pragma Inline (Set_Delay);
+    pragma Inline (Get_Hover_Delay);
+    pragma Inline (Set_Hover_Delay);
+
+
+    pragma Inline (Get_Background_Color);
+    pragma Inline (Set_Background_Color);
+    pragma Inline (Get_Margin_Height);
+    --  pragma Inline (Set_Margin_Height);
+    pragma Inline (Get_Margin_Width);
+    --  pragma Inline (Set_Margin_Width);
+    pragma Inline (Get_Wrap_Width);
+    --  pragma Inline (Set_Wrap_Width);
+
+
+    pragma Inline (Get_Text_Color);
+    pragma Inline (Set_Text_Color);
+    pragma Inline (Get_Text_Font);
+    pragma Inline (Set_Text_Font);
+    pragma Inline (Get_Text_Size);
+    pragma Inline (Set_Text_Size);
+
+
 end FLTK.Tooltips;
 

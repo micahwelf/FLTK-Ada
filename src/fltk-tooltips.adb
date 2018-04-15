@@ -7,7 +7,8 @@ with
 
 use type
 
-    Interfaces.C.int;
+    Interfaces.C.int,
+    System.Address;
 
 
 package body FLTK.Tooltips is
@@ -16,24 +17,29 @@ package body FLTK.Tooltips is
     function fl_tooltip_get_current
         return System.Address;
     pragma Import (C, fl_tooltip_get_current, "fl_tooltip_get_current");
+    pragma Inline (fl_tooltip_get_current);
 
     procedure fl_tooltip_set_current
            (I : in System.Address);
     pragma Import (C, fl_tooltip_set_current, "fl_tooltip_set_current");
+    pragma Inline (fl_tooltip_set_current);
 
     function fl_tooltip_enabled
         return Interfaces.C.int;
     pragma Import (C, fl_tooltip_enabled, "fl_tooltip_enabled");
+    pragma Inline (fl_tooltip_enabled);
 
     procedure fl_tooltip_enable
            (V : in Interfaces.C.int);
     pragma Import (C, fl_tooltip_enable, "fl_tooltip_enable");
+    pragma Inline (fl_tooltip_enable);
 
     procedure fl_tooltip_enter_area
            (I          : in System.Address;
             X, Y, W, H : in Interfaces.C.int;
             T          : in Interfaces.C.char_array);
     pragma Import (C, fl_tooltip_enter_area, "fl_tooltip_enter_area");
+    pragma Inline (fl_tooltip_enter_area);
 
 
 
@@ -41,18 +47,22 @@ package body FLTK.Tooltips is
     function fl_tooltip_get_delay
         return Interfaces.C.C_float;
     pragma Import (C, fl_tooltip_get_delay, "fl_tooltip_get_delay");
+    pragma Inline (fl_tooltip_get_delay);
 
     procedure fl_tooltip_set_delay
            (V : in Interfaces.C.C_float);
     pragma Import (C, fl_tooltip_set_delay, "fl_tooltip_set_delay");
+    pragma Inline (fl_tooltip_set_delay);
 
     function fl_tooltip_get_hoverdelay
         return Interfaces.C.C_float;
     pragma Import (C, fl_tooltip_get_hoverdelay, "fl_tooltip_get_hoverdelay");
+    pragma Inline (fl_tooltip_get_hoverdelay);
 
     procedure fl_tooltip_set_hoverdelay
            (V : in Interfaces.C.C_float);
     pragma Import (C, fl_tooltip_set_hoverdelay, "fl_tooltip_set_hoverdelay");
+    pragma Inline (fl_tooltip_set_hoverdelay);
 
 
 
@@ -60,34 +70,42 @@ package body FLTK.Tooltips is
     function fl_tooltip_get_color
         return Interfaces.C.unsigned;
     pragma Import (C, fl_tooltip_get_color, "fl_tooltip_get_color");
+    pragma Inline (fl_tooltip_get_color);
 
     procedure fl_tooltip_set_color
            (V : in Interfaces.C.unsigned);
     pragma Import (C, fl_tooltip_set_color, "fl_tooltip_set_color");
+    pragma Inline (fl_tooltip_set_color);
 
     function fl_tooltip_get_margin_height
         return Interfaces.C.int;
     pragma Import (C, fl_tooltip_get_margin_height, "fl_tooltip_get_margin_height");
+    pragma Inline (fl_tooltip_get_margin_height);
 
     --  procedure fl_tooltip_set_margin_height
     --         (V : in Interfaces.C.int);
     --  pragma Import (C, fl_tooltip_set_margin_height, "fl_tooltip_set_margin_height");
+    --  pragma Inline (fl_tooltip_set_margin_height);
 
     function fl_tooltip_get_margin_width
         return Interfaces.C.int;
     pragma Import (C, fl_tooltip_get_margin_width, "fl_tooltip_get_margin_width");
+    pragma Inline (fl_tooltip_get_margin_width);
 
     --  procedure fl_tooltip_set_margin_width
     --         (V : in Interfaces.C.int);
     --  pragma Import (C, fl_tooltip_set_margin_width, "fl_tooltip_set_margin_width");
+    --  pragma Inline (fl_tooltip_set_margin_width);
 
     function fl_tooltip_get_wrap_width
         return Interfaces.C.int;
     pragma Import (C, fl_tooltip_get_wrap_width, "fl_tooltip_get_wrap_width");
+    pragma Inline (fl_tooltip_get_wrap_width);
 
     --  procedure fl_tooltip_set_wrap_width
     --         (V : in Interfaces.C.int);
     --  pragma Import (C, fl_tooltip_set_wrap_width, "fl_tooltip_set_wrap_width");
+    --  pragma Inline (fl_tooltip_set_wrap_width);
 
 
 
@@ -95,26 +113,32 @@ package body FLTK.Tooltips is
     function fl_tooltip_get_textcolor
         return Interfaces.C.unsigned;
     pragma Import (C, fl_tooltip_get_textcolor, "fl_tooltip_get_textcolor");
+    pragma Inline (fl_tooltip_get_textcolor);
 
     procedure fl_tooltip_set_textcolor
            (V : in Interfaces.C.unsigned);
     pragma Import (C, fl_tooltip_set_textcolor, "fl_tooltip_set_textcolor");
+    pragma Inline (fl_tooltip_set_textcolor);
 
     function fl_tooltip_get_font
         return Interfaces.C.int;
     pragma Import (C, fl_tooltip_get_font, "fl_tooltip_get_font");
+    pragma Inline (fl_tooltip_get_font);
 
     procedure fl_tooltip_set_font
            (V : in Interfaces.C.int);
     pragma Import (C, fl_tooltip_set_font, "fl_tooltip_set_font");
+    pragma Inline (fl_tooltip_set_font);
 
     function fl_tooltip_get_size
         return Interfaces.C.int;
     pragma Import (C, fl_tooltip_get_size, "fl_tooltip_get_size");
+    pragma Inline (fl_tooltip_get_size);
 
     procedure fl_tooltip_set_size
            (V : in Interfaces.C.int);
     pragma Import (C, fl_tooltip_set_size, "fl_tooltip_set_size");
+    pragma Inline (fl_tooltip_set_size);
 
 
 
@@ -123,6 +147,7 @@ package body FLTK.Tooltips is
            (W : in System.Address)
         return System.Address;
     pragma Import (C, fl_widget_get_user_data, "fl_widget_get_user_data");
+    pragma Inline (fl_widget_get_user_data);
 
     package Widget_Convert is new
         System.Address_To_Access_Conversions (FLTK.Widgets.Widget'Class);
@@ -134,10 +159,12 @@ package body FLTK.Tooltips is
         return access FLTK.Widgets.Widget'Class
     is
         Widget_Ptr : System.Address := fl_tooltip_get_current;
-        Actual_Widget : access FLTK.Widgets.Widget'Class :=
-            Widget_Convert.To_Pointer (fl_widget_get_user_data (Widget_Ptr));
     begin
-        return Actual_Widget;
+        if Widget_Ptr /= System.Null_Address then
+            return Widget_Convert.To_Pointer (fl_widget_get_user_data (Widget_Ptr));
+        else
+            return null;
+        end if;
     end Get_Target;
 
 

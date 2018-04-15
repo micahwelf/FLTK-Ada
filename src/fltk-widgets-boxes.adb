@@ -16,10 +16,12 @@ package body FLTK.Widgets.Boxes is
     procedure box_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, box_set_draw_hook, "box_set_draw_hook");
+    pragma Inline (box_set_draw_hook);
 
     procedure box_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, box_set_handle_hook, "box_set_handle_hook");
+    pragma Inline (box_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Boxes is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_box, "new_fl_box");
+    pragma Inline (new_fl_box);
 
     procedure free_fl_box
            (B : in System.Address);
     pragma Import (C, free_fl_box, "free_fl_box");
+    pragma Inline (free_fl_box);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Boxes is
     procedure fl_box_draw
            (W : in System.Address);
     pragma Import (C, fl_box_draw, "fl_box_draw");
+    pragma Inline (fl_box_draw);
 
     function fl_box_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_box_handle, "fl_box_handle");
+    pragma Inline (fl_box_handle);
 
 
 

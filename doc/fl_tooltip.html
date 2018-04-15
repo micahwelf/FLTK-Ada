@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Tooltip Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Tooltip Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Tooltip</td>
+    <td>FLTK.Tooltips</td>
+  </tr>
+</table>
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+static Fl_Color color();
+</pre></td>
+<td><pre>
+function Get_Background_Color
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void color(Fl_Color c);
+</pre></td>
+<td><pre>
+procedure Set_Background_Color
+       (To : in Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Widget * current();
+</pre></td>
+<td><pre>
+function Get_Target
+    return access FLTK.Widgets.Widget'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void current(Fl_Widget *);
+</pre></td>
+<td><pre>
+procedure Set_Target
+       (To : in FLTK.Widgets.Widget'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static float delay();
+</pre></td>
+<td><pre>
+function Get_Delay
+    return Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void delay(float f);
+</pre></td>
+<td><pre>
+procedure Set_Delay
+       (To : in Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void disable();
+</pre></td>
+<td>See static void enable(int b=1);</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void enable(int b=1);
+</pre></td>
+<td><pre>
+procedure Set_Enabled
+       (To : in Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int enabled();
+</pre></td>
+<td><pre>
+function Is_Enabled
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void enter_area(Fl_Widget *w, int X, int Y, int W, int H, const char *tip);
+</pre></td>
+<td><pre>
+procedure Enter_Area
+       (Item       : in FLTK.Widgets.Widget'Class;
+        X, Y, W, H : in Integer;
+        Tip        : in String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Font font();
+</pre></td>
+<td><pre>
+function Get_Text_Font
+    return Font_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void font(Fl_Font i);
+</pre></td>
+<td><pre>
+procedure Set_Text_Font
+       (To : in Font_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static float hoverdelay();
+</pre></td>
+<td><pre>
+function Get_Hover_Delay
+    return Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void hoverdelay(float f);
+</pre></td>
+<td><pre>
+procedure Set_Hover_Delay
+       (To : in Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int margin_height();
+</pre></td>
+<td><pre>
+function Get_Margin_Height
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void margin_height(int v);
+</pre></td>
+<td>Disabled pending ABI version check bugfix in FLTK</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int margin_width();
+</pre></td>
+<td><pre>
+function Get_Margin_Width
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void margin_width(int v);
+</pre></td>
+<td>Disabled pending ABI version check bugfix in FLTK</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Fontsize size();
+</pre></td>
+<td><pre>
+function Get_Text_Size
+    return Font_Size;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void size(Fl_Fontsize s);
+</pre></td>
+<td><pre>
+procedure Set_Text_Size
+       (To : in Font_Size);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Color textcolor();
+</pre></td>
+<td><pre>
+function Get_Text_Color
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void textcolor(Fl_Color c);
+</pre></td>
+<td><pre>
+procedure Set_Text_Color
+       (To : in Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int wrap_width();
+</pre></td>
+<td><pre>
+function Get_Wrap_Width
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void wrap_width(int v);
+</pre></td>
+<td>Disabled pending ABI version check bugfix in FLTK</td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

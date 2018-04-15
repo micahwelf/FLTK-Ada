@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Button Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Button Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Button</td>
+    <td>FLTK.Widgets.Buttons</td>
+  </tr>
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Button</td>
+    <td>Button</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Button_Reference</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>State</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Button(int X, int Y, int W, int H, const char *L=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Button;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int clear();
+</pre></td>
+<td>See int value();</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Boxtype down_box() const;
+</pre></td>
+<td><pre>
+function Get_Down_Box
+       (This : in Button)
+    return Box_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void down_box(Fl_Boxtype b);
+</pre></td>
+<td><pre>
+procedure Set_Down_Box
+       (This : in out Button;
+        To   : in     Box_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color down_color() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void down_color(unsigned c);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Button);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int handle(int);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Button;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int set();
+</pre></td>
+<td>See int value();</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void setonly();
+</pre></td>
+<td><pre>
+procedure Set_Only
+       (This : in out Button);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int shortcut() const;
+</pre></td>
+<td><pre>
+function Get_Shortcut
+       (This : in Button)
+    return Shortcut_Key;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void shortcut(int s);
+</pre></td>
+<td><pre>
+procedure Set_Shortcut
+       (This : in out Button;
+        Key  : in     Shortcut_Key);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void shortcut(const char *s);
+</pre></td>
+<td>See void shortcut(int s);</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value(int v);
+</pre></td>
+<td><pre>
+procedure Set_State
+       (This : in out Button;
+        St   : in     State);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char value() const;
+</pre></td>
+<td><pre>
+function Get_State
+       (This : in Button)
+    return State;
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

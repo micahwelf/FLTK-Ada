@@ -16,10 +16,12 @@ package body FLTK.Widgets.Buttons is
     procedure button_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, button_set_draw_hook, "button_set_draw_hook");
+    pragma Inline (button_set_draw_hook);
 
     procedure button_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, button_set_handle_hook, "button_set_handle_hook");
+    pragma Inline (button_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Buttons is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_button, "new_fl_button");
+    pragma Inline (new_fl_button);
 
     procedure free_fl_button
            (B : in System.Address);
     pragma Import (C, free_fl_button, "free_fl_button");
+    pragma Inline (free_fl_button);
 
 
 
@@ -41,15 +45,18 @@ package body FLTK.Widgets.Buttons is
            (B : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_button_get_state, "fl_button_get_state");
+    pragma Inline (fl_button_get_state);
 
     procedure fl_button_set_state
            (B : in System.Address;
             S : in Interfaces.C.int);
     pragma Import (C, fl_button_set_state, "fl_button_set_state");
+    pragma Inline (fl_button_set_state);
 
     procedure fl_button_set_only
            (B : in System.Address);
     pragma Import (C, fl_button_set_only, "fl_button_set_only");
+    pragma Inline (fl_button_set_only);
 
 
 
@@ -58,21 +65,25 @@ package body FLTK.Widgets.Buttons is
            (B : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_button_get_down_box, "fl_button_get_down_box");
+    pragma Inline (fl_button_get_down_box);
 
     procedure fl_button_set_down_box
            (B : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_button_set_down_box, "fl_button_set_down_box");
+    pragma Inline (fl_button_set_down_box);
 
     function fl_button_get_shortcut
            (B : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_button_get_shortcut, "fl_button_get_shortcut");
+    pragma Inline (fl_button_get_shortcut);
 
     procedure fl_button_set_shortcut
            (B : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_button_set_shortcut, "fl_button_set_shortcut");
+    pragma Inline (fl_button_set_shortcut);
 
 
 
@@ -80,12 +91,14 @@ package body FLTK.Widgets.Buttons is
     procedure fl_button_draw
            (W : in System.Address);
     pragma Import (C, fl_button_draw, "fl_button_draw");
+    pragma Inline (fl_button_draw);
 
     function fl_button_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_button_handle, "fl_button_handle");
+    pragma Inline (fl_button_handle);
 
 
 

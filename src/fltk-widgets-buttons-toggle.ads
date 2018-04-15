@@ -5,6 +5,9 @@ package FLTK.Widgets.Buttons.Toggle is
 
     type Toggle_Button is new Button with private;
 
+    type Toggle_Button_Reference (Data : not null access Toggle_Button'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -36,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Toggle_Button);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Buttons.Toggle;

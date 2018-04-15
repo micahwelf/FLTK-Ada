@@ -259,7 +259,7 @@ package body FLTK.Dialogs is
 
 
     function Get_Message_Icon
-        return FLTK.Widgets.Boxes.Box_Cursor is
+        return FLTK.Widgets.Boxes.Box_Reference is
     begin
         return (Data => Icon_Box'Access);
     end Get_Message_Icon;

@@ -8,6 +8,9 @@ package FLTK.Widgets.Buttons.Enter is
 
     type Enter_Button is new Button with private;
 
+    type Enter_Button_Reference (Data : not null access Enter_Button'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -39,6 +42,12 @@ private
 
     overriding procedure Finalize
            (This : in out Enter_Button);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Buttons.Enter;

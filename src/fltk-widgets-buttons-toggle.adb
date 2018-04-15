@@ -16,10 +16,12 @@ package body FLTK.Widgets.Buttons.Toggle is
     procedure toggle_button_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, toggle_button_set_draw_hook, "toggle_button_set_draw_hook");
+    pragma Inline (toggle_button_set_draw_hook);
 
     procedure toggle_button_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, toggle_button_set_handle_hook, "toggle_button_set_handle_hook");
+    pragma Inline (toggle_button_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Buttons.Toggle is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_toggle_button, "new_fl_toggle_button");
+    pragma Inline (new_fl_toggle_button);
 
     procedure free_fl_toggle_button
            (B : in System.Address);
     pragma Import (C, free_fl_toggle_button, "free_fl_toggle_button");
+    pragma Inline (free_fl_toggle_button);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Buttons.Toggle is
     procedure fl_toggle_button_draw
            (W : in System.Address);
     pragma Import (C, fl_toggle_button_draw, "fl_toggle_button_draw");
+    pragma Inline (fl_toggle_button_draw);
 
     function fl_toggle_button_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_toggle_button_handle, "fl_toggle_button_handle");
+    pragma Inline (fl_toggle_button_handle);
 
 
 

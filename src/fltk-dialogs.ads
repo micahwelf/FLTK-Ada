@@ -78,7 +78,7 @@ package FLTK.Dialogs is
             Size : in Font_Size);
 
     function Get_Message_Icon
-        return FLTK.Widgets.Boxes.Box_Cursor;
+        return FLTK.Widgets.Boxes.Box_Reference;
 
     procedure Set_Message_Title
            (To : in String);

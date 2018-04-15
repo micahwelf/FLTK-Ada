@@ -5,6 +5,9 @@ package FLTK.Widgets.Buttons.Light is
 
     type Light_Button is new Button with private;
 
+    type Light_Button_Reference (Data : not null access Light_Button'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -36,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Light_Button);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Buttons.Light;

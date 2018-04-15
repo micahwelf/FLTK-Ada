@@ -1,0 +1,38 @@
+
+
+body {
+    width: 90%;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+
+table.package, table.type {
+    min-width: 30%;
+}
+
+table.function {
+    min-width: 60%;
+}
+
+table {
+    margin-top: 4em;
+    margin-bottom: 4em;
+    border: 1px solid black;
+}
+
+
+th {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border: 1px solid black;
+}
+
+
+td {
+    width: 50%;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    border: 1px solid black;
+}
+
+

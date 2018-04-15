@@ -16,10 +16,12 @@ package body FLTK.Widgets.Buttons.Repeat is
     procedure repeat_button_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, repeat_button_set_draw_hook, "repeat_button_set_draw_hook");
+    pragma Inline (repeat_button_set_draw_hook);
 
     procedure repeat_button_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, repeat_button_set_handle_hook, "repeat_button_set_handle_hook");
+    pragma Inline (repeat_button_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Buttons.Repeat is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_repeat_button, "new_fl_repeat_button");
+    pragma Inline (new_fl_repeat_button);
 
     procedure free_fl_repeat_button
            (B : in System.Address);
     pragma Import (C, free_fl_repeat_button, "free_fl_repeat_button");
+    pragma Inline (free_fl_repeat_button);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Buttons.Repeat is
     procedure fl_repeat_button_draw
            (W : in System.Address);
     pragma Import (C, fl_repeat_button_draw, "fl_repeat_button_draw");
+    pragma Inline (fl_repeat_button_draw);
 
     function fl_repeat_button_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_repeat_button_handle, "fl_repeat_button_handle");
+    pragma Inline (fl_repeat_button_handle);
 
 
 
