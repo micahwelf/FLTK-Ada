@@ -14,6 +14,7 @@ class My_Round_Clock : public Fl_Round_Clock {
         friend void fl_round_clock_draw(ROUND_CLOCK c);
         friend void round_clock_set_handle_hook(ROUND_CLOCK c, void * h);
         friend int fl_round_clock_handle(ROUND_CLOCK c, int e);
+        friend void fl_round_clock_draw2(ROUND_CLOCK c, int x, int y, int w, int h);
     protected:
         void draw();
         void real_draw();
@@ -65,6 +66,13 @@ ROUND_CLOCK new_fl_round_clock(int x, int y, int w, int h, char* label) {
 
 void free_fl_round_clock(ROUND_CLOCK c) {
     delete reinterpret_cast<My_Round_Clock*>(c);
+}
+
+
+
+
+void fl_round_clock_draw2(ROUND_CLOCK c, int x, int y, int w, int h) {
+    reinterpret_cast<My_Round_Clock*>(c)->Fl_Round_Clock::draw(x,y,w,h);
 }
 
 

@@ -16,10 +16,12 @@ package body FLTK.Widgets.Groups.Windows.Single is
     procedure single_window_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, single_window_set_draw_hook, "single_window_set_draw_hook");
+    pragma Inline (single_window_set_draw_hook);
 
     procedure single_window_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, single_window_set_handle_hook, "single_window_set_handle_hook");
+    pragma Inline (single_window_set_handle_hook);
 
 
 
@@ -29,15 +31,18 @@ package body FLTK.Widgets.Groups.Windows.Single is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_single_window, "new_fl_single_window");
+    pragma Inline (new_fl_single_window);
 
     function new_fl_single_window2
            (W, H : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, new_fl_single_window2, "new_fl_single_window2");
+    pragma Inline (new_fl_single_window2);
 
     procedure free_fl_single_window
            (S : in System.Address);
     pragma Import (C, free_fl_single_window, "free_fl_single_window");
+    pragma Inline (free_fl_single_window);
 
 
 
@@ -45,10 +50,12 @@ package body FLTK.Widgets.Groups.Windows.Single is
     procedure fl_single_window_show
            (S : in System.Address);
     pragma Import (C, fl_single_window_show, "fl_single_window_show");
+    pragma Inline (fl_single_window_show);
 
     procedure fl_single_window_flush
            (S : in System.Address);
     pragma Import (C, fl_single_window_flush, "fl_single_window_flush");
+    pragma Inline (fl_single_window_flush);
 
 
 
@@ -56,12 +63,14 @@ package body FLTK.Widgets.Groups.Windows.Single is
     procedure fl_single_window_draw
            (W : in System.Address);
     pragma Import (C, fl_single_window_draw, "fl_single_window_draw");
+    pragma Inline (fl_single_window_draw);
 
     function fl_single_window_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_single_window_handle, "fl_single_window_handle");
+    pragma Inline (fl_single_window_handle);
 
 
 

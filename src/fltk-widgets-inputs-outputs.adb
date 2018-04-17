@@ -16,10 +16,12 @@ package body FLTK.Widgets.Inputs.Outputs is
     procedure output_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, output_set_draw_hook, "output_set_draw_hook");
+    pragma Inline (output_set_draw_hook);
 
     procedure output_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, output_set_handle_hook, "output_set_handle_hook");
+    pragma Inline (output_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Inputs.Outputs is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_output, "new_fl_output");
+    pragma Inline (new_fl_output);
 
     procedure free_fl_output
            (F : in System.Address);
     pragma Import (C, free_fl_output, "free_fl_output");
+    pragma Inline (free_fl_output);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Inputs.Outputs is
     procedure fl_output_draw
            (W : in System.Address);
     pragma Import (C, fl_output_draw, "fl_output_draw");
+    pragma Inline (fl_output_draw);
 
     function fl_output_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_output_handle, "fl_output_handle");
+    pragma Inline (fl_output_handle);
 
 
 

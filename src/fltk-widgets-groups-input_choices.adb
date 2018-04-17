@@ -198,7 +198,7 @@ package body FLTK.Widgets.Groups.Input_Choices is
 
     function Input
            (This : in out Input_Choice)
-        return INP.Input_Cursor is
+        return INP.Input_Reference is
     begin
         return (Data => This.My_Input);
     end Input;

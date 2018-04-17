@@ -14,6 +14,7 @@ class My_Clock : public Fl_Clock {
         friend void fl_clock_draw(CLOCK c);
         friend void clock_set_handle_hook(CLOCK c, void * h);
         friend int fl_clock_handle(CLOCK c, int e);
+        friend void fl_clock_draw2(CLOCK c, int x, int y, int w, int h);
     protected:
         void draw();
         void real_draw();
@@ -63,8 +64,20 @@ CLOCK new_fl_clock(int x, int y, int w, int h, char* label) {
     return c;
 }
 
+CLOCK new_fl_clock2(uchar k, int x, int y, int w, int h, char* label) {
+    My_Clock *c = new My_Clock(k,x,y,w,h,label);
+    return c;
+}
+
 void free_fl_clock(CLOCK c) {
     delete reinterpret_cast<My_Clock*>(c);
+}
+
+
+
+
+void fl_clock_draw2(CLOCK c, int x, int y, int w, int h) {
+    reinterpret_cast<My_Clock*>(c)->Fl_Clock::draw(x,y,w,h);
 }
 
 

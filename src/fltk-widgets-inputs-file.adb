@@ -16,10 +16,12 @@ package body FLTK.Widgets.Inputs.File is
     procedure file_input_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, file_input_set_draw_hook, "file_input_set_draw_hook");
+    pragma Inline (file_input_set_draw_hook);
 
     procedure file_input_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, file_input_set_handle_hook, "file_input_set_handle_hook");
+    pragma Inline (file_input_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Inputs.File is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_file_input, "new_fl_file_input");
+    pragma Inline (new_fl_file_input);
 
     procedure free_fl_file_input
            (F : in System.Address);
     pragma Import (C, free_fl_file_input, "free_fl_file_input");
+    pragma Inline (free_fl_file_input);
 
 
 
@@ -41,21 +45,41 @@ package body FLTK.Widgets.Inputs.File is
            (F : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_file_input_get_down_box, "fl_file_input_get_down_box");
+    pragma Inline (fl_file_input_get_down_box);
 
     procedure fl_file_input_set_down_box
            (F : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_file_input_set_down_box, "fl_file_input_set_down_box");
+    pragma Inline (fl_file_input_set_down_box);
 
     function fl_file_input_get_errorcolor
            (F : in System.Address)
         return Interfaces.C.unsigned;
     pragma Import (C, fl_file_input_get_errorcolor, "fl_file_input_get_errorcolor");
+    pragma Inline (fl_file_input_get_errorcolor);
 
     procedure fl_file_input_set_errorcolor
            (F : in System.Address;
             T : in Interfaces.C.unsigned);
     pragma Import (C, fl_file_input_set_errorcolor, "fl_file_input_set_errorcolor");
+    pragma Inline (fl_file_input_set_errorcolor);
+
+
+
+
+    function fl_file_input_get_value
+           (F : in System.Address)
+        return Interfaces.C.Strings.chars_ptr;
+    pragma Import (C, fl_file_input_get_value, "fl_file_input_get_value");
+    pragma Inline (fl_file_input_get_value);
+
+    procedure fl_file_input_set_value
+           (I : in System.Address;
+            T : in Interfaces.C.char_array;
+            L : in Interfaces.C.int);
+    pragma Import (C, fl_file_input_set_value, "fl_file_input_set_value");
+    pragma Inline (fl_file_input_set_value);
 
 
 
@@ -63,12 +87,14 @@ package body FLTK.Widgets.Inputs.File is
     procedure fl_file_input_draw
            (W : in System.Address);
     pragma Import (C, fl_file_input_draw, "fl_file_input_draw");
+    pragma Inline (fl_file_input_draw);
 
     function fl_file_input_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_file_input_handle, "fl_file_input_handle");
+    pragma Inline (fl_file_input_handle);
 
 
 
@@ -145,6 +171,25 @@ package body FLTK.Widgets.Inputs.File is
     begin
         fl_file_input_set_errorcolor (This.Void_Ptr, Interfaces.C.unsigned (To));
     end Set_Error_Color;
+
+
+
+
+    function Get_Value
+           (This : in Input)
+        return String is
+    begin
+        --  pointer to internal buffer only, so no Free required
+        return Interfaces.C.Strings.Value (fl_file_input_get_value (This.Void_Ptr));
+    end Get_Value;
+
+
+    procedure Set_Value
+           (This : in out Input;
+            To   : in     String) is
+    begin
+        fl_file_input_set_value (This.Void_Ptr, Interfaces.C.To_C (To), To'Length);
+    end Set_Value;
 
 
 

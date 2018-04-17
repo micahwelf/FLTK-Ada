@@ -16,10 +16,12 @@ package body FLTK.Widgets.Inputs.Multiline is
     procedure multiline_input_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, multiline_input_set_draw_hook, "multiline_input_set_draw_hook");
+    pragma Inline (multiline_input_set_draw_hook);
 
     procedure multiline_input_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, multiline_input_set_handle_hook, "multiline_input_set_handle_hook");
+    pragma Inline (multiline_input_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Inputs.Multiline is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_multiline_input, "new_fl_multiline_input");
+    pragma Inline (new_fl_multiline_input);
 
     procedure free_fl_multiline_input
            (F : in System.Address);
     pragma Import (C, free_fl_multiline_input, "free_fl_multiline_input");
+    pragma Inline (free_fl_multiline_input);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Inputs.Multiline is
     procedure fl_multiline_input_draw
            (W : in System.Address);
     pragma Import (C, fl_multiline_input_draw, "fl_multiline_input_draw");
+    pragma Inline (fl_multiline_input_draw);
 
     function fl_multiline_input_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_multiline_input_handle, "fl_multiline_input_handle");
+    pragma Inline (fl_multiline_input_handle);
 
 
 

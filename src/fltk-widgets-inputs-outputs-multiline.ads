@@ -5,6 +5,9 @@ package FLTK.Widgets.Inputs.Outputs.Multiline is
 
     type Multiline_Output is new Output with private;
 
+    type Multiline_Output_Reference (Data : not null access Multiline_Output'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -36,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Multiline_Output);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Inputs.Outputs.Multiline;

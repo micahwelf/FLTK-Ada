@@ -87,3 +87,14 @@ void fl_file_input_set_errorcolor(FILE_INPUT i, unsigned int t) {
 }
 
 
+
+
+const char * fl_file_input_get_value(FILE_INPUT i) {
+    return reinterpret_cast<Fl_File_Input*>(i)->value();
+}
+
+void fl_file_input_set_value(FILE_INPUT i, const char * s, int len) {
+    reinterpret_cast<Fl_File_Input*>(i)->value(s,len);
+}
+
+

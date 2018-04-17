@@ -5,6 +5,9 @@ package FLTK.Widgets.Inputs.Float is
 
     type Float_Input is new Input with private;
 
+    type Float_Input_Reference (Data : not null access Float_Input'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -43,6 +46,15 @@ private
 
     overriding procedure Finalize
            (This : in out Float_Input);
+
+
+
+
+    pragma Inline (Get_Value);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Inputs.Float;

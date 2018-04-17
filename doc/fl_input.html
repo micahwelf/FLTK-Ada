@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Input Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Input Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Input_<br>Fl_Input</td>
+    <td>FLTK.Widgets.Inputs</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Input_<br>Fl_Input</td>
+    <td>Input</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Input_Reference</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Input_Kind</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Input_(int, int, int, int, const char*=0);
+Fl_Input(int, int, int, int, const char*=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Input;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Has_Changed
+       (This : in Input)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Clear_Changed
+       (This : in out Input);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int copy(int clipboard);
+</pre></td>
+<td><pre>
+procedure Copy
+       (This : in out Input);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int copy_cuts();
+</pre></td>
+<td><pre>
+procedure Copy_Cuts
+       (This : in out Input);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color cursor_color() const;
+</pre></td>
+<td><pre>
+function Get_Cursor_Color
+       (This : in Input)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void cursor_color(Fl_Color n);
+</pre></td>
+<td><pre>
+procedure Set_Cursor_Color
+       (This : in out Input;
+        To   : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int cut();
+</pre></td>
+<td><pre>
+procedure Cut
+       (This : in out Input);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int cut(int n);
+</pre></td>
+<td><pre>
+procedure Cut
+       (This      : in out Input;
+        Num_Bytes : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int cut(int a, int b);
+</pre></td>
+<td><pre>
+procedure Cut
+       (This          : in out Input;
+        Start, Finish : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Input);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int handle(int);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Input;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Char index(int i) const;
+</pre></td>
+<td><pre>
+function Index
+       (This  : in Input;
+        Place : in Integer)
+    return Character;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int input_type() const;
+</pre></td>
+<td><pre>
+function Get_Input_Type
+       (This : in Input)
+    return Input_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void input_type(int t);
+</pre></td>
+<td><pre>
+procedure Set_Input_Type
+       (This : in out Input;
+        To   : in     Input_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int insert(const char *t, int l=0);
+</pre></td>
+<td><pre>
+procedure Insert
+       (This : in out Input;
+        Str  : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int mark() const;
+</pre></td>
+<td><pre>
+function Get_Mark
+       (This : in Input)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int mark(int m);
+</pre></td>
+<td><pre>
+procedure Set_Mark
+       (This : in out Input;
+        To   : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int maximum_size() const;
+</pre></td>
+<td><pre>
+function Get_Maximum_Size
+       (This : in Input)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void maximum_size(int m);
+</pre></td>
+<td><pre>
+procedure Set_Maximum_Size
+       (This : in out Input;
+        To   : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int position() const;
+</pre></td>
+<td><pre>
+function Get_Position
+       (This : in Input)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int position(int p, int m);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int position(int p);
+</pre></td>
+<td><pre>
+procedure Set_Position
+       (This : in out Input;
+        To   : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int readonly() const;
+</pre></td>
+<td><pre>
+function Is_Readonly
+       (This : in Input)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void readonly(int b);
+</pre></td>
+<td><pre>
+procedure Set_Readonly
+       (This : in out Input;
+        To   : in     Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int replace(int b, int e, const char *text, int ilen=0);
+</pre></td>
+<td><pre>
+procedure Replace
+       (This     : in out Input;
+        From, To : in     Natural;
+        New_Text : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void resize(int, int, int, int);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int shortcut() const;
+</pre></td>
+<td><pre>
+function Get_Shortcut_Key
+       (This : in Input)
+    return Shortcut_Key;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void shortcut(int s);
+</pre></td>
+<td><pre>
+procedure Set_Shortcut_Key
+       (This : in out Input;
+        To   : in     Shortcut_Key);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int size() const;
+</pre></td>
+<td><pre>
+function Size
+       (This : in Input)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void size(int W, int H);
+</pre></td>
+<td><pre>
+procedure Resize
+       (This : in out Input;
+        W, H : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int static_value(const char *);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int static_value(const char *, int);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void tab_nav(int val);
+</pre></td>
+<td><pre>
+procedure Set_Tab_Nav
+       (This : in out Input;
+        To   : in     Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int tab_nav() const;
+</pre></td>
+<td><pre>
+function Is_Tab_Nav
+       (This : in Input)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color textcolor() const;
+</pre></td>
+<td><pre>
+function Get_Text_Color
+       (This : in Input)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textcolor(Fl_Color n);
+</pre></td>
+<td><pre>
+procedure Set_Text_Color
+       (This : in out Input;
+        To   : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Font textfont() const;
+</pre></td>
+<td><pre>
+function Get_Text_Font
+       (This : in Input)
+    return Font_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textfont(Fl_Font s);
+</pre></td>
+<td><pre>
+procedure Set_Text_Font
+       (This : in out Input;
+        To   : in     Font_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Fontsize textsize() const;
+</pre></td>
+<td><pre>
+function Get_Text_Size
+       (This : in Input)
+    return Font_Size;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textsize(Fl_Fontsize s);
+</pre></td>
+<td><pre>
+procedure Set_Text_Size
+       (This : in out Input;
+        To   : in     Font_Size);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int undo();
+</pre></td>
+<td><pre>
+procedure Undo
+       (This : in out Input);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value(const char *);
+int value(const char *, int);
+</pre></td>
+<td><pre>
+procedure Set_Value
+       (This : in out Input;
+        To   : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * value() const;
+</pre></td>
+<td><pre>
+function Get_Value
+       (This : in Input)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int wrap() const;
+</pre></td>
+<td><pre>
+function Is_Wrap
+       (This : in Input)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void wrap(int b);
+</pre></td>
+<td><pre>
+procedure Set_Wrap
+       (This : in out Input;
+        To   : in     Boolean);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

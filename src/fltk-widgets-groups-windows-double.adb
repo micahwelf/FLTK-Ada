@@ -16,10 +16,12 @@ package body FLTK.Widgets.Groups.Windows.Double is
     procedure double_window_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, double_window_set_draw_hook, "double_window_set_draw_hook");
+    pragma Inline (double_window_set_draw_hook);
 
     procedure double_window_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, double_window_set_handle_hook, "double_window_set_handle_hook");
+    pragma Inline (double_window_set_handle_hook);
 
 
 
@@ -29,15 +31,18 @@ package body FLTK.Widgets.Groups.Windows.Double is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_double_window, "new_fl_double_window");
+    pragma Inline (new_fl_double_window);
 
     function new_fl_double_window2
            (X, Y : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, new_fl_double_window2, "new_fl_double_window2");
+    pragma Inline (new_fl_double_window2);
 
     procedure free_fl_double_window
             (W : in System.Address);
     pragma Import (C, free_fl_double_window, "free_fl_double_window");
+    pragma Inline (free_fl_double_window);
 
 
 
@@ -45,14 +50,17 @@ package body FLTK.Widgets.Groups.Windows.Double is
     procedure fl_double_window_show
             (W : in System.Address);
     pragma Import (C, fl_double_window_show, "fl_double_window_show");
+    pragma Inline (fl_double_window_show);
 
     procedure fl_double_window_hide
             (W : in System.Address);
     pragma Import (C, fl_double_window_hide, "fl_double_window_hide");
+    pragma Inline (fl_double_window_hide);
 
     procedure fl_double_window_flush
             (W : in System.Address);
     pragma Import (C, fl_double_window_flush, "fl_double_window_flush");
+    pragma Inline (fl_double_window_flush);
 
 
 
@@ -60,12 +68,14 @@ package body FLTK.Widgets.Groups.Windows.Double is
     procedure fl_double_window_draw
            (W : in System.Address);
     pragma Import (C, fl_double_window_draw, "fl_double_window_draw");
+    pragma Inline (fl_double_window_draw);
 
     function fl_double_window_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_double_window_handle, "fl_double_window_handle");
+    pragma Inline (fl_double_window_handle);
 
 
 

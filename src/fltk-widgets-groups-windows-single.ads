@@ -5,6 +5,9 @@ package FLTK.Widgets.Groups.Windows.Single is
 
     type Single_Window is new Window with private;
 
+    type Single_Window_Reference (Data : not null access Single_Window'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -49,6 +52,16 @@ private
 
     overriding procedure Finalize
            (This : in out Single_Window);
+
+
+
+
+    pragma Inline (Show);
+    pragma Inline (Flush);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Groups.Windows.Single;

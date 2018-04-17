@@ -16,10 +16,12 @@ package body FLTK.Widgets.Clocks.Updated.Round is
     procedure round_clock_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, round_clock_set_draw_hook, "round_clock_set_draw_hook");
+    pragma Inline (round_clock_set_draw_hook);
 
     procedure round_clock_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, round_clock_set_handle_hook, "round_clock_set_handle_hook");
+    pragma Inline (round_clock_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Clocks.Updated.Round is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_round_clock, "new_fl_round_clock");
+    pragma Inline (new_fl_round_clock);
 
     procedure free_fl_round_clock
            (F : in System.Address);
     pragma Import (C, free_fl_round_clock, "free_fl_round_clock");
+    pragma Inline (free_fl_round_clock);
 
 
 
@@ -40,12 +44,20 @@ package body FLTK.Widgets.Clocks.Updated.Round is
     procedure fl_round_clock_draw
            (W : in System.Address);
     pragma Import (C, fl_round_clock_draw, "fl_round_clock_draw");
+    pragma Inline (fl_round_clock_draw);
+
+    procedure fl_round_clock_draw2
+           (C          : in System.Address;
+            X, Y, W, H : in Interfaces.C.int);
+    pragma Import (C, fl_round_clock_draw2, "fl_round_clock_draw2");
+    pragma Inline (fl_round_clock_draw2);
 
     function fl_round_clock_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_round_clock_handle, "fl_round_clock_handle");
+    pragma Inline (fl_round_clock_handle);
 
 
 
@@ -96,6 +108,19 @@ package body FLTK.Widgets.Clocks.Updated.Round is
            (This : in out Round_Clock) is
     begin
         fl_round_clock_draw (This.Void_Ptr);
+    end Draw;
+
+
+    procedure Draw
+           (This       : in out Clock;
+            X, Y, W, H : in     Integer) is
+    begin
+        fl_round_clock_draw2
+           (This.Void_Ptr,
+            Interfaces.C.int (X),
+            Interfaces.C.int (Y),
+            Interfaces.C.int (W),
+            Interfaces.C.int (H));
     end Draw;
 
 

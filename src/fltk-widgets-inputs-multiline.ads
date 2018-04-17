@@ -5,6 +5,9 @@ package FLTK.Widgets.Inputs.Multiline is
 
     type Multiline_Input is new Input with private;
 
+    type Multiline_Input_Reference (Data : not null access Multiline_Input'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -36,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Multiline_Input);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Inputs.Multiline;

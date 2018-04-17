@@ -5,6 +5,9 @@ package FLTK.Widgets.Groups.Windows.Single.Menu is
 
     type Menu_Window is new Single_Window with private;
 
+    type Menu_Window_Reference (Data : not null access Menu_Window'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -36,7 +39,7 @@ package FLTK.Widgets.Groups.Windows.Single.Menu is
 
 
 
-    function Get_Overlay
+    function Is_Overlay
            (This : in Menu_Window)
         return Boolean;
 
@@ -63,6 +66,21 @@ private
 
     overriding procedure Finalize
            (This : in out Menu_Window);
+
+
+
+
+    pragma Inline (Show);
+    pragma Inline (Hide);
+    pragma Inline (Flush);
+
+
+    pragma Inline (Is_Overlay);
+    pragma Inline (Set_Overlay);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Groups.Windows.Single.Menu;

@@ -16,10 +16,12 @@ package body FLTK.Widgets.Clocks is
     procedure clock_output_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, clock_output_set_draw_hook, "clock_output_set_draw_hook");
+    pragma Inline (clock_output_set_draw_hook);
 
     procedure clock_output_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, clock_output_set_handle_hook, "clock_output_set_handle_hook");
+    pragma Inline (clock_output_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Clocks is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_clock_output, "new_fl_clock_output");
+    pragma Inline (new_fl_clock_output);
 
     procedure free_fl_clock_output
            (F : in System.Address);
     pragma Import (C, free_fl_clock_output, "free_fl_clock_output");
+    pragma Inline (free_fl_clock_output);
 
 
 
@@ -41,16 +45,19 @@ package body FLTK.Widgets.Clocks is
            (C : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_clock_output_get_hour, "fl_clock_output_get_hour");
+    pragma Inline (fl_clock_output_get_hour);
 
     function fl_clock_output_get_minute
            (C : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_clock_output_get_minute, "fl_clock_output_get_minute");
+    pragma Inline (fl_clock_output_get_minute);
 
     function fl_clock_output_get_second
            (C : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_clock_output_get_second, "fl_clock_output_get_second");
+    pragma Inline (fl_clock_output_get_second);
 
 
 
@@ -59,16 +66,19 @@ package body FLTK.Widgets.Clocks is
            (C : in System.Address)
         return Interfaces.C.unsigned_long;
     pragma Import (C, fl_clock_output_get_value, "fl_clock_output_get_value");
+    pragma Inline (fl_clock_output_get_value);
 
     procedure fl_clock_output_set_value
            (C : in System.Address;
             V : in Interfaces.C.unsigned_long);
     pragma Import (C, fl_clock_output_set_value, "fl_clock_output_set_value");
+    pragma Inline (fl_clock_output_set_value);
 
     procedure fl_clock_output_set_value2
            (C       : in System.Address;
             H, M, S : in Interfaces.C.int);
     pragma Import (C, fl_clock_output_set_value2, "fl_clock_output_set_value2");
+    pragma Inline (fl_clock_output_set_value2);
 
 
 
@@ -76,12 +86,20 @@ package body FLTK.Widgets.Clocks is
     procedure fl_clock_output_draw
            (W : in System.Address);
     pragma Import (C, fl_clock_output_draw, "fl_clock_output_draw");
+    pragma Inline (fl_clock_output_draw);
+
+    procedure fl_clock_output_draw2
+           (C          : in System.Address;
+            X, Y, W, H : in Interfaces.C.int);
+    pragma Import (C, fl_clock_output_draw2, "fl_clock_output_draw2");
+    pragma Inline (fl_clock_output_draw2);
 
     function fl_clock_output_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_clock_output_handle, "fl_clock_output_handle");
+    pragma Inline (fl_clock_output_handle);
 
 
 
@@ -190,6 +208,19 @@ package body FLTK.Widgets.Clocks is
            (This : in out Clock) is
     begin
         fl_clock_output_draw (This.Void_Ptr);
+    end Draw;
+
+
+    procedure Draw
+           (This       : in out Clock;
+            X, Y, W, H : in     Integer) is
+    begin
+        fl_clock_output_draw2
+           (This.Void_Ptr,
+            Interfaces.C.int (X),
+            Interfaces.C.int (Y),
+            Interfaces.C.int (W),
+            Interfaces.C.int (H));
     end Draw;
 
 

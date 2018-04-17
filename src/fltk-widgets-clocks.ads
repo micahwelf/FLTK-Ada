@@ -5,6 +5,9 @@ package FLTK.Widgets.Clocks is
 
     type Clock is new Widget with private;
 
+    type Clock_Reference (Data : not null access Clock'Class) is limited null record
+        with Implicit_Dereference => Data;
+
     subtype Hour is Integer range 0 .. 23;
     subtype Minute is Integer range 0 .. 59;
     subtype Second is Integer range 0 .. 60;
@@ -61,6 +64,10 @@ package FLTK.Widgets.Clocks is
     procedure Draw
            (This : in out Clock);
 
+    procedure Draw
+           (This       : in out Clock;
+            X, Y, W, H : in     Integer);
+
     function Handle
            (This  : in out Clock;
             Event : in     Event_Kind)
@@ -74,6 +81,21 @@ private
 
     overriding procedure Finalize
            (This : in out Clock);
+
+
+
+
+    pragma Inline (Get_Hour);
+    pragma Inline (Get_Minute);
+    pragma Inline (Get_Second);
+
+
+    pragma Inline (Get_Time);
+    pragma Inline (Set_Time);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Clocks;

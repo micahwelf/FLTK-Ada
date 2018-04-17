@@ -41,6 +41,10 @@ int dialog_fl_color_chooser(const char * n, double & r, double & g, double & b, 
     return fl_color_chooser(n, r, g, b, m);
 }
 
+int dialog_fl_color_chooser2(const char * n, uchar & r, uchar & g, uchar & b, int m) {
+    return fl_color_chooser(n, r, g, b, m);
+}
+
 char * dialog_fl_dir_chooser(const char * m, const char * d, int r) {
     return fl_dir_chooser(m, d, r);
 }

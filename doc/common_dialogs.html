@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Common Dialogs Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Common Dialogs Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Ask</td>
+    <td>FLTK.Dialogs</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Beep</td>
+    <td>Beep_Kind</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Choice</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>RGB_Float</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>RGB_Int</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+void fl_alert(const char *fmt,...);
+</pre></td>
+<td><pre>
+procedure Alert
+       (Message : String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int fl_ask(const char *fmt,...);
+</pre></td>
+<td>Present but disabled due to fl_ask being deprecated</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void fl_beep(int type);
+</pre></td>
+<td><pre>
+procedure Beep
+       (Kind : in Beep_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int fl_choice(const char *fmt, const char *b0, const char *b1, const char *b2,...);
+</pre></td>
+<td><pre>
+function Three_Way_Choice
+       (Message, Button1, Button2, Button3 : in String)
+    return Choice;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int fl_color_chooser(const char *name, double &r, double &g, double &b, int cmode);
+</pre></td>
+<td><pre>
+function Color_Chooser
+       (Title   : in     String;
+        R, G, B : in out RGB_Float;
+        Mode    : in     FLTK.Widgets.Groups.Color_Choosers.Color_Mode :=
+            FLTK.Widgets.Groups.Color_Choosers.RGB)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int fl_color_chooser(const char *name, uchar &r, uchar &g, uchar &b, int cmode);
+</pre></td>
+<td><pre>
+function Color_Chooser
+       (Title   : in     String;
+        R, G, B : in out RGB_Int;
+        Mode    : in     FLTK.Widgets.Groups.Color_Choosers.Color_Mode :=
+            FLTK.Widgets.Groups.Color_Choosers.RGB)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char * fl_dir_chooser(const char *message, const char *fname, int relative);
+</pre></td>
+<td><pre>
+function Dir_Chooser
+       (Message, Default : in String;
+        Relative         : in Boolean := False)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char * fl_file_chooser(const char *message, const char *pat, const char *fname, int relative);
+</pre></td>
+<td><pre>
+function File_Chooser
+       (Message, Filter_Pattern, Default : in String;
+        Relative                         : in Boolean := False)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void fl_file_chooser_callback(void(*cb)(const char *));
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void fl_file_chooser_ok_label(const char *l);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * fl_input(const char *fmt, const char *defstr,...);
+</pre></td>
+<td><pre>
+function Text_Input
+       (Message : in String;
+        Default : in String := "")
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void fl_message(const char *fmt,...);
+</pre></td>
+<td><pre>
+procedure Message_Box
+       (Message : in String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void fl_message_font(Fl_Font f, Fl_Fontsize s);
+</pre></td>
+<td><pre>
+procedure Set_Message_Font
+       (Font : in Font_Kind;
+        Size : in Font_Size);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void fl_message_hotspot(int enable);
+</pre></td>
+<td><pre>
+procedure Set_Hotspot
+       (To : in Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int fl_message_hotspot(void);
+</pre></td>
+<td><pre>
+function Get_Hotspot
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Widget * fl_message_icon();
+</pre></td>
+<td><pre>
+function Get_Message_Icon
+    return FLTK.Widgets.Boxes.Box_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void fl_message_title(const char *title);
+</pre></td>
+<td><pre>
+procedure Set_Message_Title
+       (To : in String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void fl_message_title_default(const char *title);
+</pre></td>
+<td><pre>
+procedure Set_Message_Title_Default
+       (To : in String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * fl_password(const char *fmt, const char *defstr,...);
+</pre></td>
+<td><pre>
+function Password
+       (Message : in String;
+        Default : in String := "")
+    return String;
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

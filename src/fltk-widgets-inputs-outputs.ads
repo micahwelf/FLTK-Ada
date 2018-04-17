@@ -5,6 +5,9 @@ package FLTK.Widgets.Inputs.Outputs is
 
     type Output is new Input with private;
 
+    type Output_Reference (Data : not null access Output'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -36,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Output);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Inputs.Outputs;

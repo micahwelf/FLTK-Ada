@@ -28,7 +28,7 @@ package FLTK.Widgets.Groups.Input_Choices is
 
     function Input
            (This : in out Input_Choice)
-        return FLTK.Widgets.Inputs.Input_Cursor;
+        return FLTK.Widgets.Inputs.Input_Reference;
 
     function Menu_Button
            (This : in out Input_Choice)

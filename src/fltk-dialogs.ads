@@ -15,6 +15,10 @@ package FLTK.Dialogs is
 
     type Choice is (First, Second, Third);
 
+    type RGB_Float is new Long_Float range 0.0 .. 1.0;
+
+    type RGB_Int is mod 256;
+
 
 
 
@@ -50,8 +54,16 @@ package FLTK.Dialogs is
 
     function Color_Chooser
            (Title   : in     String;
-            R, G, B : in out Long_Float;
-            Mode    : in     FLTK.Widgets.Groups.Color_Choosers.Color_Mode)
+            R, G, B : in out RGB_Float;
+            Mode    : in     FLTK.Widgets.Groups.Color_Choosers.Color_Mode :=
+                FLTK.Widgets.Groups.Color_Choosers.RGB)
+        return Boolean;
+
+    function Color_Chooser
+           (Title   : in     String;
+            R, G, B : in out RGB_Int;
+            Mode    : in     FLTK.Widgets.Groups.Color_Choosers.Color_Mode :=
+                FLTK.Widgets.Groups.Color_Choosers.RGB)
         return Boolean;
 
     function Dir_Chooser
@@ -91,6 +103,30 @@ private
 
 
     Icon_Box : aliased FLTK.Widgets.Boxes.Box;
+
+
+
+
+    pragma Inline (Alert);
+    --  pragma Inline (Ask);
+    pragma Inline (Beep);
+    pragma Inline (Three_Way_Choice);
+    pragma Inline (Text_Input);
+    pragma Inline (Message_Box);
+    pragma Inline (Password);
+
+
+    pragma Inline (Color_Chooser);
+    pragma Inline (Dir_Chooser);
+    pragma Inline (File_Chooser);
+
+
+    pragma Inline (Get_Hotspot);
+    pragma Inline (Set_Hotspot);
+    pragma Inline (Set_Message_Font);
+    pragma Inline (Get_Message_Icon);
+    pragma Inline (Set_Message_Title);
+    pragma Inline (Set_Message_Title_Default);
 
 
 end FLTK.Dialogs;

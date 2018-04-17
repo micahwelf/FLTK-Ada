@@ -12,6 +12,7 @@ Overall estimate: ???%
 
 Polished:
 
+FLTK.Dialogs
 FLTK.Tooltips
 FLTK.Widgets.Boxes
 FLTK.Widgets.Buttons
@@ -24,6 +25,20 @@ FLTK.Widgets.Buttons.Light.Round.Radio
 FLTK.Widgets.Buttons.Radio
 FLTK.Widgets.Buttons.Repeat
 FLTK.Widgets.Buttons.Toggle
+FLTK.Widgets.Clocks
+FLTK.Widgets.Clocks.Updated
+FLTK.Widgets.Clocks.Updated.Round
+FLTK.Widgets.Groups.Windows.Double
+FLTK.Widgets.Groups.Windows.Single
+FLTK.Widgets.Groups.Windows.Single.Menu
+FLTK.Widgets.Inputs
+FLTK.Widgets.Inputs.File
+FLTK.Widgets.Inputs.Float
+FLTK.Widgets.Inputs.Integer
+FLTK.Widgets.Inputs.Multiline
+FLTK.Widgets.Inputs.Outputs
+FLTK.Widgets.Inputs.Outputs.Multiline
+FLTK.Widgets.Inputs.Secret
 
 
 
@@ -35,7 +50,6 @@ FLTK.Devices.Surfaces.Copy
 FLTK.Devices.Surfaces.Image
 FLTK.Devices.Surfaces.Paged
 FLTK.Devices.Surfaces.Paged.Printers
-FLTK.Dialogs
 FLTK.Images
 FLTK.Images.Bitmaps
 FLTK.Images.Bitmaps.XBM
@@ -46,9 +60,6 @@ FLTK.Images.RGB.PNG
 FLTK.Images.RGB.PNM
 FLTK.Images.Shared
 FLTK.Widgets.Charts
-FLTK.Widgets.Clocks
-FLTK.Widgets.Clocks.Updated
-FLTK.Widgets.Clocks.Updated.Round
 FLTK.Widgets.Groups.Color_Choosers
 FLTK.Widgets.Groups.Input_Choices
 FLTK.Widgets.Groups.Packed
@@ -57,18 +68,7 @@ FLTK.Widgets.Groups.Spinners
 FLTK.Widgets.Groups.Tabbed
 FLTK.Widgets.Groups.Text_Displays.Text_Editors
 FLTK.Widgets.Groups.Tiled
-FLTK.Widgets.Groups.Windows.Double
-FLTK.Widgets.Groups.Windows.Single
-FLTK.Widgets.Groups.Windows.Single.Menu
 FLTK.Widgets.Groups.Wizards
-FLTK.Widgets.Inputs
-FLTK.Widgets.Inputs.File
-FLTK.Widgets.Inputs.Float
-FLTK.Widgets.Inputs.Integer
-FLTK.Widgets.Inputs.Multiline
-FLTK.Widgets.Inputs.Outputs
-FLTK.Widgets.Inputs.Outputs.Multiline
-FLTK.Widgets.Inputs.Secret
 FLTK.Widgets.Menus.Menu_Bars
 FLTK.Widgets.Menus.Menu_Buttons
 FLTK.Widgets.Progress_Bars
@@ -141,11 +141,15 @@ FL_Cairo_Window
 - mark all methods as inline
 - make sure all C++ reinterpret_cast for methods is to the Fl object, not the My object, because inheriting
 - consistent unicode utf-8 support (is this even fully supported by FLTK? if not, nevermind...)
-- make all protected methods available
 - check FLTK library internals to see which char* return values need dealloc
 - remove custom exception types in favour of Program_Error?
 - qualify all C++ virtual method calls with the class name to prevent dynamic dispatch on C++ side
 - provide documentation for how C++ methods map to Ada functions and procedures
+
+
+(delay this until figure out an easier way to expose protected methods)
+
+- make all protected methods available
 
 
 

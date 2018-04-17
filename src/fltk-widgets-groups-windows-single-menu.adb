@@ -17,10 +17,12 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     procedure menu_window_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, menu_window_set_draw_hook, "menu_window_set_draw_hook");
+    pragma Inline (menu_window_set_draw_hook);
 
     procedure menu_window_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, menu_window_set_handle_hook, "menu_window_set_handle_hook");
+    pragma Inline (menu_window_set_handle_hook);
 
 
 
@@ -30,15 +32,18 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
             Label      : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_menu_window, "new_fl_menu_window");
+    pragma Inline (new_fl_menu_window);
 
     function new_fl_menu_window2
            (W, H : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, new_fl_menu_window2, "new_fl_menu_window2");
+    pragma Inline (new_fl_menu_window2);
 
     procedure free_fl_menu_window
            (M : in System.Address);
     pragma Import (C, free_fl_menu_window, "free_fl_menu_window");
+    pragma Inline (free_fl_menu_window);
 
 
 
@@ -46,14 +51,17 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     procedure fl_menu_window_show
            (M : in System.Address);
     pragma Import (C, fl_menu_window_show, "fl_menu_window_show");
+    pragma Inline (fl_menu_window_show);
 
     procedure fl_menu_window_hide
            (M : in System.Address);
     pragma Import (C, fl_menu_window_hide, "fl_menu_window_hide");
+    pragma Inline (fl_menu_window_hide);
 
     procedure fl_menu_window_flush
            (M : in System.Address);
     pragma Import (C, fl_menu_window_flush, "fl_menu_window_flush");
+    pragma Inline (fl_menu_window_flush);
 
 
 
@@ -61,15 +69,18 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     procedure fl_menu_window_set_overlay
            (M : in System.Address);
     pragma Import (C, fl_menu_window_set_overlay, "fl_menu_window_set_overlay");
+    pragma Inline (fl_menu_window_set_overlay);
 
     procedure fl_menu_window_clear_overlay
            (M : in System.Address);
     pragma Import (C, fl_menu_window_clear_overlay, "fl_menu_window_clear_overlay");
+    pragma Inline (fl_menu_window_clear_overlay);
 
     function fl_menu_window_overlay
            (M : in System.Address)
         return Interfaces.C.unsigned;
     pragma Import (C, fl_menu_window_overlay, "fl_menu_window_overlay");
+    pragma Inline (fl_menu_window_overlay);
 
 
 
@@ -77,12 +88,14 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
     procedure fl_menu_window_draw
            (W : in System.Address);
     pragma Import (C, fl_menu_window_draw, "fl_menu_window_draw");
+    pragma Inline (fl_menu_window_draw);
 
     function fl_menu_window_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_menu_window_handle, "fl_menu_window_handle");
+    pragma Inline (fl_menu_window_handle);
 
 
 
@@ -172,12 +185,12 @@ package body FLTK.Widgets.Groups.Windows.Single.Menu is
 
 
 
-    function Get_Overlay
+    function Is_Overlay
            (This : in Menu_Window)
         return Boolean is
     begin
         return fl_menu_window_overlay (This.Void_Ptr) /= 0;
-    end Get_Overlay;
+    end Is_Overlay;
 
 
     procedure Set_Overlay

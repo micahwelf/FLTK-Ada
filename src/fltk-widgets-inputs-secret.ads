@@ -5,6 +5,9 @@ package FLTK.Widgets.Inputs.Secret is
 
     type Secret_Input is new Input with private;
 
+    type Secret_Input_Reference (Data : not null access Secret_Input'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -36,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Secret_Input);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Inputs.Secret;

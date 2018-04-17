@@ -16,10 +16,12 @@ package body FLTK.Widgets.Inputs.Integer is
     procedure int_input_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, int_input_set_draw_hook, "int_input_set_draw_hook");
+    pragma Inline (int_input_set_draw_hook);
 
     procedure int_input_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, int_input_set_handle_hook, "int_input_set_handle_hook");
+    pragma Inline (int_input_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Inputs.Integer is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_int_input, "new_fl_int_input");
+    pragma Inline (new_fl_int_input);
 
     procedure free_fl_int_input
            (F : in System.Address);
     pragma Import (C, free_fl_int_input, "free_fl_int_input");
+    pragma Inline (free_fl_int_input);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Inputs.Integer is
     procedure fl_int_input_draw
            (W : in System.Address);
     pragma Import (C, fl_int_input_draw, "fl_int_input_draw");
+    pragma Inline (fl_int_input_draw);
 
     function fl_int_input_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_int_input_handle, "fl_int_input_handle");
+    pragma Inline (fl_int_input_handle);
 
 
 

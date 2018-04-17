@@ -11,7 +11,7 @@ package FLTK.Widgets.Inputs is
 
     type Input is new Widget with private;
 
-    type Input_Cursor (Data : access Input'Class) is limited null record
+    type Input_Reference (Data : not null access Input'Class) is limited null record
         with Implicit_Dereference => Data;
 
     type Input_Kind is
@@ -236,6 +236,62 @@ private
 
 
 
+    pragma Inline (Copy);
+    pragma Inline (Cut);
+    pragma Inline (Copy_Cuts);
+    pragma Inline (Undo);
+
+
+    pragma Inline (Has_Changed);
+    pragma Inline (Clear_Changed);
+    pragma Inline (Is_Readonly);
+    pragma Inline (Set_Readonly);
+    pragma Inline (Is_Tab_Nav);
+    pragma Inline (Set_Tab_Nav);
+    pragma Inline (Is_Wrap);
+    pragma Inline (Set_Wrap);
+
+
+    pragma Inline (Get_Input_Type);
+    pragma Inline (Get_Shortcut_Key);
+    pragma Inline (Set_Shortcut_Key);
+    pragma Inline (Get_Mark);
+    pragma Inline (Set_Mark);
+    pragma Inline (Get_Position);
+    pragma Inline (Set_Position);
+
+
+    pragma Inline (Index);
+    pragma Inline (Insert);
+    pragma Inline (Replace);
+    pragma Inline (Get_Value);
+    pragma Inline (Set_Value);
+
+
+    pragma Inline (Get_Maximum_Size);
+    pragma Inline (Set_Maximum_Size);
+    pragma Inline (Size);
+
+
+    pragma Inline (Get_Cursor_Color);
+    pragma Inline (Set_Cursor_Color);
+    pragma Inline (Get_Text_Color);
+    pragma Inline (Set_Text_Color);
+    pragma Inline (Get_Text_Font);
+    pragma Inline (Set_Text_Font);
+    pragma Inline (Get_Text_Size);
+    pragma Inline (Set_Text_Size);
+
+
+    pragma Inline (Resize);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
+
+
+
+
     Input_Kind_Values : array (Input_Kind) of Interfaces.C.int :=
        (Normal_Kind    => 0,
         Float_Kind     => 1,
@@ -252,6 +308,7 @@ private
            (F : in System.Address)
         return Interfaces.C.Strings.chars_ptr;
     pragma Import (C, fl_input_get_value, "fl_input_get_value");
+    pragma Inline (fl_input_get_value);
 
 
 end FLTK.Widgets.Inputs;

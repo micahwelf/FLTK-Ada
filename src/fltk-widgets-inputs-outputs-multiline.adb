@@ -16,10 +16,12 @@ package body FLTK.Widgets.Inputs.Outputs.Multiline is
     procedure multiline_output_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, multiline_output_set_draw_hook, "multiline_output_set_draw_hook");
+    pragma Inline (multiline_output_set_draw_hook);
 
     procedure multiline_output_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, multiline_output_set_handle_hook, "multiline_output_set_handle_hook");
+    pragma Inline (multiline_output_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Inputs.Outputs.Multiline is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_multiline_output, "new_fl_multiline_output");
+    pragma Inline (new_fl_multiline_output);
 
     procedure free_fl_multiline_output
            (F : in System.Address);
     pragma Import (C, free_fl_multiline_output, "free_fl_multiline_output");
+    pragma Inline (free_fl_multiline_output);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Inputs.Outputs.Multiline is
     procedure fl_multiline_output_draw
            (W : in System.Address);
     pragma Import (C, fl_multiline_output_draw, "fl_multiline_output_draw");
+    pragma Inline (fl_multiline_output_draw);
 
     function fl_multiline_output_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_multiline_output_handle, "fl_multiline_output_handle");
+    pragma Inline (fl_multiline_output_handle);
 
 
 
