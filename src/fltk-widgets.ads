@@ -97,7 +97,7 @@ package FLTK.Widgets is
             Box  : in     Box_Kind);
 
     function Get_Label
-           (This : in out Widget)
+           (This : in Widget)
         return String;
 
     procedure Set_Label

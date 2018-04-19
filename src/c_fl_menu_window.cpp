@@ -63,8 +63,8 @@ MENUWINDOW new_fl_menu_window(int x, int y, int w, int h, char* label) {
     return m;
 }
 
-MENUWINDOW new_fl_menu_window2(int w, int h) {
-    My_Menu_Window *m = new My_Menu_Window(w, h);
+MENUWINDOW new_fl_menu_window2(int w, int h, char* label) {
+    My_Menu_Window *m = new My_Menu_Window(w, h, label);
     return m;
 }
 

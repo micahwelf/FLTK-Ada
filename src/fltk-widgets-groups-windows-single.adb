@@ -34,7 +34,8 @@ package body FLTK.Widgets.Groups.Windows.Single is
     pragma Inline (new_fl_single_window);
 
     function new_fl_single_window2
-           (W, H : in Interfaces.C.int)
+           (W, H : in Interfaces.C.int;
+            Text : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_single_window2, "new_fl_single_window2");
     pragma Inline (new_fl_single_window2);
@@ -116,13 +117,15 @@ package body FLTK.Widgets.Groups.Windows.Single is
 
 
         function Create
-               (W, H : in Integer)
+               (W, H : in Integer;
+                Text : in String)
             return Single_Window is
         begin
             return This : Single_Window do
                 This.Void_Ptr := new_fl_single_window2
                        (Interfaces.C.int (W),
-                        Interfaces.C.int (H));
+                        Interfaces.C.int (H),
+                        Interfaces.C.To_C (Text));
                 fl_group_end (This.Void_Ptr);
                 fl_widget_set_user_data
                        (This.Void_Ptr,

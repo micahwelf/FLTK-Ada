@@ -405,7 +405,7 @@ package body FLTK.Widgets is
 
 
     function Get_Label
-           (This : in out Widget)
+           (This : in Widget)
         return String is
     begin
         return Interfaces.C.Strings.Value (fl_widget_get_label (This.Void_Ptr));

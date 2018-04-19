@@ -63,8 +63,8 @@ SINGLEWINDOW new_fl_single_window(int x, int y, int w, int h, char* label) {
     return sw;
 }
 
-SINGLEWINDOW new_fl_single_window2(int x, int y) {
-    My_Single_Window *sw = new My_Single_Window(x, y);
+SINGLEWINDOW new_fl_single_window2(int x, int y, char* label) {
+    My_Single_Window *sw = new My_Single_Window(x, y, label);
     return sw;
 }
 

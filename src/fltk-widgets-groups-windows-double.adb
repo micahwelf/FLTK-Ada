@@ -34,7 +34,8 @@ package body FLTK.Widgets.Groups.Windows.Double is
     pragma Inline (new_fl_double_window);
 
     function new_fl_double_window2
-           (X, Y : in Interfaces.C.int)
+           (X, Y : in Interfaces.C.int;
+            Text : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_double_window2, "new_fl_double_window2");
     pragma Inline (new_fl_double_window2);
@@ -121,13 +122,15 @@ package body FLTK.Widgets.Groups.Windows.Double is
 
 
         function Create
-               (W, H : in Integer)
+               (W, H : in Integer;
+                Text : in String)
             return Double_Window is
         begin
             return This : Double_Window do
                 This.Void_Ptr := new_fl_double_window2
                        (Interfaces.C.int (W),
-                        Interfaces.C.int (H));
+                        Interfaces.C.int (H),
+                        Interfaces.C.To_C (Text));
                 fl_group_end (This.Void_Ptr);
                 fl_widget_set_user_data
                        (This.Void_Ptr,

@@ -20,7 +20,7 @@ extern "C" inline int fl_single_window_handle(SINGLEWINDOW n, int e);
 
 
 extern "C" inline SINGLEWINDOW new_fl_single_window(int x, int y, int w, int h, char* label);
-extern "C" inline SINGLEWINDOW new_fl_single_window2(int x, int y);
+extern "C" inline SINGLEWINDOW new_fl_single_window2(int x, int y, char* label);
 extern "C" inline void free_fl_single_window(SINGLEWINDOW w);
 
 

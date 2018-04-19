@@ -20,7 +20,7 @@ extern "C" inline int fl_menu_window_handle(MENUWINDOW n, int e);
 
 
 extern "C" inline MENUWINDOW new_fl_menu_window(int x, int y, int w, int h, char* label);
-extern "C" inline MENUWINDOW new_fl_menu_window2(int w, int h);
+extern "C" inline MENUWINDOW new_fl_menu_window2(int w, int h, char* label);
 extern "C" inline void free_fl_menu_window(MENUWINDOW m);
 
 

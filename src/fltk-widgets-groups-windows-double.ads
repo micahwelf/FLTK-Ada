@@ -18,7 +18,8 @@ package FLTK.Widgets.Groups.Windows.Double is
             return Double_Window;
 
         function Create
-               (W, H : in Integer)
+               (W, H : in Integer;
+                Text : in String)
             return Double_Window;
 
     end Forge;

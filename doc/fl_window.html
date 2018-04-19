@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Window Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Window Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Window</td>
+    <td>FLTK.Widgets.Groups.Windows</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Window</td>
+    <td>Window</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Window_Reference</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Border_State</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Modal_State</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Cursor</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Window(int w, int h, const char *title=0);
+</pre></td>
+<td><pre>
+function Create
+       (W, H : in Integer;
+        Text : in String)
+    return Window;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Window(int x, int y, int w, int h, const char *title=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Window;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual Fl_Window * as_window();
+</pre></td>
+<td>Use view conversion and tag membership tests instead</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void border(int b);
+</pre></td>
+<td><pre>
+procedure Set_Border_State
+       (This : in out Window;
+        To   : in     Border_State);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int border() const;
+</pre></td>
+<td><pre>
+function Get_Border_State
+       (This : in Window)
+    return Border_State;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear_border();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear_modal_states();
+</pre></td>
+<td><pre>
+procedure Set_Modal_State
+       (This : in out Window;
+        To   : in     Modal_State);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void copy_label(const char *a);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Window * current();
+</pre></td>
+<td><pre>
+function Last_Made_Current
+    return access Window'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void cursor(Fl_Cursor);
+</pre></td>
+<td><pre>
+procedure Set_Cursor
+       (This : in out Window;
+        To   : in     Cursor);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void cursor(const Fl_RGB_Image *, int, int);
+</pre></td>
+<td><pre>
+procedure Set_Cursor
+       (This         : in out Window;
+        Pic          : in out FLTK.Images.RGB.RGB_Image'Class;
+        Hot_X, Hot_Y : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void cursor(Fl_Cursor c, Fl_Color, Fl_Color=FL_WHITE);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int decorated_h();
+</pre></td>
+<td><pre>
+function Get_Decorated_H
+       (This : in Window)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int decorated_w();
+</pre></td>
+<td><pre>
+function Get_Decorated_W
+       (This : in Window)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void default_cursor(Fl_Cursor);
+</pre></td>
+<td><pre>
+procedure Set_Default_Cursor
+       (This : in out Window;
+        To   : in     Cursor);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void default_cursor(Fl_Cursor c, Fl_Color, Fl_Color=FL_WHITE);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void default_icon(const Fl_RGB_Image *);
+</pre></td>
+<td><pre>
+procedure Set_Default_Icon
+       (Pic : in out FLTK.Images.RGB.RGB_Image'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Window);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void free_position();
+</pre></td>
+<td><pre>
+procedure Free_Position
+       (This : in out Window);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void fullscreen();
+</pre></td>
+<td><pre>
+procedure Fullscreen_On
+       (This : in out Window);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int fullscreen_active() const;
+</pre></td>
+<td><pre>
+function Is_Fullscreen
+       (This : in Window)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void fullscreen_off();
+</pre></td>
+<td><pre>
+procedure Fullscreen_Off
+       (This : in out Window);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void fullscreen_off(int X, int Y, int W, int H);
+</pre></td>
+<td><pre>
+procedure Fullscreen_Off
+       (This       : in out Window;
+        X, Y, W, H : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void fullscreen_screens(int top, int bottom, int left, int right);
+</pre></td>
+<td><pre>
+procedure Fullscreen_Screens
+       (This                     : in out Window;
+        Top, Bottom, Left, Right : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int handle(int);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Window;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void hide();
+</pre></td>
+<td><pre>
+procedure Hide
+       (This : in out Window);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void hotspot(int x, int y, int offscreen=0);
+</pre></td>
+<td><pre>
+procedure Hotspot
+       (This      : in out Window;
+        X, Y      : in     Integer;
+        Offscreen : in     Boolean := False);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void hotspot(const Fl_Widget *, int offscreen=0);
+void hotspot(const Fl_Widget &p, int offscreen=0);
+</pre></td>
+<td><pre>
+procedure Hotspot
+       (This      : in out Window;
+        Item      : in     Widget'Class;
+        Offscreen : in     Boolean := False);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void icon(const Fl_RGB_Image *);
+</pre></td>
+<td><pre>
+procedure Set_Icon
+       (This : in out Window;
+        Pic  : in out FLTK.Images.RGB.RGB_Image'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const void * icon() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void icon(const void *ic);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void iconize();
+</pre></td>
+<td><pre>
+procedure Iconify
+       (This : in out Window);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * iconlabel() const;
+</pre></td>
+<td><pre>
+function Get_Icon_Label
+       (This : in Window)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void iconlabel(const char *);
+</pre></td>
+<td><pre>
+procedure Set_Icon_Label
+       (This : in out Window;
+        To   : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void icons(const Fl_RGB_Image *[], int);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * label() const;
+</pre></td>
+<td><pre>
+function Get_Label
+       (This : in Window)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void label(const char *);
+</pre></td>
+<td><pre>
+procedure Set_Label
+       (This : in out Window;
+        Text : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void label(const char *label, const char *iconlabel);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void make_current();
+</pre></td>
+<td><pre>
+procedure Make_Current
+       (This : in out Window);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int menu_window() const;
+</pre></td>
+<td>Use tag membership tests instead</td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int modal() const;
+</pre></td>
+<td><pre>
+function Get_Modal_State
+       (This : in Window)
+    return Modal_State;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int non_modal() const;
+</pre></td>
+<td>See unsigned int modal() const;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int override() const;
+</pre></td>
+<td><pre>
+function Is_Override
+       (This : in Window)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void resize(int X, int Y, int W, int H);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_menu_window();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_modal();
+</pre></td>
+<td>See void clear_modal_states();</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_non_modal();
+</pre></td>
+<td>See void clear_modal_states();</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_override();
+</pre></td>
+<td><pre>
+procedure Set_Override
+       (This : in out Window);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_tooltip_window();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void shape(const Fl_Image *img);
+void shape(const Fl_Image &b);
+</pre></td>
+<td><pre>
+procedure Shape
+       (This : in out Window;
+        Pic  : in out FLTK.Images.Image'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void show();
+</pre></td>
+<td><pre>
+procedure Show
+       (This : in out Window);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void show(int argc, char **argv);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int shown();
+</pre></td>
+<td><pre>
+function Is_Shown
+       (This : in Window)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void size_range(int minw, int minh, int maxw=0, int maxh=0, int dw=0, int dh=0, int aspect=0);
+</pre></td>
+<td><pre>
+procedure Set_Size_Range
+       (This                           : in out Window;
+        Min_W, Min_H                   : in     Integer;
+        Max_W, Max_H, Incre_W, Incre_H : in     Integer := 0;
+        Keep_Aspect                    : in     Boolean := False);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int tooltip_window() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void wait_for_expose();
+</pre></td>
+<td><pre>
+procedure Wait_For_Expose
+       (This : in out Window);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int x_root() const;
+</pre></td>
+<td><pre>
+function Get_X_Root
+       (This : in Window)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * xclass() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void xclass(const char *c);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int y_root() const;
+</pre></td>
+<td><pre>
+function Get_Y_Root
+       (This : in Window)
+    return Integer;
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

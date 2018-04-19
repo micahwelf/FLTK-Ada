@@ -20,7 +20,7 @@ extern "C" inline int fl_double_window_handle(DOUBLEWINDOW n, int e);
 
 
 extern "C" inline DOUBLEWINDOW new_fl_double_window(int x, int y, int w, int h, char* label);
-extern "C" inline DOUBLEWINDOW new_fl_double_window2(int w, int h);
+extern "C" inline DOUBLEWINDOW new_fl_double_window2(int w, int h, char* label);
 extern "C" inline void free_fl_double_window(DOUBLEWINDOW d);
 
 

@@ -28,6 +28,7 @@ FLTK.Widgets.Buttons.Toggle
 FLTK.Widgets.Clocks
 FLTK.Widgets.Clocks.Updated
 FLTK.Widgets.Clocks.Updated.Round
+FLTK.Widgets.Groups.Windows
 FLTK.Widgets.Groups.Windows.Double
 FLTK.Widgets.Groups.Windows.Single
 FLTK.Widgets.Groups.Windows.Single.Menu
@@ -105,7 +106,6 @@ FLTK.Text_Buffers
 FLTK.Widgets
 FLTK.Widgets.Groups
 FLTK.Widgets.Groups.Text_Displays (94%)
-FLTK.Widgets.Groups.Windows
 FLTK.Widgets.Menus
 
 
@@ -142,7 +142,7 @@ FL_Cairo_Window
 - make sure all C++ reinterpret_cast for methods is to the Fl object, not the My object, because inheriting
 - consistent unicode utf-8 support (is this even fully supported by FLTK? if not, nevermind...)
 - check FLTK library internals to see which char* return values need dealloc
-- remove custom exception types in favour of Program_Error?
+- remove custom exception types in favour of Program_Error? or at least a generic FLTK_Error?
 - qualify all C++ virtual method calls with the class name to prevent dynamic dispatch on C++ side
 - provide documentation for how C++ methods map to Ada functions and procedures
 

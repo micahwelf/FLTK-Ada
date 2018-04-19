@@ -63,8 +63,8 @@ DOUBLEWINDOW new_fl_double_window(int x, int y, int w, int h, char* label) {
     return d;
 }
 
-DOUBLEWINDOW new_fl_double_window2(int w, int h) {
-    My_Double_Window *d = new My_Double_Window(w, h);
+DOUBLEWINDOW new_fl_double_window2(int w, int h, char* label) {
+    My_Double_Window *d = new My_Double_Window(w, h, label);
     return d;
 }
 
