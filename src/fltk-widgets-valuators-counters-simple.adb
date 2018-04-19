@@ -16,10 +16,12 @@ package body FLTK.Widgets.Valuators.Counters.Simple is
     procedure simple_counter_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, simple_counter_set_draw_hook, "simple_counter_set_draw_hook");
+    pragma Inline (simple_counter_set_draw_hook);
 
     procedure simple_counter_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, simple_counter_set_handle_hook, "simple_counter_set_handle_hook");
+    pragma Inline (simple_counter_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Valuators.Counters.Simple is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_simple_counter, "new_fl_simple_counter");
+    pragma Inline (new_fl_simple_counter);
 
     procedure free_fl_simple_counter
            (A : in System.Address);
     pragma Import (C, free_fl_simple_counter, "free_fl_simple_counter");
+    pragma Inline (free_fl_simple_counter);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Valuators.Counters.Simple is
     procedure fl_simple_counter_draw
            (W : in System.Address);
     pragma Import (C, fl_simple_counter_draw, "fl_simple_counter_draw");
+    pragma Inline (fl_simple_counter_draw);
 
     function fl_simple_counter_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_simple_counter_handle, "fl_simple_counter_handle");
+    pragma Inline (fl_simple_counter_handle);
 
 
 

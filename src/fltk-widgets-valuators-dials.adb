@@ -16,10 +16,12 @@ package body FLTK.Widgets.Valuators.Dials is
     procedure dial_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, dial_set_draw_hook, "dial_set_draw_hook");
+    pragma Inline (dial_set_draw_hook);
 
     procedure dial_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, dial_set_handle_hook, "dial_set_handle_hook");
+    pragma Inline (dial_set_handle_hook);
 
 
 
@@ -29,10 +31,27 @@ package body FLTK.Widgets.Valuators.Dials is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_dial, "new_fl_dial");
+    pragma Inline (new_fl_dial);
 
     procedure free_fl_dial
            (D : in System.Address);
     pragma Import (C, free_fl_dial, "free_fl_dial");
+    pragma Inline (free_fl_dial);
+
+
+
+
+    function fl_dial_get_type
+           (D : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_dial_get_type, "fl_dial_get_type");
+    pragma Inline (fl_dial_get_type);
+
+    procedure fl_dial_set_type
+           (D : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_dial_set_type, "fl_dial_set_type");
+    pragma Inline (fl_dial_set_type);
 
 
 
@@ -41,26 +60,31 @@ package body FLTK.Widgets.Valuators.Dials is
            (D : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_dial_get_angle1, "fl_dial_get_angle1");
+    pragma Inline (fl_dial_get_angle1);
 
     procedure fl_dial_set_angle1
            (D : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_dial_set_angle1, "fl_dial_set_angle1");
+    pragma Inline (fl_dial_set_angle1);
 
     function fl_dial_get_angle2
            (D : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_dial_get_angle2, "fl_dial_get_angle2");
+    pragma Inline (fl_dial_get_angle2);
 
     procedure fl_dial_set_angle2
            (D : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_dial_set_angle2, "fl_dial_set_angle2");
+    pragma Inline (fl_dial_set_angle2);
 
     procedure fl_dial_set_angles
            (D    : in System.Address;
             A, B : in Interfaces.C.int);
     pragma Import (C, fl_dial_set_angles, "fl_dial_set_angles");
+    pragma Inline (fl_dial_set_angles);
 
 
 
@@ -68,12 +92,14 @@ package body FLTK.Widgets.Valuators.Dials is
     procedure fl_dial_draw
            (W : in System.Address);
     pragma Import (C, fl_dial_draw, "fl_dial_draw");
+    pragma Inline (fl_dial_draw);
 
     function fl_dial_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_dial_handle, "fl_dial_handle");
+    pragma Inline (fl_dial_handle);
 
 
 
@@ -118,6 +144,14 @@ package body FLTK.Widgets.Valuators.Dials is
     end Forge;
 
 
+
+
+    function Get_Dial_Type
+           (This : in Dial)
+        return Dial_Kind is
+    begin
+        return Dial_Kind'Val (fl_dial_get_type (This.Void_Ptr));
+    end Get_Dial_Type;
 
 
     function Get_First_Angle
@@ -177,6 +211,22 @@ package body FLTK.Widgets.Valuators.Dials is
         return Event_Outcome'Val
                (fl_dial_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
     end Handle;
+
+
+
+
+    package body Extra is
+
+        procedure Set_Dial_Type
+               (This : in out Dial;
+                To   : in     Dial_Kind) is
+        begin
+            fl_dial_set_type (This.Void_Ptr, Dial_Kind'Pos (To));
+        end Set_Dial_Type;
+
+        pragma Inline (Set_Dial_Type);
+
+    end Extra;
 
 
 end FLTK.Widgets.Valuators.Dials;

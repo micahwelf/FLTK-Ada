@@ -16,10 +16,12 @@ package body FLTK.Widgets.Valuators is
     procedure valuator_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, valuator_set_draw_hook, "valuator_set_draw_hook");
+    pragma Inline (valuator_set_draw_hook);
 
     procedure valuator_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, valuator_set_handle_hook, "valuator_set_handle_hook");
+    pragma Inline (valuator_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Valuators is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_valuator, "new_fl_valuator");
+    pragma Inline (new_fl_valuator);
 
     procedure free_fl_valuator
            (V : in System.Address);
     pragma Import (C, free_fl_valuator, "free_fl_valuator");
+    pragma Inline (free_fl_valuator);
 
 
 
@@ -42,12 +46,14 @@ package body FLTK.Widgets.Valuators is
             D : in Interfaces.C.double)
         return Interfaces.C.double;
     pragma Import (C, fl_valuator_clamp, "fl_valuator_clamp");
+    pragma Inline (fl_valuator_clamp);
 
     function fl_valuator_round
            (V : in System.Address;
             D : in Interfaces.C.double)
         return Interfaces.C.double;
     pragma Import (C, fl_valuator_round, "fl_valuator_round");
+    pragma Inline (fl_valuator_round);
 
     function fl_valuator_increment
            (V : in System.Address;
@@ -55,6 +61,7 @@ package body FLTK.Widgets.Valuators is
             S : in Interfaces.C.int)
         return Interfaces.C.double;
     pragma Import (C, fl_valuator_increment, "fl_valuator_increment");
+    pragma Inline (fl_valuator_increment);
 
 
 
@@ -63,56 +70,67 @@ package body FLTK.Widgets.Valuators is
            (V : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_valuator_get_minimum, "fl_valuator_get_minimum");
+    pragma Inline (fl_valuator_get_minimum);
 
     procedure fl_valuator_set_minimum
            (V : in System.Address;
             D : in Interfaces.C.double);
     pragma Import (C, fl_valuator_set_minimum, "fl_valuator_set_minimum");
+    pragma Inline (fl_valuator_set_minimum);
 
     function fl_valuator_get_maximum
            (V : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_valuator_get_maximum, "fl_valuator_get_maximum");
+    pragma Inline (fl_valuator_get_maximum);
 
     procedure fl_valuator_set_maximum
            (V : in System.Address;
             D : in Interfaces.C.double);
     pragma Import (C, fl_valuator_set_maximum, "fl_valuator_set_maximum");
+    pragma Inline (fl_valuator_set_maximum);
 
     function fl_valuator_get_step
            (V : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_valuator_get_step, "fl_valuator_get_step");
+    pragma Inline (fl_valuator_get_step);
 
     procedure fl_valuator_set_step
            (V : in System.Address;
             T : in Interfaces.C.double);
     pragma Import (C, fl_valuator_set_step, "fl_valuator_set_step");
+    pragma Inline (fl_valuator_set_step);
 
     function fl_valuator_get_value
            (V : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_valuator_get_value, "fl_valuator_get_value");
+    pragma Inline (fl_valuator_get_value);
 
     procedure fl_valuator_set_value
            (V : in System.Address;
             D : in Interfaces.C.double);
     pragma Import (C, fl_valuator_set_value, "fl_valuator_set_value");
+    pragma Inline (fl_valuator_set_value);
 
     procedure fl_valuator_bounds
            (V    : in System.Address;
             A, B : in Interfaces.C.double);
     pragma Import (C, fl_valuator_bounds, "fl_valuator_bounds");
+    pragma Inline (fl_valuator_bounds);
 
     procedure fl_valuator_precision
            (V : in System.Address;
             D : in Interfaces.C.int);
     pragma Import (C, fl_valuator_precision, "fl_valuator_precision");
+    pragma Inline (fl_valuator_precision);
 
     procedure fl_valuator_range
            (V    : in System.Address;
             A, B : in Interfaces.C.double);
     pragma Import (C, fl_valuator_range, "fl_valuator_range");
+    pragma Inline (fl_valuator_range);
 
 
 
@@ -122,6 +140,7 @@ package body FLTK.Widgets.Valuators is
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_valuator_handle, "fl_valuator_handle");
+    pragma Inline (fl_valuator_handle);
 
 
 

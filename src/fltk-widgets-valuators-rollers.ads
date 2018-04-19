@@ -5,6 +5,9 @@ package FLTK.Widgets.Valuators.Rollers is
 
     type Roller is new Valuator with private;
 
+    type Roller_Reference (Data : not null access Roller'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -36,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Roller);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Valuators.Rollers;

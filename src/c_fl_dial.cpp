@@ -70,23 +70,34 @@ void free_fl_dial(DIAL v) {
 
 
 
+int fl_dial_get_type(DIAL v) {
+    return reinterpret_cast<Fl_Dial*>(v)->type();
+}
+
+void fl_dial_set_type(DIAL v, int t) {
+    reinterpret_cast<Fl_Dial*>(v)->type(t);
+}
+
+
+
+
 int fl_dial_get_angle1(DIAL v) {
-    return reinterpret_cast<My_Dial*>(v)->angle1();
+    return reinterpret_cast<Fl_Dial*>(v)->angle1();
 }
 
 void fl_dial_set_angle1(DIAL v, int t) {
-    reinterpret_cast<My_Dial*>(v)->angle1(t);
+    reinterpret_cast<Fl_Dial*>(v)->angle1(t);
 }
 
 int fl_dial_get_angle2(DIAL v) {
-    return reinterpret_cast<My_Dial*>(v)->angle2();
+    return reinterpret_cast<Fl_Dial*>(v)->angle2();
 }
 
 void fl_dial_set_angle2(DIAL v, int t) {
-    reinterpret_cast<My_Dial*>(v)->angle2(t);
+    reinterpret_cast<Fl_Dial*>(v)->angle2(t);
 }
 
 void fl_dial_set_angles(DIAL v, int a, int b) {
-    reinterpret_cast<My_Dial*>(v)->angles(a,b);
+    reinterpret_cast<Fl_Dial*>(v)->angles(a,b);
 }
 

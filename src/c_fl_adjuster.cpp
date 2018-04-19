@@ -71,10 +71,10 @@ void free_fl_adjuster(ADJUSTER a) {
 
 
 int fl_adjuster_is_soft(ADJUSTER a) {
-    return reinterpret_cast<My_Adjuster*>(a)->soft();
+    return reinterpret_cast<Fl_Adjuster*>(a)->soft();
 }
 
 void fl_adjuster_set_soft(ADJUSTER a, int t) {
-    reinterpret_cast<My_Adjuster*>(a)->soft(t);
+    reinterpret_cast<Fl_Adjuster*>(a)->soft(t);
 }
 

@@ -5,6 +5,9 @@ package FLTK.Widgets.Valuators.Counters is
 
     type Counter is new Valuator with private;
 
+    type Counter_Reference (Data : not null access Counter'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -86,6 +89,26 @@ private
 
     overriding procedure Finalize
            (This : in out Counter);
+
+
+
+
+    pragma Inline (Get_Step);
+    pragma Inline (Set_Step);
+    pragma Inline (Get_Long_Step);
+    pragma Inline (Set_Long_Step);
+
+
+    pragma Inline (Get_Text_Color);
+    pragma Inline (Set_Text_Color);
+    pragma Inline (Get_Text_Font);
+    pragma Inline (Set_Text_Font);
+    pragma Inline (Get_Text_Size);
+    pragma Inline (Set_Text_Size);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Valuators.Counters;

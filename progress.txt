@@ -40,6 +40,14 @@ FLTK.Widgets.Inputs.Multiline
 FLTK.Widgets.Inputs.Outputs
 FLTK.Widgets.Inputs.Outputs.Multiline
 FLTK.Widgets.Inputs.Secret
+FLTK.Widgets.Valuators
+FLTK.Widgets.Valuators.Adjusters
+FLTK.Widgets.Valuators.Counters
+FLTK.Widgets.Valuators.Counters.Simple
+FLTK.Widgets.Valuators.Dials
+FLTK.Widgets.Valuators.Dials.Fill
+FLTK.Widgets.Valuators.Dials.Line
+FLTK.Widgets.Valuators.Rollers
 
 
 
@@ -73,14 +81,6 @@ FLTK.Widgets.Groups.Wizards
 FLTK.Widgets.Menus.Menu_Bars
 FLTK.Widgets.Menus.Menu_Buttons
 FLTK.Widgets.Progress_Bars
-FLTK.Widgets.Valuators
-FLTK.Widgets.Valuators.Adjusters
-FLTK.Widgets.Valuators.Counters
-FLTK.Widgets.Valuators.Counters.Simple
-FLTK.Widgets.Valuators.Dials
-FLTK.Widgets.Valuators.Dials.Fill
-FLTK.Widgets.Valuators.Dials.Line
-FLTK.Widgets.Valuators.Rollers
 FLTK.Widgets.Valuators.Sliders
 FLTK.Widgets.Valuators.Sliders.Fill
 FLTK.Widgets.Valuators.Sliders.Hor_Fill

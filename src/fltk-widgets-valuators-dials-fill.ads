@@ -5,6 +5,9 @@ package FLTK.Widgets.Valuators.Dials.Fill is
 
     type Fill_Dial is new Dial with private;
 
+    type Fill_Dial_Reference (Data : not null access Fill_Dial'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -36,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Fill_Dial);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Valuators.Dials.Fill;

@@ -5,6 +5,9 @@ package FLTK.Widgets.Valuators.Adjusters is
 
     type Adjuster is new Valuator with private;
 
+    type Adjuster_Reference (Data : not null access Adjuster'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -47,6 +50,16 @@ private
 
     overriding procedure Finalize
            (This : in out Adjuster);
+
+
+
+
+    pragma Inline (Is_Soft);
+    pragma Inline (Set_Soft);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Valuators.Adjusters;

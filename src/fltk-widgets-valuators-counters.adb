@@ -16,10 +16,12 @@ package body FLTK.Widgets.Valuators.Counters is
     procedure counter_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, counter_set_draw_hook, "counter_set_draw_hook");
+    pragma Inline (counter_set_draw_hook);
 
     procedure counter_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, counter_set_handle_hook, "counter_set_handle_hook");
+    pragma Inline (counter_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Valuators.Counters is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_counter, "new_fl_counter");
+    pragma Inline (new_fl_counter);
 
     procedure free_fl_counter
            (A : in System.Address);
     pragma Import (C, free_fl_counter, "free_fl_counter");
+    pragma Inline (free_fl_counter);
 
 
 
@@ -41,16 +45,19 @@ package body FLTK.Widgets.Valuators.Counters is
            (C : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_counter_get_step, "fl_counter_get_step");
+    pragma Inline (fl_counter_get_step);
 
     procedure fl_counter_set_step
            (C : in System.Address;
             T : in Interfaces.C.double);
     pragma Import (C, fl_counter_set_step, "fl_counter_set_step");
+    pragma Inline (fl_counter_set_step);
 
     procedure fl_counter_set_lstep
            (C : in System.Address;
             T : in Interfaces.C.double);
     pragma Import (C, fl_counter_set_lstep, "fl_counter_set_lstep");
+    pragma Inline (fl_counter_set_lstep);
 
 
 
@@ -59,31 +66,37 @@ package body FLTK.Widgets.Valuators.Counters is
            (C : in System.Address)
         return Interfaces.C.unsigned;
     pragma Import (C, fl_counter_get_textcolor, "fl_counter_get_textcolor");
+    pragma Inline (fl_counter_get_textcolor);
 
     procedure fl_counter_set_textcolor
            (C : in System.Address;
             T : in Interfaces.C.unsigned);
     pragma Import (C, fl_counter_set_textcolor, "fl_counter_set_textcolor");
+    pragma Inline (fl_counter_set_textcolor);
 
     function fl_counter_get_textfont
            (C : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_counter_get_textfont, "fl_counter_get_textfont");
+    pragma Inline (fl_counter_get_textfont);
 
     procedure fl_counter_set_textfont
            (C : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_counter_set_textfont, "fl_counter_set_textfont");
+    pragma Inline (fl_counter_set_textfont);
 
     function fl_counter_get_textsize
            (C : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_counter_get_textsize, "fl_counter_get_textsize");
+    pragma Inline (fl_counter_get_textsize);
 
     procedure fl_counter_set_textsize
            (C : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_counter_set_textsize, "fl_counter_set_textsize");
+    pragma Inline (fl_counter_set_textsize);
 
 
 
@@ -91,12 +104,14 @@ package body FLTK.Widgets.Valuators.Counters is
     procedure fl_counter_draw
            (W : in System.Address);
     pragma Import (C, fl_counter_draw, "fl_counter_draw");
+    pragma Inline (fl_counter_draw);
 
     function fl_counter_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_counter_handle, "fl_counter_handle");
+    pragma Inline (fl_counter_handle);
 
 
 

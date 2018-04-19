@@ -5,6 +5,9 @@ package FLTK.Widgets.Valuators is
 
     type Valuator is new Widget with private;
 
+    type Valuator_Reference (Data : not null access Valuator'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -99,6 +102,29 @@ private
 
     overriding procedure Finalize
            (This : in out Valuator);
+
+
+
+
+    pragma Inline (Clamp);
+    pragma Inline (Round);
+    pragma Inline (Increment);
+
+
+    pragma Inline (Get_Minimum);
+    pragma Inline (Set_Minimum);
+    pragma Inline (Get_Maximum);
+    pragma Inline (Set_Maximum);
+    pragma Inline (Get_Step);
+    pragma Inline (Set_Step);
+    pragma Inline (Get_Value);
+    pragma Inline (Set_Value);
+    pragma Inline (Set_Bounds);
+    pragma Inline (Set_Precision);
+    pragma Inline (Set_Range);
+
+
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Valuators;

@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Valuator Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Valuator Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Valuator</td>
+    <td>FLTK.Widgets.Valuators</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Valuator</td>
+    <td>Valuator</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Valuator_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Valuator(int X, int Y, int W, int H, const char *L);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Valuator;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void bounds(double a, double b);
+</pre></td>
+<td><pre>
+procedure Set_Bounds
+       (This     : in out Valuator;
+        Min, Max : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double clamp(double);
+</pre></td>
+<td><pre>
+function Clamp
+       (This  : in Valuator;
+        Input : in Long_Float)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int format(char *);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Handle
+       (This  : in out Valuator;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double increment(double, int);
+</pre></td>
+<td><pre>
+function Increment
+       (This  : in Valuator;
+        Input : in Long_Float;
+        Step  : in Integer)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double maximum() const;
+</pre></td>
+<td><pre>
+function Get_Maximum
+       (This : in Valuator)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void maximum(double a);
+</pre></td>
+<td><pre>
+procedure Set_Maximum
+       (This : in out Valuator;
+        To   : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double minimum() const;
+</pre></td>
+<td><pre>
+function Get_Minimum
+       (This : in Valuator)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void minimum(double a);
+</pre></td>
+<td><pre>
+procedure Set_Minimum
+       (This : in out Valuator;
+        To   : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void precision(int digits);
+</pre></td>
+<td><pre>
+procedure Set_Precision
+       (This : in out Valuator;
+        To   : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void range(double a, double b);
+</pre></td>
+<td><pre>
+procedure Set_Range
+       (This     : in out Valuator;
+        Min, Max : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double round(double;
+</pre></td>
+<td><pre>
+function Round
+       (This  : in Valuator;
+        Input : in Long_Float)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void step(int a);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void step(double a, int b);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void step(double s);
+</pre></td>
+<td><pre>
+procedure Set_Step
+       (This : in out Valuator;
+        To   : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double step() const;
+</pre></td>
+<td><pre>
+function Get_Step
+       (This : in Valuator)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double value() const;
+</pre></td>
+<td><pre>
+function Get_Value
+       (This : in Valuator)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value(double);
+</pre></td>
+<td><pre>
+procedure Set_Value
+       (This : in out Valuator;
+        To   : in     Long_Float);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

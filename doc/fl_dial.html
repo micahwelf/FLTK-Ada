@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Dial Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Dial Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Dial</td>
+    <td>FLTK.Widgets.Valuators.Dials</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Dial</td>
+    <td>Dial</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Dial_Reference</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Dial_Kind</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Dial(int x, int y, int w, int h, const char *l=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Dial;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+short angle1() const;
+</pre></td>
+<td><pre>
+function Get_First_Angle
+       (This : in Dial)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void angle1(short a);
+</pre></td>
+<td><pre>
+procedure Set_First_Angle
+       (This : in out Dial;
+        To   : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+short angle2() const;
+</pre></td>
+<td><pre>
+function Get_Second_Angle
+       (This : in Dial)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void angle2(short a);
+</pre></td>
+<td><pre>
+procedure Set_Second_Angle
+       (This : in out Dial;
+        To   : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void angles(short a, short b);
+</pre></td>
+<td><pre>
+procedure Set_Angles
+       (This     : in out Dial;
+        One, Two : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Dial);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int handle(int);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Dial;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>See type() methods for Fl_Widget</td>
+<td><pre>
+function Get_Dial_Type
+       (This : in Dial)
+    return Dial_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>See type() methods for Fl_Widget</td>
+<td><pre>
+procedure Set_Dial_Type
+       (This : in out Dial;
+        To   : in     Dial_Kind);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

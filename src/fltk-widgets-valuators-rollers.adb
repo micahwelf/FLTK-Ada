@@ -16,10 +16,12 @@ package body FLTK.Widgets.Valuators.Rollers is
     procedure roller_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, roller_set_draw_hook, "roller_set_draw_hook");
+    pragma Inline (roller_set_draw_hook);
 
     procedure roller_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, roller_set_handle_hook, "roller_set_handle_hook");
+    pragma Inline (roller_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Valuators.Rollers is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_roller, "new_fl_roller");
+    pragma Inline (new_fl_roller);
 
     procedure free_fl_roller
            (D : in System.Address);
     pragma Import (C, free_fl_roller, "free_fl_roller");
+    pragma Inline (free_fl_roller);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Valuators.Rollers is
     procedure fl_roller_draw
            (W : in System.Address);
     pragma Import (C, fl_roller_draw, "fl_roller_draw");
+    pragma Inline (fl_roller_draw);
 
     function fl_roller_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_roller_handle, "fl_roller_handle");
+    pragma Inline (fl_roller_handle);
 
 
 

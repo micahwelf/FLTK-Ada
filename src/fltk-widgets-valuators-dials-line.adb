@@ -16,10 +16,12 @@ package body FLTK.Widgets.Valuators.Dials.Line is
     procedure line_dial_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, line_dial_set_draw_hook, "line_dial_set_draw_hook");
+    pragma Inline (line_dial_set_draw_hook);
 
     procedure line_dial_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, line_dial_set_handle_hook, "line_dial_set_handle_hook");
+    pragma Inline (line_dial_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Valuators.Dials.Line is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_line_dial, "new_fl_line_dial");
+    pragma Inline (new_fl_line_dial);
 
     procedure free_fl_line_dial
            (D : in System.Address);
     pragma Import (C, free_fl_line_dial, "free_fl_line_dial");
+    pragma Inline (free_fl_line_dial);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Valuators.Dials.Line is
     procedure fl_line_dial_draw
            (W : in System.Address);
     pragma Import (C, fl_line_dial_draw, "fl_line_dial_draw");
+    pragma Inline (fl_line_dial_draw);
 
     function fl_line_dial_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_line_dial_handle, "fl_line_dial_handle");
+    pragma Inline (fl_line_dial_handle);
 
 
 
