@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Shared_Image Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Shared_Image Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Shared_Image</td>
+    <td>FLTK.Images.Shared</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Shared_Image</td>
+    <td>Shared_Image</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Shared_Image_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Shared_Image();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Shared_Image(const char *n, Fl_Image *img=0);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void add_handler(Fl_Shared_Handler f);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void color_average(Fl_Color c, float i);
+</pre></td>
+<td><pre>
+procedure Color_Average
+       (This   : in out Shared_Image;
+        Col    : in     Color;
+        Amount : in     Blend);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual Fl_Image * copy(int W, int H);
+</pre></td>
+<td><pre>
+function Copy
+       (This          : in Shared_Image;
+        Width, Height : in Natural)
+    return Shared_Image'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Image * copy();
+</pre></td>
+<td><pre>
+function Copy
+       (This : in Shared_Image)
+    return Shared_Image'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void desaturate();
+</pre></td>
+<td><pre>
+procedure Desaturate
+       (This : in out Shared_Image);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void draw(int X, int Y, int W, int H, int cx, int cy);
+</pre></td>
+<td><pre>
+procedure Draw
+       (This       : in Shared_Image;
+        X, Y, W, H : in Integer;
+        CX, CY     : in Integer := 0);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw(int X, int Y);
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in Shared_Image;
+        X, Y : in Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Shared_Image * find(const char *name, int W=0, int H=0);
+</pre></td>
+<td><pre>
+function Find
+       (Name : in String;
+        W, H : in Integer := 0)
+    return Shared_Image;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Shared_Image * get(const char *name, int W=0, int H=0);
+</pre></td>
+<td><pre>
+function Create
+       (Filename : in String;
+        W, H     : in Integer)
+    return Shared_Image;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Shared_Image * get(Fl_RGB_Image *rgb, int own_it=1);
+</pre></td>
+<td><pre>
+function Create
+       (From : in FLTK.Images.RGB.RGB_Image'Class)
+    return Shared_Image;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Shared_Image ** images();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * name();
+</pre></td>
+<td><pre>
+function Name
+       (This : in Shared_Image)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int num_images();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int refcount();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void release();
+</pre></td>
+<td>Used as destructor, handled automatically with Finalize procedure using Limited_Controlled types</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void reload();
+</pre></td>
+<td><pre>
+procedure Reload
+       (This : in out Shared_Image);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void remove_handler(Fl_Shared_Handler f);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void scale(int width, int height, int proportional=1, int can_expand=0);
+</pre></td>
+<td><pre>
+procedure Scale
+       (This         : in out Shared_Image;
+        W, H         : in     Integer;
+        Proportional : in     Boolean := True;
+        Can_Expand   : in     Boolean := False);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void scaling_algorithm(Fl_RGB_Scaling algorithm);
+</pre></td>
+<td><pre>
+procedure Set_Scaling_Algorithm
+       (To : in Scaling_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void uncache();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

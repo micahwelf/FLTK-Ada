@@ -16,10 +16,12 @@ package body FLTK.Widgets.Valuators.Sliders.Value.Horizontal is
     procedure hor_value_slider_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, hor_value_slider_set_draw_hook, "hor_value_slider_set_draw_hook");
+    pragma Inline (hor_value_slider_set_draw_hook);
 
     procedure hor_value_slider_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, hor_value_slider_set_handle_hook, "hor_value_slider_set_handle_hook");
+    pragma Inline (hor_value_slider_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Valuators.Sliders.Value.Horizontal is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_hor_value_slider, "new_fl_hor_value_slider");
+    pragma Inline (new_fl_hor_value_slider);
 
     procedure free_fl_hor_value_slider
            (D : in System.Address);
     pragma Import (C, free_fl_hor_value_slider, "free_fl_hor_value_slider");
+    pragma Inline (free_fl_hor_value_slider);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Valuators.Sliders.Value.Horizontal is
     procedure fl_hor_value_slider_draw
            (W : in System.Address);
     pragma Import (C, fl_hor_value_slider_draw, "fl_hor_value_slider_draw");
+    pragma Inline (fl_hor_value_slider_draw);
 
     function fl_hor_value_slider_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_hor_value_slider_handle, "fl_hor_value_slider_handle");
+    pragma Inline (fl_hor_value_slider_handle);
 
 
 

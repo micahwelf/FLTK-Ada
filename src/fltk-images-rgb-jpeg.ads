@@ -5,6 +5,9 @@ package FLTK.Images.RGB.JPEG is
 
     type JPEG_Image is new RGB_Image with private;
 
+    type JPEG_Image_Reference (Data : not null access JPEG_Image'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 

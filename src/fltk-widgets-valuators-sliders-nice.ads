@@ -5,6 +5,9 @@ package FLTK.Widgets.Valuators.Sliders.Nice is
 
     type Nice_Slider is new Slider with private;
 
+    type Nice_Slider_Reference (Data : not null access Nice_Slider'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -36,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Nice_Slider);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Valuators.Sliders.Nice;

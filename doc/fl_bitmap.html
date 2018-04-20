@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Bitmap Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Bitmap Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Bitmap</td>
+    <td>FLTK.Images.Bitmaps</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Bitmap</td>
+    <td>Bitmap</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Bitmap_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Bitmap(const uchar *bits, int W, int H);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Bitmap(const char *bits, int W, int H);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual Fl_Image * copy(int W, int H);
+</pre></td>
+<td><pre>
+function Copy
+       (This          : in Bitmap;
+        Width, Height : in Natural)
+    return Bitmap'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Image * copy();
+</pre></td>
+<td><pre>
+function Copy
+       (This : in Bitmap)
+    return Bitmap'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void draw(int X, int Y, int W, int H, int cx=0, int cy=0);
+</pre></td>
+<td><pre>
+procedure Draw
+       (This       : in Bitmap;
+        X, Y, W, H : in Integer;
+        CX, CY     : in Integer := 0);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw(int X, int Y);
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in Bitmap;
+        X, Y : in Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void label(Fl_Widget *w);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void label(Fl_Menu_Item *m);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void uncache();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

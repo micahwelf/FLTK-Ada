@@ -16,10 +16,12 @@ package body FLTK.Widgets.Valuators.Sliders is
     procedure slider_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, slider_set_draw_hook, "slider_set_draw_hook");
+    pragma Inline (slider_set_draw_hook);
 
     procedure slider_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, slider_set_handle_hook, "slider_set_handle_hook");
+    pragma Inline (slider_set_handle_hook);
 
 
 
@@ -29,10 +31,27 @@ package body FLTK.Widgets.Valuators.Sliders is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_slider, "new_fl_slider");
+    pragma Inline (new_fl_slider);
 
     procedure free_fl_slider
            (D : in System.Address);
     pragma Import (C, free_fl_slider, "free_fl_slider");
+    pragma Inline (free_fl_slider);
+
+
+
+
+    function fl_slider_get_type
+           (S : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_slider_get_type, "fl_slider_get_type");
+    pragma Inline (fl_slider_get_type);
+
+    procedure fl_slider_set_type
+           (S : in System.Address;
+            T : in Interfaces.C.int);
+    pragma Import (C, fl_slider_set_type, "fl_slider_set_type");
+    pragma Inline (fl_slider_set_type);
 
 
 
@@ -41,32 +60,38 @@ package body FLTK.Widgets.Valuators.Sliders is
            (S    : in System.Address;
             A, B : in Interfaces.C.double);
     pragma Import (C, fl_slider_set_bounds, "fl_slider_set_bounds");
+    pragma Inline (fl_slider_set_bounds);
 
     function fl_slider_get_slider
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_slider_get_slider, "fl_slider_get_slider");
+    pragma Inline (fl_slider_get_slider);
 
     procedure fl_slider_set_slider
            (S : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_slider_set_slider, "fl_slider_set_slider");
+    pragma Inline (fl_slider_set_slider);
 
     function fl_slider_get_slider_size
            (S : in System.Address)
         return Interfaces.C.C_float;
     pragma Import (C, fl_slider_get_slider_size, "fl_slider_get_slider_size");
+    pragma Inline (fl_slider_get_slider_size);
 
     procedure fl_slider_set_slider_size
            (S : in System.Address;
             T : in Interfaces.C.C_float);
     pragma Import (C, fl_slider_set_slider_size, "fl_slider_set_slider_size");
+    pragma Inline (fl_slider_set_slider_size);
 
     function fl_slider_scrollvalue
            (S          : in System.Address;
             P, Z, F, T : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_slider_scrollvalue, "fl_slider_scrollvalue");
+    pragma Inline (fl_slider_scrollvalue);
 
 
 
@@ -74,12 +99,14 @@ package body FLTK.Widgets.Valuators.Sliders is
     procedure fl_slider_draw
            (W : in System.Address);
     pragma Import (C, fl_slider_draw, "fl_slider_draw");
+    pragma Inline (fl_slider_draw);
 
     function fl_slider_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_slider_handle, "fl_slider_handle");
+    pragma Inline (fl_slider_handle);
 
 
 
@@ -126,14 +153,22 @@ package body FLTK.Widgets.Valuators.Sliders is
 
 
 
+    function Get_Slider_Type
+           (This : in Slider)
+        return Slider_Kind is
+    begin
+        return Slider_Kind'Val (fl_slider_get_type (This.Void_Ptr));
+    end Get_Slider_Type;
+
+
     procedure Set_Bounds
-           (This : in out Slider;
-            A, B : in     Long_Float) is
+           (This     : in out Slider;
+            Min, Max : in     Long_Float) is
     begin
         fl_slider_set_bounds
            (This.Void_Ptr,
-            Interfaces.C.double (A),
-            Interfaces.C.double (B));
+            Interfaces.C.double (Min),
+            Interfaces.C.double (Max));
     end Set_Bounds;
 
 
@@ -204,6 +239,22 @@ package body FLTK.Widgets.Valuators.Sliders is
         return Event_Outcome'Val
                (fl_slider_handle (This.Void_Ptr, Event_Kind'Pos (Event)));
     end Handle;
+
+
+
+
+    package body Extra is
+
+        procedure Set_Slider_Type
+               (This : in out Slider;
+                To   : in     Slider_Kind) is
+        begin
+            fl_slider_set_type (This.Void_Ptr, Slider_Kind'Pos (To));
+        end Set_Slider_Type;
+
+        pragma Inline (Set_Slider_Type);
+
+    end Extra;
 
 
 end FLTK.Widgets.Valuators.Sliders;

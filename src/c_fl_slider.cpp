@@ -70,6 +70,17 @@ void free_fl_slider(SLIDER s) {
 
 
 
+int fl_slider_get_type(SLIDER s) {
+    return reinterpret_cast<Fl_Slider*>(s)->type();
+}
+
+void fl_slider_set_type(SLIDER s, int t) {
+    reinterpret_cast<Fl_Slider*>(s)->type(t);
+}
+
+
+
+
 void fl_slider_set_bounds(SLIDER s, double a, double b) {
     reinterpret_cast<Fl_Slider*>(s)->bounds(a,b);
 }

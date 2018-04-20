@@ -71,22 +71,22 @@ void free_fl_scrollbar(SCROLLBAR s) {
 
 
 int fl_scrollbar_get_linesize(SCROLLBAR s) {
-    return reinterpret_cast<My_Scrollbar*>(s)->linesize();
+    return reinterpret_cast<Fl_Scrollbar*>(s)->linesize();
 }
 
 void fl_scrollbar_set_linesize(SCROLLBAR s, int t) {
-    reinterpret_cast<My_Scrollbar*>(s)->linesize(t);
+    reinterpret_cast<Fl_Scrollbar*>(s)->linesize(t);
 }
 
 int fl_scrollbar_get_value(SCROLLBAR s) {
-    return reinterpret_cast<My_Scrollbar*>(s)->value();
+    return reinterpret_cast<Fl_Scrollbar*>(s)->value();
 }
 
 void fl_scrollbar_set_value(SCROLLBAR s, int t) {
-    reinterpret_cast<My_Scrollbar*>(s)->value(t);
+    reinterpret_cast<Fl_Scrollbar*>(s)->value(t);
 }
 
 void fl_scrollbar_set_value2(SCROLLBAR s, int p, int w, int f, int t) {
-    reinterpret_cast<My_Scrollbar*>(s)->value(p,w,f,t);
+    reinterpret_cast<Fl_Scrollbar*>(s)->value(p,w,f,t);
 }
 

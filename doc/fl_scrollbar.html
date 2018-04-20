@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Scrollbar Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Scrollbar Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Scrollbar</td>
+    <td>FLTK.Widgets.Valuators.Sliders.Scrollbars</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Scrollbar</td>
+    <td>Scrollbar</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Scrollbar_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Scrollbar(int X, int Y, int W, int H, const char *L=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Scrollbar;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Scrollbar);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int handle(int);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Scrollbar;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int linesize() const;
+</pre></td>
+<td><pre>
+function Get_Line_Size
+       (This : in Scrollbar)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void linesize(int i);
+</pre></td>
+<td><pre>
+procedure Set_Line_Size
+       (This : in out Scrollbar;
+        To   : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value() const;
+</pre></td>
+<td><pre>
+function Get_Position
+       (This : in Scrollbar)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value(int p);
+</pre></td>
+<td><pre>
+procedure Set_Position
+       (This : in out Scrollbar;
+        To   : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value(int pos, int windowSize, int first, int total);
+</pre></td>
+<td><pre>
+procedure Set_All
+       (This        : in out Scrollbar;
+        Position    : in     Natural;
+        Win_Size    : in     Natural;
+        First_Line  : in     Natural;
+        Total_Lines : in     Natural);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

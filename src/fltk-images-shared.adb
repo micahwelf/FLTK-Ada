@@ -18,32 +18,38 @@ package body FLTK.Images.Shared is
             W, H : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, fl_shared_image_get, "fl_shared_image_get");
+    pragma Inline (fl_shared_image_get);
 
     function fl_shared_image_get2
            (I : in System.Address)
         return System.Address;
     pragma Import (C, fl_shared_image_get2, "fl_shared_image_get2");
+    pragma Inline (fl_shared_image_get2);
 
     function fl_shared_image_find
            (N    : in Interfaces.C.char_array;
             W, H : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, fl_shared_image_find, "fl_shared_image_find");
+    pragma Inline (fl_shared_image_find);
 
     procedure fl_shared_image_release
            (I : in System.Address);
     pragma Import (C, fl_shared_image_release, "fl_shared_image_release");
+    pragma Inline (fl_shared_image_release);
 
     function fl_shared_image_copy
            (I    : in System.Address;
             W, H : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, fl_shared_image_copy, "fl_shared_image_copy");
+    pragma Inline (fl_shared_image_copy);
 
     function fl_shared_image_copy2
            (I : in System.Address)
         return System.Address;
     pragma Import (C, fl_shared_image_copy2, "fl_shared_image_copy2");
+    pragma Inline (fl_shared_image_copy2);
 
 
 
@@ -53,10 +59,12 @@ package body FLTK.Images.Shared is
             C : in Interfaces.C.int;
             B : in Interfaces.C.C_float);
     pragma Import (C, fl_shared_image_color_average, "fl_shared_image_color_average");
+    pragma Inline (fl_shared_image_color_average);
 
     procedure fl_shared_image_desaturate
            (I : in System.Address);
     pragma Import (C, fl_shared_image_desaturate, "fl_shared_image_desaturate");
+    pragma Inline (fl_shared_image_desaturate);
 
 
 
@@ -65,14 +73,12 @@ package body FLTK.Images.Shared is
            (I : in System.Address)
         return Interfaces.C.Strings.chars_ptr;
     pragma Import (C, fl_shared_image_name, "fl_shared_image_name");
+    pragma Inline (fl_shared_image_name);
 
     procedure fl_shared_image_reload
            (I : in System.Address);
     pragma Import (C, fl_shared_image_reload, "fl_shared_image_reload");
-
-    procedure fl_shared_image_uncache
-           (I : in System.Address);
-    pragma Import (C, fl_shared_image_uncache, "fl_shared_image_uncache");
+    pragma Inline (fl_shared_image_reload);
 
 
 
@@ -80,11 +86,13 @@ package body FLTK.Images.Shared is
     procedure fl_shared_image_scaling_algorithm
            (A : in Interfaces.C.int);
     pragma Import (C, fl_shared_image_scaling_algorithm, "fl_shared_image_scaling_algorithm");
+    pragma Inline (fl_shared_image_scaling_algorithm);
 
     procedure fl_shared_image_scale
            (I : in System.Address;
             W, H, P, E : in Interfaces.C.int);
     pragma Import (C, fl_shared_image_scale, "fl_shared_image_scale");
+    pragma Inline (fl_shared_image_scale);
 
 
 
@@ -93,11 +101,13 @@ package body FLTK.Images.Shared is
            (I                  : in System.Address;
             X, Y, W, H, CX, CY : in Interfaces.C.int);
     pragma Import (C, fl_shared_image_draw, "fl_shared_image_draw");
+    pragma Inline (fl_shared_image_draw);
 
     procedure fl_shared_image_draw2
            (I    : in System.Address;
             X, Y : in Interfaces.C.int);
     pragma Import (C, fl_shared_image_draw2, "fl_shared_image_draw2");
+    pragma Inline (fl_shared_image_draw2);
 
 
 
@@ -224,13 +234,6 @@ package body FLTK.Images.Shared is
     begin
         fl_shared_image_reload (This.Void_Ptr);
     end Reload;
-
-
-    procedure Uncache
-           (This : in out Shared_Image) is
-    begin
-        fl_shared_image_uncache (This.Void_Ptr);
-    end Uncache;
 
 
 

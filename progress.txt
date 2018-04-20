@@ -12,7 +12,17 @@ Overall estimate: ???%
 
 Polished:
 
+FLTK.Devices
 FLTK.Dialogs
+FLTK.Images
+FLTK.Images.Bitmaps
+FLTK.Images.Bitmaps.XBM
+FLTK.Images.RGB
+FLTK.Images.RGB.BMP
+FLTK.Images.RGB.JPEG
+FLTK.Images.RGB.PNG
+FLTK.Images.RGB.PNM
+FLTK.Images.Shared
 FLTK.Tooltips
 FLTK.Widgets.Boxes
 FLTK.Widgets.Buttons
@@ -48,26 +58,25 @@ FLTK.Widgets.Valuators.Dials
 FLTK.Widgets.Valuators.Dials.Fill
 FLTK.Widgets.Valuators.Dials.Line
 FLTK.Widgets.Valuators.Rollers
+FLTK.Widgets.Valuators.Sliders
+FLTK.Widgets.Valuators.Sliders.Fill
+FLTK.Widgets.Valuators.Sliders.Hor_Fill
+FLTK.Widgets.Valuators.Sliders.Hor_Nice
+FLTK.Widgets.Valuators.Sliders.Horizontal
+FLTK.Widgets.Valuators.Sliders.Nice
+FLTK.Widgets.Valuators.Sliders.Scrollbars
+FLTK.Widgets.Valuators.Sliders.Value
+FLTK.Widgets.Valuators.Sliders.Horizontal
 
 
 
 
 Done:
 
-FLTK.Devices
 FLTK.Devices.Surfaces.Copy
 FLTK.Devices.Surfaces.Image
 FLTK.Devices.Surfaces.Paged
 FLTK.Devices.Surfaces.Paged.Printers
-FLTK.Images
-FLTK.Images.Bitmaps
-FLTK.Images.Bitmaps.XBM
-FLTK.Images.RGB
-FLTK.Images.RGB.BMP
-FLTK.Images.RGB.JPEG
-FLTK.Images.RGB.PNG
-FLTK.Images.RGB.PNM
-FLTK.Images.Shared
 FLTK.Widgets.Charts
 FLTK.Widgets.Groups.Color_Choosers
 FLTK.Widgets.Groups.Input_Choices
@@ -81,15 +90,6 @@ FLTK.Widgets.Groups.Wizards
 FLTK.Widgets.Menus.Menu_Bars
 FLTK.Widgets.Menus.Menu_Buttons
 FLTK.Widgets.Progress_Bars
-FLTK.Widgets.Valuators.Sliders
-FLTK.Widgets.Valuators.Sliders.Fill
-FLTK.Widgets.Valuators.Sliders.Hor_Fill
-FLTK.Widgets.Valuators.Sliders.Hor_Nice
-FLTK.Widgets.Valuators.Sliders.Horizontal
-FLTK.Widgets.Valuators.Sliders.Nice
-FLTK.Widgets.Valuators.Sliders.Scrollbars
-FLTK.Widgets.Valuators.Sliders.Value
-FLTK.Widgets.Valuators.Sliders.Value.Horizontal
 
 
 

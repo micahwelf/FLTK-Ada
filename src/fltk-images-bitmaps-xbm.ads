@@ -5,6 +5,9 @@ package FLTK.Images.Bitmaps.XBM is
 
     type XBM_Image is new Bitmap with private;
 
+    type XBM_Image_Reference (Data : not null access XBM_Image'Class) is limited null record
+        with Implicit_Dereference => Data;
+
 
 
 

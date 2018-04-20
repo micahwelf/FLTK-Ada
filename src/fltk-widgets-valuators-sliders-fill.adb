@@ -16,10 +16,12 @@ package body FLTK.Widgets.Valuators.Sliders.Fill is
     procedure fill_slider_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, fill_slider_set_draw_hook, "fill_slider_set_draw_hook");
+    pragma Inline (fill_slider_set_draw_hook);
 
     procedure fill_slider_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, fill_slider_set_handle_hook, "fill_slider_set_handle_hook");
+    pragma Inline (fill_slider_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Valuators.Sliders.Fill is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_fill_slider, "new_fl_fill_slider");
+    pragma Inline (new_fl_fill_slider);
 
     procedure free_fl_fill_slider
            (D : in System.Address);
     pragma Import (C, free_fl_fill_slider, "free_fl_fill_slider");
+    pragma Inline (free_fl_fill_slider);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Valuators.Sliders.Fill is
     procedure fl_fill_slider_draw
            (W : in System.Address);
     pragma Import (C, fl_fill_slider_draw, "fl_fill_slider_draw");
+    pragma Inline (fl_fill_slider_draw);
 
     function fl_fill_slider_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_fill_slider_handle, "fl_fill_slider_handle");
+    pragma Inline (fl_fill_slider_handle);
 
 
 

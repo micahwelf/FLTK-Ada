@@ -17,10 +17,12 @@ package body FLTK.Images.RGB.BMP is
            (F : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_bmp_image, "new_fl_bmp_image");
+    pragma Inline (new_fl_bmp_image);
 
     procedure free_fl_bmp_image
            (P : in System.Address);
     pragma Import (C, free_fl_bmp_image, "free_fl_bmp_image");
+    pragma Inline (free_fl_bmp_image);
 
 
 

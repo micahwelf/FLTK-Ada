@@ -5,6 +5,9 @@ package FLTK.Widgets.Valuators.Sliders.Scrollbars is
 
     type Scrollbar is new Slider with private;
 
+    type Scrollbar_Reference (Data : not null access Scrollbar'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -62,6 +65,19 @@ private
 
     overriding procedure Finalize
            (This : in out Scrollbar);
+
+
+
+
+    pragma Inline (Get_Line_Size);
+    pragma Inline (Set_Line_Size);
+    pragma Inline (Get_Position);
+    pragma Inline (Set_Position);
+    pragma Inline (Set_All);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Valuators.Sliders.Scrollbars;

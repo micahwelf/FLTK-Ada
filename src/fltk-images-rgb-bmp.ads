@@ -5,6 +5,9 @@ package FLTK.Images.RGB.BMP is
 
     type BMP_Image is new RGB_Image with private;
 
+    type BMP_Image_Reference (Data : not null access BMP_Image'Class) is limited null record
+        with Implicit_Dereference => Data;
+
 
 
 

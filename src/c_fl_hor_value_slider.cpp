@@ -68,29 +68,3 @@ void free_fl_hor_value_slider(HOR_VALUE_SLIDER s) {
 }
 
 
-
-
-unsigned int fl_hor_value_slider_get_textcolor(HOR_VALUE_SLIDER s) {
-    return reinterpret_cast<My_Hor_Value_Slider*>(s)->textcolor();
-}
-
-void fl_hor_value_slider_set_textcolor(HOR_VALUE_SLIDER s, unsigned int t) {
-    reinterpret_cast<My_Hor_Value_Slider*>(s)->textcolor(t);
-}
-
-int fl_hor_value_slider_get_textfont(HOR_VALUE_SLIDER s) {
-    return reinterpret_cast<My_Hor_Value_Slider*>(s)->textfont();
-}
-
-void fl_hor_value_slider_set_textfont(HOR_VALUE_SLIDER s, int t) {
-    reinterpret_cast<My_Hor_Value_Slider*>(s)->textfont(t);
-}
-
-int fl_hor_value_slider_get_textsize(HOR_VALUE_SLIDER s) {
-    return reinterpret_cast<My_Hor_Value_Slider*>(s)->textsize();
-}
-
-void fl_hor_value_slider_set_textsize(HOR_VALUE_SLIDER s, int t) {
-    reinterpret_cast<My_Hor_Value_Slider*>(s)->textsize(t);
-}
-

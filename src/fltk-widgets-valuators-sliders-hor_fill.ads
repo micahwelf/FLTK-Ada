@@ -5,6 +5,9 @@ package FLTK.Widgets.Valuators.Sliders.Hor_Fill is
 
     type Hor_Fill_Slider is new Slider with private;
 
+    type Hor_Fill_Slider_Reference (Data : not null access Hor_Fill_Slider'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -36,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Hor_Fill_Slider);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Valuators.Sliders.Hor_Fill;

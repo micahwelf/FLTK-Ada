@@ -17,10 +17,12 @@ package body FLTK.Images.RGB.PNM is
            (F : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_pnm_image, "new_fl_pnm_image");
+    pragma Inline (new_fl_pnm_image);
 
     procedure free_fl_pnm_image
            (P : in System.Address);
     pragma Import (C, free_fl_pnm_image, "free_fl_pnm_image");
+    pragma Inline (free_fl_pnm_image);
 
 
 

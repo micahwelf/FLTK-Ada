@@ -8,6 +8,7 @@
 
 class My_Image : public Fl_Image {
     public:
+        using Fl_Image::Fl_Image;
         friend void fl_image_draw_empty(IMAGE i, int x, int y);
 };
 
@@ -15,16 +16,28 @@ class My_Image : public Fl_Image {
 
 
 IMAGE new_fl_image(int w, int h, int d) {
-    Fl_Image *i = new Fl_Image(w, h, d);
+    My_Image *i = new My_Image(w, h, d);
     return i;
 }
 
 void free_fl_image(IMAGE i) {
-    delete reinterpret_cast<Fl_Image*>(i);
+    delete reinterpret_cast<My_Image*>(i);
+}
+
+
+
+
+int fl_image_get_rgb_scaling() {
+    return Fl_Image::RGB_scaling();
+}
+
+void fl_image_set_rgb_scaling(int t) {
+    Fl_Image::RGB_scaling(static_cast<Fl_RGB_Scaling>(t));
 }
 
 IMAGE fl_image_copy(IMAGE i, int w, int h) {
-    return reinterpret_cast<Fl_Image*>(i)->copy(w, h);
+    //  virtual so disable dispatch
+    return reinterpret_cast<Fl_Image*>(i)->Fl_Image::copy(w, h);
 }
 
 IMAGE fl_image_copy2(IMAGE i) {
@@ -35,11 +48,13 @@ IMAGE fl_image_copy2(IMAGE i) {
 
 
 void fl_image_color_average(IMAGE i, int c, float b) {
-    reinterpret_cast<Fl_Image*>(i)->color_average(c, b);
+    //  virtual so disable dispatch
+    reinterpret_cast<Fl_Image*>(i)->Fl_Image::color_average(c, b);
 }
 
 void fl_image_desaturate(IMAGE i) {
-    reinterpret_cast<Fl_Image*>(i)->desaturate();
+    //  virtual so disable dispatch
+    reinterpret_cast<Fl_Image*>(i)->Fl_Image::desaturate();
 }
 
 
@@ -85,7 +100,8 @@ void fl_image_draw(IMAGE i, int x, int y) {
 }
 
 void fl_image_draw2(IMAGE i, int x, int y, int w, int h, int cx, int cy) {
-    reinterpret_cast<Fl_Image*>(i)->draw(x, y, w, h, cx, cy);
+    //  virtual so disable dispatch
+    reinterpret_cast<Fl_Image*>(i)->Fl_Image::draw(x, y, w, h, cx, cy);
 }
 
 void fl_image_draw_empty(IMAGE i, int x, int y) {

@@ -5,6 +5,9 @@ package FLTK.Widgets.Valuators.Sliders.Value.Horizontal is
 
     type Hor_Value_Slider is new Value_Slider with private;
 
+    type Hor_Value_Slider_Reference (Data : not null access Hor_Value_Slider'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -36,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Hor_Value_Slider);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Valuators.Sliders.Value.Horizontal;

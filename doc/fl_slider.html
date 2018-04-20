@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Slider Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Slider Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Slider</td>
+    <td>FLTK.Widgets.Valuators.Sliders</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Slider</td>
+    <td>Slider</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Slider</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Slider_Kind</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Slider(int X, int Y, int W, int H, const char *L=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Slider;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Slider(uchar t, int X, int Y, int W, int H, const char *L);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void bounds(double a, double b);
+</pre></td>
+<td><pre>
+procedure Set_Bounds
+       (This     : in out Slider;
+        Min, Max : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Slider);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int handle(int);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Slider;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int scrollvalue(int pos, int size, int first, int total);
+</pre></td>
+<td><pre>
+procedure Set_Scrollvalue
+       (This            : in out Slider;
+        Pos_First_Line  : in     Natural;
+        Lines_In_Window : in     Natural;
+        First_Line_Num  : in     Natural;
+        Total_Lines     : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Boxtype slider() const;
+</pre></td>
+<td><pre>
+function Get_Box
+       (This : in Slider)
+    return Box_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void slider(Fl_Boxtype c);
+</pre></td>
+<td><pre>
+procedure Set_Box
+       (This : in out Slider;
+        To   : in     Box_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+float slider_size() const;
+</pre></td>
+<td><pre>
+function Get_Slide_Size
+       (This : in Slider)
+    return Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void slider_size(double v);
+</pre></td>
+<td><pre>
+procedure Set_Slide_Size
+       (This : in out Slider;
+        To   : in     Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td>See type() methods for Fl_Widget</td>
+<td><pre>
+function Get_Slider_Type
+       (This : in Slider)
+    return Slider_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>See type() methods for Fl_Widget</td>
+<td><pre>
+procedure Set_Slider_Type
+       (This : in out Slider;
+        To   : in     Slider_Kind);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Image Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Image Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Image</td>
+    <td>FLTK.Images</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Image</td>
+    <td>Image</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Image_Reference</td>
+  </tr>
+
+  <tr>
+    <td>Fl_RGB_Scaling</td>
+    <td>Scaling_Kind</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Blend</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Image(int W, int H, int D);
+</pre></td>
+<td><pre>
+function Create
+       (Width, Height, Depth : in Natural)
+    return Image;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void color_average(Fl_Color c, float i);
+</pre></td>
+<td><pre>
+procedure Color_Average
+       (This   : in out Image;
+        Col    : in     Color;
+        Amount : in     Blend);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual Fl_Image * copy(int W, int H);
+</pre></td>
+<td><pre>
+function Copy
+       (This          : in Image;
+        Width, Height : in Natural)
+    return Image'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Image * copy();
+</pre></td>
+<td><pre>
+function Copy
+       (This : in Image)
+    return Image'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int count() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int d() const;
+</pre></td>
+<td><pre>
+function Get_D
+       (This : in Image)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * const * data() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void desaturate();
+</pre></td>
+<td><pre>
+procedure Desaturate
+       (This : in out Image);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void draw(int X, int Y, int W, int H, int cx=0, int cy=0);
+</pre></td>
+<td><pre>
+procedure Draw
+       (This       : in Image;
+        X, Y, W, H : in Integer;
+        CX, CY     : in Integer := 0);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw(int X, int Y);
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in Image;
+        X, Y : in Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw_empty(int X, int Y);
+</pre></td>
+<td><pre>
+procedure Draw_Empty
+       (This : in Image;
+        X, Y : in Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int fail();
+</pre></td>
+<td><pre>
+function Is_Empty
+       (This : in Image)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int h() const;
+</pre></td>
+<td><pre>
+function Get_H
+       (This : in Image)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void inactive();
+</pre></td>
+<td><pre>
+procedure Inactive
+       (This : in out Image);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void label(Fl_Widget *w);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void label(Fl_Menu_Item *m);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int ld() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void RGB_scaling(Fl_RGB_Scaling);
+</pre></td>
+<td><pre>
+procedure Set_Copy_Algorithm
+       (To : in Scaling_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_RGB_Scaling RGB_scaling();
+</pre></td>
+<td><pre>
+function Get_Copy_Algorithm
+    return Scaling_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void uncache();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int w() const;
+</pre></td>
+<td><pre>
+function Get_W
+       (This : in Image)
+    return Natural;
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

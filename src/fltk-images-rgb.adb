@@ -16,17 +16,20 @@ package body FLTK.Images.RGB is
     procedure free_fl_rgb_image
            (I : in System.Address);
     pragma Import (C, free_fl_rgb_image, "free_fl_rgb_image");
+    pragma Inline (free_fl_rgb_image);
 
     function fl_rgb_image_copy
            (I    : in System.Address;
             W, H : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, fl_rgb_image_copy, "fl_rgb_image_copy");
+    pragma Inline (fl_rgb_image_copy);
 
     function fl_rgb_image_copy2
            (I : in System.Address)
         return System.Address;
     pragma Import (C, fl_rgb_image_copy2, "fl_rgb_image_copy2");
+    pragma Inline (fl_rgb_image_copy2);
 
 
 
@@ -36,18 +39,27 @@ package body FLTK.Images.RGB is
             C : in Interfaces.C.int;
             B : in Interfaces.C.C_float);
     pragma Import (C, fl_rgb_image_color_average, "fl_rgb_image_color_average");
+    pragma Inline (fl_rgb_image_color_average);
 
     procedure fl_rgb_image_desaturate
            (I : in System.Address);
     pragma Import (C, fl_rgb_image_desaturate, "fl_rgb_image_desaturate");
+    pragma Inline (fl_rgb_image_desaturate);
 
 
 
+
+    procedure fl_rgb_image_draw2
+           (I    : in System.Address;
+            X, Y : in Interfaces.C.int);
+    pragma Import (C, fl_rgb_image_draw2, "fl_rgb_image_draw2");
+    pragma Inline (fl_rgb_image_draw2);
 
     procedure fl_rgb_image_draw
            (I                  : in System.Address;
             X, Y, W, H, CX, CY : in Interfaces.C.int);
     pragma Import (C, fl_rgb_image_draw, "fl_rgb_image_draw");
+    pragma Inline (fl_rgb_image_draw);
 
 
 
@@ -112,6 +124,17 @@ package body FLTK.Images.RGB is
     end Desaturate;
 
 
+
+
+    procedure Draw
+           (This : in RGB_Image;
+            X, Y : in Integer) is
+    begin
+        fl_rgb_image_draw2
+               (This.Void_Ptr,
+                Interfaces.C.int (X),
+                Interfaces.C.int (Y));
+    end Draw;
 
 
     procedure Draw

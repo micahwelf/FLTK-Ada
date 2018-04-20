@@ -71,26 +71,26 @@ void free_fl_value_slider(VALUE_SLIDER s) {
 
 
 unsigned int fl_value_slider_get_textcolor(VALUE_SLIDER s) {
-    return reinterpret_cast<My_Value_Slider*>(s)->textcolor();
+    return reinterpret_cast<Fl_Value_Slider*>(s)->textcolor();
 }
 
 void fl_value_slider_set_textcolor(VALUE_SLIDER s, unsigned int t) {
-    reinterpret_cast<My_Value_Slider*>(s)->textcolor(t);
+    reinterpret_cast<Fl_Value_Slider*>(s)->textcolor(t);
 }
 
 int fl_value_slider_get_textfont(VALUE_SLIDER s) {
-    return reinterpret_cast<My_Value_Slider*>(s)->textfont();
+    return reinterpret_cast<Fl_Value_Slider*>(s)->textfont();
 }
 
 void fl_value_slider_set_textfont(VALUE_SLIDER s, int t) {
-    reinterpret_cast<My_Value_Slider*>(s)->textfont(t);
+    reinterpret_cast<Fl_Value_Slider*>(s)->textfont(t);
 }
 
 int fl_value_slider_get_textsize(VALUE_SLIDER s) {
-    return reinterpret_cast<My_Value_Slider*>(s)->textsize();
+    return reinterpret_cast<Fl_Value_Slider*>(s)->textsize();
 }
 
 void fl_value_slider_set_textsize(VALUE_SLIDER s, int t) {
-    reinterpret_cast<My_Value_Slider*>(s)->textsize(t);
+    reinterpret_cast<Fl_Value_Slider*>(s)->textsize(t);
 }
 

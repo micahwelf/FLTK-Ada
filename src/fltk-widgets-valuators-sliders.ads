@@ -5,6 +5,14 @@ package FLTK.Widgets.Valuators.Sliders is
 
     type Slider is new Valuator with private;
 
+    type Slider_Reference (Data : not null access Slider'Class) is limited null record
+        with Implicit_Dereference => Data;
+
+    type Slider_Kind is
+       (Vertical_Kind, Horizontal_Kind,
+        Vert_Fill_Kind, Hor_Fill_Kind,
+        Vert_Nice_Kind, Hor_Nice_Kind);
+
 
 
 
@@ -20,9 +28,13 @@ package FLTK.Widgets.Valuators.Sliders is
 
 
 
+    function Get_Slider_Type
+           (This : in Slider)
+        return Slider_Kind;
+
     procedure Set_Bounds
-           (This : in out Slider;
-            A, B : in     Long_Float);
+           (This     : in out Slider;
+            Min, Max : in     Long_Float);
 
     function Get_Box
            (This : in Slider)
@@ -59,6 +71,17 @@ package FLTK.Widgets.Valuators.Sliders is
         return Event_Outcome;
 
 
+
+
+    package Extra is
+
+        procedure Set_Slider_Type
+               (This : in out Slider;
+                To   : in     Slider_Kind);
+
+    end Extra;
+
+
 private
 
 
@@ -66,6 +89,21 @@ private
 
     overriding procedure Finalize
            (This : in out Slider);
+
+
+
+
+    pragma Inline (Get_Slider_Type);
+    pragma Inline (Set_Bounds);
+    pragma Inline (Get_Box);
+    pragma Inline (Set_Box);
+    pragma Inline (Get_Slide_Size);
+    pragma Inline (Set_Slide_Size);
+    pragma Inline (Set_Scrollvalue);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Valuators.Sliders;

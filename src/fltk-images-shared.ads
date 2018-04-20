@@ -10,7 +10,8 @@ package FLTK.Images.Shared is
 
     type Shared_Image is new Image with private;
 
-    type Scaling_Kind is (Nearest, Bilinear);
+    type Shared_Image_Reference (Data : not null access Shared_Image'Class) is
+        limited null record with Implicit_Dereference => Data;
 
 
 
@@ -66,9 +67,6 @@ package FLTK.Images.Shared is
     procedure Reload
            (This : in out Shared_Image);
 
-    procedure Uncache
-           (This : in out Shared_Image);
-
 
 
 
@@ -101,6 +99,26 @@ private
 
     overriding procedure Finalize
            (This : in out Shared_Image);
+
+
+
+
+    pragma Inline (Copy);
+
+
+    pragma Inline (Color_Average);
+    pragma Inline (Desaturate);
+
+
+    pragma Inline (Name);
+    pragma Inline (Reload);
+
+
+    pragma Inline (Set_Scaling_Algorithm);
+    pragma Inline (Scale);
+
+
+    pragma Inline (Draw);
 
 
 end FLTK.Images.Shared;

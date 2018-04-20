@@ -5,6 +5,9 @@ package FLTK.Images.RGB is
 
     type RGB_Image is new Image with private;
 
+    type RGB_Image_Reference (Data : not null access RGB_Image'Class) is limited null record
+        with Implicit_Dereference => Data;
+
 
 
 
@@ -32,6 +35,10 @@ package FLTK.Images.RGB is
 
 
     procedure Draw
+           (This : in RGB_Image;
+            X, Y : in Integer);
+
+    procedure Draw
            (This       : in RGB_Image;
             X, Y, W, H : in Integer;
             CX, CY     : in Integer := 0);
@@ -44,6 +51,18 @@ private
 
     overriding procedure Finalize
            (This : in out RGB_Image);
+
+
+
+
+    pragma Inline (Copy);
+
+
+    pragma Inline (Color_Average);
+    pragma Inline (Desaturate);
+
+
+    pragma Inline (Draw);
 
 
 end FLTK.Images.RGB;

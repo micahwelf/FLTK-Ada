@@ -5,6 +5,11 @@ package FLTK.Images is
 
     type Image is new Wrapper with private;
 
+    type Image_Reference (Data : not null access Image'Class) is limited null record
+        with Implicit_Dereference => Data;
+
+    type Scaling_Kind is (Nearest, Bilinear);
+
     type Blend is new Float range 0.0 .. 1.0;
 
     No_Image_Error, File_Access_Error, Format_Error : exception;
@@ -22,6 +27,12 @@ package FLTK.Images is
 
 
 
+
+    function Get_Copy_Algorithm
+        return Scaling_Kind;
+
+    procedure Set_Copy_Algorithm
+           (To : in Scaling_Kind);
 
     function Copy
            (This          : in Image;
@@ -92,6 +103,28 @@ private
 
     overriding procedure Finalize
            (This : in out Image);
+
+
+
+
+    pragma Inline (Copy);
+
+
+    pragma Inline (Color_Average);
+    pragma Inline (Desaturate);
+
+
+    pragma Inline (Inactive);
+    pragma Inline (Is_Empty);
+
+
+    pragma Inline (Get_W);
+    pragma Inline (Get_H);
+    pragma Inline (Get_D);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Draw_Empty);
 
 
 

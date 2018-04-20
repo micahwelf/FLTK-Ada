@@ -17,10 +17,12 @@ package body FLTK.Images.RGB.JPEG is
            (F : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_jpeg_image, "new_fl_jpeg_image");
+    pragma Inline (new_fl_jpeg_image);
 
     procedure free_fl_jpeg_image
            (P : in System.Address);
     pragma Import (C, free_fl_jpeg_image, "free_fl_jpeg_image");
+    pragma Inline (free_fl_jpeg_image);
 
 
 

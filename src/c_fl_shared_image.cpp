@@ -12,7 +12,7 @@ SHARED_IMAGE fl_shared_image_get(const char * f, int w, int h) {
 }
 
 SHARED_IMAGE fl_shared_image_get2(void * r) {
-    return Fl_Shared_Image::get(reinterpret_cast<Fl_RGB_Image*>(r));
+    return Fl_Shared_Image::get(reinterpret_cast<Fl_RGB_Image*>(r), 0);
 }
 
 SHARED_IMAGE fl_shared_image_find(const char * n, int w, int h) {
@@ -24,7 +24,8 @@ void release_fl_shared_image(SHARED_IMAGE i) {
 }
 
 SHARED_IMAGE fl_shared_image_copy(SHARED_IMAGE i, int w, int h) {
-    return reinterpret_cast<Fl_Shared_Image*>(i)->copy(w, h);
+    //  virtual so disable dispatch
+    return reinterpret_cast<Fl_Shared_Image*>(i)->Fl_Shared_Image::copy(w, h);
 }
 
 SHARED_IMAGE fl_shared_image_copy2(SHARED_IMAGE i) {
@@ -35,11 +36,13 @@ SHARED_IMAGE fl_shared_image_copy2(SHARED_IMAGE i) {
 
 
 void fl_shared_image_color_average(SHARED_IMAGE i, int c, float b) {
-    reinterpret_cast<Fl_Shared_Image*>(i)->color_average(c, b);
+    //  virtual so disable dispatch
+    reinterpret_cast<Fl_Shared_Image*>(i)->Fl_Shared_Image::color_average(c, b);
 }
 
 void fl_shared_image_desaturate(SHARED_IMAGE i) {
-    reinterpret_cast<Fl_Shared_Image*>(i)->desaturate();
+    //  virtual so disable dispatch
+    reinterpret_cast<Fl_Shared_Image*>(i)->Fl_Shared_Image::desaturate();
 }
 
 
@@ -51,10 +54,6 @@ const char * fl_shared_image_name(SHARED_IMAGE i) {
 
 void fl_shared_image_reload(SHARED_IMAGE i) {
     reinterpret_cast<Fl_Shared_Image*>(i)->reload();
-}
-
-void fl_shared_image_uncache(SHARED_IMAGE i) {
-    reinterpret_cast<Fl_Shared_Image*>(i)->uncache();
 }
 
 
@@ -72,7 +71,8 @@ void fl_shared_image_scale(SHARED_IMAGE i, int w, int h, int p, int e) {
 
 
 void fl_shared_image_draw(SHARED_IMAGE i, int x, int y, int w, int h, int cx, int cy) {
-    reinterpret_cast<Fl_Shared_Image*>(i)->draw(x, y, w, h, cx, cy);
+    //  virtual so disable dispatch
+    reinterpret_cast<Fl_Shared_Image*>(i)->Fl_Shared_Image::draw(x, y, w, h, cx, cy);
 }
 
 void fl_shared_image_draw2(SHARED_IMAGE i, int x, int y) {

@@ -16,25 +16,35 @@ package body FLTK.Images.Bitmaps is
     procedure free_fl_bitmap
            (I : in System.Address);
     pragma Import (C, free_fl_bitmap, "free_fl_bitmap");
+    pragma Inline (free_fl_bitmap);
 
     function fl_bitmap_copy
            (I    : in System.Address;
             W, H : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, fl_bitmap_copy, "fl_bitmap_copy");
+    pragma Inline (fl_bitmap_copy);
 
     function fl_bitmap_copy2
            (I : in System.Address)
         return System.Address;
     pragma Import (C, fl_bitmap_copy2, "fl_bitmap_copy2");
+    pragma Inline (fl_bitmap_copy2);
 
 
 
+
+    procedure fl_bitmap_draw2
+           (I    : in System.Address;
+            X, Y : in Interfaces.C.int);
+    pragma Import (C, fl_bitmap_draw2, "fl_bitmap_draw2");
+    pragma Inline (fl_bitmap_draw2);
 
     procedure fl_bitmap_draw
            (I                  : in System.Address;
             X, Y, W, H, CX, CY : in Interfaces.C.int);
     pragma Import (C, fl_bitmap_draw, "fl_bitmap_draw");
+    pragma Inline (fl_bitmap_draw);
 
 
 
@@ -78,6 +88,17 @@ package body FLTK.Images.Bitmaps is
     end Copy;
 
 
+
+
+    procedure Draw
+           (This : in Bitmap;
+            X, Y : in Integer) is
+    begin
+        fl_bitmap_draw2
+               (This.Void_Ptr,
+                Interfaces.C.int (X),
+                Interfaces.C.int (Y));
+    end Draw;
 
 
     procedure Draw

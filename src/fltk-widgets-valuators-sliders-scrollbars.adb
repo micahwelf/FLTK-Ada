@@ -16,10 +16,12 @@ package body FLTK.Widgets.Valuators.Sliders.Scrollbars is
     procedure scrollbar_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, scrollbar_set_draw_hook, "scrollbar_set_draw_hook");
+    pragma Inline (scrollbar_set_draw_hook);
 
     procedure scrollbar_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, scrollbar_set_handle_hook, "scrollbar_set_handle_hook");
+    pragma Inline (scrollbar_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Valuators.Sliders.Scrollbars is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_scrollbar, "new_fl_scrollbar");
+    pragma Inline (new_fl_scrollbar);
 
     procedure free_fl_scrollbar
            (D : in System.Address);
     pragma Import (C, free_fl_scrollbar, "free_fl_scrollbar");
+    pragma Inline (free_fl_scrollbar);
 
 
 
@@ -41,26 +45,31 @@ package body FLTK.Widgets.Valuators.Sliders.Scrollbars is
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_scrollbar_get_linesize, "fl_scrollbar_get_linesize");
+    pragma Inline (fl_scrollbar_get_linesize);
 
     procedure fl_scrollbar_set_linesize
            (S : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_scrollbar_set_linesize, "fl_scrollbar_set_linesize");
+    pragma Inline (fl_scrollbar_set_linesize);
 
     function fl_scrollbar_get_value
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_scrollbar_get_value, "fl_scrollbar_get_value");
+    pragma Inline (fl_scrollbar_get_value);
 
     procedure fl_scrollbar_set_value
            (S : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_scrollbar_set_value, "fl_scrollbar_set_value");
+    pragma Inline (fl_scrollbar_set_value);
 
     procedure fl_scrollbar_set_value2
            (S          : in System.Address;
             P, W, F, T : in Interfaces.C.int);
     pragma Import (C, fl_scrollbar_set_value2, "fl_scrollbar_set_value2");
+    pragma Inline (fl_scrollbar_set_value2);
 
 
 
@@ -68,12 +77,14 @@ package body FLTK.Widgets.Valuators.Sliders.Scrollbars is
     procedure fl_scrollbar_draw
            (W : in System.Address);
     pragma Import (C, fl_scrollbar_draw, "fl_scrollbar_draw");
+    pragma Inline (fl_scrollbar_draw);
 
     function fl_scrollbar_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_scrollbar_handle, "fl_scrollbar_handle");
+    pragma Inline (fl_scrollbar_handle);
 
 
 

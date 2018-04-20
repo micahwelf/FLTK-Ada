@@ -18,21 +18,38 @@ package body FLTK.Images is
            (W, H, D : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, new_fl_image, "new_fl_image");
+    pragma Inline (new_fl_image);
 
     procedure free_fl_image
            (I : in System.Address);
     pragma Import (C, free_fl_image, "free_fl_image");
+    pragma Inline (free_fl_image);
+
+
+
+
+    function fl_image_get_rgb_scaling
+        return Interfaces.C.int;
+    pragma Import (C, fl_image_get_rgb_scaling, "fl_image_get_rgb_scaling");
+    pragma Inline (fl_image_get_rgb_scaling);
+
+    procedure fl_image_set_rgb_scaling
+           (T : in Interfaces.C.int);
+    pragma Import (C, fl_image_set_rgb_scaling, "fl_image_set_rgb_scaling");
+    pragma Inline (fl_image_set_rgb_scaling);
 
     function fl_image_copy
            (I    : in System.Address;
             W, H : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, fl_image_copy, "fl_image_copy");
+    pragma Inline (fl_image_copy);
 
     function fl_image_copy2
            (I : in System.Address)
         return System.Address;
     pragma Import (C, fl_image_copy2, "fl_image_copy2");
+    pragma Inline (fl_image_copy2);
 
 
 
@@ -42,10 +59,12 @@ package body FLTK.Images is
             C : in Interfaces.C.int;
             B : in Interfaces.C.C_float);
     pragma Import (C, fl_image_color_average, "fl_image_color_average");
+    pragma Inline (fl_image_color_average);
 
     procedure fl_image_desaturate
            (I : in System.Address);
     pragma Import (C, fl_image_desaturate, "fl_image_desaturate");
+    pragma Inline (fl_image_desaturate);
 
 
 
@@ -53,6 +72,7 @@ package body FLTK.Images is
     procedure fl_image_inactive
            (I : in System.Address);
     pragma Import (C, fl_image_inactive, "fl_image_inactive");
+    pragma Inline (fl_image_inactive);
 
 
 
@@ -61,16 +81,19 @@ package body FLTK.Images is
            (I : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_image_w, "fl_image_w");
+    pragma Inline (fl_image_w);
 
     function fl_image_h
            (I : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_image_h, "fl_image_h");
+    pragma Inline (fl_image_h);
 
     function fl_image_d
            (I : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_image_d, "fl_image_d");
+    pragma Inline (fl_image_d);
 
 
 
@@ -79,16 +102,19 @@ package body FLTK.Images is
            (I    : in System.Address;
             X, Y : in Interfaces.C.int);
     pragma Import (C, fl_image_draw, "fl_image_draw");
+    pragma Inline (fl_image_draw);
 
     procedure fl_image_draw2
            (I                  : in System.Address;
             X, Y, W, H, CX, CY : in Interfaces.C.int);
     pragma Import (C, fl_image_draw2, "fl_image_draw2");
+    pragma Inline (fl_image_draw2);
 
     procedure fl_image_draw_empty
            (I    : in System.Address;
             X, Y : in Interfaces.C.int);
     pragma Import (C, fl_image_draw_empty, "fl_image_draw_empty");
+    pragma Inline (fl_image_draw_empty);
 
 
 
@@ -134,6 +160,20 @@ package body FLTK.Images is
     end Forge;
 
 
+
+
+    function Get_Copy_Algorithm
+        return Scaling_Kind is
+    begin
+        return Scaling_Kind'Val (fl_image_get_rgb_scaling);
+    end Get_Copy_Algorithm;
+
+
+    procedure Set_Copy_Algorithm
+           (To : in Scaling_Kind) is
+    begin
+        fl_image_set_rgb_scaling (Scaling_Kind'Pos (To));
+    end Set_Copy_Algorithm;
 
 
     function Copy

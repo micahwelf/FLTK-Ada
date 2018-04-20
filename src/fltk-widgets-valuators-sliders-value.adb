@@ -16,10 +16,12 @@ package body FLTK.Widgets.Valuators.Sliders.Value is
     procedure value_slider_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, value_slider_set_draw_hook, "value_slider_set_draw_hook");
+    pragma Inline (value_slider_set_draw_hook);
 
     procedure value_slider_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, value_slider_set_handle_hook, "value_slider_set_handle_hook");
+    pragma Inline (value_slider_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Valuators.Sliders.Value is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_value_slider, "new_fl_value_slider");
+    pragma Inline (new_fl_value_slider);
 
     procedure free_fl_value_slider
            (D : in System.Address);
     pragma Import (C, free_fl_value_slider, "free_fl_value_slider");
+    pragma Inline (free_fl_value_slider);
 
 
 
@@ -41,31 +45,37 @@ package body FLTK.Widgets.Valuators.Sliders.Value is
            (S : in System.Address)
         return Interfaces.C.unsigned;
     pragma Import (C, fl_value_slider_get_textcolor, "fl_value_slider_get_textcolor");
+    pragma Inline (fl_value_slider_get_textcolor);
 
     procedure fl_value_slider_set_textcolor
            (S : in System.Address;
             C : in Interfaces.C.unsigned);
     pragma Import (C, fl_value_slider_set_textcolor, "fl_value_slider_set_textcolor");
+    pragma Inline (fl_value_slider_set_textcolor);
 
     function fl_value_slider_get_textfont
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_value_slider_get_textfont, "fl_value_slider_get_textfont");
+    pragma Inline (fl_value_slider_get_textfont);
 
     procedure fl_value_slider_set_textfont
            (S : in System.Address;
             F : in Interfaces.C.int);
     pragma Import (C, fl_value_slider_set_textfont, "fl_value_slider_set_textfont");
+    pragma Inline (fl_value_slider_set_textfont);
 
     function fl_value_slider_get_textsize
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_value_slider_get_textsize, "fl_value_slider_get_textsize");
+    pragma Inline (fl_value_slider_get_textsize);
 
     procedure fl_value_slider_set_textsize
            (S : in System.Address;
             F : in Interfaces.C.int);
     pragma Import (C, fl_value_slider_set_textsize, "fl_value_slider_set_textsize");
+    pragma Inline (fl_value_slider_set_textsize);
 
 
 
@@ -73,12 +83,14 @@ package body FLTK.Widgets.Valuators.Sliders.Value is
     procedure fl_value_slider_draw
            (W : in System.Address);
     pragma Import (C, fl_value_slider_draw, "fl_value_slider_draw");
+    pragma Inline (fl_value_slider_draw);
 
     function fl_value_slider_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_value_slider_handle, "fl_value_slider_handle");
+    pragma Inline (fl_value_slider_handle);
 
 
 
