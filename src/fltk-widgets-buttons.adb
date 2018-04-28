@@ -188,17 +188,17 @@ package body FLTK.Widgets.Buttons is
 
     function Get_Shortcut
            (This : in Button)
-        return Shortcut_Key is
+        return Key_Combo is
     begin
-        return C_To_Key (Interfaces.C.unsigned_long (fl_button_get_shortcut (This.Void_Ptr)));
+        return To_Ada (Interfaces.C.unsigned_long (fl_button_get_shortcut (This.Void_Ptr)));
     end Get_Shortcut;
 
 
     procedure Set_Shortcut
            (This : in out Button;
-            Key  : in     Shortcut_Key) is
+            Key  : in     Key_Combo) is
     begin
-        fl_button_set_shortcut (This.Void_Ptr, Interfaces.C.int (Key_To_C (Key)));
+        fl_button_set_shortcut (This.Void_Ptr, Interfaces.C.int (To_C (Key)));
     end Set_Shortcut;
 
 

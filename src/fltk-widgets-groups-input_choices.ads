@@ -32,7 +32,7 @@ package FLTK.Widgets.Groups.Input_Choices is
 
     function Menu_Button
            (This : in out Input_Choice)
-        return FLTK.Widgets.Menus.Menu_Buttons.Menu_Button_Cursor;
+        return FLTK.Widgets.Menus.Menu_Buttons.Menu_Button_Reference;
 
 
 

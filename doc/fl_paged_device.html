@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Paged_Device Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Paged_Device Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Paged_Device</td>
+    <td>FLTK.Devices.Surfaces.Paged</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Paged_Device</td>
+    <td>Paged_Surface</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Paged_Surface_Reference</td>
+  </tr>
+
+  <tr>
+    <td>Page_Format</td>
+    <td>Page_Format</td>
+  </tr>
+
+  <tr>
+    <td>Page_Layout</td>
+    <td>Page_Layout</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Paged_Device();
+</pre></td>
+<td><pre>
+function Create
+    return Paged_Surface;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * class_name();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void end_job(void);
+</pre></td>
+<td><pre>
+procedure End_Job
+       (This : in out Paged_Surface);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int end_page(void);
+</pre></td>
+<td><pre>
+procedure End_Page
+       (This : in out Paged_Surface);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void margins(int *left, int *top, int *right, int *bottom);
+</pre></td>
+<td><pre>
+procedure Get_Margins
+       (This                     : in     Paged_Surface;
+        Left, Top, Right, Bottom :    out Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void origin(int x, int y);
+</pre></td>
+<td><pre>
+procedure Set_Origin
+       (This : in out Paged_Surface;
+        X, Y : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void origin(int *x, int *y);
+</pre></td>
+<td><pre>
+procedure Get_Origin
+       (This : in     Paged_Surface;
+        X, Y :    out Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void print_widget(Fl_Widget *widget, int delta_x=0, int delta_y=0);
+</pre></td>
+<td><pre>
+procedure Print_Widget
+       (This               : in out Paged_Surface;
+        Item               : in     FLTK.Widgets.Widget'Class;
+        Offset_X, Offset_Y : in     Integer := 0);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void print_window(Fl_Window *win, int x_offset=0, int y_offset=0);
+</pre></td>
+<td><pre>
+procedure Print_Window
+       (This               : in out Paged_Surface;
+        Item               : in     FLTK.Widgets.Groups.Windows.Window'Class;
+        Offset_X, Offset_Y : in     Integer := 0);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void print_window_part(Fl_Window *win, int x, int y, int w, int h, int delta_x=0, int delta_y=0);
+</pre></td>
+<td><pre>
+procedure Print_Window_Part
+       (This               : in out Paged_Surface;
+        Item               : in     FLTK.Widgets.Groups.Windows.Window'Class;
+        X, Y, W, H         : in     Integer;
+        Offset_X, Offset_Y : in     Integer := 0);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int printable_rect(int *w, int *h);
+</pre></td>
+<td><pre>
+procedure Get_Printable_Rect
+       (This : in     Paged_Surface;
+        W, H :    out Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void rotate(float angle);
+</pre></td>
+<td><pre>
+procedure Rotate
+       (This    : in out Paged_Surface;
+        Degrees : in     Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void scale(float scale_x, float scale_y=0);
+</pre></td>
+<td><pre>
+procedure Scale
+       (This   : in out Paged_Surface;
+        Factor : in     Float);
+
+procedure Scale
+       (This               : in out Paged_Surface;
+        Factor_X, Factor_Y : in     Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int start_job(int pagecount, int *frompage=NULL, int *topage=NULL);
+</pre></td>
+<td><pre>
+procedure Start_Job
+       (This  : in out Paged_Surface;
+        Count : in     Natural);
+
+procedure Start_Job
+       (This     : in out Paged_Surface;
+        Count    : in     Natural;
+        From, To : in     Positive);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int start_page(void);
+</pre></td>
+<td><pre>
+procedure Start_Page
+       (This : in out Paged_Surface);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void translate(int x, int y);
+</pre></td>
+<td><pre>
+procedure Translate
+       (This             : in out Paged_Surface;
+        Delta_X, Delta_Y : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void untranslate(void);
+</pre></td>
+<td><pre>
+procedure Untranslate
+       (This : in out Paged_Surface);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

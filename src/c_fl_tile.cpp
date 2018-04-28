@@ -71,7 +71,7 @@ void free_fl_tile(TILE t) {
 
 
 void fl_tile_position(TILE t, int ox, int oy, int nx, int ny) {
-    reinterpret_cast<My_Tile*>(t)->position(ox,oy,nx,ny);
+    reinterpret_cast<Fl_Tile*>(t)->position(ox,oy,nx,ny);
 }
 
 

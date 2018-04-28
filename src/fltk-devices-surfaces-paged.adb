@@ -17,10 +17,12 @@ package body FLTK.Devices.Surfaces.Paged is
     function new_fl_paged_device
         return System.Address;
     pragma Import (C, new_fl_paged_device, "new_fl_paged_device");
+    pragma Inline (new_fl_paged_device);
 
     procedure free_fl_paged_device
            (D : in System.Address);
     pragma Import (C, free_fl_paged_device, "free_fl_paged_device");
+    pragma Inline (free_fl_paged_device);
 
 
 
@@ -30,26 +32,31 @@ package body FLTK.Devices.Surfaces.Paged is
             C : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_paged_device_start_job, "fl_paged_device_start_job");
+    pragma Inline (fl_paged_device_start_job);
 
     function fl_paged_device_start_job2
            (D       : in System.Address;
             C, F, T : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_paged_device_start_job2, "fl_paged_device_start_job2");
+    pragma Inline (fl_paged_device_start_job2);
 
     procedure fl_paged_device_end_job
            (D : in System.Address);
     pragma Import (C, fl_paged_device_end_job, "fl_paged_device_end_job");
+    pragma Inline (fl_paged_device_end_job);
 
     function fl_paged_device_start_page
            (D : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_paged_device_start_page, "fl_paged_device_start_page");
+    pragma Inline (fl_paged_device_start_page);
 
     function fl_paged_device_end_page
            (D : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_paged_device_end_page, "fl_paged_device_end_page");
+    pragma Inline (fl_paged_device_end_page);
 
 
 
@@ -58,41 +65,49 @@ package body FLTK.Devices.Surfaces.Paged is
            (D          : in     System.Address;
             L, T, R, B :    out Interfaces.C.int);
     pragma Import (C, fl_paged_device_margins, "fl_paged_device_margins");
+    pragma Inline (fl_paged_device_margins);
 
     function fl_paged_device_printable_rect
            (D    : in     System.Address;
             W, H :    out Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_paged_device_printable_rect, "fl_paged_device_printable_rect");
+    pragma Inline (fl_paged_device_printable_rect);
 
     procedure fl_paged_device_get_origin
            (D    : in     System.Address;
             X, Y :    out Interfaces.C.int);
     pragma Import (C, fl_paged_device_get_origin, "fl_paged_device_get_origin");
+    pragma Inline (fl_paged_device_get_origin);
 
     procedure fl_paged_device_set_origin
            (D    : in System.Address;
             X, Y : in Interfaces.C.int);
     pragma Import (C, fl_paged_device_set_origin, "fl_paged_device_set_origin");
+    pragma Inline (fl_paged_device_set_origin);
 
     procedure fl_paged_device_rotate
            (D : in System.Address;
             R : in Interfaces.C.C_float);
     pragma Import (C, fl_paged_device_rotate, "fl_paged_device_rotate");
+    pragma Inline (fl_paged_device_rotate);
 
     procedure fl_paged_device_scale
            (D    : in System.Address;
             X, Y : in Interfaces.C.C_float);
     pragma Import (C, fl_paged_device_scale, "fl_paged_device_scale");
+    pragma Inline (fl_paged_device_scale);
 
     procedure fl_paged_device_translate
            (D    : in System.Address;
             X, Y : in Interfaces.C.int);
     pragma Import (C, fl_paged_device_translate, "fl_paged_device_translate");
+    pragma Inline (fl_paged_device_translate);
 
     procedure fl_paged_device_untranslate
            (D : in System.Address);
     pragma Import (C, fl_paged_device_untranslate, "fl_paged_device_untranslate");
+    pragma Inline (fl_paged_device_untranslate);
 
 
 
@@ -101,16 +116,19 @@ package body FLTK.Devices.Surfaces.Paged is
            (D, I   : in System.Address;
             DX, DY : in Interfaces.C.int);
     pragma Import (C, fl_paged_device_print_widget, "fl_paged_device_print_widget");
+    pragma Inline (fl_paged_device_print_widget);
 
     procedure fl_paged_device_print_window
            (D, I   : in System.Address;
             DX, DY : in Interfaces.C.int);
     pragma Import (C, fl_paged_device_print_window, "fl_paged_device_print_window");
+    pragma Inline (fl_paged_device_print_window);
 
     procedure fl_paged_device_print_window_part
            (D, I               : in System.Address;
             X, Y, W, H, DX, DY : in Interfaces.C.int);
     pragma Import (C, fl_paged_device_print_window_part, "fl_paged_device_print_window_part");
+    pragma Inline (fl_paged_device_print_window_part);
 
 
 
@@ -139,6 +157,8 @@ package body FLTK.Devices.Surfaces.Paged is
                 This.Void_Ptr := new_fl_paged_device;
             end return;
         end Create;
+
+        pragma Inline (Create);
 
     end Forge;
 
@@ -202,42 +222,34 @@ package body FLTK.Devices.Surfaces.Paged is
 
     procedure Get_Margins
            (This                     : in     Paged_Surface;
-            Left, Top, Right, Bottom :    out Integer)
-    is
-        L, T, R, B : Interfaces.C.int;
+            Left, Top, Right, Bottom :    out Integer) is
     begin
-        fl_paged_device_margins (This.Void_Ptr, L, T, R, B);
-        Left := Integer (L);
-        Top := Integer (T);
-        Right := Integer (R);
-        Bottom := Integer (B);
+        fl_paged_device_margins
+           (This.Void_Ptr,
+            Interfaces.C.int (Left),
+            Interfaces.C.int (Top),
+            Interfaces.C.int (Right),
+            Interfaces.C.int (Bottom));
     end Get_Margins;
 
 
     procedure Get_Printable_Rect
            (This : in     Paged_Surface;
-            W, H :    out Integer)
-    is
-        Wid, Hei : Interfaces.C.int;
+            W, H :    out Integer) is
     begin
-        if fl_paged_device_printable_rect (This.Void_Ptr, Wid, Hei) /= 0 then
+        if fl_paged_device_printable_rect
+            (This.Void_Ptr, Interfaces.C.int (W), Interfaces.C.int (H)) /= 0
+        then
             raise Page_Error;
-        else
-            W := Integer (Wid);
-            H := Integer (Hei);
         end if;
     end Get_Printable_Rect;
 
 
     procedure Get_Origin
            (This : in     Paged_Surface;
-            X, Y :    out Integer)
-    is
-        Eks, Why : Interfaces.C.int;
+            X, Y :    out Integer) is
     begin
-        fl_paged_device_get_origin (This.Void_Ptr, Eks, Why);
-        X := Integer (Eks);
-        Y := Integer (Why);
+        fl_paged_device_get_origin (This.Void_Ptr, Interfaces.C.int (X), Interfaces.C.int (Y));
     end Get_Origin;
 
 

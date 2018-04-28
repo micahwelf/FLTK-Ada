@@ -46,72 +46,190 @@ package body FLTK is
 
 
 
-
-    function Shortcut
-           (Key : Pressable_Key)
-        return Shortcut_Key is
+    function Press
+           (Key : in Pressable_Key)
+        return Keypress is
     begin
-        return This : Shortcut_Key do
-            This.Modifier := Mod_None;
-            This.Keypress := Character'Pos (Key);
+        return Character'Pos (Key);
+    end Press;
+
+
+    function Press
+           (Key : Pressable_Key)
+        return Key_Combo is
+    begin
+        return This : Key_Combo do
+            This.Modcode := Mod_None;
+            This.Keycode := Character'Pos (Key);
+            This.Mousecode := No_Button;
         end return;
-    end Shortcut;
+    end Press;
+
+
+    function Press
+           (Key : in Keypress)
+        return Key_Combo is
+    begin
+        return This : Key_Combo do
+            This.Modcode := Mod_None;
+            This.Keycode := Key;
+            This.Mousecode := No_Button;
+        end return;
+    end Press;
+
+
+    function Press
+           (Key : in Mouse_Button)
+        return Key_Combo is
+    begin
+        return This : Key_Combo do
+            This.Modcode := Mod_None;
+            This.Keycode := 0;
+            This.Mousecode := Key;
+        end return;
+    end Press;
 
 
 
 
     function "+"
-           (Left, Right : in Modifier_Key)
-        return Modifier_Key is
+           (Left, Right : in Modifier)
+        return Modifier is
     begin
         return Left or Right;
     end "+";
 
 
     function "+"
-           (Left  : in Modifier_Key;
+           (Left  : in Modifier;
             Right : in Pressable_Key)
-        return Shortcut_Key is
+        return Key_Combo is
     begin
-        return This : Shortcut_Key do
-            This.Modifier := Left;
-            This.Keypress := Character'Pos (Right);
+        return This : Key_Combo do
+            This.Modcode := Left;
+            This.Keycode := Character'Pos (Right);
+            This.Mousecode := No_Button;
         end return;
     end "+";
 
 
     function "+"
-           (Left  : in Modifier_Key;
-            Right : in Shortcut_Key)
-        return Shortcut_Key is
+           (Left : in Modifier;
+            Right : in Keypress)
+        return Key_Combo is
     begin
-        return This : Shortcut_Key do
-            This.Modifier := Left or Right.Modifier;
-            This.Keypress := Right.Keypress;
+        return This : Key_Combo do
+            This.Modcode := Left;
+            This.Keycode := Right;
+            This.Mousecode := No_Button;
+        end return;
+    end "+";
+
+
+    function "+"
+           (Left : in Modifier;
+            Right : in Mouse_Button)
+        return Key_Combo is
+    begin
+        return This : Key_Combo do
+            This.Modcode := Left;
+            This.Keycode := 0;
+            This.Mousecode := Right;
+        end return;
+    end "+";
+
+
+    function "+"
+           (Left  : in Modifier;
+            Right : in Key_Combo)
+        return Key_Combo is
+    begin
+        return This : Key_Combo do
+            This.Modcode := Left or Right.Modcode;
+            This.Keycode := Right.Keycode;
+            This.Mousecode := Right.Mousecode;
         end return;
     end "+";
 
 
 
 
-    function Key_To_C
-           (Key : in Shortcut_Key)
+    function To_C
+           (Key : in Key_Combo)
         return Interfaces.C.unsigned_long is
     begin
-        return Interfaces.C.unsigned_long (Key.Modifier) *
-               65536 + Interfaces.C.unsigned_long (Key.Keypress);
-    end Key_To_C;
+        return To_C (Key.Modcode) + To_C (Key.Keycode) + To_C (Key.Mousecode);
+    end To_C;
 
 
-    function C_To_Key
+    function To_Ada
            (Key : in Interfaces.C.unsigned_long)
-        return Shortcut_Key is
+        return Key_Combo is
     begin
-        return Result : Shortcut_Key do
-            Result.Modifier := Modifier_Key (Key / 65536);
-            Result.Keypress := Interfaces.Unsigned_16 (Key mod 65536);
+        return Result : Key_Combo do
+            Result.Modcode := To_Ada (Key);
+            Result.Keycode := To_Ada (Key);
+            Result.Mousecode := To_Ada (Key);
         end return;
-    end C_To_Key;
+    end To_Ada;
+
+
+    function To_C
+           (Key : in Keypress)
+        return Interfaces.C.unsigned_long is
+    begin
+        return Interfaces.C.unsigned_long (Key);
+    end To_C;
+
+
+    function To_Ada
+           (Key : in Interfaces.C.unsigned_long)
+        return Keypress is
+    begin
+        return Keypress (Key mod 65536);
+    end To_Ada;
+
+
+    function To_C
+           (Modi : in Modifier)
+        return Interfaces.C.unsigned_long is
+    begin
+        return Interfaces.C.unsigned_long (Modi) * 65536;
+    end To_C;
+
+
+    function To_Ada
+           (Modi : in Interfaces.C.unsigned_long)
+        return Modifier is
+    begin
+        return Modifier ((Modi / 65536) mod 256);
+    end To_Ada;
+
+
+    function To_C
+           (Button : in Mouse_Button)
+        return Interfaces.C.unsigned_long is
+    begin
+        case Button is
+            when Left_Button => return 1 * (256 ** 3);
+            when Middle_Button => return 2 * (256 ** 3);
+            when Right_Button => return 4 * (256 ** 3);
+            when others => return 0;
+        end case;
+    end To_C;
+
+
+    function To_Ada
+           (Button : in Interfaces.C.unsigned_long)
+        return Mouse_Button is
+    begin
+        case (Button / (256 ** 3)) is
+            when 1 => return Left_Button;
+            when 2 => return Middle_Button;
+            when 4 => return Right_Button;
+            when others => return No_Button;
+        end case;
+    end To_Ada;
 
 
 end FLTK;

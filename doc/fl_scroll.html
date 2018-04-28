@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Scroll Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Scroll Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Scroll</td>
+    <td>FLTK.Widgets.Groups.Scrolls</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Scroll</td>
+    <td>Scroll</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Scroll_Reference</td>
+  </tr>
+
+  <tr>
+    <td>enum { HORIZONTAL = 1, VERTICAL = 2, BOTH = 3, ALWAYS_ON = 4, HORIZONTAL_ALWAYS = 5, VERTICAL_ALWAYS = 6, BOTH_ALWAYS = 7 }
+    <td>Scroll_Kind</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Scroll(int X, int Y, int W, int H, const char *L=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Scroll;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear();
+</pre></td>
+<td><pre>
+procedure Clear
+       (This : in out Scroll);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Scroll);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int handle(int);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Scroll;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void resize(int X, int Y, int W, int H);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void scroll_to(int, int);
+</pre></td>
+<td><pre>
+procedure Scroll_To
+       (This : in out Scroll;
+        X, Y : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int scrollbar_size() const;
+</pre></td>
+<td><pre>
+function Get_Scrollbar_Size
+       (This : in Scroll)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void scrollbar_size(int newSize);
+</pre></td>
+<td><pre>
+procedure Set_Scrollbar_Size
+       (This : in out Scroll;
+        To   : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int xposition() const;
+</pre></td>
+<td><pre>
+function Get_Scroll_X
+       (This : in Scroll)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int yposition() const;
+</pre></td>
+<td><pre>
+function Get_Scroll_Y
+       (This : in Scroll)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Set_Type
+       (This : in out Scroll;
+        Mode : in     Scroll_Kind);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

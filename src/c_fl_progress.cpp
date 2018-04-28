@@ -71,26 +71,26 @@ void free_fl_progress(PROGRESS p) {
 
 
 float fl_progress_get_minimum(PROGRESS p) {
-    return reinterpret_cast<My_Progress*>(p)->minimum();
+    return reinterpret_cast<Fl_Progress*>(p)->minimum();
 }
 
 void fl_progress_set_minimum(PROGRESS p, float t) {
-    reinterpret_cast<My_Progress*>(p)->minimum(t);
+    reinterpret_cast<Fl_Progress*>(p)->minimum(t);
 }
 
 float fl_progress_get_maximum(PROGRESS p) {
-    return reinterpret_cast<My_Progress*>(p)->maximum();
+    return reinterpret_cast<Fl_Progress*>(p)->maximum();
 }
 
 void fl_progress_set_maximum(PROGRESS p, float t) {
-    reinterpret_cast<My_Progress*>(p)->maximum(t);
+    reinterpret_cast<Fl_Progress*>(p)->maximum(t);
 }
 
 float fl_progress_get_value(PROGRESS p) {
-    return reinterpret_cast<My_Progress*>(p)->value();
+    return reinterpret_cast<Fl_Progress*>(p)->value();
 }
 
 void fl_progress_set_value(PROGRESS p, float t) {
-    reinterpret_cast<My_Progress*>(p)->value(t);
+    reinterpret_cast<Fl_Progress*>(p)->value(t);
 }
 

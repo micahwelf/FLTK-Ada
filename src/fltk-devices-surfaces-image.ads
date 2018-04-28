@@ -12,6 +12,9 @@ package FLTK.Devices.Surfaces.Image is
 
     type Image_Surface is new Surface_Device with private;
 
+    type Image_Surface_Reference (Data : not null access Image_Surface'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -71,6 +74,22 @@ private
 
     overriding procedure Finalize
            (This : in out Image_Surface);
+
+
+
+
+    pragma Inline (Is_Highres);
+
+
+    pragma Inline (Draw_Widget);
+    pragma Inline (Draw_Decorated_Window);
+
+
+    pragma Inline (Get_Image);
+    pragma Inline (Get_Highres_Image);
+
+
+    pragma Inline (Set_Current);
 
 
 end FLTK.Devices.Surfaces.Image;

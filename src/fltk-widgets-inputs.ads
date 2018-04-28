@@ -96,11 +96,11 @@ package FLTK.Widgets.Inputs is
 
     function Get_Shortcut_Key
            (This : in Input)
-        return Shortcut_Key;
+        return Key_Combo;
 
     procedure Set_Shortcut_Key
            (This : in out Input;
-            To   : in     Shortcut_Key);
+            To   : in     Key_Combo);
 
     function Get_Mark
            (This : in Input)

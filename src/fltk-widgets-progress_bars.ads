@@ -5,6 +5,9 @@ package FLTK.Widgets.Progress_Bars is
 
     type Progress_Bar is new Widget with private;
 
+    type Progress_Bar_Reference (Data : not null access Progress_Bar'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -63,6 +66,20 @@ private
 
     overriding procedure Finalize
            (This : in out Progress_Bar);
+
+
+
+
+    pragma Inline (Get_Minimum);
+    pragma Inline (Set_Minimum);
+    pragma Inline (Get_Maximum);
+    pragma Inline (Set_Maximum);
+    pragma Inline (Get_Value);
+    pragma Inline (Set_Value);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Progress_Bars;

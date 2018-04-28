@@ -16,10 +16,12 @@ package body FLTK.Widgets.Groups.Tiled is
     procedure tile_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, tile_set_draw_hook, "tile_set_draw_hook");
+    pragma Inline (tile_set_draw_hook);
 
     procedure tile_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, tile_set_handle_hook, "tile_set_handle_hook");
+    pragma Inline (tile_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Groups.Tiled is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_tile, "new_fl_tile");
+    pragma Inline (new_fl_tile);
 
     procedure free_fl_tile
            (B : in System.Address);
     pragma Import (C, free_fl_tile, "free_fl_tile");
+    pragma Inline (free_fl_tile);
 
 
 
@@ -41,6 +45,7 @@ package body FLTK.Widgets.Groups.Tiled is
            (T              : in System.Address;
             OX, OY, NX, NY : in Interfaces.C.int);
     pragma Import (C, fl_tile_position, "fl_tile_position");
+    pragma Inline (fl_tile_position);
 
 
 
@@ -48,12 +53,14 @@ package body FLTK.Widgets.Groups.Tiled is
     procedure fl_tile_draw
            (W : in System.Address);
     pragma Import (C, fl_tile_draw, "fl_tile_draw");
+    pragma Inline (fl_tile_draw);
 
     function fl_tile_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_tile_handle, "fl_tile_handle");
+    pragma Inline (fl_tile_handle);
 
 
 

@@ -10,6 +10,9 @@ package FLTK.Devices.Surfaces.Paged is
 
     type Paged_Surface is new Surface_Device with private;
 
+    type Paged_Surface_Reference (Data : not null access Paged_Surface'Class) is
+        limited null record with Implicit_Dereference => Data;
+
     type Page_Format is
        (A0, A1, A2, A3, A4, A5, A6, A7, A8, A9,
         B0, B1, B2, B3, B4, B5, B6, B7, B8, B9, B10,
@@ -120,6 +123,29 @@ private
 
     overriding procedure Finalize
            (This : in out Paged_Surface);
+
+
+
+
+    pragma Inline (Start_Job);
+    pragma Inline (End_Job);
+    pragma Inline (Start_Page);
+    pragma Inline (End_Page);
+
+
+    pragma Inline (Get_Margins);
+    pragma Inline (Get_Printable_Rect);
+    pragma Inline (Get_Origin);
+    pragma Inline (Set_Origin);
+    pragma Inline (Rotate);
+    pragma Inline (Scale);
+    pragma Inline (Translate);
+    pragma Inline (Untranslate);
+
+
+    pragma Inline (Print_Widget);
+    pragma Inline (Print_Window);
+    pragma Inline (Print_Window_Part);
 
 
 end FLTK.Devices.Surfaces.Paged;

@@ -5,6 +5,9 @@ package FLTK.Widgets.Groups.Packed is
 
     type Packed_Group is new Group with private;
 
+    type Packed_Group_Reference (Data : not null access Packed_Group'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -47,6 +50,16 @@ private
 
     overriding procedure Finalize
            (This : in out Packed_Group);
+
+
+
+
+    pragma Inline (Get_Spacing);
+    pragma Inline (Set_Spacing);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Groups.Packed;

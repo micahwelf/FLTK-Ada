@@ -17,10 +17,12 @@ package body FLTK.Widgets.Groups.Spinners is
     procedure spinner_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, spinner_set_draw_hook, "spinner_set_draw_hook");
+    pragma Inline (spinner_set_draw_hook);
 
     procedure spinner_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, spinner_set_handle_hook, "spinner_set_handle_hook");
+    pragma Inline (spinner_set_handle_hook);
 
 
 
@@ -30,10 +32,12 @@ package body FLTK.Widgets.Groups.Spinners is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_spinner, "new_fl_spinner");
+    pragma Inline (new_fl_spinner);
 
     procedure free_fl_spinner
            (W : in System.Address);
     pragma Import (C, free_fl_spinner, "free_fl_spinner");
+    pragma Inline (free_fl_spinner);
 
 
 
@@ -42,51 +46,61 @@ package body FLTK.Widgets.Groups.Spinners is
            (S : in System.Address)
         return Interfaces.C.unsigned;
     pragma Import (C, fl_spinner_get_color, "fl_spinner_get_color");
+    pragma Inline (fl_spinner_get_color);
 
     procedure fl_spinner_set_color
            (S : in System.Address;
             C : in Interfaces.C.unsigned);
     pragma Import (C, fl_spinner_set_color, "fl_spinner_set_color");
+    pragma Inline (fl_spinner_set_color);
 
     function fl_spinner_get_selection_color
            (S : in System.Address)
         return Interfaces.C.unsigned;
     pragma Import (C, fl_spinner_get_selection_color, "fl_spinner_get_selection_color");
+    pragma Inline (fl_spinner_get_selection_color);
 
     procedure fl_spinner_set_selection_color
            (S : in System.Address;
             T : in Interfaces.C.unsigned);
     pragma Import (C, fl_spinner_set_selection_color, "fl_spinner_set_selection_color");
+    pragma Inline (fl_spinner_set_selection_color);
 
     function fl_spinner_get_textcolor
            (S : in System.Address)
         return Interfaces.C.unsigned;
     pragma Import (C, fl_spinner_get_textcolor, "fl_spinner_get_textcolor");
+    pragma Inline (fl_spinner_get_textcolor);
 
     procedure fl_spinner_set_textcolor
            (S : in System.Address;
             T : in Interfaces.C.unsigned);
     pragma Import (C, fl_spinner_set_textcolor, "fl_spinner_set_textcolor");
+    pragma Inline (fl_spinner_set_textcolor);
 
     function fl_spinner_get_textfont
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_spinner_get_textfont, "fl_spinner_get_textfont");
+    pragma Inline (fl_spinner_get_textfont);
 
     procedure fl_spinner_set_textfont
            (S : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_spinner_set_textfont, "fl_spinner_set_textfont");
+    pragma Inline (fl_spinner_set_textfont);
 
     function fl_spinner_get_textsize
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_spinner_get_textsize, "fl_spinner_get_textsize");
+    pragma Inline (fl_spinner_get_textsize);
 
     procedure fl_spinner_set_textsize
            (S : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_spinner_set_textsize, "fl_spinner_set_textsize");
+    pragma Inline (fl_spinner_set_textsize);
 
 
 
@@ -95,56 +109,67 @@ package body FLTK.Widgets.Groups.Spinners is
            (S : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_spinner_get_minimum, "fl_spinner_get_minimum");
+    pragma Inline (fl_spinner_get_minimum);
 
     procedure fl_spinner_set_minimum
            (S : in System.Address;
             T : in Interfaces.C.double);
     pragma Import (C, fl_spinner_set_minimum, "fl_spinner_set_minimum");
+    pragma Inline (fl_spinner_set_minimum);
 
     function fl_spinner_get_maximum
            (S : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_spinner_get_maximum, "fl_spinner_get_maximum");
+    pragma Inline (fl_spinner_get_maximum);
 
     procedure fl_spinner_set_maximum
            (S : in System.Address;
             T : in Interfaces.C.double);
     pragma Import (C, fl_spinner_set_maximum, "fl_spinner_set_maximum");
+    pragma Inline (fl_spinner_set_maximum);
 
     procedure fl_spinner_range
            (S    : in System.Address;
             A, B : in Interfaces.C.double);
     pragma Import (C, fl_spinner_range, "fl_spinner_range");
+    pragma Inline (fl_spinner_range);
 
     function fl_spinner_get_step
            (S : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_spinner_get_step, "fl_spinner_get_step");
+    pragma Inline (fl_spinner_get_step);
 
     procedure fl_spinner_set_step
            (S : in System.Address;
             T : in Interfaces.C.double);
     pragma Import (C, fl_spinner_set_step, "fl_spinner_set_step");
+    pragma Inline (fl_spinner_set_step);
 
     function fl_spinner_get_type
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_spinner_get_type, "fl_spinner_get_type");
+    pragma Inline (fl_spinner_get_type);
 
     procedure fl_spinner_set_type
            (S : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_spinner_set_type, "fl_spinner_set_type");
+    pragma Inline (fl_spinner_set_type);
 
     function fl_spinner_get_value
            (S : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_spinner_get_value, "fl_spinner_get_value");
+    pragma Inline (fl_spinner_get_value);
 
     procedure fl_spinner_set_value
            (S : in System.Address;
             T : in Interfaces.C.double);
     pragma Import (C, fl_spinner_set_value, "fl_spinner_set_value");
+    pragma Inline (fl_spinner_set_value);
 
 
 
@@ -152,12 +177,14 @@ package body FLTK.Widgets.Groups.Spinners is
     procedure fl_spinner_draw
            (W : in System.Address);
     pragma Import (C, fl_spinner_draw, "fl_spinner_draw");
+    pragma Inline (fl_spinner_draw);
 
     function fl_spinner_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_spinner_handle, "fl_spinner_handle");
+    pragma Inline (fl_spinner_handle);
 
 
 
@@ -222,20 +249,20 @@ package body FLTK.Widgets.Groups.Spinners is
     end Set_Background_Color;
 
 
-    function Get_Select_Color
+    function Get_Selection_Color
            (This : in Spinner)
         return Color is
     begin
         return Color (fl_spinner_get_selection_color (This.Void_Ptr));
-    end Get_Select_Color;
+    end Get_Selection_Color;
 
 
-    procedure Set_Select_Color
+    procedure Set_Selection_Color
            (This : in out Spinner;
             To   : in     Color) is
     begin
         fl_spinner_set_selection_color (This.Void_Ptr, Interfaces.C.unsigned (To));
-    end Set_Select_Color;
+    end Set_Selection_Color;
 
 
     function Get_Text_Color
@@ -318,6 +345,15 @@ package body FLTK.Widgets.Groups.Spinners is
     begin
         fl_spinner_set_maximum (This.Void_Ptr, Interfaces.C.double (To));
     end Set_Maximum;
+
+
+    procedure Get_Range
+           (This     : in     Spinner;
+            Min, Max :    out Long_Float) is
+    begin
+        Min := Long_Float (fl_spinner_get_minimum (This.Void_Ptr));
+        Max := Long_Float (fl_spinner_get_maximum (This.Void_Ptr));
+    end Get_Range;
 
 
     procedure Set_Range

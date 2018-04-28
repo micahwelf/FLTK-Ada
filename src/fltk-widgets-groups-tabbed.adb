@@ -16,10 +16,12 @@ package body FLTK.Widgets.Groups.Tabbed is
     procedure tabs_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, tabs_set_draw_hook, "tabs_set_draw_hook");
+    pragma Inline (tabs_set_draw_hook);
 
     procedure tabs_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, tabs_set_handle_hook, "tabs_set_handle_hook");
+    pragma Inline (tabs_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Groups.Tabbed is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_tabs, "new_fl_tabs");
+    pragma Inline (new_fl_tabs);
 
     procedure free_fl_tabs
            (S : in System.Address);
     pragma Import (C, free_fl_tabs, "free_fl_tabs");
+    pragma Inline (free_fl_tabs);
 
 
 
@@ -42,6 +46,7 @@ package body FLTK.Widgets.Groups.Tabbed is
             X, Y, W, H :    out Interfaces.C.int;
             I          : in     Interfaces.C.int);
     pragma Import (C, fl_tabs_client_area, "fl_tabs_client_area");
+    pragma Inline (fl_tabs_client_area);
 
 
 
@@ -50,25 +55,30 @@ package body FLTK.Widgets.Groups.Tabbed is
            (T : in System.Address)
         return System.Address;
     pragma Import (C, fl_tabs_get_push, "fl_tabs_get_push");
+    pragma Inline (fl_tabs_get_push);
 
     procedure fl_tabs_set_push
            (T, I : in System.Address);
     pragma Import (C, fl_tabs_set_push, "fl_tabs_set_push");
+    pragma Inline (fl_tabs_set_push);
 
     function fl_tabs_get_value
            (T : in System.Address)
         return System.Address;
     pragma Import (C, fl_tabs_get_value, "fl_tabs_get_value");
+    pragma Inline (fl_tabs_get_value);
 
     procedure fl_tabs_set_value
            (T, V : in System.Address);
     pragma Import (C, fl_tabs_set_value, "fl_tabs_set_value");
+    pragma Inline (fl_tabs_set_value);
 
     function fl_tabs_which
            (T    : in System.Address;
             X, Y : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, fl_tabs_which, "fl_tabs_which");
+    pragma Inline (fl_tabs_which);
 
 
 
@@ -76,21 +86,23 @@ package body FLTK.Widgets.Groups.Tabbed is
     procedure fl_tabs_draw
            (W : in System.Address);
     pragma Import (C, fl_tabs_draw, "fl_tabs_draw");
+    pragma Inline (fl_tabs_draw);
 
     function fl_tabs_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_tabs_handle, "fl_tabs_handle");
+    pragma Inline (fl_tabs_handle);
 
 
 
 
     procedure Finalize
-           (This : in out Tabs) is
+           (This : in out Tabbed_Group) is
     begin
         if  This.Void_Ptr /= System.Null_Address and then
-            This in Tabs'Class
+            This in Tabbed_Group'Class
         then
             This.Clear;
             free_fl_tabs (This.Void_Ptr);
@@ -107,9 +119,9 @@ package body FLTK.Widgets.Groups.Tabbed is
         function Create
                (X, Y, W, H : in Integer;
                 Text       : in String)
-            return Tabs is
+            return Tabbed_Group is
         begin
-            return This : Tabs do
+            return This : Tabbed_Group do
                 This.Void_Ptr := new_fl_tabs
                        (Interfaces.C.int (X),
                         Interfaces.C.int (Y),
@@ -131,24 +143,24 @@ package body FLTK.Widgets.Groups.Tabbed is
 
 
     procedure Get_Client_Area
-           (This       : in     Tabs;
+           (This       : in     Tabbed_Group;
             Tab_Height : in     Natural;
-            X, Y, W, H :    out Integer)
-    is
-        RX, RY, RW, RH : Interfaces.C.int;
+            X, Y, W, H :    out Integer) is
     begin
-        fl_tabs_client_area (This.Void_Ptr, RX, RY, RW, RH, Interfaces.C.int (Tab_Height));
-        X := Integer (RX);
-        Y := Integer (RY);
-        W := Integer (RW);
-        H := Integer (RH);
+        fl_tabs_client_area
+           (This.Void_Ptr,
+            Interfaces.C.int (X),
+            Interfaces.C.int (Y),
+            Interfaces.C.int (W),
+            Interfaces.C.int (H),
+            Interfaces.C.int (Tab_Height));
     end Get_Client_Area;
 
 
 
 
     function Get_Push
-           (This : in Tabs)
+           (This : in Tabbed_Group)
         return access Widget'Class
     is
         Widget_Ptr : System.Address :=
@@ -161,19 +173,15 @@ package body FLTK.Widgets.Groups.Tabbed is
 
 
     procedure Set_Push
-           (This : in out Tabs;
-            Item : access Widget'Class) is
+           (This : in out Tabbed_Group;
+            Item : in out Widget'Class) is
     begin
-        if Item = null then
-            fl_tabs_set_push (This.Void_Ptr, System.Null_Address);
-        else
-            fl_tabs_set_push (This.Void_Ptr, Item.Void_Ptr);
-        end if;
+        fl_tabs_set_push (This.Void_Ptr, Item.Void_Ptr);
     end Set_Push;
 
 
     function Get_Visible
-           (This : in Tabs)
+           (This : in Tabbed_Group)
         return access Widget'Class
     is
         Widget_Ptr : System.Address :=
@@ -186,19 +194,15 @@ package body FLTK.Widgets.Groups.Tabbed is
 
 
     procedure Set_Visible
-           (This : in out Tabs;
-            Item : access Widget'Class) is
+           (This : in out Tabbed_Group;
+            Item : in out Widget'Class) is
     begin
-        if Item = null then
-            fl_tabs_set_value (This.Void_Ptr, System.Null_Address);
-        else
-            fl_tabs_set_value (This.Void_Ptr, Item.Void_Ptr);
-        end if;
+        fl_tabs_set_value (This.Void_Ptr, Item.Void_Ptr);
     end Set_Visible;
 
 
     function Get_Which
-           (This             : in Tabs;
+           (This             : in Tabbed_Group;
             Event_X, Event_Y : in Integer)
         return access Widget'Class
     is
@@ -214,14 +218,14 @@ package body FLTK.Widgets.Groups.Tabbed is
 
 
     procedure Draw
-           (This : in out Tabs) is
+           (This : in out Tabbed_Group) is
     begin
         fl_tabs_draw (This.Void_Ptr);
     end Draw;
 
 
     function Handle
-           (This  : in out Tabs;
+           (This  : in out Tabbed_Group;
             Event : in     Event_Kind)
         return Event_Outcome is
     begin

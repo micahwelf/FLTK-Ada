@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Spinner Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Spinner Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Spinner</td>
+    <td>FLTK.Widgets.Groups.Spinners</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Spinner</td>
+    <td>Spinner</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Spinner_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Spinner(int X, int Y, int W, int H, const char *L=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Spinner;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void color(Fl_Color v);
+</pre></td>
+<td><pre>
+procedure Set_Background_Color
+       (This : in out Spinner;
+        To   : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color color() const;
+</pre></td>
+<td><pre>
+function Get_Background_Color
+       (This : in Spinner)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Draw
+       (This : in out Spinner);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * format();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void format(const char *f);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int handle(int event);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Spinner;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double maximum() const;
+</pre></td>
+<td><pre>
+function Get_Maximum
+       (This : in Spinner)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void maximum(double m);
+</pre></td>
+<td><pre>
+procedure Set_Maximum
+       (This : in out Spinner;
+        To   : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double maxinum() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+double minimum() const;
+</pre></td>
+<td><pre>
+function Get_Minimum
+       (This : in Spinner)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void minimum(double m);
+</pre></td>
+<td><pre>
+procedure Set_Minimum
+       (This : in out Spinner;
+        To   : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double mininum() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Get_Range
+       (This     : in     Spinner;
+        Min, Max :    out Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void range(double a, double b);
+</pre></td>
+<td><pre>
+procedure Set_Range
+       (This     : in out Spinner;
+        Min, Max : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void resize(int X, int Y, int W, int H);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void selection_color(Fl_Color val);
+</pre></td>
+<td><pre>
+procedure Set_Selection_Color
+       (This : in out Spinner;
+        To   : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color selection_color() const;
+</pre></td>
+<td><pre>
+function Get_Selection_Color
+       (This : in Spinner)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double step() const;
+</pre></td>
+<td><pre>
+function Get_Step
+       (This : in Spinner)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void step(double s);
+</pre></td>
+<td><pre>
+procedure Set_Step
+       (This : in out Spinner;
+        To   : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color textcolor() const;
+</pre></td>
+<td><pre>
+function Get_Text_Color
+       (This : in Spinner)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textcolor(Fl_Color c);
+</pre></td>
+<td><pre>
+procedure Set_Text_Color
+       (This : in out Spinner;
+        To   : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Font textfont() const;
+</pre></td>
+<td><pre>
+function Get_Text_Font
+       (This : in Spinner)
+    return Font_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textfont(Fl_Font f);
+</pre></td>
+<td><pre>
+procedure Set_Text_Font
+       (This : in out Spinner;
+        To   : in     Font_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Fontsize textsize() const;
+</pre></td>
+<td><pre>
+function Get_Text_Size
+       (This : in Spinner)
+    return Font_Size;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textsize(Fl_Fontsize s);
+</pre></td>
+<td><pre>
+procedure Set_Text_Size
+       (This : in out Spinner;
+        To   : in     Font_Size);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+uchar type() const;
+</pre></td>
+<td><pre>
+function Get_Type
+       (This : in Spinner)
+    return Spinner_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void type(uchar v);
+</pre></td>
+<td><pre>
+procedure Set_Type
+       (This : in out Spinner;
+        To   : in     Spinner_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double value() const;
+</pre></td>
+<td><pre>
+function Get_Value
+       (This : in Spinner)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void value(double v);
+</pre></td>
+<td><pre>
+procedure Set_Value
+       (This : in out Spinner;
+        To   : in     Long_Float);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

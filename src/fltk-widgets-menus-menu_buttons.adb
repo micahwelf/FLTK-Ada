@@ -16,10 +16,12 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
     procedure menu_button_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, menu_button_set_draw_hook, "menu_button_set_draw_hook");
+    pragma Inline (menu_button_set_draw_hook);
 
     procedure menu_button_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, menu_button_set_handle_hook, "menu_button_set_handle_hook");
+    pragma Inline (menu_button_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_menu_button, "new_fl_menu_button");
+    pragma Inline (new_fl_menu_button);
 
     procedure free_fl_menu_button
            (M : in System.Address);
     pragma Import (C, free_fl_menu_button, "free_fl_menu_button");
+    pragma Inline (free_fl_menu_button);
 
 
 
@@ -41,11 +45,13 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
            (M : in System.Address;
             T : in Interfaces.C.unsigned);
     pragma Import (C, fl_menu_button_type, "fl_menu_button_type");
+    pragma Inline (fl_menu_button_type);
 
     function fl_menu_button_popup
            (M : in System.Address)
         return System.Address;
     pragma Import (C, fl_menu_button_popup, "fl_menu_button_popup");
+    pragma Inline (fl_menu_button_popup);
 
 
 
@@ -53,12 +59,14 @@ package body FLTK.Widgets.Menus.Menu_Buttons is
     procedure fl_menu_button_draw
            (W : in System.Address);
     pragma Import (C, fl_menu_button_draw, "fl_menu_button_draw");
+    pragma Inline (fl_menu_button_draw);
 
     function fl_menu_button_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_menu_button_handle, "fl_menu_button_handle");
+    pragma Inline (fl_menu_button_handle);
 
 
 

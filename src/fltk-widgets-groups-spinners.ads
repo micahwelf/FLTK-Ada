@@ -5,6 +5,9 @@ package FLTK.Widgets.Groups.Spinners is
 
     type Spinner is new Group with private;
 
+    type Spinner_Reference (Data : not null access Spinner'Class) is limited null record
+        with Implicit_Dereference => Data;
+
     type Spinner_Kind is (Float_Spin, Int_Spin);
 
 
@@ -30,11 +33,11 @@ package FLTK.Widgets.Groups.Spinners is
            (This : in out Spinner;
             To   : in     Color);
 
-    function Get_Select_Color
+    function Get_Selection_Color
            (This : in Spinner)
         return Color;
 
-    procedure Set_Select_Color
+    procedure Set_Selection_Color
            (This : in out Spinner;
             To   : in     Color);
 
@@ -80,6 +83,10 @@ package FLTK.Widgets.Groups.Spinners is
     procedure Set_Maximum
            (This : in out Spinner;
             To   : in     Long_Float);
+
+    procedure Get_Range
+           (This     : in     Spinner;
+            Min, Max :    out Long_Float);
 
     procedure Set_Range
            (This     : in out Spinner;
@@ -128,6 +135,37 @@ private
 
     overriding procedure Finalize
            (This : in out Spinner);
+
+
+
+
+    pragma Inline (Get_Background_Color);
+    pragma Inline (Set_Background_Color);
+    pragma Inline (Get_Selection_Color);
+    pragma Inline (Set_Selection_Color);
+    pragma Inline (Get_Text_Color);
+    pragma Inline (Set_Text_Color);
+    pragma Inline (Get_Text_Font);
+    pragma Inline (Set_Text_Font);
+    pragma Inline (Get_Text_Size);
+    pragma Inline (Set_Text_Size);
+
+
+    pragma Inline (Get_Minimum);
+    pragma Inline (Set_Minimum);
+    pragma Inline (Get_Maximum);
+    pragma Inline (Set_Maximum);
+    pragma Inline (Set_Range);
+    pragma Inline (Get_Step);
+    pragma Inline (Set_Step);
+    pragma Inline (Get_Type);
+    pragma Inline (Set_Type);
+    pragma Inline (Get_Value);
+    pragma Inline (Set_Value);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Groups.Spinners;

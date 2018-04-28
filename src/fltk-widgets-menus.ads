@@ -50,7 +50,7 @@ package FLTK.Widgets.Menus is
            (This     : in out Menu;
             Text     : in     String;
             Action   : in     Widget_Callback := null;
-            Shortcut : in     Shortcut_Key := No_Key;
+            Shortcut : in     Key_Combo := No_Key;
             Flags    : in     Menu_Flag := Flag_Normal);
 
     function Find_Item

@@ -24,6 +24,7 @@ package FLTK is
 
 
     type Color is new Natural;
+    type Color_Component is mod 256;
     No_Color : constant Color;
 
 
@@ -35,34 +36,45 @@ package FLTK is
     Align_Right  : constant Alignment;
 
 
-    type Shortcut_Key is private;
+    type Keypress is private;
     subtype Pressable_Key is Character range Character'Val (32) .. Character'Val (126);
-    function Shortcut (Key : Pressable_Key) return Shortcut_Key;
-    No_Key           : constant Shortcut_Key;
-    Enter_Key        : constant Shortcut_Key;
-    Keypad_Enter_Key : constant Shortcut_Key;
-    Backspace_Key    : constant Shortcut_Key;
-    Insert_Key       : constant Shortcut_Key;
-    Delete_Key       : constant Shortcut_Key;
-    Home_Key         : constant Shortcut_Key;
-    End_Key          : constant Shortcut_Key;
-    Page_Down_Key    : constant Shortcut_Key;
-    Page_Up_Key      : constant Shortcut_Key;
-    Down_Key         : constant Shortcut_Key;
-    Left_Key         : constant Shortcut_Key;
-    Right_Key        : constant Shortcut_Key;
-    Up_Key           : constant Shortcut_Key;
-    Escape_Key       : constant Shortcut_Key;
+    function Press (Key : in Pressable_Key) return Keypress;
+    Enter_Key        : constant Keypress;
+    Keypad_Enter_Key : constant Keypress;
+    Backspace_Key    : constant Keypress;
+    Insert_Key       : constant Keypress;
+    Delete_Key       : constant Keypress;
+    Home_Key         : constant Keypress;
+    End_Key          : constant Keypress;
+    Page_Down_Key    : constant Keypress;
+    Page_Up_Key      : constant Keypress;
+    Down_Key         : constant Keypress;
+    Left_Key         : constant Keypress;
+    Right_Key        : constant Keypress;
+    Up_Key           : constant Keypress;
+    Escape_Key       : constant Keypress;
 
 
-    type Modifier_Key is private;
-    function "+" (Left, Right : in Modifier_Key) return Modifier_Key;
-    function "+" (Left : in Modifier_Key; Right : in Pressable_Key) return Shortcut_Key;
-    function "+" (Left : in Modifier_Key; Right : in Shortcut_Key) return Shortcut_Key;
-    Mod_None  : constant Modifier_Key;
-    Mod_Shift : constant Modifier_Key;
-    Mod_Ctrl  : constant Modifier_Key;
-    Mod_Alt   : constant Modifier_Key;
+    type Mouse_Button is (No_Button, Left_Button, Middle_Button, Right_Button);
+
+
+    type Key_Combo is private;
+    function Press (Key : in Pressable_Key) return Key_Combo;
+    function Press (Key : in Keypress) return Key_Combo;
+    function Press (Key : in Mouse_Button) return Key_Combo;
+    No_Key : constant Key_Combo;
+
+
+    type Modifier is private;
+    function "+" (Left, Right : in Modifier) return Modifier;
+    function "+" (Left : in Modifier; Right : in Pressable_Key) return Key_Combo;
+    function "+" (Left : in Modifier; Right : in Keypress) return Key_Combo;
+    function "+" (Left : in Modifier; Right : in Mouse_Button) return Key_Combo;
+    function "+" (Left : in Modifier; Right : in Key_Combo) return Key_Combo;
+    Mod_None  : constant Modifier;
+    Mod_Shift : constant Modifier;
+    Mod_Ctrl  : constant Modifier;
+    Mod_Alt   : constant Modifier;
 
 
     type Box_Kind is
@@ -225,49 +237,74 @@ private
     Align_Right  : constant Alignment := 8;
 
 
-    type Modifier_Key is new Interfaces.Unsigned_16;
-
-
-    type Shortcut_Key is
+    type Keypress is new Interfaces.Unsigned_16;
+    type Modifier is new Interfaces.Unsigned_16;
+    type Key_Combo is
         record
-            Modifier : Modifier_Key;
-            Keypress : Interfaces.Unsigned_16;
+            Modcode   : Modifier;
+            Keycode   : Keypress;
+            Mousecode : Mouse_Button;
         end record;
 
-    function Key_To_C
-           (Key : in Shortcut_Key)
+
+    function To_C
+           (Key : in Key_Combo)
         return Interfaces.C.unsigned_long;
 
-    function C_To_Key
+    function To_Ada
            (Key : in Interfaces.C.unsigned_long)
-        return Shortcut_Key;
+        return Key_Combo;
+
+    function To_C
+           (Key : in Keypress)
+        return Interfaces.C.unsigned_long;
+
+    function To_Ada
+           (Key : in Interfaces.C.unsigned_long)
+        return Keypress;
+
+    function To_C
+           (Modi : in Modifier)
+        return Interfaces.C.unsigned_long;
+
+    function To_Ada
+           (Modi : in Interfaces.C.unsigned_long)
+        return Modifier;
+
+    function To_C
+           (Button : in Mouse_Button)
+        return Interfaces.C.unsigned_long;
+
+    function To_Ada
+           (Button : in Interfaces.C.unsigned_long)
+        return Mouse_Button;
 
 
     --  these values designed to align with FLTK enumeration types
-    Mod_None  : constant Modifier_Key := 2#00000000#;
-    Mod_Shift : constant Modifier_Key := 2#00000001#;
-    Mod_Ctrl  : constant Modifier_Key := 2#00000100#;
-    Mod_Alt   : constant Modifier_Key := 2#00001000#;
+    Mod_None  : constant Modifier := 2#00000000#;
+    Mod_Shift : constant Modifier := 2#00000001#;
+    Mod_Ctrl  : constant Modifier := 2#00000100#;
+    Mod_Alt   : constant Modifier := 2#00001000#;
 
 
-    No_Key           : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 0);
+    No_Key : constant Key_Combo := (Modcode => Mod_None, Keycode => 0, Mousecode => No_Button);
 
 
     --  these values correspond to constants defined in FLTK Enumerations.H
-    Enter_Key        : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff0d#);
-    Keypad_Enter_Key : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff8d#);
-    Backspace_Key    : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff08#);
-    Insert_Key       : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff63#);
-    Delete_Key       : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ffff#);
-    Home_Key         : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff50#);
-    End_Key          : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff57#);
-    Page_Down_Key    : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff56#);
-    Page_Up_Key      : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff55#);
-    Down_Key         : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff54#);
-    Left_Key         : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff51#);
-    Right_Key        : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff53#);
-    Up_Key           : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff52#);
-    Escape_Key       : constant Shortcut_Key := (Modifier => Mod_None, Keypress => 16#ff1b#);
+    Enter_Key        : constant Keypress := 16#ff0d#;
+    Keypad_Enter_Key : constant Keypress := 16#ff8d#;
+    Backspace_Key    : constant Keypress := 16#ff08#;
+    Insert_Key       : constant Keypress := 16#ff63#;
+    Delete_Key       : constant Keypress := 16#ffff#;
+    Home_Key         : constant Keypress := 16#ff50#;
+    End_Key          : constant Keypress := 16#ff57#;
+    Page_Down_Key    : constant Keypress := 16#ff56#;
+    Page_Up_Key      : constant Keypress := 16#ff55#;
+    Down_Key         : constant Keypress := 16#ff54#;
+    Left_Key         : constant Keypress := 16#ff51#;
+    Right_Key        : constant Keypress := 16#ff53#;
+    Up_Key           : constant Keypress := 16#ff52#;
+    Escape_Key       : constant Keypress := 16#ff1b#;
 
 
 end FLTK;

@@ -5,6 +5,9 @@ package FLTK.Widgets.Groups.Scrolls is
 
     type Scroll is new Group with private;
 
+    type Scroll_Reference (Data : not null access Scroll'Class) is limited null record
+        with Implicit_Dereference => Data;
+
     type Scroll_Kind is
            (Horizontal,
             Vertical,
@@ -25,6 +28,12 @@ package FLTK.Widgets.Groups.Scrolls is
             return Scroll;
 
     end Forge;
+
+
+
+
+    procedure Clear
+           (This : in out Scroll);
 
 
 
@@ -77,6 +86,25 @@ private
 
     overriding procedure Finalize
            (This : in out Scroll);
+
+
+
+
+    pragma Inline (Clear);
+
+
+    pragma Inline (Scroll_To);
+    pragma Inline (Set_Type);
+
+
+    pragma Inline (Get_Scrollbar_Size);
+    pragma Inline (Set_Scrollbar_Size);
+    pragma Inline (Get_Scroll_X);
+    pragma Inline (Get_Scroll_Y);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Groups.Scrolls;

@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Image_Surface Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Image_Surface Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Image_Surface</td>
+    <td>FLTK.Devices.Surfaces.Image</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Image_Surface</td>
+    <td>Image_Surface</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Image_Surface_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Image_Surface(int w, int h, int highres=0);
+</pre></td>
+<td><pre>
+function Create
+       (W, H    : in Integer;
+        Highres : in Boolean := False)
+    return Image_Surface;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * class_name();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw(Fl_Widget *, int delta_x=0, int delta_y=0);
+</pre></td>
+<td><pre>
+procedure Draw_Widget
+       (This               : in out Image_Surface;
+        Item               : in     FLTK.Widgets.Widget'Class;
+        Offset_X, Offset_Y : in     Integer := 0);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw_decorated_window(Fl_Window *win, int delta_x=0, int delta_y=0);
+</pre></td>
+<td><pre>
+procedure Draw_Decorated_Window
+       (This               : in out Image_Surface;
+        Item               : in     FLTK.Widgets.Groups.Windows.Window'Class;
+        Offset_X, Offset_Y : in     Integer := 0);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Shared_Image * highres_image();
+</pre></td>
+<td><pre>
+function Get_Highres_Image
+       (This : in Image_Surface)
+    return FLTK.Images.Shared.Shared_Image;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_RGB_Image * image();
+</pre></td>
+<td><pre>
+function Get_Image
+       (This : in Image_Surface)
+    return FLTK.Images.RGB.RGB_Image;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_current();
+</pre></td>
+<td><pre>
+procedure Set_Current
+       (This : in out Image_Surface);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

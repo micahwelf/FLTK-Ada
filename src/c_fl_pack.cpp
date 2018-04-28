@@ -71,11 +71,11 @@ void free_fl_pack(PACK p) {
 
 
 int fl_pack_get_spacing(PACK p) {
-    return reinterpret_cast<My_Pack*>(p)->spacing();
+    return reinterpret_cast<Fl_Pack*>(p)->spacing();
 }
 
 void fl_pack_set_spacing(PACK p, int t) {
-    reinterpret_cast<My_Pack*>(p)->spacing(t);
+    reinterpret_cast<Fl_Pack*>(p)->spacing(t);
 }
 
 

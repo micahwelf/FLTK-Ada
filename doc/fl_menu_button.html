@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Menu_Button Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Menu_Button Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Menu_Button</td>
+    <td>FLTK.Widgets.Menus.Menu_Buttons</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Menu_Button</td>
+    <td>Menu_Button</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Menu_Button_Reference</td>
+  </tr>
+
+  <tr>
+    <td>popup_buttons</td>
+    <td>Popup_Buttons</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Menu_Button(int, int, int, int, const char *=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Menu_Button;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Menu_Button);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int handle(int);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Menu_Button;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const Fl_Menu_Item * popup();
+</pre></td>
+<td><pre>
+function Popup
+       (This : in out Menu_Button)
+    return FLTK.Menu_Items.Menu_Item;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Set_Popup_Kind
+       (This : in out Menu_Button;
+        Pop  : in     Popup_Buttons);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

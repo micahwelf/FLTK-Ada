@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Wizard Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Wizard Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Wizard</td>
+    <td>FLTK.Widgets.Groups.Wizards</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Wizard</td>
+    <td>Wizard</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Wizard_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Wizard(int, int, int, int, const char *=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Wizard;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Draw
+       (This : in out Wizard);
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Handle
+       (This  : in out Wizard;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void next();
+</pre></td>
+<td><pre>
+procedure Next
+       (This : in out Wizard);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void prev();
+</pre></td>
+<td><pre>
+procedure Prev
+       (This : in out Wizard);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Widget * value();
+</pre></td>
+<td><pre>
+function Get_Visible
+       (This : in Wizard)
+    return access Widget'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void value(Fl_Widget *);
+</pre></td>
+<td><pre>
+procedure Set_Visible
+       (This : in out Wizard;
+        Item : in out Widget'Class);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

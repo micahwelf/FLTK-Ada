@@ -5,6 +5,9 @@ package FLTK.Widgets.Charts is
 
     type Chart is new Widget with private;
 
+    type Chart_Reference (Data : not null access Chart'Class) is limited null record
+        with Implicit_Dereference => Data;
+
 
 
 
@@ -104,6 +107,13 @@ package FLTK.Widgets.Charts is
 
 
 
+    procedure Resize
+           (This : in out Chart;
+            W, H : in     Integer);
+
+
+
+
     procedure Draw
            (This : in out Chart);
 
@@ -120,6 +130,38 @@ private
 
     overriding procedure Finalize
            (This : in out Chart);
+
+
+
+
+    pragma Inline (Add);
+    pragma Inline (Insert);
+    pragma Inline (Replace);
+    pragma Inline (Clear);
+
+
+    pragma Inline (Will_Autosize);
+    pragma Inline (Set_Autosize);
+    pragma Inline (Get_Bounds);
+    pragma Inline (Set_Bounds);
+    pragma Inline (Get_Maximum_Size);
+    pragma Inline (Set_Maximum_Size);
+    pragma Inline (Get_Size);
+
+
+    pragma Inline (Get_Text_Color);
+    pragma Inline (Set_Text_Color);
+    pragma Inline (Get_Text_Font);
+    pragma Inline (Set_Text_Font);
+    pragma Inline (Get_Text_Size);
+    pragma Inline (Set_Text_Size);
+
+
+    pragma Inline (Resize);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Charts;

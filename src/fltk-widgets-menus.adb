@@ -132,7 +132,7 @@ package body FLTK.Widgets.Menus is
            (This     : in out Menu;
             Text     : in     String;
             Action   : in     Widget_Callback := null;
-            Shortcut : in     Shortcut_Key := No_Key;
+            Shortcut : in     Key_Combo := No_Key;
             Flags    : in     Menu_Flag := Flag_Normal)
     is
         Place : Interfaces.C.int;
@@ -149,7 +149,7 @@ package body FLTK.Widgets.Menus is
         Place := fl_menu_add
                (This.Void_Ptr,
                 Interfaces.C.To_C (Text),
-                Key_To_C (Shortcut),
+                To_C (Shortcut),
                 Callback,
                 User_Data,
                 Interfaces.C.unsigned_long (Flags));

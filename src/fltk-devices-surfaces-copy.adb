@@ -17,10 +17,12 @@ package body FLTK.Devices.Surfaces.Copy is
            (W, H : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, new_fl_copy_surface, "new_fl_copy_surface");
+    pragma Inline (new_fl_copy_surface);
 
     procedure free_fl_copy_surface
            (S : in System.Address);
     pragma Import (C, free_fl_copy_surface, "free_fl_copy_surface");
+    pragma Inline (free_fl_copy_surface);
 
 
 
@@ -29,11 +31,13 @@ package body FLTK.Devices.Surfaces.Copy is
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_copy_surface_get_w, "fl_copy_surface_get_w");
+    pragma Inline (fl_copy_surface_get_w);
 
     function fl_copy_surface_get_h
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_copy_surface_get_h, "fl_copy_surface_get_h");
+    pragma Inline (fl_copy_surface_get_h);
 
 
 
@@ -42,12 +46,14 @@ package body FLTK.Devices.Surfaces.Copy is
            (S, W   : in System.Address;
             OX, OY : in Interfaces.C.int);
     pragma Import (C, fl_copy_surface_draw, "fl_copy_surface_draw");
+    pragma Inline (fl_copy_surface_draw);
 
     procedure fl_copy_surface_draw_decorated_window
            (S, W   : in System.Address;
             OX, OY : in Interfaces.C.int);
     pragma Import (C, fl_copy_surface_draw_decorated_window,
         "fl_copy_surface_draw_decorated_window");
+    pragma Inline (fl_copy_surface_draw_decorated_window);
 
 
 
@@ -55,6 +61,7 @@ package body FLTK.Devices.Surfaces.Copy is
     procedure fl_copy_surface_set_current
            (S : in System.Address);
     pragma Import (C, fl_copy_surface_set_current, "fl_copy_surface_set_current");
+    pragma Inline (fl_copy_surface_set_current);
 
 
 

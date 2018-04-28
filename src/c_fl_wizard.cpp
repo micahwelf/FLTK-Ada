@@ -85,22 +85,22 @@ void free_fl_wizard(WIZARD w) {
 
 
 void fl_wizard_next(WIZARD w) {
-    reinterpret_cast<My_Wizard*>(w)->next();
+    reinterpret_cast<Fl_Wizard*>(w)->next();
 }
 
 void fl_wizard_prev(WIZARD w) {
-    reinterpret_cast<My_Wizard*>(w)->prev();
+    reinterpret_cast<Fl_Wizard*>(w)->prev();
 }
 
 
 
 
 void * fl_wizard_get_visible(WIZARD w) {
-    return reinterpret_cast<My_Wizard*>(w)->value();
+    return reinterpret_cast<Fl_Wizard*>(w)->value();
 }
 
 void fl_wizard_set_visible(WIZARD w, void * i) {
-    reinterpret_cast<My_Wizard*>(w)->value(reinterpret_cast<Fl_Widget*>(i));
+    reinterpret_cast<Fl_Wizard*>(w)->value(reinterpret_cast<Fl_Widget*>(i));
 }
 
 

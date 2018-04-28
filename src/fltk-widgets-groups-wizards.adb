@@ -16,10 +16,12 @@ package body FLTK.Widgets.Groups.Wizards is
     procedure wizard_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, wizard_set_draw_hook, "wizard_set_draw_hook");
+    pragma Inline (wizard_set_draw_hook);
 
     procedure wizard_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, wizard_set_handle_hook, "wizard_set_handle_hook");
+    pragma Inline (wizard_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Groups.Wizards is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_wizard, "new_fl_wizard");
+    pragma Inline (new_fl_wizard);
 
     procedure free_fl_wizard
            (S : in System.Address);
     pragma Import (C, free_fl_wizard, "free_fl_wizard");
+    pragma Inline (free_fl_wizard);
 
 
 
@@ -40,10 +44,12 @@ package body FLTK.Widgets.Groups.Wizards is
     procedure fl_wizard_next
            (W : in System.Address);
     pragma Import (C, fl_wizard_next, "fl_wizard_next");
+    pragma Inline (fl_wizard_next);
 
     procedure fl_wizard_prev
            (W : in System.Address);
     pragma Import (C, fl_wizard_prev, "fl_wizard_prev");
+    pragma Inline (fl_wizard_prev);
 
 
 
@@ -52,10 +58,12 @@ package body FLTK.Widgets.Groups.Wizards is
            (W : in System.Address)
         return System.Address;
     pragma Import (C, fl_wizard_get_visible, "fl_wizard_get_visible");
+    pragma Inline (fl_wizard_get_visible);
 
     procedure fl_wizard_set_visible
            (W, I : in System.Address);
     pragma Import (C, fl_wizard_set_visible, "fl_wizard_set_visible");
+    pragma Inline (fl_wizard_set_visible);
 
 
 
@@ -63,12 +71,14 @@ package body FLTK.Widgets.Groups.Wizards is
     procedure fl_wizard_draw
            (W : in System.Address);
     pragma Import (C, fl_wizard_draw, "fl_wizard_draw");
+    pragma Inline (fl_wizard_draw);
 
     function fl_wizard_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_wizard_handle, "fl_wizard_handle");
+    pragma Inline (fl_wizard_handle);
 
 
 
@@ -148,13 +158,9 @@ package body FLTK.Widgets.Groups.Wizards is
 
     procedure Set_Visible
            (This : in out Wizard;
-            Item : access Widget'Class) is
+            Item : in out Widget'Class) is
     begin
-        if Item = null then
-            fl_wizard_set_visible (This.Void_Ptr, System.Null_Address);
-        else
-            fl_wizard_set_visible (This.Void_Ptr, Item.Void_Ptr);
-        end if;
+        fl_wizard_set_visible (This.Void_Ptr, Item.Void_Ptr);
     end Set_Visible;
 
 

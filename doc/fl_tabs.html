@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Tabs Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Tabs Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Tabs</td>
+    <td>FLTK.Widgets.Groups.Tabbed</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Tabs</td>
+    <td>Tabbed_Group</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Tabbed_Group_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Tabs(int, int, int, int, const char *=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Tabbed_Group;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void client_area(int &rx, int &ry, int &rw, int &rh, int tabh=0);
+</pre></td>
+<td><pre>
+procedure Get_Client_Area
+       (This       : in     Tabbed_Group;
+        Tab_Height : in     Natural;
+        X, Y, W, H :    out Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Tabbed_Group);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int handle(int);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Tabbed_Group;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Widget * push() const;
+</pre></td>
+<td><pre>
+function Get_Push
+       (This : in Tabbed_Group)
+    return access Widget'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int push(Fl_WIdget *);
+</pre></td>
+<td><pre>
+procedure Set_Push
+       (This : in out Tabbed_Group;
+        Item : in out Widget'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Widget * value();
+</pre></td>
+<td><pre>
+function Get_Visible
+       (This : in Tabbed_Group)
+    return access Widget'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value(Fl_Widget *);
+</pre></td>
+<td><pre>
+procedure Set_Visible
+       (This : in out Tabbed_Group;
+        Item : in out Widget'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Widget * which(int event_x, int event_y);
+</pre></td>
+<td><pre>
+function Get_Which
+       (This             : in Tabbed_Group;
+        Event_X, Event_Y : in Integer)
+    return access Widget'Class;
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

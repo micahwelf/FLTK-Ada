@@ -5,6 +5,9 @@ package FLTK.Widgets.Groups.Wizards is
 
     type Wizard is new Group with private;
 
+    type Wizard_Reference (Data : not null access Wizard'Class) is limited null record
+        with Implicit_Dereference => Data;
+
 
 
 
@@ -35,7 +38,7 @@ package FLTK.Widgets.Groups.Wizards is
 
     procedure Set_Visible
            (This : in out Wizard;
-            Item : access Widget'Class);
+            Item : in out Widget'Class);
 
 
 
@@ -56,6 +59,20 @@ private
 
     overriding procedure Finalize
            (This : in out Wizard);
+
+
+
+
+    pragma Inline (Next);
+    pragma Inline (Prev);
+
+
+    pragma Inline (Get_Visible);
+    pragma Inline (Set_Visible);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Groups.Wizards;

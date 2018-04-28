@@ -16,10 +16,12 @@ package body FLTK.Widgets.Menus.Menu_Bars is
     procedure menu_bar_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, menu_bar_set_draw_hook, "menu_bar_set_draw_hook");
+    pragma Inline (menu_bar_set_draw_hook);
 
     procedure menu_bar_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, menu_bar_set_handle_hook, "menu_bar_set_handle_hook");
+    pragma Inline (menu_bar_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Menus.Menu_Bars is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_menu_bar, "new_fl_menu_bar");
+    pragma Inline (new_fl_menu_bar);
 
     procedure free_fl_menu_bar
            (M : in System.Address);
     pragma Import (C, free_fl_menu_bar, "free_fl_menu_bar");
+    pragma Inline (free_fl_menu_bar);
 
 
 
@@ -40,12 +44,14 @@ package body FLTK.Widgets.Menus.Menu_Bars is
     procedure fl_menu_bar_draw
            (W : in System.Address);
     pragma Import (C, fl_menu_bar_draw, "fl_menu_bar_draw");
+    pragma Inline (fl_menu_bar_draw);
 
     function fl_menu_bar_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_menu_bar_handle, "fl_menu_bar_handle");
+    pragma Inline (fl_menu_bar_handle);
 
 
 

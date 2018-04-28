@@ -17,10 +17,12 @@ package body FLTK.Widgets.Charts is
     procedure chart_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, chart_set_draw_hook, "chart_set_draw_hook");
+    pragma Inline (chart_set_draw_hook);
 
     procedure chart_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, chart_set_handle_hook, "chart_set_handle_hook");
+    pragma Inline (chart_set_handle_hook);
 
 
 
@@ -30,10 +32,12 @@ package body FLTK.Widgets.Charts is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_chart, "new_fl_chart");
+    pragma Inline (new_fl_chart);
 
     procedure free_fl_chart
            (B : in System.Address);
     pragma Import (C, free_fl_chart, "free_fl_chart");
+    pragma Inline (free_fl_chart);
 
 
 
@@ -44,6 +48,7 @@ package body FLTK.Widgets.Charts is
             L : in Interfaces.C.char_array;
             P : in Interfaces.C.unsigned);
     pragma Import (C, fl_chart_add, "fl_chart_add");
+    pragma Inline (fl_chart_add);
 
     procedure fl_chart_insert
            (C : in System.Address;
@@ -52,6 +57,7 @@ package body FLTK.Widgets.Charts is
             L : in Interfaces.C.char_array;
             P : in Interfaces.C.unsigned);
     pragma Import (C, fl_chart_insert, "fl_chart_insert");
+    pragma Inline (fl_chart_insert);
 
     procedure fl_chart_replace
            (C : in System.Address;
@@ -60,10 +66,12 @@ package body FLTK.Widgets.Charts is
             L : in Interfaces.C.char_array;
             P : in Interfaces.C.unsigned);
     pragma Import (C, fl_chart_replace, "fl_chart_replace");
+    pragma Inline (fl_chart_replace);
 
     procedure fl_chart_clear
            (C : in System.Address);
     pragma Import (C, fl_chart_clear, "fl_chart_clear");
+    pragma Inline (fl_chart_clear);
 
 
 
@@ -72,36 +80,43 @@ package body FLTK.Widgets.Charts is
            (C : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_chart_get_autosize, "fl_chart_get_autosize");
+    pragma Inline (fl_chart_get_autosize);
 
     procedure fl_chart_set_autosize
            (C : in System.Address;
             A : in Interfaces.C.int);
     pragma Import (C, fl_chart_set_autosize, "fl_chart_set_autosize");
+    pragma Inline (fl_chart_set_autosize);
 
     procedure fl_chart_get_bounds
            (C    : in     System.Address;
             L, U :    out Interfaces.C.double);
     pragma Import (C, fl_chart_get_bounds, "fl_chart_get_bounds");
+    pragma Inline (fl_chart_get_bounds);
 
     procedure fl_chart_set_bounds
            (C    : in System.Address;
             L, U : in Interfaces.C.double);
     pragma Import (C, fl_chart_set_bounds, "fl_chart_set_bounds");
+    pragma Inline (fl_chart_set_bounds);
 
     function fl_chart_get_maxsize
            (C : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_chart_get_maxsize, "fl_chart_get_maxsize");
+    pragma Inline (fl_chart_get_maxsize);
 
     procedure fl_chart_set_maxsize
            (C : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_chart_set_maxsize, "fl_chart_set_maxsize");
+    pragma Inline (fl_chart_set_maxsize);
 
     function fl_chart_size
            (C : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_chart_size, "fl_chart_size");
+    pragma Inline (fl_chart_size);
 
 
 
@@ -110,31 +125,46 @@ package body FLTK.Widgets.Charts is
            (C : in System.Address)
         return Interfaces.C.unsigned;
     pragma Import (C, fl_chart_get_textcolor, "fl_chart_get_textcolor");
+    pragma Inline (fl_chart_get_textcolor);
 
     procedure fl_chart_set_textcolor
            (C : in System.Address;
             T : in Interfaces.C.unsigned);
     pragma Import (C, fl_chart_set_textcolor, "fl_chart_set_textcolor");
+    pragma Inline (fl_chart_set_textcolor);
 
     function fl_chart_get_textfont
            (C : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_chart_get_textfont, "fl_chart_get_textfont");
+    pragma Inline (fl_chart_get_textfont);
 
     procedure fl_chart_set_textfont
            (C : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_chart_set_textfont, "fl_chart_set_textfont");
+    pragma Inline (fl_chart_set_textfont);
 
     function fl_chart_get_textsize
            (C : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_chart_get_textsize, "fl_chart_get_textsize");
+    pragma Inline (fl_chart_get_textsize);
 
     procedure fl_chart_set_textsize
            (C : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_chart_set_textsize, "fl_chart_set_textsize");
+    pragma Inline (fl_chart_set_textsize);
+
+
+
+
+    procedure fl_chart_size2
+           (C    : in System.Address;
+            W, H : in Interfaces.C.int);
+    pragma Import (C, fl_chart_size2, "fl_chart_size2");
+    pragma Inline (fl_chart_size2);
 
 
 
@@ -142,12 +172,14 @@ package body FLTK.Widgets.Charts is
     procedure fl_chart_draw
            (W : in System.Address);
     pragma Import (C, fl_chart_draw, "fl_chart_draw");
+    pragma Inline (fl_chart_draw);
 
     function fl_chart_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_chart_handle, "fl_chart_handle");
+    pragma Inline (fl_chart_handle);
 
 
 
@@ -267,13 +299,12 @@ package body FLTK.Widgets.Charts is
 
     procedure Get_Bounds
            (This         : in     Chart;
-            Lower, Upper :    out Long_Float)
-    is
-        L, U : Interfaces.C.double;
+            Lower, Upper :    out Long_Float) is
     begin
-        fl_chart_get_bounds (This.Void_Ptr, L, U);
-        Lower := Long_Float (L);
-        Upper := Long_Float (U);
+        fl_chart_get_bounds
+           (This.Void_Ptr,
+            Interfaces.C.double (Lower),
+            Interfaces.C.double (Upper));
     end Get_Bounds;
 
 
@@ -360,6 +391,16 @@ package body FLTK.Widgets.Charts is
     begin
         fl_chart_set_textsize (This.Void_Ptr, Interfaces.C.int (To));
     end Set_Text_Size;
+
+
+
+
+    procedure Resize
+           (This : in out Chart;
+            W, H : in     Integer) is
+    begin
+        fl_chart_size2 (This.Void_Ptr, Interfaces.C.int (W), Interfaces.C.int (H));
+    end Resize;
 
 
 

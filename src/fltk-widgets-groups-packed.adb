@@ -16,10 +16,12 @@ package body FLTK.Widgets.Groups.Packed is
     procedure pack_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, pack_set_draw_hook, "pack_set_draw_hook");
+    pragma Inline (pack_set_draw_hook);
 
     procedure pack_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, pack_set_handle_hook, "pack_set_handle_hook");
+    pragma Inline (pack_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Groups.Packed is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_pack, "new_fl_pack");
+    pragma Inline (new_fl_pack);
 
     procedure free_fl_pack
            (B : in System.Address);
     pragma Import (C, free_fl_pack, "free_fl_pack");
+    pragma Inline (free_fl_pack);
 
 
 
@@ -41,11 +45,13 @@ package body FLTK.Widgets.Groups.Packed is
            (P : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_pack_get_spacing, "fl_pack_get_spacing");
+    pragma Inline (fl_pack_get_spacing);
 
     procedure fl_pack_set_spacing
            (P : in System.Address;
             S : in Interfaces.C.int);
     pragma Import (C, fl_pack_set_spacing, "fl_pack_set_spacing");
+    pragma Inline (fl_pack_set_spacing);
 
 
 
@@ -53,12 +59,14 @@ package body FLTK.Widgets.Groups.Packed is
     procedure fl_pack_draw
            (W : in System.Address);
     pragma Import (C, fl_pack_draw, "fl_pack_draw");
+    pragma Inline (fl_pack_draw);
 
     function fl_pack_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_pack_handle, "fl_pack_handle");
+    pragma Inline (fl_pack_handle);
 
 
 

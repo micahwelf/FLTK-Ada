@@ -16,10 +16,12 @@ package body FLTK.Widgets.Progress_Bars is
     procedure progress_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, progress_set_draw_hook, "progress_set_draw_hook");
+    pragma Inline (progress_set_draw_hook);
 
     procedure progress_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, progress_set_handle_hook, "progress_set_handle_hook");
+    pragma Inline (progress_set_handle_hook);
 
 
 
@@ -29,10 +31,12 @@ package body FLTK.Widgets.Progress_Bars is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_progress, "new_fl_progress");
+    pragma Inline (new_fl_progress);
 
     procedure free_fl_progress
            (P : in System.Address);
     pragma Import (C, free_fl_progress, "free_fl_progress");
+    pragma Inline (free_fl_progress);
 
 
 
@@ -41,31 +45,37 @@ package body FLTK.Widgets.Progress_Bars is
            (P : in System.Address)
         return Interfaces.C.C_float;
     pragma Import (C, fl_progress_get_minimum, "fl_progress_get_minimum");
+    pragma Inline (fl_progress_get_minimum);
 
     procedure fl_progress_set_minimum
            (P : in System.Address;
             T : in Interfaces.C.C_float);
     pragma Import (C, fl_progress_set_minimum, "fl_progress_set_minimum");
+    pragma Inline (fl_progress_set_minimum);
 
     function fl_progress_get_maximum
            (P : in System.Address)
         return Interfaces.C.C_float;
     pragma Import (C, fl_progress_get_maximum, "fl_progress_get_maximum");
+    pragma Inline (fl_progress_get_maximum);
 
     procedure fl_progress_set_maximum
            (P : in System.Address;
             T : in Interfaces.C.C_float);
     pragma Import (C, fl_progress_set_maximum, "fl_progress_set_maximum");
+    pragma Inline (fl_progress_set_maximum);
 
     function fl_progress_get_value
            (P : in System.Address)
         return Interfaces.C.C_float;
     pragma Import (C, fl_progress_get_value, "fl_progress_get_value");
+    pragma Inline (fl_progress_get_value);
 
     procedure fl_progress_set_value
            (P : in System.Address;
             T : in Interfaces.C.C_float);
     pragma Import (C, fl_progress_set_value, "fl_progress_set_value");
+    pragma Inline (fl_progress_set_value);
 
 
 
@@ -73,12 +83,14 @@ package body FLTK.Widgets.Progress_Bars is
     procedure fl_progress_draw
            (P : in System.Address);
     pragma Import (C, fl_progress_draw, "fl_progress_draw");
+    pragma Inline (fl_progress_draw);
 
     function fl_progress_handle
            (P : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_progress_handle, "fl_progress_handle");
+    pragma Inline (fl_progress_handle);
 
 
 

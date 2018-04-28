@@ -17,10 +17,12 @@ package body FLTK.Devices.Surfaces.Image is
            (W, H, R : in Interfaces.C.int)
         return System.Address;
     pragma Import (C, new_fl_image_surface, "new_fl_image_surface");
+    pragma Inline (new_fl_image_surface);
 
     procedure free_fl_image_surface
            (S : in System.Address);
     pragma Import (C, free_fl_image_surface, "free_fl_image_surface");
+    pragma Inline (free_fl_image_surface);
 
 
 
@@ -29,12 +31,14 @@ package body FLTK.Devices.Surfaces.Image is
            (S, I   : in System.Address;
             OX, OY : in Interfaces.C.int);
     pragma Import (C, fl_image_surface_draw, "fl_image_surface_draw");
+    pragma Inline (fl_image_surface_draw);
 
     procedure fl_image_surface_draw_decorated_window
            (S, I   : in System.Address;
             OX, OY : in Interfaces.C.int);
     pragma Import (C, fl_image_surface_draw_decorated_window,
         "fl_image_surface_draw_decorated_window");
+    pragma Inline (fl_image_surface_draw_decorated_window);
 
 
 
@@ -43,11 +47,13 @@ package body FLTK.Devices.Surfaces.Image is
            (S : in System.Address)
         return System.Address;
     pragma Import (C, fl_image_surface_image, "fl_image_surface_image");
+    pragma Inline (fl_image_surface_image);
 
     function fl_image_surface_highres_image
            (S : in System.Address)
         return System.Address;
     pragma Import (C, fl_image_surface_highres_image, "fl_image_surface_highres_image");
+    pragma Inline (fl_image_surface_highres_image);
 
 
 
@@ -55,6 +61,7 @@ package body FLTK.Devices.Surfaces.Image is
     procedure fl_image_surface_set_current
            (S : in System.Address);
     pragma Import (C, fl_image_surface_set_current, "fl_image_surface_set_current");
+    pragma Inline (fl_image_surface_set_current);
 
 
 

@@ -49,11 +49,11 @@ package FLTK.Widgets.Buttons is
 
     function Get_Shortcut
            (This : in Button)
-        return Shortcut_Key;
+        return Key_Combo;
 
     procedure Set_Shortcut
            (This : in out Button;
-            Key  : in     Shortcut_Key);
+            Key  : in     Key_Combo);
 
 
 

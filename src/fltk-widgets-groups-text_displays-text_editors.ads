@@ -19,10 +19,10 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
     type Default_Key_Func is access procedure
            (This : in out Text_Editor'Class;
-            Key  : in     Shortcut_Key);
+            Key  : in     Key_Combo);
 
     type Key_Binding is record
-        Key  : Shortcut_Key;
+        Key  : Key_Combo;
         Func : Key_Func;
     end record;
 
@@ -45,7 +45,7 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
     procedure Default
            (This : in out Text_Editor'Class;
-            Key  : in     Shortcut_Key);
+            Key  : in     Key_Combo);
 
 
 
@@ -195,26 +195,26 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
     Default_Key_Bindings : constant Key_Binding_List :=
-           ((Enter_Key,        KF_Enter'Access),
-            (Keypad_Enter_Key, KF_Enter'Access),
-            (Backspace_Key,    KF_Backspace'Access),
-            (Insert_Key,       KF_Insert'Access),
+           ((Mod_None + Enter_Key,        KF_Enter'Access),
+            (Mod_None + Keypad_Enter_Key, KF_Enter'Access),
+            (Mod_None + Backspace_Key,    KF_Backspace'Access),
+            (Mod_None + Insert_Key,       KF_Insert'Access),
 
-            (Delete_Key,     Delete'Access),
+            (Mod_None + Delete_Key,     Delete'Access),
             (Mod_Ctrl + 'c', Copy'Access),
             (Mod_Ctrl + 'v', Paste'Access),
             (Mod_Ctrl + 'x', Cut'Access),
             (Mod_Ctrl + 'z', Undo'Access),
             (Mod_Ctrl + 'a', Select_All'Access),
 
-            (Home_Key,      KF_Home'Access),
-            (End_Key,       KF_End'Access),
-            (Page_Down_Key, KF_Page_Down'Access),
-            (Page_Up_Key,   KF_Page_Up'Access),
-            (Down_Key,      KF_Down'Access),
-            (Left_Key,      KF_Left'Access),
-            (Right_Key,     KF_Right'Access),
-            (Up_Key,        KF_Up'Access),
+            (Mod_None + Home_Key,      KF_Home'Access),
+            (Mod_None + End_Key,       KF_End'Access),
+            (Mod_None + Page_Down_Key, KF_Page_Down'Access),
+            (Mod_None + Page_Up_Key,   KF_Page_Up'Access),
+            (Mod_None + Down_Key,      KF_Down'Access),
+            (Mod_None + Left_Key,      KF_Left'Access),
+            (Mod_None + Right_Key,     KF_Right'Access),
+            (Mod_None + Up_Key,        KF_Up'Access),
 
             (Mod_Shift + Home_Key,      KF_Shift_Home'Access),
             (Mod_Shift + End_Key,       KF_Shift_End'Access),
@@ -261,7 +261,7 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
     procedure Add_Key_Binding
            (This : in out Text_Editor;
-            Key  : in     Shortcut_Key;
+            Key  : in     Key_Combo;
             Func : in     Key_Func);
 
     procedure Add_Key_Binding
@@ -270,12 +270,12 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
     function Get_Bound_Key_Function
            (This : in Text_Editor;
-            Key  : in Shortcut_Key)
+            Key  : in Key_Combo)
         return Key_Func;
 
     procedure Remove_Key_Binding
            (This : in out Text_Editor;
-            Key  : in     Shortcut_Key);
+            Key  : in     Key_Combo);
 
     procedure Remove_Key_Binding
            (This : in out Text_Editor;

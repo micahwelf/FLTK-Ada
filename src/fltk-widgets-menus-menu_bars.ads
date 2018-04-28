@@ -5,6 +5,9 @@ package FLTK.Widgets.Menus.Menu_Bars is
 
     type Menu_Bar is new Menu with private;
 
+    type Menu_Bar_Reference (Data : not null access Menu_Bar'Class) is limited null record
+        with Implicit_Dereference => Data;
+
 
 
 
@@ -36,6 +39,12 @@ private
 
     overriding procedure Finalize
            (This : in out Menu_Bar);
+
+
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Menus.Menu_Bars;

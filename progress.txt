@@ -13,6 +13,9 @@ Overall estimate: ???%
 Polished:
 
 FLTK.Devices
+FLTK.Devices.Surfaces.Copy
+FLTK.Devices.Surfaces.Image
+FLTK.Devices.Surfaces.Paged
 FLTK.Dialogs
 FLTK.Images
 FLTK.Images.Bitmaps
@@ -35,13 +38,20 @@ FLTK.Widgets.Buttons.Light.Round.Radio
 FLTK.Widgets.Buttons.Radio
 FLTK.Widgets.Buttons.Repeat
 FLTK.Widgets.Buttons.Toggle
+FLTK.Widgets.Charts
 FLTK.Widgets.Clocks
 FLTK.Widgets.Clocks.Updated
 FLTK.Widgets.Clocks.Updated.Round
+FLTK.Widgets.Groups.Packed
+FLTK.Widgets.Groups.Scrolls
+FLTK.Widgets.Groups.Spinners
+FLTK.Widgets.Groups.Tabbed
+FLTK.Widgets.Groups.Tiled
 FLTK.Widgets.Groups.Windows
 FLTK.Widgets.Groups.Windows.Double
 FLTK.Widgets.Groups.Windows.Single
 FLTK.Widgets.Groups.Windows.Single.Menu
+FLTK.Widgets.Groups.Wizards
 FLTK.Widgets.Inputs
 FLTK.Widgets.Inputs.File
 FLTK.Widgets.Inputs.Float
@@ -50,6 +60,9 @@ FLTK.Widgets.Inputs.Multiline
 FLTK.Widgets.Inputs.Outputs
 FLTK.Widgets.Inputs.Outputs.Multiline
 FLTK.Widgets.Inputs.Secret
+FLTK.Widgets.Menus.Menu_Bars
+FLTK.Widgets.Menus.Menu_Buttons
+FLTK.Widgets.Progress_Bars
 FLTK.Widgets.Valuators
 FLTK.Widgets.Valuators.Adjusters
 FLTK.Widgets.Valuators.Counters
@@ -73,23 +86,12 @@ FLTK.Widgets.Valuators.Sliders.Horizontal
 
 Done:
 
-FLTK.Devices.Surfaces.Copy
-FLTK.Devices.Surfaces.Image
-FLTK.Devices.Surfaces.Paged
 FLTK.Devices.Surfaces.Paged.Printers
-FLTK.Widgets.Charts
+FLTK.Event
+FLTK.Screen
 FLTK.Widgets.Groups.Color_Choosers
 FLTK.Widgets.Groups.Input_Choices
-FLTK.Widgets.Groups.Packed
-FLTK.Widgets.Groups.Scrolls
-FLTK.Widgets.Groups.Spinners
-FLTK.Widgets.Groups.Tabbed
 FLTK.Widgets.Groups.Text_Displays.Text_Editors
-FLTK.Widgets.Groups.Tiled
-FLTK.Widgets.Groups.Wizards
-FLTK.Widgets.Menus.Menu_Bars
-FLTK.Widgets.Menus.Menu_Buttons
-FLTK.Widgets.Progress_Bars
 
 
 
@@ -101,7 +103,6 @@ FLTK.Devices.Graphics
 FLTK.Devices.Surfaces
 FLTK.Environment
 FLTK.Menu_Items
-FLTK.Screen
 FLTK.Text_Buffers
 FLTK.Widgets
 FLTK.Widgets.Groups

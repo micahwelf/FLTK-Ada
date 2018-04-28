@@ -5,6 +5,9 @@ package FLTK.Widgets.Groups.Tiled is
 
     type Tiled_Group is new Group with private;
 
+    type Tiled_Group_Reference (Data : not null access Tiled_Group'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -44,6 +47,15 @@ private
 
     overriding procedure Finalize
            (This : in out Tiled_Group);
+
+
+
+
+    pragma Inline (Position);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Groups.Tiled;

@@ -16,10 +16,12 @@ package body FLTK.Widgets.Groups.Scrolls is
     procedure scroll_set_draw_hook
            (S, D : in System.Address);
     pragma Import (C, scroll_set_draw_hook, "scroll_set_draw_hook");
+    pragma Inline (scroll_set_draw_hook);
 
     procedure scroll_set_handle_hook
            (S, H : in System.Address);
     pragma Import (C, scroll_set_handle_hook, "scroll_set_handle_hook");
+    pragma Inline (scroll_set_handle_hook);
 
 
 
@@ -29,10 +31,20 @@ package body FLTK.Widgets.Groups.Scrolls is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_scroll, "new_fl_scroll");
+    pragma Inline (new_fl_scroll);
 
     procedure free_fl_scroll
            (S : in System.Address);
     pragma Import (C, free_fl_scroll, "free_fl_scroll");
+    pragma Inline (free_fl_scroll);
+
+
+
+
+    procedure fl_scroll_clear
+           (S : in System.Address);
+    pragma Import (C, fl_scroll_clear, "fl_scroll_clear");
+    pragma Inline (fl_scroll_clear);
 
 
 
@@ -41,11 +53,13 @@ package body FLTK.Widgets.Groups.Scrolls is
            (S    : in System.Address;
             X, Y : in Interfaces.C.int);
     pragma Import (C, fl_scroll_to, "fl_scroll_to");
+    pragma Inline (fl_scroll_to);
 
     procedure fl_scroll_set_type
            (S : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_scroll_set_type, "fl_scroll_set_type");
+    pragma Inline (fl_scroll_set_type);
 
 
 
@@ -54,21 +68,25 @@ package body FLTK.Widgets.Groups.Scrolls is
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_scroll_get_size, "fl_scroll_get_size");
+    pragma Inline (fl_scroll_get_size);
 
     procedure fl_scroll_set_size
            (S : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_scroll_set_size, "fl_scroll_set_size");
+    pragma Inline (fl_scroll_set_size);
 
     function fl_scroll_xposition
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_scroll_xposition, "fl_scroll_xposition");
+    pragma Inline (fl_scroll_xposition);
 
     function fl_scroll_yposition
            (S : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_scroll_yposition, "fl_scroll_yposition");
+    pragma Inline (fl_scroll_yposition);
 
 
 
@@ -76,12 +94,14 @@ package body FLTK.Widgets.Groups.Scrolls is
     procedure fl_scroll_draw
            (S : in System.Address);
     pragma Import (C, fl_scroll_draw, "fl_scroll_draw");
+    pragma Inline (fl_scroll_draw);
 
     function fl_scroll_handle
            (S : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_scroll_handle, "fl_scroll_handle");
+    pragma Inline (fl_scroll_handle);
 
 
 
@@ -126,6 +146,15 @@ package body FLTK.Widgets.Groups.Scrolls is
         end Create;
 
     end Forge;
+
+
+
+
+    procedure Clear
+           (This : in out Scroll) is
+    begin
+        fl_scroll_clear (This.Void_Ptr);
+    end Clear;
 
 
 

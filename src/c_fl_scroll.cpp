@@ -70,6 +70,13 @@ void free_fl_scroll(SCROLL s) {
 
 
 
+void fl_scroll_clear(SCROLL s) {
+    reinterpret_cast<Fl_Scroll*>(s)->clear();
+}
+
+
+
+
 void fl_scroll_to(SCROLL s, int x, int y) {
     reinterpret_cast<Fl_Scroll*>(s)->scroll_to(x, y);
 }

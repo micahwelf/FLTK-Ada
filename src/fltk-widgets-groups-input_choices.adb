@@ -206,7 +206,7 @@ package body FLTK.Widgets.Groups.Input_Choices is
 
     function Menu_Button
            (This : in out Input_Choice)
-        return MB.Menu_Button_Cursor is
+        return MB.Menu_Button_Reference is
     begin
         return (Data => This.My_Menu_Button);
     end Menu_Button;
