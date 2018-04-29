@@ -16,6 +16,7 @@ FLTK.Devices
 FLTK.Devices.Surfaces.Copy
 FLTK.Devices.Surfaces.Image
 FLTK.Devices.Surfaces.Paged
+FLTK.Devices.Surfaces.Paged.Printers
 FLTK.Dialogs
 FLTK.Images
 FLTK.Images.Bitmaps
@@ -42,10 +43,13 @@ FLTK.Widgets.Charts
 FLTK.Widgets.Clocks
 FLTK.Widgets.Clocks.Updated
 FLTK.Widgets.Clocks.Updated.Round
+FLTK.Widgets.Groups.Color_Choosers
+FLTK.Widgets.Groups.Input_Choices
 FLTK.Widgets.Groups.Packed
 FLTK.Widgets.Groups.Scrolls
 FLTK.Widgets.Groups.Spinners
 FLTK.Widgets.Groups.Tabbed
+FLTK.Widgets.Groups.Text_Displays
 FLTK.Widgets.Groups.Tiled
 FLTK.Widgets.Groups.Windows
 FLTK.Widgets.Groups.Windows.Double
@@ -86,11 +90,8 @@ FLTK.Widgets.Valuators.Sliders.Horizontal
 
 Done:
 
-FLTK.Devices.Surfaces.Paged.Printers
 FLTK.Event
 FLTK.Screen
-FLTK.Widgets.Groups.Color_Choosers
-FLTK.Widgets.Groups.Input_Choices
 FLTK.Widgets.Groups.Text_Displays.Text_Editors
 
 
@@ -106,7 +107,6 @@ FLTK.Menu_Items
 FLTK.Text_Buffers
 FLTK.Widgets
 FLTK.Widgets.Groups
-FLTK.Widgets.Groups.Text_Displays (94%)
 FLTK.Widgets.Menus
 
 

@@ -71,49 +71,60 @@ void free_fl_color_chooser(COLOR_CHOOSER n) {
 
 
 double fl_color_chooser_r(COLOR_CHOOSER n) {
-    return reinterpret_cast<My_Color_Chooser*>(n)->r();
+    return reinterpret_cast<Fl_Color_Chooser*>(n)->r();
 }
 
 double fl_color_chooser_g(COLOR_CHOOSER n) {
-    return reinterpret_cast<My_Color_Chooser*>(n)->g();
+    return reinterpret_cast<Fl_Color_Chooser*>(n)->g();
 }
 
 double fl_color_chooser_b(COLOR_CHOOSER n) {
-    return reinterpret_cast<My_Color_Chooser*>(n)->b();
+    return reinterpret_cast<Fl_Color_Chooser*>(n)->b();
 }
 
 int fl_color_chooser_rgb(COLOR_CHOOSER n, int r, int g, int b) {
-    return reinterpret_cast<My_Color_Chooser*>(n)->rgb(r,g,b);
+    return reinterpret_cast<Fl_Color_Chooser*>(n)->rgb(r,g,b);
 }
 
 
 
 
 double fl_color_chooser_hue(COLOR_CHOOSER n) {
-    return reinterpret_cast<My_Color_Chooser*>(n)->hue();
+    return reinterpret_cast<Fl_Color_Chooser*>(n)->hue();
 }
 
 double fl_color_chooser_saturation(COLOR_CHOOSER n) {
-    return reinterpret_cast<My_Color_Chooser*>(n)->saturation();
+    return reinterpret_cast<Fl_Color_Chooser*>(n)->saturation();
 }
 
 double fl_color_chooser_value(COLOR_CHOOSER n) {
-    return reinterpret_cast<My_Color_Chooser*>(n)->value();
+    return reinterpret_cast<Fl_Color_Chooser*>(n)->value();
 }
 
 int fl_color_chooser_hsv(COLOR_CHOOSER n, int h, int s, int v) {
-    return reinterpret_cast<My_Color_Chooser*>(n)->hsv(h,s,v);
+    return reinterpret_cast<Fl_Color_Chooser*>(n)->hsv(h,s,v);
+}
+
+
+
+
+void fl_color_chooser_hsv2rgb(double h, double s, double v, double &r, double &g, double &b) {
+    Fl_Color_Chooser::hsv2rgb(h,s,v,r,g,b);
+}
+
+void fl_color_chooser_rgb2hsv(double r, double g, double b, double &h, double &s, double &v) {
+    Fl_Color_Chooser::rgb2hsv(r,g,b,h,s,v);
 }
 
 
 
 
 int fl_color_chooser_get_mode(COLOR_CHOOSER n) {
-    return reinterpret_cast<My_Color_Chooser*>(n)->mode();
+    return reinterpret_cast<Fl_Color_Chooser*>(n)->mode();
 }
 
 void fl_color_chooser_set_mode(COLOR_CHOOSER n, int m) {
-    reinterpret_cast<My_Color_Chooser*>(n)->mode(m);
+    reinterpret_cast<Fl_Color_Chooser*>(n)->mode(m);
 }
 
 

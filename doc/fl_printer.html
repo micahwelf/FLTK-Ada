@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Printer Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Printer Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Printer</td>
+    <td>FLTK.Devices.Surfaces.Paged.Printers</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Printer</td>
+    <td>Printer</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Printer_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Printer(void);
+</pre></td>
+<td><pre>
+function Create
+    return Printer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * class_name();
+</pre></td>
+<td>Use runtime tag checking</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Graphics_Driver * driver(void);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void end_job(void);
+</pre></td>
+<td><pre>
+procedure End_Job
+       (This : in out Printer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int end_page(void);
+</pre></td>
+<td><pre>
+procedure End_Page
+       (This : in out Printer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void margins(int *left, int *top, int *right, int *bottom);
+</pre></td>
+<td><pre>
+procedure Get_Margins
+       (This                     : in     Printer;
+        Left, Top, Right, Bottom :    out Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void origin(int *x, int *y);
+</pre></td>
+<td><pre>
+procedure Get_Origin
+       (This : in     Printer;
+        X, Y :    out Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void origin(int x, int y);
+</pre></td>
+<td><pre>
+procedure Set_Origin
+       (This : in out Printer;
+        X, Y : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void print_widget(Fl_Widget *widget, int delta_x=0, int delta_y=0);
+</pre></td>
+<td><pre>
+procedure Print_Widget
+       (This               : in out Printer;
+        Item               : in     FLTK.Widgets.Widget'Class;
+        Offset_X, Offset_Y : in     Integer := 0);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void print_window_part(Fl_Window *win, int x, int y, int w, int h, int delta_x=0, int delta_y=0);
+</pre></td>
+<td><pre>
+procedure Print_Window_Part
+       (This               : in out Printer;
+        Item               : in     FLTK.Widgets.Groups.Windows.Window'Class;
+        X, Y, W, H         : in     Integer;
+        Offset_X, Offset_Y : in     Integer := 0);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int printable_rect(int *w, int *h);
+</pre></td>
+<td><pre>
+procedure Get_Printable_Rect
+       (This : in     Printer;
+        W, H :    out Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void rotate(float angle);
+</pre></td>
+<td><pre>
+procedure Rotate
+       (This    : in out Printer;
+        Degrees : in     Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void scale(float scale_x, float scale_y=0);
+</pre></td>
+<td><pre>
+procedure Scale
+       (This   : in out Printer;
+        Factor : in     Float);
+
+procedure Scale
+       (This               : in out Printer;
+        Factor_X, Factor_Y : in     Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_current(void);
+</pre></td>
+<td><pre>
+procedure Set_Current
+       (This : in out Printer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int start_job(int pagecount, int *frompage=NULL, int *topage=NULL);
+</pre></td>
+<td><pre>
+procedure Start_Job
+       (This  : in out Printer;
+        Count : in     Natural);
+
+procedure Start_Job
+       (This     : in out Printer;
+        Count    : in     Natural;
+        From, To : in     Positive);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int start_page(void);
+</pre></td>
+<td><pre>
+procedure Start_Page
+       (This : in out Printer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void translate(int x, int y);
+</pre></td>
+<td><pre>
+procedure Translate
+       (This             : in out Printer;
+        Delta_X, Delta_Y : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void untranslate(void);
+</pre></td>
+<td><pre>
+procedure Untranslate
+       (This : in out Printer);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

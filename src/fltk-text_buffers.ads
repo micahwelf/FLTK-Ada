@@ -12,7 +12,7 @@ package FLTK.Text_Buffers is
 
     type Text_Buffer is new Wrapper with private;
 
-    type Text_Buffer_Cursor (Data : access Text_Buffer'Class) is limited null record
+    type Text_Buffer_Reference (Data : access Text_Buffer'Class) is limited null record
         with Implicit_Dereference => Data;
 
     type Position is new Natural;

@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Input_Choice Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Input_Choice Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Input_Choice</td>
+    <td>FLTK.Widgets.Groups.Input_Choices</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Input_Choice</td>
+    <td>Input_Choice</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Input_Choice_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Input_Choice(int X, int Y, int W, int H, const char *L=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Input_Choice;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void add(const char *s);
+</pre></td>
+<td>Use Menu_Button instead</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int changed() const;
+</pre></td>
+<td><pre>
+function Has_Changed
+       (This : in Input_Choice)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear();
+</pre></td>
+<td><pre>
+procedure Clear
+       (This : in out Input_Choice);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear_changed();
+</pre></td>
+<td><pre>
+procedure Clear_Changed
+       (This : in out Input_Choice);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Boxtype down_box() const;
+</pre></td>
+<td><pre>
+function Get_Down_Box
+       (This : in Input_Choice)
+    return Box_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void down_box(Fl_Boxtype b);
+</pre></td>
+<td><pre>
+procedure Set_Down_Box
+       (This : in out Input_Choice;
+        To   : in     Box_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Draw
+       (This : in out Input_Choice);
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Handle
+       (This  : in out Input_Choice;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Input * input();
+</pre></td>
+<td><pre>
+function Input
+       (This : in out Input_Choice)
+    return FLTK.Widgets.Inputs.Input_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const Fl_Menu_Item * menu();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void menu(const Fl_Menu_Item *m);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Menu_Button * menubutton();
+</pre></td>
+<td><pre>
+function Menu_Button
+       (This : in out Input_Choice)
+    return FLTK.Widgets.Menus.Menu_Buttons.Menu_Button_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void resize(int X, int Y, int W, int H);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_changed();
+</pre></td>
+<td><pre>
+procedure Set_Changed
+       (This : in out Input_Choice;
+        To   : in     Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color textcolor() const;
+</pre></td>
+<td><pre>
+function Get_Text_Color
+       (This : in Input_Choice)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textcolor(Fl_Color c);
+</pre></td>
+<td><pre>
+procedure Set_Text_Color
+       (This : in out Input_Choice;
+        To   : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Font textfont() const;
+</pre></td>
+<td><pre>
+function Get_Text_Font
+       (This : in Input_Choice)
+    return Font_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textfont(Fl_Font f);
+</pre></td>
+<td><pre>
+procedure Set_Text_Font
+       (This : in out Input_Choice;
+        To   : in     Font_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Fontsize textsize() const;
+</pre></td>
+<td><pre>
+function Get_Text_Size
+       (This : in Input_Choice)
+    return Font_Size;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textsize(Fl_Fontsize s);
+</pre></td>
+<td><pre>
+procedure Set_Text_Size
+       (This : in out Input_Choice;
+        To   : in     Font_Size);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * value() const;
+</pre></td>
+<td><pre>
+function Get_Input
+       (This : in Input_Choice)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void value(const char *val);
+</pre></td>
+<td><pre>
+procedure Set_Input
+       (This : in out Input_Choice;
+        To   : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void value(int val);
+</pre></td>
+<td><pre>
+procedure Set_Item
+       (This : in out Input_Choice;
+        Num  : in     Integer);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

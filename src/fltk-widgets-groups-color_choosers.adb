@@ -17,10 +17,12 @@ package body FLTK.Widgets.Groups.Color_Choosers is
     procedure color_chooser_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, color_chooser_set_draw_hook, "color_chooser_set_draw_hook");
+    pragma Inline (color_chooser_set_draw_hook);
 
     procedure color_chooser_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, color_chooser_set_handle_hook, "color_chooser_set_handle_hook");
+    pragma Inline (color_chooser_set_handle_hook);
 
 
 
@@ -30,10 +32,12 @@ package body FLTK.Widgets.Groups.Color_Choosers is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_color_chooser, "new_fl_color_chooser");
+    pragma Inline (new_fl_color_chooser);
 
     procedure free_fl_color_chooser
            (W : in System.Address);
     pragma Import (C, free_fl_color_chooser, "free_fl_color_chooser");
+    pragma Inline (free_fl_color_chooser);
 
 
 
@@ -42,22 +46,26 @@ package body FLTK.Widgets.Groups.Color_Choosers is
            (N : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_color_chooser_r, "fl_color_chooser_r");
+    pragma Inline (fl_color_chooser_r);
 
     function fl_color_chooser_g
            (N : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_color_chooser_g, "fl_color_chooser_g");
+    pragma Inline (fl_color_chooser_g);
 
     function fl_color_chooser_b
            (N : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_color_chooser_b, "fl_color_chooser_b");
+    pragma Inline (fl_color_chooser_b);
 
     function fl_color_chooser_rgb
            (N       : in System.Address;
             R, G, B : in Interfaces.C.double)
         return Interfaces.C.int;
     pragma Import (C, fl_color_chooser_rgb, "fl_color_chooser_rgb");
+    pragma Inline (fl_color_chooser_rgb);
 
 
 
@@ -66,22 +74,41 @@ package body FLTK.Widgets.Groups.Color_Choosers is
            (N : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_color_chooser_hue, "fl_color_chooser_hue");
+    pragma Inline (fl_color_chooser_hue);
 
     function fl_color_chooser_saturation
            (N : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_color_chooser_saturation, "fl_color_chooser_saturation");
+    pragma Inline (fl_color_chooser_saturation);
 
     function fl_color_chooser_value
            (N : in System.Address)
         return Interfaces.C.double;
     pragma Import (C, fl_color_chooser_value, "fl_color_chooser_value");
+    pragma Inline (fl_color_chooser_value);
 
     function fl_color_chooser_hsv
            (N       : in System.Address;
             H, S, V : in Interfaces.C.double)
         return Interfaces.C.int;
     pragma Import (C, fl_color_chooser_hsv, "fl_color_chooser_hsv");
+    pragma Inline (fl_color_chooser_hsv);
+
+
+
+
+    procedure fl_color_chooser_hsv2rgb
+           (H, S, V : in     Interfaces.C.double;
+            R, G, B :    out Interfaces.C.double);
+    pragma Import (C, fl_color_chooser_hsv2rgb, "fl_color_chooser_hsv2rgb");
+    pragma Inline (fl_color_chooser_hsv2rgb);
+
+    procedure fl_color_chooser_rgb2hsv
+           (R, G, B : in     Interfaces.C.double;
+            H, S, V :    out Interfaces.C.double);
+    pragma Import (C, fl_color_chooser_rgb2hsv, "fl_color_chooser_rgb2hsv");
+    pragma Inline (fl_color_chooser_rgb2hsv);
 
 
 
@@ -90,11 +117,13 @@ package body FLTK.Widgets.Groups.Color_Choosers is
            (N : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_color_chooser_get_mode, "fl_color_chooser_get_mode");
+    pragma Inline (fl_color_chooser_get_mode);
 
     procedure fl_color_chooser_set_mode
            (N : in System.Address;
             M : in Interfaces.C.int);
     pragma Import (C, fl_color_chooser_set_mode, "fl_color_chooser_set_mode");
+    pragma Inline (fl_color_chooser_set_mode);
 
 
 
@@ -102,12 +131,14 @@ package body FLTK.Widgets.Groups.Color_Choosers is
     procedure fl_color_chooser_draw
            (W : in System.Address);
     pragma Import (C, fl_color_chooser_draw, "fl_color_chooser_draw");
+    pragma Inline (fl_color_chooser_draw);
 
     function fl_color_chooser_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_color_chooser_handle, "fl_color_chooser_handle");
+    pragma Inline (fl_color_chooser_handle);
 
 
 
@@ -228,6 +259,36 @@ package body FLTK.Widgets.Groups.Color_Choosers is
             Interfaces.C.double (S),
             Interfaces.C.double (V)) /= 0;
     end Set_HSV;
+
+
+
+
+    procedure HSV_To_RGB
+           (H, S, V : in     Long_Float;
+            R, G, B :    out Long_Float) is
+    begin
+        fl_color_chooser_hsv2rgb
+           (Interfaces.C.double (H),
+            Interfaces.C.double (S),
+            Interfaces.C.double (V),
+            Interfaces.C.double (R),
+            Interfaces.C.double (G),
+            Interfaces.C.double (B));
+    end HSV_To_RGB;
+
+
+    procedure RGB_To_HSV
+           (R, G, B : in     Long_Float;
+            H, S, V :    out Long_Float) is
+    begin
+        fl_color_chooser_rgb2hsv
+           (Interfaces.C.double (R),
+            Interfaces.C.double (G),
+            Interfaces.C.double (B),
+            Interfaces.C.double (H),
+            Interfaces.C.double (S),
+            Interfaces.C.double (V));
+    end RGB_To_HSV;
 
 
 

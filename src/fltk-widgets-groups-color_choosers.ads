@@ -5,6 +5,9 @@ package FLTK.Widgets.Groups.Color_Choosers is
 
     type Color_Chooser is new Group with private;
 
+    type Color_Chooser_Reference (Data : not null access Color_Chooser'Class) is
+        limited null record with Implicit_Dereference => Data;
+
     type Color_Mode is (RGB, Byte, Hex, HSV);
 
 
@@ -60,6 +63,17 @@ package FLTK.Widgets.Groups.Color_Choosers is
 
 
 
+    procedure HSV_To_RGB
+           (H, S, V : in     Long_Float;
+            R, G, B :    out Long_Float);
+
+    procedure RGB_To_HSV
+           (R, G, B : in     Long_Float;
+            H, S, V :    out Long_Float);
+
+
+
+
     function Color_Was_Changed
            (This : in Color_Chooser)
         return Boolean;
@@ -99,6 +113,36 @@ private
 
     overriding procedure Finalize
            (This : in out Color_Chooser);
+
+
+
+
+    pragma Inline (Get_Red);
+    pragma Inline (Get_Green);
+    pragma Inline (Get_Blue);
+    pragma Inline (Set_RGB);
+
+
+    pragma Inline (Get_Hue);
+    pragma Inline (Get_Saturation);
+    pragma Inline (Get_Value);
+    pragma Inline (Set_HSV);
+
+
+    pragma Inline (HSV_To_RGB);
+    pragma Inline (RGB_To_HSV);
+
+
+    pragma Inline (Color_Was_Changed);
+    pragma Inline (Clear_Changed);
+
+
+    pragma Inline (Get_Mode);
+    pragma Inline (Set_Mode);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Groups.Color_Choosers;

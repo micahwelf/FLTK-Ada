@@ -1,0 +1,822 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Text_Display Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Text_Display Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Text_Display</td>
+    <td>FLTK.Widgets.Groups.Text_Displays</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Text_Display</td>
+    <td>Text_Display</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Text_Display_Reference</td>
+  </tr>
+
+  <tr>
+    <td>enum { NORMAL_CURSOR, CARET_CURSOR, DIM_CURSOR, BLOCK_CURSOR, HEAVY_CURSOR, SIMPLE_CURSOR }</td>
+    <td>Cursor_Style</td>
+  </tr>
+
+  <tr>
+    <td>enum { CURSOR_POS, CHARACTER_POS }</td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>enum { DRAG_NONE = -2, DRAG_START_DND = -1, DRAG_CHAR = 0, DRAG_WORD = 1, DRAG_LINE = 2 }</td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>enum { WRAP_NONE, WRAP_AT_COLUMN, WRAP_AT_PIXEL, WRAP_AT_BOUNDS }</td>
+    <td>Wrap_Mode</td>
+  </tr>
+
+  <tr>
+    <td>Unfinished_Style_Cb</td>
+    <td>Unfinished_Style_Callback</td>
+  </tr>
+
+  <tr>
+    <td>Style_Table_Entry</td>
+    <td>Style_Entry</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Style_Index</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Style_Array</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Text_Display(int X, int Y, int W, int H, const char *L=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Text_Display;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void buffer(Fl_Text_Buffer *buf);
+void buffer(Fl_Text_Buffer &buf);
+</pre></td>
+<td><pre>
+procedure Set_Buffer
+       (This : in out Text_Display;
+        Buff : in out FLTK.Text_Buffers.Text_Buffer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Text_Buffer * buffer() const;
+</pre></td>
+<td><pre>
+function Get_Buffer
+       (This : in Text_Display)
+    return FLTK.Text_Buffers.Text_Buffer_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double col_to_x(double col) const;
+</pre></td>
+<td><pre>
+function Col_To_X
+       (This    : in Text_Display;
+        Col_Num : in Integer)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int count_lines(int start, int end, bool start_pos_is_line_start) const;
+</pre></td>
+<td><pre>
+function Count_Lines
+       (This                    : in Text_Display;
+        Start, Finish           : in Natural;
+        Start_Pos_Is_Line_Start : in Boolean := False)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color cursor_color() const;
+</pre></td>
+<td><pre>
+function Get_Cursor_Color
+       (This : in Text_Display)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void cursor_color(Fl_Color n);
+</pre></td>
+<td><pre>
+procedure Set_Cursor_Color
+       (This : in out Text_Display;
+        Col  : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void cursor_style(int style);
+</pre></td>
+<td><pre>
+procedure Set_Cursor_Style
+       (This  : in out Text_Display;
+        Style : in     Cursor_Style);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Text_Display);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int handle(int e);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Text_Display;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void hide_cursor();
+</pre></td>
+<td><pre>
+procedure Hide_Cursor
+       (This : in out Text_Display);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void highlight_data
+   (Fl_Text_Buffer *styleBuffer,
+    const Style_Table_Entry *styleTable,
+    int nStyles,
+    char unfinishedStyle,
+    Unfinished_Style_Cb unfinishedHighlightCB,
+    void *cbArg);
+</pre></td>
+<td><pre>
+procedure Highlight_Data
+       (This  : in out Text_Display;
+        Buff  : in out FLTK.Text_Buffers.Text_Buffer;
+        Table : in     Styles.Style_Array);
+
+procedure Highlight_Data
+       (This       : in out Text_Display;
+        Buff       : in out FLTK.Text_Buffers.Text_Buffer;
+        Table      : in     Styles.Style_Array;
+        Unfinished : in     Styles.Style_Index;
+        Callback   : in     Styles.Unfinished_Style_Callback);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int in_selection(int x, int y) const;
+</pre></td>
+<td><pre>
+function In_Selection
+       (This : in Text_Display;
+        X, Y : in Integer)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void insert(const char *text);
+</pre></td>
+<td><pre>
+procedure Insert_Text
+       (This : in out Text_Display;
+        Item : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void insert_position(int newPos);
+</pre></td>
+<td><pre>
+procedure Set_Insert_Position
+       (This : in out Text_Display;
+        Pos  : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int insert_position() const;
+</pre></td>
+<td><pre>
+function Get_Insert_Position
+       (This : in Text_Display)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Item
+       (Tint : in Color;
+        Font : in Font_Kind;
+        Size : in Font_Size)
+    return Style_Entry;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int line_end(int startPos, bool startPosIsLineStart) const;
+</pre></td>
+<td><pre>
+function Line_End
+       (This                    : in Text_Display;
+        Pos                     : in Natural;
+        Start_Pos_Is_Line_Start : in Boolean := False)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int line_start(int pos) const;
+</pre></td>
+<td><pre>
+function Line_Start
+       (This : in Text_Display;
+        Pos  : in Natural)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void linenumber_align(Fl_Align val);
+</pre></td>
+<td><pre>
+procedure Set_Linenumber_Alignment
+       (This : in out Text_Display;
+        To   : in     Alignment);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Align linenumber_align() const;
+</pre></td>
+<td><pre>
+function Get_Linenumber_Alignment
+       (This : in Text_Display)
+    return Alignment;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void linenumber_bgcolor(Fl_Color val);
+</pre></td>
+<td><pre>
+procedure Set_Linenumber_Back_Color
+       (This : in out Text_Display;
+        To   : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color linenumber_bgcolor() const;
+</pre></td>
+<td><pre>
+function Get_Linenumber_Back_Color
+       (This : in Text_Display)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void linenumber_fgcolor(Fl_Color val);
+</pre></td>
+<td><pre>
+procedure Set_Linenumber_Fore_Color
+       (This : in out Text_Display;
+        To   : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color linenumber_fgcolor() const;
+</pre></td>
+<td><pre>
+function Get_Linenumber_Fore_Color
+       (This : in Text_Display)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void linenumber_font(Fl_Font val);
+</pre></td>
+<td><pre>
+procedure Set_Linenumber_Font
+       (This : in out Text_Display;
+        To   : in     Font_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Font linenumber_font() const;
+</pre></td>
+<td><pre>
+function Get_Linenumber_Font
+       (This : in Text_Display)
+    return Font_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void linenumber_format(const char *val);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * linenumber_format() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void linenumber_size(Fl_Fontsize val);
+</pre></td>
+<td><pre>
+procedure Set_Linenumber_Size
+       (This : in out Text_Display;
+        To   : in     Font_Size);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Fontsize linenumber_size() const;
+</pre></td>
+<td><pre>
+function Get_Linenumber_Size
+       (This : in Text_Display)
+    return Font_Size;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void linenumber_width(int width);
+</pre></td>
+<td><pre>
+procedure Set_Linenumber_Width
+       (This  : in out Text_Display;
+        Width : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int linenumber_width() const;
+</pre></td>
+<td><pre>
+function Get_Linenumber_Width
+       (This : in Text_Display)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int move_down();
+</pre></td>
+<td><pre>
+procedure Move_Down
+       (This : in out Text_Display);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int move_left();
+</pre></td>
+<td><pre>
+procedure Move_Left
+       (This : in out Text_Display);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int move_right();
+</pre></td>
+<td><pre>
+procedure Move_Right
+       (This : in out Text_Display);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int move_up();
+</pre></td>
+<td><pre>
+procedure Move_Up
+       (This : in out Text_Display);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void next_word(void);
+</pre></td>
+<td><pre>
+procedure Next_Word
+       (This : in out Text_Display);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void overstrike(const char *text);
+</pre></td>
+<td><pre>
+procedure Overstrike
+       (This : in out Text_Display;
+        Text : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int position_style(int lineStartPos, int lineLen, int lineIndex) const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int position_to_xy(int pos, int *x, int *y) const;
+</pre></td>
+<td><pre>
+procedure Position_To_XY
+       (This     : in     Text_Display;
+        Pos      : in     Integer;
+        X, Y     :    out Integer;
+        Vert_Out :    out Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void previous_word(void);
+</pre></td>
+<td><pre>
+procedure Previous_Word
+       (This : in out Text_Display);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void redisplay_range(int start, int end);
+</pre></td>
+<td><pre>
+procedure Redisplay_Range
+       (This          : in out Text_Display;
+        Start, Finish : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void resize(int X, int Y, int W, int H);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int rewind_lines(int startPos, int nLines);
+</pre></td>
+<td><pre>
+function Rewind_Lines
+       (This         : in Text_Display;
+        Start, Lines : in Natural)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void scroll(int topLineNum, int horizOffset);
+</pre></td>
+<td><pre>
+procedure Scroll_To
+       (This : in out Text_Display;
+        Line : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Align scrollbar_align() const;
+</pre></td>
+<td><pre>
+function Get_Scrollbar_Alignment
+       (This : in Text_Display)
+    return Alignment;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void scrollbar_align(Fl_Align a);
+</pre></td>
+<td><pre>
+procedure Set_Scrollbar_Alignment
+       (This  : in out Text_Display;
+        Align : in     Alignment);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int scrollbar_width() const;
+</pre></td>
+<td><pre>
+function Get_Scrollbar_Width
+       (This : in Text_Display)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void scrollbar_width(int W);
+</pre></td>
+<td><pre>
+procedure Set_Scrollbar_Width
+       (This  : in out Text_Display;
+        Width : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int shortcut() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void shortcut(int s);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void show_cursor(int b=1);
+</pre></td>
+<td><pre>
+procedure Show_Cursor
+       (This : in out Text_Display);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void show_insert_position();
+</pre></td>
+<td><pre>
+procedure Show_Insert_Position
+       (This : in out Text_Display);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int skip_lines(int startPos, int nLines, bool startPosIsLineStart);
+</pre></td>
+<td><pre>
+function Skip_Lines
+       (This                    : in Text_Display;
+        Start, Lines            : in Natural;
+        Start_Pos_Is_Line_Start : in Boolean := False)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color textcolor() const;
+</pre></td>
+<td><pre>
+function Get_Text_Color
+       (This : in Text_Display)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textcolor(Fl_Color n);
+</pre></td>
+<td><pre>
+procedure Set_Text_Color
+       (This : in out Text_Display;
+        Col  : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Font textfont() const;
+</pre></td>
+<td><pre>
+function Get_Text_Font
+       (This : in Text_Display)
+    return Font_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textfont(Fl_Font s);
+</pre></td>
+<td><pre>
+procedure Set_Text_Font
+       (This : in out Text_Display;
+        Font : in     Font_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Fontsize textsize() const;
+</pre></td>
+<td><pre>
+function Get_Text_Size
+       (This : in Text_Display)
+    return Font_Size;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textsize(Fl_Fontsize s);
+</pre></td>
+<td><pre>
+procedure Set_Text_Size
+       (This : in out Text_Display;
+        Size : in     Font_Size);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int word_end(int pos) const;
+</pre></td>
+<td><pre>
+function Word_End
+       (This : in out Text_Display;
+        Pos  : in     Natural)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int word_start(int pos) const;
+</pre></td>
+<td><pre>
+function Word_Start
+       (This : in out Text_Display;
+        Pos  : in     Natural)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void wrap_mode(int wrap, int wrap_margin);
+</pre></td>
+<td><pre>
+procedure Set_Wrap_Mode
+       (This   : in out Text_Display;
+        Mode   : in     Wrap_Mode;
+        Margin : in     Natural := 0);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int wrapped_column(int row, int column) const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int wrapped_row(int row) const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+double x_to_col(double x) const;
+</pre></td>
+<td><pre>
+function X_To_Col
+       (This  : in Text_Display;
+        X_Pos : in Integer)
+    return Integer;
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

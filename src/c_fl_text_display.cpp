@@ -85,6 +85,20 @@ void fl_text_display_set_buffer(TEXTDISPLAY td, TEXTBUFFER tb) {
 
 
 
+void fl_text_display_highlight_data(TEXTDISPLAY td, TEXTBUFFER tb, void * st, int len) {
+    reinterpret_cast<Fl_Text_Display*>(td)->highlight_data
+        (reinterpret_cast<Fl_Text_Buffer*>(tb), reinterpret_cast<Fl_Text_Display::Style_Table_Entry*>(st), len, 0, 0, 0);
+}
+
+void fl_text_display_highlight_data2(TEXTDISPLAY td, TEXTBUFFER tb, void * st, int len, char us, void * cb, void * a) {
+    reinterpret_cast<Fl_Text_Display*>(td)->highlight_data
+       (reinterpret_cast<Fl_Text_Buffer*>(tb), reinterpret_cast<Fl_Text_Display::Style_Table_Entry*>(st), len,
+        us, reinterpret_cast<Fl_Text_Display::Unfinished_Style_Cb>(cb), a);
+}
+
+
+
+
 double fl_text_display_col_to_x(TEXTDISPLAY td, double c) {
     return reinterpret_cast<Fl_Text_Display*>(td)->col_to_x(c);
 }
@@ -156,6 +170,10 @@ void fl_text_display_set_text_size(TEXTDISPLAY td, int s) {
 
 void fl_text_display_insert(TEXTDISPLAY td, char * i) {
     reinterpret_cast<Fl_Text_Display*>(td)->insert(i);
+}
+
+void fl_text_display_overstrike(TEXTDISPLAY td, char * t) {
+    reinterpret_cast<Fl_Text_Display*>(td)->overstrike(t);
 }
 
 int fl_text_display_get_insert_pos(TEXTDISPLAY td) {
@@ -308,4 +326,12 @@ int fl_text_display_get_scrollbar_width(TEXTDISPLAY td) {
 void fl_text_display_set_scrollbar_width(TEXTDISPLAY td, int w) {
     reinterpret_cast<Fl_Text_Display*>(td)->scrollbar_width(w);
 }
+
+
+
+
+void fl_text_display_redisplay_range(TEXTDISPLAY td, int s, int f) {
+    reinterpret_cast<Fl_Text_Display*>(td)->redisplay_range(s,f);
+}
+
 

@@ -10,6 +10,9 @@ package FLTK.Devices.Surfaces.Paged.Printers is
 
     type Printer is new Paged_Surface with private;
 
+    type Printer_Reference (Data : not null access Printer'Class) is limited null record
+        with Implicit_Dereference => Data;
+
 
 
 
@@ -107,6 +110,31 @@ private
 
     overriding procedure Finalize
            (This : in out Printer);
+
+
+
+
+    pragma Inline (Start_Job);
+    pragma Inline (End_Job);
+    pragma Inline (Start_Page);
+    pragma Inline (End_Page);
+
+
+    pragma Inline (Get_Margins);
+    pragma Inline (Get_Printable_Rect);
+    pragma Inline (Get_Origin);
+    pragma Inline (Set_Origin);
+    pragma Inline (Rotate);
+    pragma Inline (Scale);
+    pragma Inline (Translate);
+    pragma Inline (Untranslate);
+
+
+    pragma Inline (Print_Widget);
+    pragma Inline (Print_Window_Part);
+
+
+    pragma Inline (Set_Current);
 
 
 end FLTK.Devices.Surfaces.Paged.Printers;

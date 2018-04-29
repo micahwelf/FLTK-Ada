@@ -11,6 +11,9 @@ package FLTK.Widgets.Groups.Input_Choices is
 
     type Input_Choice is new Group with private;
 
+    type Input_Choice_Reference (Data : not null access Input_Choice'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -37,12 +40,22 @@ package FLTK.Widgets.Groups.Input_Choices is
 
 
 
+    procedure Clear
+           (This : in out Input_Choice);
+
+
+
+
     function Has_Changed
            (This : in Input_Choice)
         return Boolean;
 
     procedure Clear_Changed
            (This : in out Input_Choice);
+
+    procedure Set_Changed
+           (This : in out Input_Choice;
+            To   : in     Boolean);
 
     function Get_Down_Box
            (This : in Input_Choice)
@@ -118,6 +131,31 @@ private
 
     overriding procedure Finalize
            (This : in out Input_Choice);
+
+
+
+
+    pragma Inline (Input);
+    pragma Inline (Menu_Button);
+
+
+    pragma Inline (Has_Changed);
+    pragma Inline (Clear_Changed);
+    pragma Inline (Get_Down_Box);
+    pragma Inline (Set_Down_Box);
+    pragma Inline (Get_Text_Color);
+    pragma Inline (Set_Text_Color);
+    pragma Inline (Get_Text_Font);
+    pragma Inline (Set_Text_Font);
+    pragma Inline (Get_Text_Size);
+    pragma Inline (Set_Text_Size);
+    pragma Inline (Get_Input);
+    pragma Inline (Set_Input);
+    pragma Inline (Set_Item);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Groups.Input_Choices;

@@ -17,10 +17,12 @@ package body FLTK.Devices.Surfaces.Paged.Printers is
     function new_fl_printer
         return System.Address;
     pragma Import (C, new_fl_printer, "new_fl_printer");
+    pragma Inline (new_fl_printer);
 
     procedure free_fl_printer
            (D : in System.Address);
     pragma Import (C, free_fl_printer, "free_fl_printer");
+    pragma Inline (free_fl_printer);
 
 
 
@@ -30,26 +32,31 @@ package body FLTK.Devices.Surfaces.Paged.Printers is
             C : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_printer_start_job, "fl_printer_start_job");
+    pragma Inline (fl_printer_start_job);
 
     function fl_printer_start_job2
            (D       : in System.Address;
             C, F, T : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_printer_start_job2, "fl_printer_start_job2");
+    pragma Inline (fl_printer_start_job2);
 
     procedure fl_printer_end_job
            (D : in System.Address);
     pragma Import (C, fl_printer_end_job, "fl_printer_end_job");
+    pragma Inline (fl_printer_end_job);
 
     function fl_printer_start_page
            (D : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_printer_start_page, "fl_printer_start_page");
+    pragma Inline (fl_printer_start_page);
 
     function fl_printer_end_page
            (D : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_printer_end_page, "fl_printer_end_page");
+    pragma Inline (fl_printer_end_page);
 
 
 
@@ -58,41 +65,49 @@ package body FLTK.Devices.Surfaces.Paged.Printers is
            (D          : in     System.Address;
             L, T, R, B :    out Interfaces.C.int);
     pragma Import (C, fl_printer_margins, "fl_printer_margins");
+    pragma Inline (fl_printer_margins);
 
     function fl_printer_printable_rect
            (D    : in     System.Address;
             W, H :    out Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_printer_printable_rect, "fl_printer_printable_rect");
+    pragma Inline (fl_printer_printable_rect);
 
     procedure fl_printer_get_origin
            (D    : in     System.Address;
             X, Y :    out Interfaces.C.int);
     pragma Import (C, fl_printer_get_origin, "fl_printer_get_origin");
+    pragma Inline (fl_printer_get_origin);
 
     procedure fl_printer_set_origin
            (D    : in System.Address;
             X, Y : in Interfaces.C.int);
     pragma Import (C, fl_printer_set_origin, "fl_printer_set_origin");
+    pragma Inline (fl_printer_set_origin);
 
     procedure fl_printer_rotate
            (D : in System.Address;
             R : in Interfaces.C.C_float);
     pragma Import (C, fl_printer_rotate, "fl_printer_rotate");
+    pragma Inline (fl_printer_rotate);
 
     procedure fl_printer_scale
            (D    : in System.Address;
             X, Y : in Interfaces.C.C_float);
     pragma Import (C, fl_printer_scale, "fl_printer_scale");
+    pragma Inline (fl_printer_scale);
 
     procedure fl_printer_translate
            (D    : in System.Address;
             X, Y : in Interfaces.C.int);
     pragma Import (C, fl_printer_translate, "fl_printer_translate");
+    pragma Inline (fl_printer_translate);
 
     procedure fl_printer_untranslate
            (D : in System.Address);
     pragma Import (C, fl_printer_untranslate, "fl_printer_untranslate");
+    pragma Inline (fl_printer_untranslate);
 
 
 
@@ -101,11 +116,13 @@ package body FLTK.Devices.Surfaces.Paged.Printers is
            (D, I   : in System.Address;
             DX, DY : in Interfaces.C.int);
     pragma Import (C, fl_printer_print_widget, "fl_printer_print_widget");
+    pragma Inline (fl_printer_print_widget);
 
     procedure fl_printer_print_window_part
            (D, I               : in System.Address;
             X, Y, W, H, DX, DY : in Interfaces.C.int);
     pragma Import (C, fl_printer_print_window_part, "fl_printer_print_window_part");
+    pragma Inline (fl_printer_print_window_part);
 
 
 
@@ -113,6 +130,7 @@ package body FLTK.Devices.Surfaces.Paged.Printers is
     procedure fl_printer_set_current
            (D : in System.Address);
     pragma Import (C, fl_printer_set_current, "fl_printer_set_current");
+    pragma Inline (fl_printer_set_current);
 
 
 
@@ -141,6 +159,8 @@ package body FLTK.Devices.Surfaces.Paged.Printers is
                 This.Void_Ptr := new_fl_printer;
             end return;
         end Create;
+
+        pragma Inline (Create);
 
     end Forge;
 
@@ -204,42 +224,34 @@ package body FLTK.Devices.Surfaces.Paged.Printers is
 
     procedure Get_Margins
            (This                     : in     Printer;
-            Left, Top, Right, Bottom :    out Integer)
-    is
-        L, T, R, B : Interfaces.C.int;
+            Left, Top, Right, Bottom :    out Integer) is
     begin
-        fl_printer_margins (This.Void_Ptr, L, T, R, B);
-        Left := Integer (L);
-        Top := Integer (T);
-        Right := Integer (R);
-        Bottom := Integer (B);
+        fl_printer_margins
+           (This.Void_Ptr,
+            Interfaces.C.int (Left),
+            Interfaces.C.int (Top),
+            Interfaces.C.int (Right),
+            Interfaces.C.int (Bottom));
     end Get_Margins;
 
 
     procedure Get_Printable_Rect
            (This : in     Printer;
-            W, H :    out Integer)
-    is
-        Wid, Hei : Interfaces.C.int;
+            W, H :    out Integer) is
     begin
-        if fl_printer_printable_rect (This.Void_Ptr, Wid, Hei) /= 0 then
+        if fl_printer_printable_rect
+            (This.Void_Ptr, Interfaces.C.int (W), Interfaces.C.int (H)) /= 0
+        then
             raise Page_Error;
-        else
-            W := Integer (Wid);
-            H := Integer (Hei);
         end if;
     end Get_Printable_Rect;
 
 
     procedure Get_Origin
            (This : in     Printer;
-            X, Y :    out Integer)
-    is
-        Eks, Why : Interfaces.C.int;
+            X, Y :    out Integer) is
     begin
-        fl_printer_get_origin (This.Void_Ptr, Eks, Why);
-        X := Integer (Eks);
-        Y := Integer (Why);
+        fl_printer_get_origin (This.Void_Ptr, Interfaces.C.int (X), Interfaces.C.int (Y));
     end Get_Origin;
 
 

@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Color_Chooser Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Color_Chooser Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Color_Chooser</td>
+    <td>FLTK.Widgets.Groups.Color_Choosers</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Color_Chooser</td>
+    <td>Color_Chooser</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Color_Chooser_Reference</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Color_Mode</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Color_Chooser(int X, int Y, int W, int H, const char *L=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Color_Chooser;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double b() const;
+</pre></td>
+<td><pre>
+function Get_Blue
+       (This : in Color_Chooser)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Color_Was_Changed
+       (This : in Color_Chooser)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Clear_Changed
+       (This : in out Color_Chooser);
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Draw
+       (This : in out Color_Chooser);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double g() const;
+</pre></td>
+<td><pre>
+function Get_Green
+       (This : in Color_Chooser)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Handle
+       (This  : in out Color_Chooser;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int hsv(double H, double S, double V);
+</pre></td>
+<td><pre>
+procedure Set_HSV
+       (This    : in out Color_Chooser;
+        H, S, V : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double hue() const;
+</pre></td>
+<td><pre>
+function Get_Hue
+       (This : in Color_Chooser)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int mode();
+</pre></td>
+<td><pre>
+function Get_Mode
+       (This : in Color_Chooser)
+    return Color_Mode;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void mode(int newMode);
+</pre></td>
+<td><pre>
+procedure Set_Mode
+       (This : in out Color_Chooser;
+        To   : in     Color_Mode);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double r() const;
+</pre></td>
+<td><pre>
+function Get_Red
+       (This : in Color_Chooser)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int rgb(double R, double G, double B);
+</pre></td>
+<td><pre>
+procedure Set_RGB
+       (This    : in out Color_Chooser;
+        R, G, B : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double saturation() const;
+</pre></td>
+<td><pre>
+function Get_Saturation
+       (This : in Color_Chooser)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+double value() const;
+</pre></td>
+<td><pre>
+function Get_Value
+       (This : in Color_Chooser)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void hsv2rgb(double H, double S, double V, double &R, double &G, double &B);
+</pre></td>
+<td><pre>
+procedure HSV_To_RGB
+       (H, S, V : in     Long_Float;
+        R, G, B :    out Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void rgb2hsv(double R, double G, double B, double &H, double &S, double &V);
+</pre></td>
+<td><pre>
+procedure RGB_To_HSV
+       (R, G, B : in     Long_Float;
+        H, S, V :    out Long_Float);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

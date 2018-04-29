@@ -18,10 +18,12 @@ package body FLTK.Widgets.Groups.Input_Choices is
     procedure input_choice_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, input_choice_set_draw_hook, "input_choice_set_draw_hook");
+    pragma Inline (input_choice_set_draw_hook);
 
     procedure input_choice_set_handle_hook
            (W, H : in System.Address);
     pragma Import (C, input_choice_set_handle_hook, "input_choice_set_handle_hook");
+    pragma Inline (input_choice_set_handle_hook);
 
 
 
@@ -31,10 +33,12 @@ package body FLTK.Widgets.Groups.Input_Choices is
             Text       : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_input_choice, "new_fl_input_choice");
+    pragma Inline (new_fl_input_choice);
 
     procedure free_fl_input_choice
            (W : in System.Address);
     pragma Import (C, free_fl_input_choice, "free_fl_input_choice");
+    pragma Inline (free_fl_input_choice);
 
 
 
@@ -43,11 +47,21 @@ package body FLTK.Widgets.Groups.Input_Choices is
            (N : in System.Address)
         return System.Address;
     pragma Import (C, fl_input_choice_input, "fl_input_choice_input");
+    pragma Inline (fl_input_choice_input);
 
     function fl_input_choice_menubutton
            (N : in System.Address)
         return System.Address;
     pragma Import (C, fl_input_choice_menubutton, "fl_input_choice_menubutton");
+    pragma Inline (fl_input_choice_menubutton);
+
+
+
+
+    procedure fl_input_choice_clear
+           (N : in System.Address);
+    pragma Import (C, fl_input_choice_clear, "fl_input_choice_clear");
+    pragma Inline (fl_input_choice_clear);
 
 
 
@@ -56,65 +70,83 @@ package body FLTK.Widgets.Groups.Input_Choices is
            (N : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_input_choice_changed, "fl_input_choice_changed");
+    pragma Inline (fl_input_choice_changed);
 
     procedure fl_input_choice_clear_changed
            (N : in System.Address);
     pragma Import (C, fl_input_choice_clear_changed, "fl_input_choice_clear_changed");
+    pragma Inline (fl_input_choice_clear_changed);
+
+    procedure fl_input_choice_set_changed
+           (N : in System.Address);
+    pragma Import (C, fl_input_choice_set_changed, "fl_input_choice_set_changed");
+    pragma Inline (fl_input_choice_set_changed);
 
     function fl_input_choice_get_down_box
            (N : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_input_choice_get_down_box, "fl_input_choice_get_down_box");
+    pragma Inline (fl_input_choice_get_down_box);
 
     procedure fl_input_choice_set_down_box
            (N : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_input_choice_set_down_box, "fl_input_choice_set_down_box");
+    pragma Inline (fl_input_choice_set_down_box);
 
     function fl_input_choice_get_textcolor
            (N : in System.Address)
         return Interfaces.C.unsigned;
     pragma Import (C, fl_input_choice_get_textcolor, "fl_input_choice_get_textcolor");
+    pragma Inline (fl_input_choice_get_textcolor);
 
     procedure fl_input_choice_set_textcolor
            (N : in System.Address;
             T : in Interfaces.C.unsigned);
     pragma Import (C, fl_input_choice_set_textcolor, "fl_input_choice_set_textcolor");
+    pragma Inline (fl_input_choice_set_textcolor);
 
     function fl_input_choice_get_textfont
            (N : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_input_choice_get_textfont, "fl_input_choice_get_textfont");
+    pragma Inline (fl_input_choice_get_textfont);
 
     procedure fl_input_choice_set_textfont
            (N : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_input_choice_set_textfont, "fl_input_choice_set_textfont");
+    pragma Inline (fl_input_choice_set_textfont);
 
     function fl_input_choice_get_textsize
            (N : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_input_choice_get_textsize, "fl_input_choice_get_textsize");
+    pragma Inline (fl_input_choice_get_textsize);
 
     procedure fl_input_choice_set_textsize
            (N : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_input_choice_set_textsize, "fl_input_choice_set_textsize");
+    pragma Inline (fl_input_choice_set_textsize);
 
     function fl_input_choice_get_value
            (N : in System.Address)
         return Interfaces.C.Strings.chars_ptr;
     pragma Import (C, fl_input_choice_get_value, "fl_input_choice_get_value");
+    pragma Inline (fl_input_choice_get_value);
 
     procedure fl_input_choice_set_value
            (N : in System.Address;
             T : in Interfaces.C.char_array);
     pragma Import (C, fl_input_choice_set_value, "fl_input_choice_set_value");
+    pragma Inline (fl_input_choice_set_value);
 
     procedure fl_input_choice_set_value2
            (N : in System.Address;
             T : in Interfaces.C.int);
     pragma Import (C, fl_input_choice_set_value2, "fl_input_choice_set_value2");
+    pragma Inline (fl_input_choice_set_value2);
 
 
 
@@ -122,12 +154,14 @@ package body FLTK.Widgets.Groups.Input_Choices is
     procedure fl_input_choice_draw
            (W : in System.Address);
     pragma Import (C, fl_input_choice_draw, "fl_input_choice_draw");
+    pragma Inline (fl_input_choice_draw);
 
     function fl_input_choice_handle
            (W : in System.Address;
             E : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_input_choice_handle, "fl_input_choice_handle");
+    pragma Inline (fl_input_choice_handle);
 
 
 
@@ -146,7 +180,7 @@ package body FLTK.Widgets.Groups.Input_Choices is
         if  This.Void_Ptr /= System.Null_Address and then
             This in Input_Choice'Class
         then
-            This.Clear;
+            Group (This).Clear;
             free_fl_input_choice (This.Void_Ptr);
             Free (This.My_Input);
             Free (This.My_Menu_Button);
@@ -214,6 +248,15 @@ package body FLTK.Widgets.Groups.Input_Choices is
 
 
 
+    procedure Clear
+           (This : in out Input_Choice) is
+    begin
+        fl_input_choice_clear (This.Void_Ptr);
+    end Clear;
+
+
+
+
     function Has_Changed
            (This : in Input_Choice)
         return Boolean is
@@ -227,6 +270,16 @@ package body FLTK.Widgets.Groups.Input_Choices is
     begin
         fl_input_choice_clear_changed (This.Void_Ptr);
     end Clear_Changed;
+
+
+    procedure Set_Changed
+           (This : in out Input_Choice;
+            To   : in     Boolean) is
+    begin
+        if To then
+            fl_input_choice_set_changed (This.Void_Ptr);
+        end if;
+    end Set_Changed;
 
 
     function Get_Down_Box
@@ -295,13 +348,10 @@ package body FLTK.Widgets.Groups.Input_Choices is
 
     function Get_Input
            (This : in Input_Choice)
-        return String
-    is
-        C_Str : Interfaces.C.Strings.chars_ptr := fl_input_choice_get_value (This.Void_Ptr);
-        The_Text : String := Interfaces.C.Strings.Value (C_Str);
+        return String is
     begin
-        Interfaces.C.Strings.Free (C_Str);
-        return The_Text;
+        --  pointer to internal buffer so no free necessary
+        return Interfaces.C.Strings.Value (fl_input_choice_get_value (This.Void_Ptr));
     end Get_Input;
 
 
