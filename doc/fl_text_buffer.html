@@ -1,0 +1,881 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Text_Buffer Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Text_Buffer Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Text_Buffer</td>
+    <td>FLTK.Text_Buffers</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Text_Buffer</td>
+    <td>Text_Buffer</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Text_Buffer_Reference</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Position</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Modification</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Text_Modify_Cb</td>
+    <td>Modify_Callback</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Text_Predelete_Cb</td>
+    <td>Predelete_Callback</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Text_Selection</td>
+    <td>&nbsp;</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Text_Buffer(int requestedSize=0, int preferredGapSize=1024);
+</pre></td>
+<td><pre>
+function Create
+       (Requested_Size     : in Natural := 0;
+        Preferred_Gap_Size : in Natural := 1024)
+    return Text_Buffer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void add_modify_callback(Fl_Text_Modify_Cb bufModifiedCB, void *cbArg);
+</pre></td>
+<td><pre>
+procedure Add_Modify_Callback
+       (This : in out Text_Buffer;
+        Func : in     Modify_Callback);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void add_predelete_callback(Fl_Text_Predelete_Cb bufPredelCB, void *cbArg);
+</pre></td>
+<td><pre>
+procedure Add_Predelete_Callback
+       (This : in out Text_Buffer;
+        Func : in     Predelete_Callback);
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Enable_Callbacks
+       (This : in out Text_Buffer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Disable_Callbacks
+       (This : in out Text_Buffer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * address(int pos) const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+char * address(int pos);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void append(const char *t);
+</pre></td>
+<td><pre>
+procedure Append_Text
+       (This : in out Text_Buffer;
+        Text : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int appendFile(const char *file, int buflen=128*1024);
+</pre></td>
+<td><pre>
+procedure Append_File
+       (This   : in out Text_Buffer;
+        Name   : in     String;
+        Buffer : in     Natural := 128 * 1024);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char byte_at(int pos) const;
+</pre></td>
+<td><pre>
+function Byte_At
+       (This  : in Text_Buffer;
+        Place : in Position)
+    return Character;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void call_modify_callbacks();
+</pre></td>
+<td><pre>
+procedure Call_Modify_Callbacks
+       (This : in out Text_Buffer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void call_predelete_callbacks();
+</pre></td>
+<td><pre>
+procedure Call_Predelete_Callbacks
+       (This : in out Text_Buffer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void canUndo(char flag=1);
+</pre></td>
+<td><pre>
+procedure Can_Undo
+       (This : in out Text_Buffer;
+        Flag : in     Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int char_at(int pos) const;
+</pre></td>
+<td><pre>
+function Character_At
+       (This  : in Text_Buffer;
+        Place : in Position)
+    return Character;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void copy(Fl_Text_Buffer *fromBuf, int fromStart, int fromEnd, int toPos);
+</pre></td>
+<td><pre>
+procedure Copy
+       (This          : in out Text_Buffer;
+        From          : in     Text_Buffer;
+        Start, Finish : in     Position;
+        Insert_Pos    : in     Position);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int count_displayed_characters(int lineStartPos, int targetPos) const;
+</pre></td>
+<td><pre>
+function Count_Displayed_Characters
+       (This          : in Text_Buffer;
+        Start, Finish : in Position)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int count_lines(int startPos, int endPos) const;
+</pre></td>
+<td><pre>
+function Count_Lines
+       (This          : in Text_Buffer;
+        Start, Finish : in Position)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int findchar_backward(int startPos, unsigned int searchChar, int *foundPos) const;
+</pre></td>
+<td><pre>
+function Findchar_Backward
+       (This     : in     Text_Buffer;
+        Start_At : in     Position;
+        Item     : in     Character;
+        Found_At :    out Position)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int findchar_forward(int startPos, unsigned searchChar, int *foundPos) const;
+</pre></td>
+<td><pre>
+function Findchar_Forward
+       (This     : in     Text_Buffer;
+        Start_At : in     Position;
+        Item     : in     Character;
+        Found_At :    out Position)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void highlight(int start, int end);
+</pre></td>
+<td><pre>
+procedure Set_Highlight
+       (This          : in out Text_Buffer;
+        Start, Finish : in     Position);
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Get_Highlight
+       (This          : in     Text_Buffer;
+        Start, Finish :    out Position);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int highlight();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int highlight_position(int *start, int *end);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const Fl_Text_Selection * highlight_selection() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+char * highlight_text();
+</pre></td>
+<td><pre>
+function Get_Highlighted_Text
+       (This : in Text_Buffer)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void insert(int pos, const char *text);
+</pre></td>
+<td><pre>
+procedure Insert_Text
+       (This  : in out Text_Buffer;
+        Place : in     Position;
+        Text  : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int insertfile(const char *file, int pos, int buflen=128*1024);
+</pre></td>
+<td><pre>
+procedure Insert_File
+       (This   : in out Text_Buffer;
+        Name   : in     String;
+        Place  : in     Position;
+        Buffer : in     Natural := 128 * 1024);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int length() const;
+</pre></td>
+<td><pre>
+function Length
+       (This : in Text_Buffer)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int line_end(int pos) const;
+</pre></td>
+<td><pre>
+function Line_End
+       (This  : in Text_Buffer;
+        Place : in Position)
+    return Position;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int line_start(int pos) const;
+</pre></td>
+<td><pre>
+function Line_Start
+       (This  : in Text_Buffer;
+        Place : in Position)
+    return Position;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char * line_text(int pos) const;
+</pre></td>
+<td><pre>
+function Line_Text
+       (This  : in Text_Buffer;
+        Place : in Position)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int loadfile(const char *file, int buflen=128*1024);
+</pre></td>
+<td><pre>
+procedure Load_File
+       (This   : in out Text_Buffer;
+        Name   : in     String;
+        Buffer : in     Natural := 128 * 1024);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int next_char(int ix) const;
+</pre></td>
+<td><pre>
+function Next_Char
+       (This  : in Text_Buffer;
+        Place : in Position)
+    return Character;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int next_char_clipped(int ix) const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int outputfile(const char *file, int start, int end, int buflen=128*1024);
+</pre></td>
+<td><pre>
+procedure Output_File
+       (This          : in Text_Buffer;
+        Name          : in String;
+        Start, Finish : in Position;
+        Buffer        : in Natural := 128 * 1024);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int prev_char(int ix) const;
+</pre></td>
+<td><pre>
+function Prev_Char
+       (This  : in Text_Buffer;
+        Place : in Position)
+    return Character;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int prev_char_clipped(int ix) const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const Fl_Text_Selection * primary_selection() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Text_Selection * primary_selection();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void remove(int start, int end);
+</pre></td>
+<td><pre>
+procedure Remove_Text
+       (This          : in out Text_Buffer;
+        Start, Finish : in     Position);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void remove_modify_callback(Fl_Text_Modify_Cb bufModifiedCB, void *cbArg);
+</pre></td>
+<td><pre>
+procedure Remove_Modify_Callback
+       (This : in out Text_Buffer;
+        Func : in     Modify_Callback);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void remove_predelete_callback(Fl_Text_Predelete_Cb predelCB, void *cbArg);
+</pre></td>
+<td><pre>
+procedure Remove_Predelete_Callback
+       (This : in out Text_Buffer;
+        Func : in     Predelete_Callback);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void remove_secondary_selection();
+</pre></td>
+<td><pre>
+procedure Remove_Secondary_Selection
+       (This : in out Text_Buffer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void remove_selection();
+</pre></td>
+<td><pre>
+procedure Remove_Selection
+       (This : in out Text_Buffer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void replace(int start, int end, const char *text);
+</pre></td>
+<td><pre>
+procedure Replace_Text
+       (This          : in out Text_Buffer;
+        Start, Finish : in     Position;
+        Text          : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void replace_secondary_selection(const char *text);
+</pre></td>
+<td><pre>
+procedure Replace_Secondary_Selection
+       (This : in out Text_Buffer;
+        Text : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void replace_selection(const char *text);
+</pre></td>
+<td><pre>
+procedure Replace_Selection
+       (This : in out Text_Buffer;
+        Text : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int rewind_lines(int startPos, int nLines);
+</pre></td>
+<td><pre>
+function Rewind_Lines
+       (This  : in out Text_Buffer;
+        Start : in     Position;
+        Lines : in     Natural)
+    return Position;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int savefile(const char *file, int buflen=128*1024);
+</pre></td>
+<td><pre>
+procedure Save_File
+       (This   : in Text_Buffer;
+        Name   : in String;
+        Buffer : in Natural := 128 * 1024);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int search_backward(int startPos, const char *searchString, int *foundPos, int matchCase=0) const;
+</pre></td>
+<td><pre>
+function Search_Backward
+       (This       : in     Text_Buffer;
+        Start_At   : in     Position;
+        Item       : in     String;
+        Found_At   :    out Position;
+        Match_Case : in     Boolean := False)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int search_forward(int startPos, const char *searchString, int *foundPos, int matchCase=0) const;
+</pre></td>
+<td><pre>
+function Search_Forward
+       (This       : in     Text_Buffer;
+        Start_At   : in     Position;
+        Item       : in     String;
+        Found_At   :    out Position;
+        Match_Case : in     Boolean := False)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void secondary_select(int start, int end);
+</pre></td>
+<td><pre>
+procedure Set_Secondary_Selection
+       (This          : in out Text_Buffer;
+        Start, Finish : in     Position);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int secondary_selected();
+</pre></td>
+<td><pre>
+function Has_Secondary_Selection
+       (This : in Text_Buffer)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const Fl_Text_Selection * secondary_selection() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int secondary_selection_position(int *start, int *end);
+</pre></td>
+<td><pre>
+function Get_Secondary_Selection
+       (This          : in     Text_Buffer;
+        Start, Finish :    out Position)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char * secondary_selection_text();
+</pre></td>
+<td><pre>
+function Secondary_Selection_Text
+       (This : in Text_Buffer)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void secondary_unselect();
+</pre></td>
+<td><pre>
+procedure Secondary_Unselect
+       (This : in out Text_Buffer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void select(int start, int end);
+</pre></td>
+<td><pre>
+procedure Set_Selection
+       (This          : in out Text_Buffer;
+        Start, Finish : in     Position);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int selected() const;
+</pre></td>
+<td><pre>
+function Has_Selection
+       (This : in Text_Buffer)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int selection_position(int *start, int *end);
+</pre></td>
+<td><pre>
+function Get_Selection
+       (This          : in     Text_Buffer;
+        Start, Finish :    out Position)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char * selection_text();
+</pre></td>
+<td><pre>
+function Selection_Text
+       (This : in Text_Buffer)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int skip_displayed_characters(int lineStartPos, int nChars);
+</pre></td>
+<td><pre>
+function Skip_Displayed_Characters
+       (This  : in Text_Buffer;
+        Start : in Position;
+        Chars : in Natural)
+    return Position;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int skip_lines(int startPos, int nLines);
+</pre></td>
+<td><pre>
+function Skip_Lines
+       (This  : in out Text_Buffer;
+        Start : in     Position;
+        Lines : in     Natural)
+    return Position;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int tab_distance() const;
+</pre></td>
+<td><pre>
+function Get_Tab_Width
+       (This : in Text_Buffer)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void tab_distance(int tabDist);
+</pre></td>
+<td><pre>
+procedure Set_Tab_Width
+       (This : in out Text_Buffer;
+        To   : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char * text() const;
+</pre></td>
+<td><pre>
+function Get_Entire_Text
+       (This : in Text_Buffer)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void text(const char *text);
+</pre></td>
+<td><pre>
+procedure Set_Entire_Text
+       (This : in out Text_Buffer;
+        Text : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char * text_range(int start, int end) const;
+</pre></td>
+<td><pre>
+function Text_At
+       (This          : in Text_Buffer;
+        Start, Finish : in Position)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int undo(int *cp=0);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void unhighlight();
+</pre></td>
+<td><pre>
+procedure Unhighlight
+       (This : in out Text_Buffer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void unselect();
+</pre></td>
+<td><pre>
+procedure Unselect
+       (This : in out Text_Buffer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int utf8_align(int) const;
+</pre></td>
+<td><pre>
+function UTF8_Align
+       (This  : in Text_Buffer;
+        Place : in Position)
+    return Position;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int word_end(int pos) const;
+</pre></td>
+<td><pre>
+function Word_End
+       (This  : in Text_Buffer;
+        Place : in Position)
+    return Position;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int word_start(int pos) const;
+</pre></td>
+<td><pre>
+function Word_Start
+       (This  : in Text_Buffer;
+        Place : in Position)
+    return Position;
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+
