@@ -16,16 +16,6 @@ use type
 package body FLTK.Widgets.Menus is
 
 
-    function "+"
-           (Left, Right : in Menu_Flag)
-        return Menu_Flag is
-    begin
-        return Left or Right;
-    end "+";
-
-
-
-
     procedure menu_set_draw_hook
            (W, D : in System.Address);
     pragma Import (C, menu_set_draw_hook, "menu_set_draw_hook");

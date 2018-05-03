@@ -205,6 +205,18 @@ package FLTK is
     type Event_Outcome is (Not_Handled, Handled);
 
 
+    type Menu_Flag is private;
+    function "+" (Left, Right : in Menu_Flag) return Menu_Flag;
+    Flag_Normal    : constant Menu_Flag;
+    Flag_Inactive  : constant Menu_Flag;
+    Flag_Toggle    : constant Menu_Flag;
+    Flag_Value     : constant Menu_Flag;
+    Flag_Radio     : constant Menu_Flag;
+    Flag_Invisible : constant Menu_Flag;
+    Flag_Submenu   : constant Menu_Flag;
+    Flag_Divider   : constant Menu_Flag;
+
+
 private
 
 
@@ -305,6 +317,18 @@ private
     Right_Key        : constant Keypress := 16#ff53#;
     Up_Key           : constant Keypress := 16#ff52#;
     Escape_Key       : constant Keypress := 16#ff1b#;
+
+
+    type Menu_Flag is new Interfaces.Unsigned_8;
+    Flag_Normal    : constant Menu_Flag := 2#00000000#;
+    Flag_Inactive  : constant Menu_Flag := 2#00000001#;
+    Flag_Toggle    : constant Menu_Flag := 2#00000010#;
+    Flag_Value     : constant Menu_Flag := 2#00000100#;
+    Flag_Radio     : constant Menu_Flag := 2#00001000#;
+    Flag_Invisible : constant Menu_Flag := 2#00010000#;
+    --  Flag_Submenu_Pointer unlikely to be used
+    Flag_Submenu   : constant Menu_Flag := 2#01000000#;
+    Flag_Divider   : constant Menu_Flag := 2#10000000#;
 
 
 end FLTK;

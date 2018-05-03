@@ -18,18 +18,7 @@ package FLTK.Widgets.Menus is
     type Menu_Cursor (Data : access Menu'Class) is limited null record
         with Implicit_Dereference => Data;
 
-    type Index is new Positive;
-
-    type Menu_Flag is private;
-    function "+" (Left, Right : in Menu_Flag) return Menu_Flag;
-    Flag_Normal    : constant Menu_Flag;
-    Flag_Inactive  : constant Menu_Flag;
-    Flag_Toggle    : constant Menu_Flag;
-    Flag_Value     : constant Menu_Flag;
-    Flag_Radio     : constant Menu_Flag;
-    Flag_Invisible : constant Menu_Flag;
-    Flag_Submenu   : constant Menu_Flag;
-    Flag_Divider   : constant Menu_Flag;
+    subtype Index is Positive;
 
 
 
@@ -87,20 +76,6 @@ private
 
     procedure Item_Hook (M, U : in System.Address);
     pragma Convention (C, Item_Hook);
-
-
-
-
-    type Menu_Flag is new Interfaces.Unsigned_8;
-    Flag_Normal    : constant Menu_Flag := 2#00000000#;
-    Flag_Inactive  : constant Menu_Flag := 2#00000001#;
-    Flag_Toggle    : constant Menu_Flag := 2#00000010#;
-    Flag_Value     : constant Menu_Flag := 2#00000100#;
-    Flag_Radio     : constant Menu_Flag := 2#00001000#;
-    Flag_Invisible : constant Menu_Flag := 2#00010000#;
-    --  Flag_Submenu_Pointer unlikely to be used
-    Flag_Submenu   : constant Menu_Flag := 2#01000000#;
-    Flag_Divider   : constant Menu_Flag := 2#10000000#;
 
 
 end FLTK.Widgets.Menus;

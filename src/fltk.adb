@@ -232,5 +232,15 @@ package body FLTK is
     end To_Ada;
 
 
+
+
+    function "+"
+           (Left, Right : in Menu_Flag)
+        return Menu_Flag is
+    begin
+        return Left or Right;
+    end "+";
+
+
 end FLTK;
 
