@@ -202,5 +202,62 @@ private
     pragma Inline (fl_widget_get_user_data);
 
 
+
+
+    pragma Inline (Add_Handler);
+    pragma Inline (Remove_Handler);
+    pragma Inline (Get_Dispatch);
+    pragma Inline (Set_Dispatch);
+    pragma Inline (Default_Dispatch);
+
+
+    pragma Inline (Get_Grab);
+    pragma Inline (Set_Grab);
+    pragma Inline (Release_Grab);
+    pragma Inline (Get_Pushed);
+    pragma Inline (Set_Pushed);
+    pragma Inline (Get_Below_Mouse);
+    pragma Inline (Set_Below_Mouse);
+    pragma Inline (Get_Focus);
+    pragma Inline (Set_Focus);
+
+
+    pragma Inline (Compose);
+    pragma Inline (Compose_Reset);
+    pragma Inline (Text);
+    pragma Inline (Text_Length);
+
+
+    pragma Inline (Last);
+    pragma Inline (Last_Modifier);
+
+
+    pragma Inline (Mouse_X);
+    pragma Inline (Mouse_X_Root);
+    pragma Inline (Mouse_Y);
+    pragma Inline (Mouse_Y_Root);
+    pragma Inline (Mouse_DX);
+    pragma Inline (Mouse_DY);
+    pragma Inline (Get_Mouse);
+    pragma Inline (Is_Click);
+    pragma Inline (Is_Multi_Click);
+    pragma Inline (Set_Clicks);
+    pragma Inline (Last_Button);
+    pragma Inline (Mouse_Left);
+    pragma Inline (Mouse_Middle);
+    pragma Inline (Mouse_Right);
+    pragma Inline (Is_Inside);
+
+
+    pragma Inline (Last_Key);
+    pragma Inline (Original_Last_Key);
+    pragma Inline (Pressed_During);
+    pragma Inline (Key_Now);
+    pragma Inline (Key_Ctrl);
+    pragma Inline (Key_Alt);
+    pragma Inline (Key_Command);
+    pragma Inline (Key_Shift);
+
+
 end FLTK.Event;
 

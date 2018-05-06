@@ -12,12 +12,14 @@ Overall estimate: ???%
 
 Polished:
 
+FLTK
 FLTK.Devices
 FLTK.Devices.Surfaces.Copy
 FLTK.Devices.Surfaces.Image
 FLTK.Devices.Surfaces.Paged
 FLTK.Devices.Surfaces.Paged.Printers
 FLTK.Dialogs
+FLTK.Event
 FLTK.Images
 FLTK.Images.Bitmaps
 FLTK.Images.Bitmaps.XBM
@@ -28,6 +30,8 @@ FLTK.Images.RGB.PNG
 FLTK.Images.RGB.PNM
 FLTK.Images.Shared
 FLTK.Menu_Items
+FLTK.Screen
+FLTK.Static
 FLTK.Text_Buffers
 FLTK.Tooltips
 FLTK.Widgets.Boxes
@@ -92,8 +96,6 @@ FLTK.Widgets.Valuators.Sliders.Horizontal
 
 Done:
 
-FLTK.Event
-FLTK.Screen
 FLTK.Widgets.Groups.Text_Displays.Text_Editors
 
 
@@ -101,7 +103,6 @@ FLTK.Widgets.Groups.Text_Displays.Text_Editors
 
 Partially Done:
 
-FLTK
 FLTK.Devices.Graphics
 FLTK.Devices.Surfaces
 FLTK.Environment
@@ -160,6 +161,7 @@ Bugs to fix:
 Fl_Help_View ABI_VERSION checks
 Fl_Tooltip ABI_VERSION checks
 Fl_Wizard draw() method private/protected
+GNAT bug with type_invariant combined with derived type and a begin section in a package, eg dialogs.adb
 
 
 

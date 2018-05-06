@@ -7,6 +7,7 @@ with
 
 use type
 
+    Interfaces.C.int,
     Interfaces.C.unsigned_long,
     System.Address;
 
@@ -14,27 +15,78 @@ use type
 package body FLTK is
 
 
-    function fl_run return Interfaces.C.int;
+    function fl_abi_check
+           (V : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_abi_check, "fl_abi_check");
+    pragma Inline (fl_abi_check);
+
+    function fl_abi_version
+        return Interfaces.C.int;
+    pragma Import (C, fl_abi_version, "fl_abi_version");
+    pragma Inline (fl_abi_version);
+
+    function fl_api_version
+        return Interfaces.C.int;
+    pragma Import (C, fl_api_version, "fl_api_version");
+    pragma Inline (fl_api_version);
+
+    function fl_version
+        return Interfaces.C.double;
+    pragma Import (C, fl_version, "fl_version");
+    pragma Inline (fl_version);
+
+
+
+
+    function fl_get_damage
+        return Interfaces.C.int;
+    pragma Import (C, fl_get_damage, "fl_get_damage");
+    pragma Inline (fl_get_damage);
+
+    procedure fl_set_damage
+           (V : in Interfaces.C.int);
+    pragma Import (C, fl_set_damage, "fl_set_damage");
+    pragma Inline (fl_set_damage);
+
+
+
+
+    function fl_check
+        return Interfaces.C.int;
+    pragma Import (C, fl_check, "fl_check");
+    pragma Inline (fl_check);
+
+    function fl_ready
+        return Interfaces.C.int;
+    pragma Import (C, fl_ready, "fl_ready");
+    pragma Inline (fl_ready);
+
+    function fl_wait
+        return Interfaces.C.int;
+    pragma Import (C, fl_wait, "fl_wait");
+    pragma Inline (fl_wait);
+
+    function fl_wait2
+           (S : in Interfaces.C.double)
+        return Interfaces.C.int;
+    pragma Import (C, fl_wait2, "fl_wait2");
+    pragma Inline (fl_wait2);
+
+    function fl_run
+        return Interfaces.C.int;
     pragma Import (C, fl_run, "fl_run");
+    pragma Inline (fl_run);
 
 
 
 
-    function Run
-        return Integer is
-    begin
-        return Integer (fl_run);
-    end Run;
-
-
-
-
-    function Has_Valid_Ptr
-           (This : in Wrapper)
+    function Is_Valid
+           (Object : in Wrapper)
         return Boolean is
     begin
-        return This.Void_Ptr /= System.Null_Address;
-    end Has_Valid_Ptr;
+        return Object.Void_Ptr /= System.Null_Address;
+    end Is_Valid;
 
 
     procedure Initialize
@@ -240,6 +292,91 @@ package body FLTK is
     begin
         return Left or Right;
     end "+";
+
+
+
+
+    function ABI_Check
+           (ABI_Ver : in Version_Number)
+        return Boolean is
+    begin
+        return fl_abi_check (Interfaces.C.int (ABI_Ver)) /= 0;
+    end ABI_Check;
+
+
+    function ABI_Version
+        return Version_Number is
+    begin
+        return Version_Number (fl_abi_version);
+    end ABI_Version;
+
+
+    function API_Version
+        return Version_Number is
+    begin
+        return Version_Number (fl_api_version);
+    end API_Version;
+
+
+    function Version
+        return Version_Number is
+    begin
+        return Version_Number (fl_version);
+    end Version;
+
+
+
+
+    function Is_Damaged
+        return Boolean is
+    begin
+        return fl_get_damage /= 0;
+    end Is_Damaged;
+
+
+    procedure Set_Damaged
+           (To : in Boolean) is
+    begin
+        fl_set_damage (Boolean'Pos (To));
+    end Set_Damaged;
+
+
+
+
+    function Check
+        return Boolean is
+    begin
+        return fl_check /= 0;
+    end Check;
+
+
+    function Ready
+        return Boolean is
+    begin
+        return fl_ready /= 0;
+    end Ready;
+
+
+    function Wait
+        return Integer is
+    begin
+        return Integer (fl_wait);
+    end Wait;
+
+
+    function Wait
+           (Seconds : in Long_Float)
+        return Integer is
+    begin
+        return Integer (fl_wait2 (Interfaces.C.double (Seconds)));
+    end Wait;
+
+
+    function Run
+        return Integer is
+    begin
+        return Integer (fl_run);
+    end Run;
 
 
 end FLTK;

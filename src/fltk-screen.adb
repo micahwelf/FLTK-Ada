@@ -145,13 +145,12 @@ package body FLTK.Screen is
     --  Screen numbers in the range 1 .. Get_Count
     procedure DPI
            (Horizontal, Vertical :    out Float;
-            Screen_Number        : in     Integer := 1)
-    is
-        H, V : Interfaces.C.C_float;
+            Screen_Number        : in     Integer := 1) is
     begin
-        fl_screen_dpi (H, V, Interfaces.C.int (Screen_Number) - 1);
-        Horizontal := Float (H);
-        Vertical := Float (V);
+        fl_screen_dpi
+           (Interfaces.C.C_float (Horizontal),
+            Interfaces.C.C_float (Vertical),
+            Interfaces.C.int (Screen_Number) - 1);
     end DPI;
 
 

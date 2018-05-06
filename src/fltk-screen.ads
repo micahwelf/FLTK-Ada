@@ -18,7 +18,8 @@ package FLTK.Screen is
 
 
 
-    function Count return Integer;
+    function Count
+        return Integer;
 
     --  Screen numbers in the range 1 .. Count
     procedure DPI
@@ -76,8 +77,12 @@ private
     pragma Inline (Get_Y);
     pragma Inline (Get_W);
     pragma Inline (Get_H);
+
+
     pragma Inline (Count);
     pragma Inline (DPI);
+
+
     pragma Inline (Containing);
     pragma Inline (Work_Area);
     pragma Inline (Bounding_Rect);

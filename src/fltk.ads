@@ -13,19 +13,24 @@ private with
 package FLTK is
 
 
-    function Run return Integer;
+    --  Ugly implementation detail, never use this.
+    --  This is necessary so things like Text_Buffers and
+    --  Widgets can talk to each other behind the binding.
+    type Wrapper is new Ada.Finalization.Limited_Controlled with private;
+        --  with Type_Invariant => Is_Valid (Wrapper);
+
+    function Is_Valid
+           (Object : in Wrapper)
+        return Boolean;
 
 
-    --  ugly implementation detail, never use this
-    --  just ignore the hand moving behind the curtain
-    --  (this is necessary so things like text_buffers and
-    --  widgets can talk to each other behind the binding)
-    type Wrapper is abstract new Ada.Finalization.Limited_Controlled with private;
 
 
     type Color is new Natural;
     type Color_Component is mod 256;
     No_Color : constant Color;
+
+
 
 
     type Alignment is private;
@@ -34,6 +39,8 @@ package FLTK is
     Align_Bottom : constant Alignment;
     Align_Left   : constant Alignment;
     Align_Right  : constant Alignment;
+
+
 
 
     type Keypress is private;
@@ -54,16 +61,13 @@ package FLTK is
     Up_Key           : constant Keypress;
     Escape_Key       : constant Keypress;
 
-
     type Mouse_Button is (No_Button, Left_Button, Middle_Button, Right_Button);
-
 
     type Key_Combo is private;
     function Press (Key : in Pressable_Key) return Key_Combo;
     function Press (Key : in Keypress) return Key_Combo;
     function Press (Key : in Mouse_Button) return Key_Combo;
     No_Key : constant Key_Combo;
-
 
     type Modifier is private;
     function "+" (Left, Right : in Modifier) return Modifier;
@@ -75,6 +79,8 @@ package FLTK is
     Mod_Shift : constant Modifier;
     Mod_Ctrl  : constant Modifier;
     Mod_Alt   : constant Modifier;
+
+
 
 
     type Box_Kind is
@@ -137,6 +143,8 @@ package FLTK is
             Free_Box);
 
 
+
+
     type Font_Kind is
            (Helvetica,
             Helvetica_Bold,
@@ -156,9 +164,12 @@ package FLTK is
             Zapf_Dingbats,
             Free_Font);
 
-
     type Font_Size is new Natural;
     Normal_Size : constant Font_Size := 14;
+
+    type Font_Size_Array is array (Positive range <>) of Font_Size;
+
+
 
 
     type Label_Kind is
@@ -171,6 +182,8 @@ package FLTK is
             Icon_Label,
             Image_Label,
             Free_Label);
+
+
 
 
     type Event_Kind is
@@ -201,8 +214,9 @@ package FLTK is
             Screen_Config_Changed,
             Fullscreen);
 
-
     type Event_Outcome is (Not_Handled, Handled);
+
+
 
 
     type Menu_Flag is private;
@@ -217,28 +231,86 @@ package FLTK is
     Flag_Divider   : constant Menu_Flag;
 
 
+
+
+    type Version_Number is new Natural;
+
+
+
+
+    function ABI_Check
+           (ABI_Ver : in Version_Number)
+        return Boolean;
+
+    function ABI_Version
+        return Version_Number;
+
+    function API_Version
+        return Version_Number;
+
+    function Version
+        return Version_Number;
+
+
+
+
+    procedure Awake;
+
+    procedure Lock;
+
+    procedure Unlock;
+
+
+
+
+    function Is_Damaged
+        return Boolean;
+
+    procedure Set_Damaged
+           (To : in Boolean);
+
+    procedure Flush;
+
+    procedure Redraw;
+
+
+
+
+    function Check
+        return Boolean;
+
+    function Ready
+        return Boolean;
+
+    function Wait
+        return Integer;
+
+    function Wait
+           (Seconds : in Long_Float)
+        return Integer;
+
+    function Run
+        return Integer;
+
+
 private
 
 
-    function Has_Valid_Ptr
-           (This : in Wrapper)
-        return Boolean;
-
-    type Wrapper is abstract new Ada.Finalization.Limited_Controlled with
+    type Wrapper is new Ada.Finalization.Limited_Controlled with
         record
             Void_Ptr      : System.Address;
             Needs_Dealloc : Boolean := True;
         end record;
-        --  with Type_Invariant => Has_Valid_Ptr (Wrapper);
-
-    --  unsure if the above invariant is doing what I'm after
-    --  oh well, something to work on
 
     overriding procedure Initialize
            (This : in out Wrapper);
 
 
+
+
     No_Color : constant Color := 0;
+
+
 
 
     type Alignment is new Interfaces.Unsigned_16;
@@ -249,6 +321,8 @@ private
     Align_Right  : constant Alignment := 8;
 
 
+
+
     type Keypress is new Interfaces.Unsigned_16;
     type Modifier is new Interfaces.Unsigned_16;
     type Key_Combo is
@@ -257,7 +331,6 @@ private
             Keycode   : Keypress;
             Mousecode : Mouse_Button;
         end record;
-
 
     function To_C
            (Key : in Key_Combo)
@@ -291,16 +364,13 @@ private
            (Button : in Interfaces.C.unsigned_long)
         return Mouse_Button;
 
-
     --  these values designed to align with FLTK enumeration types
     Mod_None  : constant Modifier := 2#00000000#;
     Mod_Shift : constant Modifier := 2#00000001#;
     Mod_Ctrl  : constant Modifier := 2#00000100#;
     Mod_Alt   : constant Modifier := 2#00001000#;
 
-
     No_Key : constant Key_Combo := (Modcode => Mod_None, Keycode => 0, Mousecode => No_Button);
-
 
     --  these values correspond to constants defined in FLTK Enumerations.H
     Enter_Key        : constant Keypress := 16#ff0d#;
@@ -319,6 +389,8 @@ private
     Escape_Key       : constant Keypress := 16#ff1b#;
 
 
+
+
     type Menu_Flag is new Interfaces.Unsigned_8;
     Flag_Normal    : constant Menu_Flag := 2#00000000#;
     Flag_Inactive  : constant Menu_Flag := 2#00000001#;
@@ -329,6 +401,42 @@ private
     --  Flag_Submenu_Pointer unlikely to be used
     Flag_Submenu   : constant Menu_Flag := 2#01000000#;
     Flag_Divider   : constant Menu_Flag := 2#10000000#;
+
+
+
+
+    pragma Import (C, Awake, "fl_awake");
+    pragma Import (C, Lock, "fl_lock");
+    pragma Import (C, Unlock, "fl_unlock");
+
+
+    pragma Import (C, Flush, "fl_flush");
+    pragma Import (C, Redraw, "fl_redraw");
+
+
+
+
+    pragma Inline (ABI_Check);
+    pragma Inline (ABI_Version);
+    pragma Inline (API_Version);
+    pragma Inline (Version);
+
+
+    pragma Inline (Awake);
+    pragma Inline (Lock);
+    pragma Inline (Unlock);
+
+
+    pragma Inline (Is_Damaged);
+    pragma Inline (Set_Damaged);
+    pragma Inline (Flush);
+    pragma Inline (Redraw);
+
+
+    pragma Inline (Check);
+    pragma Inline (Ready);
+    pragma Inline (Wait);
+    pragma Inline (Run);
 
 
 end FLTK;

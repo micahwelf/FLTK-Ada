@@ -1,0 +1,1935 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package names</th></tr>
+
+  <tr>
+    <td>Fl</td>
+    <td>FLTK</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>FLTK.Event</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>FLTK.Screen</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>FLTK.Static</td>
+  </tr>
+
+  <tr>
+    <td>Enumerations</td>
+    <td>&nbsp;</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Option</td>
+    <td>Option</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Color</td>
+    <td>Color</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Align</td>
+    <td>Alignment</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Keypress</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Mouse_Button</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Modifier</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Shortcut</td>
+    <td>Key_Combo</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Boxtype</td>
+    <td>Box_Kind</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Font</td>
+    <td>Font_Kind</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Fontsize</td>
+    <td>Font_Size</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Font_Size_Array</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Labeltype</td>
+    <td>Label_Kind</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Event_Kind</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Event_Outcome</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Menu_Flag</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Version_Number</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Event_Handler</td>
+    <td>Event_Handler</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Event_Dispatch</td>
+    <td>Event_Dispatch</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Awake_Handler</td>
+    <td>Awake_Handler</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Timeout_Handler</td>
+    <td>Timeout_Handler</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Idle_Handler</td>
+    <td>Idle_Handler</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Buffer_Kind</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Clipboard_Notify_Handler</td>
+    <td>Clipboard_Notify_Handler</td>
+  </tr>
+
+  <tr>
+    <td>FL_SOCKET</td>
+    <td>File_Descriptor</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>File_Mode</td>
+  </tr>
+
+  <tr>
+    <td>Fl_FD_Handler</td>
+    <td>File_Handler</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Box_Draw_F</td>
+    <td>Box_Draw_Function</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Abort_Handler</td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Args_Handler</td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Atclose_Handler</td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Label_Draw_F</td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Label_Measure_F</td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Old_Idle_Handler</td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>Fl_System_Handler</td>
+    <td>&nbsp;</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+static int abi_check(const int val=FL_ABI_VERSION);
+</pre></td>
+<td><pre>
+function ABI_Check
+       (ABI_Ver : in Version_Number)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int abi_version();
+</pre></td>
+<td><pre>
+function ABI_Version
+    return Version_Number;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int add_awake_handler_(Fl_Awake_Handler, void *);
+</pre></td>
+<td><pre>
+procedure Add_Awake_Handler
+       (Func : in Awake_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void add_check(Fl_Timeout_Handler, void *=0);
+</pre></td>
+<td><pre>
+procedure Add_Check
+       (Func : in Timeout_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void add_clipboard_notify(Fl_Clipboard_Notify_Handler h, void *data=0);
+</pre></td>
+<td><pre>
+procedure Add_Clipboard_Notify
+       (Func : in Clipboard_Notify_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void add_fd(int fd, int when, Fl_FD_Handler cb, void *=0);
+</pre></td>
+<td><pre>
+procedure Add_File_Descriptor
+       (FD   : in File_Descriptor;
+        Mode : in File_Mode;
+        Func : in File_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void add_fd(int fd, Fl_FD_Handler cb, void *=0);
+</pre></td>
+<td><pre>
+procedure Add_File_Descriptor
+       (FD   : in File_Descriptor;
+        Func : in File_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void add_handler(Fl_Event_Handler h);
+</pre></td>
+<td><pre>
+procedure Add_Handler
+       (Func : in Event_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void add_idle(Fl_Idle_Handler cb, void *data=0);
+</pre></td>
+<td><pre>
+procedure Add_Idle
+       (Func : in Idle_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void add_system_handler(Fl_System_Handler h, void *data);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void add_timeout(double t, Fl_Timeout_Handler, void *=0);
+</pre></td>
+<td><pre>
+procedure Add_Timeout
+       (Seconds : in Long_Float;
+        Func    : in Timeout_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int api_version();
+</pre></td>
+<td><pre>
+function API_Version
+    return Version_Number;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int arg(int argc, char **argv, int &i);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int args(int argc, char **argv, int &i, Fl_Args_Handler cb=0);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void args(int argc, char **argv);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void awake(void *message=0);
+</pre></td>
+<td><pre>
+procedure Awake;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int awake(Fl_Awake_Handler cb, void *message=0);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void background(uchar, uchar, uchar);
+</pre></td>
+<td><pre>
+procedure Set_Background
+       (R, G, B : in Color_Component);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void background2(uchar, uchar, uchar);
+</pre></td>
+<td><pre>
+procedure Set_Alt_Background
+       (R, G, B : in Color_Component);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Widget * belowmouse();
+</pre></td>
+<td><pre>
+function Get_Below_Mouse
+    return access FLTK.Widgets.Widget'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void belowmouse(Fl_Widget *);
+</pre></td>
+<td><pre>
+procedure Set_Below_Mouse
+       (To : in FLTK.Widgets.Widget'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Color box_color(Fl_Color);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int box_dh(Fl_Boxtype);
+</pre></td>
+<td><pre>
+function Get_Box_Height_Offset
+       (Kind : in Box_Kind)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int box_dw(Fl_Boxtype);
+</pre></td>
+<td><pre>
+function Get_Box_Width_Offset
+       (Kind : in Box_Kind)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int box_dx(Fl_Boxtype);
+</pre></td>
+<td><pre>
+function Get_Box_X_Offset
+       (Kind : in Box_Kind)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int box_dy(Fl_Boxtype);
+</pre></td>
+<td><pre>
+function Get_Box_Y_Offset
+       (Kind : in Box_Kind)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void cairo_autolink_context(bool alink);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static bool cairo_autolink_context();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static cairo_t * cairo_cc();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void cairo_cc(cairo_t *c, bool own=false);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static cairo_t * cairo_make_current(Fl_Window *w);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int check();
+</pre></td>
+<td><pre>
+function Check
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void clear_widget_pointer(Fl_Widget const *w);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int clipboard_contains(const char *type);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int compose(int &del);
+</pre></td>
+<td><pre>
+function Compose
+       (Del : out Natural)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void compose_reset();
+</pre></td>
+<td><pre>
+procedure Compose_Reset;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void copy
+   (const char *stuff, int len, int destination=0,
+    const char *type=Fl::clipboard_plain_text);
+</pre></td>
+<td><pre>
+procedure Copy
+       (Text : in String;
+        Dest : in Buffer_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void damage(int d);
+</pre></td>
+<td><pre>
+procedure Set_Damaged
+       (To : in Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int damage();
+</pre></td>
+<td><pre>
+function Is_Damaged
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void default_atclose(Fl_Window *, void *);
+</pre></td>
+<td><pre>
+procedure Default_Window_Close
+       (Item : in out FLTK.Widgets.Widget'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void delete_widget(Fl_Widget *w);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void disable_im();
+</pre></td>
+<td><pre>
+procedure Disable_System_Input;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void display(const char *);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int dnd();
+</pre></td>
+<td><pre>
+procedure Drag_Drop_Start;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void dnd_text_ops(int v);
+</pre></td>
+<td><pre>
+procedure Set_Drag_Drop_Text_Support
+       (To : in Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int dnd_text_ops();
+</pre></td>
+<td><pre>
+function Get_Drag_Drop_Text_Support
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void do_widget_deletion();
+</pre></td>
+<td><pre>
+procedure Do_Widget_Deletion;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int draw_box_active();
+</pre></td>
+<td><pre>
+function Draw_Box_Active
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void enable_im();
+</pre></td>
+<td><pre>
+procedure Enable_System_Input;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event();
+</pre></td>
+<td><pre>
+function Last
+    return Event_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_alt();
+</pre></td>
+<td><pre>
+function Key_Alt
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_button();
+</pre></td>
+<td><pre>
+function Last_Button
+    return Mouse_Button;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_button1();
+</pre></td>
+<td><pre>
+function Mouse_Left
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_button2();
+</pre></td>
+<td><pre>
+function Mouse_Middle
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_button3();
+</pre></td>
+<td><pre>
+function Mouse_Right
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_buttons();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_clicks();
+</pre></td>
+<td><pre>
+function Is_Multi_Click
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void event_clicks(int i);
+</pre></td>
+<td><pre>
+procedure Set_Clicks
+       (To : in Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void * event_clipboard();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static const char * event_clipboard_type();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_command();
+</pre></td>
+<td><pre>
+function Key_Command
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_ctrl();
+</pre></td>
+<td><pre>
+function Key_Ctrl
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void event_dispatch(Fl_Event_Dispatch d);
+</pre></td>
+<td><pre>
+procedure Set_Dispatch
+       (Func : in Event_Dispatch);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Event_Dispatch event_dispatch();
+</pre></td>
+<td><pre>
+function Get_Dispatch
+    return Event_Dispatch;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_dx();
+</pre></td>
+<td><pre>
+function Mouse_DX
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_dy();
+</pre></td>
+<td><pre>
+function Mouse_DY
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_inside(int, int, int, int);
+</pre></td>
+<td><pre>
+function Is_Inside
+       (X, Y, W, H : in Integer)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_inside(const Fl_Widget *);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_is_click();
+</pre></td>
+<td><pre>
+function Is_Click
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void event_is_click(int i);
+</pre></td>
+<td>See static void event_clicks(int i);</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_key();
+</pre></td>
+<td><pre>
+function Last_Key
+    return Keypress;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_key(int key);
+</pre></td>
+<td><pre>
+function Pressed_During
+       (Key : in Keypress)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_length();
+</pre></td>
+<td><pre>
+function Text_Length
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_original_key();
+</pre></td>
+<td><pre>
+function Original_Last_Key
+    return Keypress;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_shift();
+</pre></td>
+<td><pre>
+function Key_Shift
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_state();
+</pre></td>
+<td><pre>
+function Last_Modifier
+    return Modifier;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_state(int mask);
+</pre></td>
+<td><pre>
+function Last_Modifier
+       (Had : in Modifier)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static const char * event_text();
+</pre></td>
+<td><pre>
+function Text
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_x();
+</pre></td>
+<td><pre>
+function Mouse_X
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_x_root();
+</pre></td>
+<td><pre>
+function Mouse_X_Root
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_y();
+</pre></td>
+<td><pre>
+function Mouse_Y
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int event_y_root();
+</pre></td>
+<td><pre>
+function Mouse_Y_Root
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Window * first_window();
+</pre></td>
+<td><pre>
+function Get_First_Window
+    return access FLTK.Widgets.Groups.Windows.Window'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void first_window(Fl_Window *);
+</pre></td>
+<td><pre>
+procedure Set_First_Window
+       (To : in FLTK.Widgets.Groups.Windows.Window'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void flush();
+</pre></td>
+<td><pre>
+procedure Flush;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Widget * focus();
+</pre></td>
+<td><pre>
+function Get_Focus
+    return access FLTK.Widgets.Widget'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void focus(Fl_Widget *);
+</pre></td>
+<td><pre>
+procedure Set_Focus
+       (To : in FLTK.Widgets.Widget'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void foreground(uchar, uchar, uchar);
+</pre></td>
+<td><pre>
+procedure Set_Foreground
+       (R, G, B : in Color_Component);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void free_color(Fl_Color i, int overlay=0);
+</pre></td>
+<td><pre>
+procedure Free_Color
+       (Value   : in Color;
+        Overlay : in Boolean := False);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int get_awake_handler_(Fl_Awake_Handler &, void *&);
+</pre></td>
+<td><pre>
+function Get_Awake_Handler
+    return Awake_Handler;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Box_Draw_F * get_boxtype(Fl_Boxtype);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static unsigned get_color(Fl_Color i);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void get_color(Fl_Color i, uchar &red, uchar &green, uchar &blue);
+</pre></td>
+<td><pre>
+procedure Get_Color
+       (From    : in     Color;
+        R, G, B :    out Color_Component);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static const char * get_font(Fl_Font);
+</pre></td>
+<td><pre>
+function Font_Image
+       (Kind : in Font_Kind)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static const char * get_font_name(Fl_Font, int *attributes=0);
+</pre></td>
+<td><pre>
+function Font_Family_Image
+       (Kind : in Font_Kind)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int get_font_sizes(Fl_Font, int *&sizep);
+</pre></td>
+<td><pre>
+function Font_Sizes
+       (Kind : in Font_Kind)
+    return Font_Size_Array;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int get_key(int key);
+</pre></td>
+<td><pre>
+function Key_Now
+       (Key : in Keypress)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void get_mouse(int &, int &);
+</pre></td>
+<td><pre>
+procedure Get_Mouse
+       (X, Y : out Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void get_system_colors();
+</pre></td>
+<td><pre>
+procedure System_Colors;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int gl_visual(int, int *alist=0);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Window * grab();
+</pre></td>
+<td><pre>
+function Get_Grab
+    return access FLTK.Widgets.Groups.Windows.Window'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void grab(Fl_Window *);
+static void grab(Fl_Window &win);
+</pre></td>
+<td><pre>
+procedure Set_Grab
+       (To : in FLTK.Widgets.Groups.Windows.Window'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int h();
+</pre></td>
+<td><pre>
+function Get_H
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int handle(int, Fl_Window *);
+static int handle_(int, Fl_Window *);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int has_check(Fl_Timeout_Handler, void *=0);
+</pre></td>
+<td><pre>
+function Has_Check
+       (Func : in Timeout_Handler)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int has_idle(Fl_Idle_Handler cb, void *data=0);
+</pre></td>
+<td><pre>
+function Has_Idle
+       (Func : in Idle_Handler)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int has_timeout(Fl_Timeout_Handler, void *=0);
+</pre></td>
+<td><pre>
+function Has_Timeout
+       (Func : in Timeout_Handler)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int is_scheme(const char *name);
+</pre></td>
+<td><pre>
+function Is_Scheme
+       (Scheme : in String)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int lock();
+</pre></td>
+<td><pre>
+procedure Lock;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Window * modal();
+</pre></td>
+<td><pre>
+function Get_Top_Modal
+    return access FLTK.Widgets.Groups.Windows.Window'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Window * next_window(const Fl_Window *);
+</pre></td>
+<td><pre>
+function Get_Next_Window
+       (From : in FLTK.Widgets.Groups.Windows.Window'Class)
+    return access FLTK.Widgets.Groups.Windows.Window'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static bool option(Fl_Option opt);
+</pre></td>
+<td><pre>
+function Get_Option
+       (Opt : in Option)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void option(Fl_Option opt, bool val);
+</pre></td>
+<td><pre>
+procedure Set_Option
+       (Opt : in Option;
+        To  : in Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void own_colormap();
+</pre></td>
+<td><pre>
+procedure Own_Colormap;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void paste
+   (Fl_Widget &receiver, int source,
+    const char *type=Fl::clipboard_plain_text);
+</pre></td>
+<td><pre>
+procedure Paste
+       (Receiver : in FLTK.Widgets.Widget'Class;
+        Source   : in Buffer_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void paste(Fl_Widget &receiver);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Widget * pushed();
+</pre></td>
+<td><pre>
+function Get_Pushed
+    return access FLTK.Widgets.Widget'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void pushed(Fl_Widget *);
+</pre></td>
+<td><pre>
+procedure Set_Pushed
+       (To : in FLTK.Widgets.Widget'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Widget * readqueue();
+</pre></td>
+<td><pre>
+function Read_Queue
+    return access FLTK.Widgets.Widget'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int ready();
+</pre></td>
+<td><pre>
+function Ready
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void redraw();
+</pre></td>
+<td><pre>
+procedure Redraw;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void release();
+</pre></td>
+<td><pre>
+procedure Release_Grab;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void release_widget_pointer(Fl_Widget *&w);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int reload_scheme();
+</pre></td>
+<td><pre>
+procedure Reload_Scheme;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void remove_check(Fl_Timeout_Handler, void *=0);
+</pre></td>
+<td><pre>
+procedure Remove_Check
+       (Func : in Timeout_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void remove_clipboard_notify(Fl_Clipboard_Notify_Handler h);
+</pre></td>
+<td><pre>
+procedure Remove_Clipboard_Notify
+       (Func : in Clipboard_Notify_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void remove_fd(int, int when);
+</pre></td>
+<td><pre>
+procedure Remove_File_Descriptor
+       (FD   : in File_Descriptor;
+        Mode : in File_Mode);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void remove_fd(int);
+</pre></td>
+<td><pre>
+procedure Remove_File_Descriptor
+       (FD : in File_Descriptor);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void remove_handler(Fl_Event_Handler h);
+</pre></td>
+<td><pre>
+procedure Remove_Handler
+       (Func : in Event_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void remove_idle(Fl_Idle_Handler cb, void *data=0);
+</pre></td>
+<td><pre>
+procedure Remove_Idle
+       (Func : in Idle_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void remove_system_handler(Fl_System_Handler h);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void remove_timeout(Fl_Timeout_Handler, void *=0);
+</pre></td>
+<td><pre>
+procedure Remove_Timeout
+       (Func : in Timeout_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static repeat_timeout(double t, Fl_Timeout_Handler, void *=0);
+</pre></td>
+<td><pre>
+procedure Repeat_Timeout
+       (Seconds : in Long_Float;
+        Func    : in Timeout_Handler);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int run();
+</pre></td>
+<td><pre>
+function Run
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int scheme(const char *name);
+</pre></td>
+<td><pre>
+procedure Set_Scheme
+       (To : in String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static const char * scheme();
+</pre></td>
+<td><pre>
+function Get_Scheme
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int screen_count();
+</pre></td>
+<td><pre>
+function Count
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void screen_dpi(float &h, float &v, int n=0);
+</pre></td>
+<td><pre>
+procedure DPI
+       (Horizontal, Vertical :    out Float;
+        Screen_Number        : in     Integer := 1);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int screen_num(int x, int y);
+</pre></td>
+<td><pre>
+function Containing
+       (X, Y : in Integer)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int screen_num(int x, int y, int w, int h);
+</pre></td>
+<td><pre>
+function Containing
+       (X, Y, W, H : in Integer)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void screen_work_area(int &X, int &Y, int &W, int &H, int mx, int my);
+</pre></td>
+<td><pre>
+procedure Work_Area
+       (X, Y, W, H   :    out Integer;
+        Pos_X, Pos_Y : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void screen_work_area(int &X, int &Y, int &W, int &H, int n);
+</pre></td>
+<td><pre>
+procedure Work_Area
+       (X, Y, W, H :    out Integer;
+        Screen_Num : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void screen_work_area(int &X, int &Y, int &W, int &H);
+</pre></td>
+<td><pre>
+procedure Work_Area
+       (X, Y, W, H : out Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void screen_xywh(int &X, int &Y, int &W, int &H);
+</pre></td>
+<td><pre>
+procedure Bounding_Rect
+       (X, Y, W, H : out Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void screen_xywh(int &X, int &Y, int &W, int &H, int mx, int my);
+</pre></td>
+<td><pre>
+procedure Bounding_Rect
+       (X, Y, W, H   :    out Integer;
+        Pos_X, Pos_Y : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void screen_xywh(int &X, int &Y, int &W, int &H, int n);
+</pre></td>
+<td><pre>
+procedure Bounding_Rect
+       (X, Y, W, H :    out Integer;
+        Screen_Num : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void screen_xywh(int &X, int &Y, int &W, int &H, int mx, int my, int mw, int mh);
+</pre></td>
+<td><pre>
+procedure Bounding_Rect
+       (X, Y, W, H     :    out Integer;
+        PX, PY, PW, PH : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int scrollbar_size();
+</pre></td>
+<td><pre>
+function Get_Default_Scrollbar_Size
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void scrollbar_size(int W);
+</pre></td>
+<td><pre>
+procedure Set_Default_Scrollbar_Size
+       (To : in Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void selection(Fl_Widget &owner, const char *, int len);
+</pre></td>
+<td><pre>
+procedure Selection
+       (Owner : in FLTK.Widgets.Widget'Class;
+        Text  : in String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Widget * selection_owner();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void selection_owner(Fl_Widget *);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void set_abort(Fl_Abort_Handler f);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void set_atclose(Fl_Atclose_Handler f);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void set_box_color(Fl_Color);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void set_boxtype(Fl_Boxtype, Fl_Box_Draw_F *, uchar, uchar, uchar, uchar);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void set_boxtype(Fl_Boxtype, Fl_Boxtype from);
+</pre></td>
+<td><pre>
+procedure Set_Box_Kind
+       (To, From : in Box_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void set_color(Fl_Color, uchar, uchar, uchar, uchar);
+</pre></td>
+<td><pre>
+procedure Set_Color
+       (To      : in Color;
+        R, G, B : in Color_Component);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void set_color(Fl_Color i, unsigned c);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void set_font(Fl_Font, const char *);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void set_font(Fl_Font, Fl_Font);
+</pre></td>
+<td><pre>
+procedure Set_Font_Kind
+       (To, From : in Font_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Font set_fonts(const char *=0);
+</pre></td>
+<td><pre>
+procedure Setup_Fonts
+       (How_Many_Set_Up : out Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void set_idle(Fl_Old_Idle_Handler cb);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void set_labeltype(Fl_Labeltype, Fl_Label_Draw_F *, FL_Label_Measure_F *);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void set_labeltype(Fl_Labeltype, Fl_Labeltype from);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int test_shortcut(Fl_Shortcut);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void * thread_message();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void unlock();
+</pre></td>
+<td><pre>
+procedure Unlock;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void use_high_res_GL(int val);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int use_high_res_GL();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static double version();
+</pre></td>
+<td><pre>
+function Version
+    return Version_Number;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void visible_focus(int v);
+</pre></td>
+<td><pre>
+procedure Set_Visible_Focus
+       (To : in Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int visible_focus();
+</pre></td>
+<td><pre>
+function Has_Visible_Focus
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int visual(int);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int w();
+</pre></td>
+<td><pre>
+function Get_W
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int wait();
+</pre></td>
+<td><pre>
+function Wait
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static double wait(double time);
+</pre></td>
+<td><pre>
+function Wait
+       (Seconds : in Long_Float)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void watch_widget_pointer(Fl_Widget *&w);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int x();
+</pre></td>
+<td><pre>
+function Get_X
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int y();
+</pre></td>
+<td><pre>
+function Get_Y
+    return Integer;
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+
