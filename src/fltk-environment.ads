@@ -5,6 +5,9 @@ package FLTK.Environment is
 
     type Preferences is new Wrapper with private;
 
+    type Preferences_Reference (Data : not null access Preferences'Class) is
+        limited null record with Implicit_Dereference => Data;
+
     type Scope is (Root, User);
 
 
@@ -157,6 +160,26 @@ private
 
     overriding procedure Finalize
            (This : in out Preferences);
+
+
+
+
+    pragma Inline (Number_Of_Entries);
+    pragma Inline (Get_Key);
+    pragma Inline (Entry_Exists);
+    pragma Inline (Entry_Size);
+
+
+    pragma Inline (Get);
+    pragma Inline (Set);
+
+
+    pragma Inline (Delete_Entry);
+    pragma Inline (Delete_All_Entries);
+    pragma Inline (Clear);
+
+
+    pragma Inline (Flush);
 
 
 end FLTK.Environment;

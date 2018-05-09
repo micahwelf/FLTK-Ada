@@ -18,10 +18,12 @@ package body FLTK.Environment is
            (P, V, A : in Interfaces.C.char_array)
         return System.Address;
     pragma Import (C, new_fl_preferences, "new_fl_preferences");
+    pragma Inline (new_fl_preferences);
 
     procedure free_fl_preferences
            (E : in System.Address);
     pragma Import (C, free_fl_preferences, "free_fl_preferences");
+    pragma Inline (free_fl_preferences);
 
 
 
@@ -30,24 +32,28 @@ package body FLTK.Environment is
            (E : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_entries, "fl_preferences_entries");
+    pragma Inline (fl_preferences_entries);
 
     function fl_preferences_entry
            (E : in System.Address;
             I : in Interfaces.C.int)
         return Interfaces.C.Strings.chars_ptr;
     pragma Import (C, fl_preferences_entry, "fl_preferences_entry");
+    pragma Inline (fl_preferences_entry);
 
     function fl_preferences_entryexists
            (E : in System.Address;
             K : in Interfaces.C.char_array)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_entryexists, "fl_preferences_entryexists");
+    pragma Inline (fl_preferences_entryexists);
 
     function fl_preferences_size
            (E : in System.Address;
             K : in Interfaces.C.char_array)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_size, "fl_preferences_size");
+    pragma Inline (fl_preferences_size);
 
 
 
@@ -59,6 +65,7 @@ package body FLTK.Environment is
             D : in     Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_get_int, "fl_preferences_get_int");
+    pragma Inline (fl_preferences_get_int);
 
     function fl_preferences_get_float
            (E : in     System.Address;
@@ -67,6 +74,7 @@ package body FLTK.Environment is
             D : in     Interfaces.C.C_float)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_get_float, "fl_preferences_get_float");
+    pragma Inline (fl_preferences_get_float);
 
     function fl_preferences_get_double
            (E : in     System.Address;
@@ -75,6 +83,7 @@ package body FLTK.Environment is
             D : in     Interfaces.C.double)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_get_double, "fl_preferences_get_double");
+    pragma Inline (fl_preferences_get_double);
 
     function fl_preferences_get_str
            (E : in     System.Address;
@@ -83,6 +92,7 @@ package body FLTK.Environment is
             D : in     Interfaces.C.char_array)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_get_str, "fl_preferences_get_str");
+    pragma Inline (fl_preferences_get_str);
 
 
 
@@ -93,6 +103,7 @@ package body FLTK.Environment is
             V : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_set_int, "fl_preferences_set_int");
+    pragma Inline (fl_preferences_set_int);
 
     function fl_preferences_set_float
            (E : in System.Address;
@@ -100,6 +111,7 @@ package body FLTK.Environment is
             V : in Interfaces.C.C_float)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_set_float, "fl_preferences_set_float");
+    pragma Inline (fl_preferences_set_float);
 
     function fl_preferences_set_float_prec
            (E : in System.Address;
@@ -108,6 +120,7 @@ package body FLTK.Environment is
             P : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_set_float_prec, "fl_preferences_set_float_prec");
+    pragma Inline (fl_preferences_set_float_prec);
 
     function fl_preferences_set_double
            (E : in System.Address;
@@ -115,6 +128,7 @@ package body FLTK.Environment is
             V : in Interfaces.C.double)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_set_double, "fl_preferences_set_double");
+    pragma Inline (fl_preferences_set_double);
 
     function fl_preferences_set_double_prec
            (E : in System.Address;
@@ -123,6 +137,7 @@ package body FLTK.Environment is
             P : in Interfaces.C.int)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_set_double_prec, "fl_preferences_set_double_prec");
+    pragma Inline (fl_preferences_set_double_prec);
 
     function fl_preferences_set_str
            (E : in System.Address;
@@ -130,6 +145,7 @@ package body FLTK.Environment is
             V : in Interfaces.C.char_array)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_set_str, "fl_preferences_set_str");
+    pragma Inline (fl_preferences_set_str);
 
 
 
@@ -139,16 +155,19 @@ package body FLTK.Environment is
             K : in Interfaces.C.char_array)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_deleteentry, "fl_preferences_deleteentry");
+    pragma Inline (fl_preferences_deleteentry);
 
     function fl_preferences_deleteallentries
            (E : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_deleteallentries, "fl_preferences_deleteallentries");
+    pragma Inline (fl_preferences_deleteallentries);
 
     function fl_preferences_clear
            (E : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_preferences_clear, "fl_preferences_clear");
+    pragma Inline (fl_preferences_clear);
 
 
 
@@ -156,6 +175,7 @@ package body FLTK.Environment is
     procedure fl_preferences_flush
            (E : in System.Address);
     pragma Import (C, fl_preferences_flush, "fl_preferences_flush");
+    pragma Inline (fl_preferences_flush);
 
 
 
@@ -210,6 +230,7 @@ package body FLTK.Environment is
             fl_preferences_entry (This.Void_Ptr, Interfaces.C.int (Index));
         Str : String := Interfaces.C.Strings.Value (Key);
     begin
+        --  no need for dealloc?
         return Str;
     end Get_Key;
 

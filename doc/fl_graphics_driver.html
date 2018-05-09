@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Graphics_Driver Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Graphics_Driver Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Graphics_Driver</td>
+    <td>FLTK.Devices.Graphics</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Graphics_Driver</td>
+    <td>Graphics_Driver</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Graphics_Driver_Reference</td>
+  </tr>
+
+  <tr>
+    <td>matrix</td>
+    <td>&nbsp;</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Graphics_Driver();
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual const char * class_name();
+</pre></td>
+<td>Use runtime tag checks instead</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color color();
+</pre></td>
+<td><pre>
+function Get_Color
+       (This : in Graphics_Driver)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int descent();
+</pre></td>
+<td><pre>
+function Get_Text_Descent
+       (This : in Graphics_Driver)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int draw_scaled(Fl_Image *img, int X, int Y, int W, int H);
+</pre></td>
+<td><pre>
+procedure Draw_Scaled_Image
+       (This       : in Graphics_Driver;
+        Img        : in FLTK.Images.Image'Class;
+        X, Y, W, H : in Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void font(Fl_Font face, Fl_Fontsize fsize);
+</pre></td>
+<td><pre>
+procedure Set_Font
+       (This : in Graphics_Driver;
+        Face : in Font_Kind;
+        Size : in Font_Size);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Font font();
+</pre></td>
+<td><pre>
+function Get_Font_Kind
+       (This : in Graphics_Driver)
+    return Font_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Font_Descriptor * font_descriptor();
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void font_descriptor(Fl_Font_Descriptor *d);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int height();
+</pre></td>
+<td><pre>
+function Get_Line_Height
+       (This : in Graphics_Driver)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Fontsize size();
+</pre></td>
+<td><pre>
+function Get_Font_Size
+       (This : in Graphics_Driver)
+    return Font_Size;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void text_extents(const char *, int n, int &dx, int &dy, int &w, int &h);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual double width(const char *str, int n);
+</pre></td>
+<td><pre>
+function Get_Width
+       (This : in Graphics_Driver;
+        Str  : in String)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual double width(unsigned int c);
+</pre></td>
+<td><pre>
+function Get_Width
+       (This : in Graphics_Driver;
+        Char : in Character)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

@@ -56,6 +56,7 @@ FLTK.Widgets.Groups.Scrolls
 FLTK.Widgets.Groups.Spinners
 FLTK.Widgets.Groups.Tabbed
 FLTK.Widgets.Groups.Text_Displays
+FLTK.Widgets.Groups.Text_Displays.Text_Editors
 FLTK.Widgets.Groups.Tiled
 FLTK.Widgets.Groups.Windows
 FLTK.Widgets.Groups.Windows.Double
@@ -96,16 +97,14 @@ FLTK.Widgets.Valuators.Sliders.Horizontal
 
 Done:
 
-FLTK.Widgets.Groups.Text_Displays.Text_Editors
-
 
 
 
 Partially Done:
 
-FLTK.Devices.Graphics
-FLTK.Devices.Surfaces
-FLTK.Environment
+FLTK.Devices.Graphics (incomplete API, otherwise polished)
+FLTK.Devices.Surfaces (incomplete API, otherwise polished)
+FLTK.Environment (incomplete API, otherwise polished)
 FLTK.Widgets
 FLTK.Widgets.Groups
 FLTK.Widgets.Menus
@@ -142,9 +141,7 @@ FL_Cairo_Window
 
 - mark all methods as inline
 - make sure all C++ reinterpret_cast for methods is to the Fl object, not the My object, because inheriting
-- consistent unicode utf-8 support (is this even fully supported by FLTK? if not, nevermind...)
 - check FLTK library internals to see which char* return values need dealloc
-- remove custom exception types in favour of Program_Error? or at least a generic FLTK_Error?
 - qualify all C++ virtual method calls with the class name to prevent dynamic dispatch on C++ side
 - provide documentation for how C++ methods map to Ada functions and procedures
 
@@ -160,6 +157,7 @@ Bugs to fix:
 
 Fl_Help_View ABI_VERSION checks
 Fl_Tooltip ABI_VERSION checks
+Fl_Text_Editor tab_nav ABI_VERSION checks
 Fl_Wizard draw() method private/protected
 GNAT bug with type_invariant combined with derived type and a begin section in a package, eg dialogs.adb
 

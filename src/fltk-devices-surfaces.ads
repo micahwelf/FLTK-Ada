@@ -10,6 +10,9 @@ package FLTK.Devices.Surfaces is
 
     type Surface_Device is new Device with private;
 
+    type Surface_Device_Reference (Data : not null access Surface_Device'Class) is
+        limited null record with Implicit_Dereference => Data;
+
 
 
 
@@ -40,8 +43,16 @@ private
            (This : in out Surface_Device);
 
 
+
+
     Original_Surface : aliased Surface_Device;
     Current_Ptr : access Surface_Device'Class := Original_Surface'Access;
+
+
+
+
+    pragma Inline (Get_Current);
+    pragma Inline (Set_Current);
 
 
 end FLTK.Devices.Surfaces;

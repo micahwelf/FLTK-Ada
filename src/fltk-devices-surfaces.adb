@@ -16,10 +16,12 @@ package body FLTK.Devices.Surfaces is
            (G : in System.Address)
         return System.Address;
     pragma Import (C, new_fl_surface, "new_fl_surface");
+    pragma Inline (new_fl_surface);
 
     procedure free_fl_surface
            (S : in System.Address);
     pragma Import (C, free_fl_surface, "free_fl_surface");
+    pragma Inline (free_fl_surface);
 
 
 
@@ -27,10 +29,12 @@ package body FLTK.Devices.Surfaces is
     procedure fl_surface_set_current
            (S : in System.Address);
     pragma Import (C, fl_surface_set_current, "fl_surface_set_current");
+    pragma Inline (fl_surface_set_current);
 
     function fl_surface_get_surface
         return System.Address;
     pragma Import (C, fl_surface_get_surface, "fl_surface_get_surface");
+    pragma Inline (fl_surface_get_surface);
 
 
 

@@ -1,0 +1,573 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Text_Editor Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Text_Editor Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Text_Editor</td>
+    <td>FLTK.Widgets.Groups.Text_Displays.Text_Editors</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Text_Editor</td>
+    <td>Text_Editor</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Text_Editor_Reference</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Insert_Mode</td>
+  </tr>
+
+  <tr>
+    <td>Key_Func</td>
+    <td>Key_Func</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Default_Key_Func</td>
+  </tr>
+
+  <tr>
+    <td>Key_Binding</td>
+    <td>Key_Binding</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Key_Binding_List</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Text_Editor(int X, int Y, int W, int H, const char *L=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Text_Editor;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void add_default_key_bindings(Key_Binding **list);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void add_key_binding(int key, int state, Key_Func f, Key_Binding **list);
+</pre></td>
+<td><pre>
+procedure Add_Key_Binding
+       (This : in out Text_Editor;
+        Bind : in     Key_Binding);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void add_key_binding(int key, int state, Key_Func f);
+</pre></td>
+<td><pre>
+procedure Add_Key_Binding
+       (This : in out Text_Editor;
+        Key  : in     Key_Combo;
+        Func : in     Key_Func);
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Add_Key_Bindings
+       (This : in out Text_Editor;
+        List : in     Key_Binding_List);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Key_Func bound_key_function(int key, int state, Key_Binding *list) const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Key_Func bound_key_function(int key, int state) const;
+</pre></td>
+<td><pre>
+function Get_Bound_Key_Function
+       (This : in Text_Editor;
+        Key  : in Key_Combo)
+    return Key_Func;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void default_key_function(Key_Func f);
+</pre></td>
+<td><pre>
+procedure Set_Default_Key_Function
+       (This : in out Text_Editor;
+        Func : in     Default_Key_Func);
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Get_Default_Key_Function
+       (This : in Text_Editor)
+    return Default_Key_Func;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Draw
+       (This : in out Text_Editor);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int handle(int e);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Text_Editor;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void insert_mode(int b);
+</pre></td>
+<td><pre>
+procedure Set_Insert_Mode
+       (This : in out Text_Editor;
+        To   : in     Insert_Mode);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int insert_mode();
+</pre></td>
+<td><pre>
+function Get_Insert_Mode
+       (This : in Text_Editor)
+    return Insert_Mode;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void remove_all_key_bindings(Key_Binding **list);
+</pre></td>
+<td><pre>
+procedure Remove_Key_Bindings
+       (This : in out Text_Editor;
+        List : in     Key_Binding_List);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void remove_all_key_bindings();
+</pre></td>
+<td><pre>
+procedure Remove_All_Key_Bindings
+       (This : in out Text_Editor);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void remove_key_binding(int key, int state, Key_Binding **list);
+</pre></td>
+<td><pre>
+procedure Remove_Key_Binding
+       (This : in out Text_Editor;
+        Bind : in     Key_Binding);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void remove_key_binding(int key, int state);
+</pre></td>
+<td><pre>
+procedure Remove_Key_Binding
+       (This : in out Text_Editor;
+        Key  : in     Key_Combo);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void tab_nav(int val);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int tab_nav() const;
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_backspace(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Backspace
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_c_s_move(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Ctrl_Shift_Home
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Shift_End
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Shift_Page_Down
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Shift_Page_Up
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Shift_Down
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Shift_Left
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Shift_Right
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Shift_Up
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_copy(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure Copy
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_ctrl_move(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Ctrl_Home
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_End
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Page_Down
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Page_Up
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Down
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Left
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Right
+       (This : in out Text_Editor'Class);
+
+procedure KF_Ctrl_Up
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_cut(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure Cut
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_default(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure Default
+       (This : in out Text_Editor'Class;
+        Key  : in     Key_Combo);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_delete(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure Delete
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_down(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Down
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_end(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_End
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_enter(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Enter
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_home(int, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Home
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_ignore(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Ignore
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_insert(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Insert
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_left(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Left
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_m_s_move(int c, Fl_Text_Editor *e);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_meta_move(int c, Fl_Text_Editor *e);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_move(int c, Fl_Text_Editor *e);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_page_down(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Page_Down
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_page_up(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Page_Up
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_paste(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure Paste
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_right(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Right
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_select_all(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure Select_All
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_shift_move(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Shift_Home
+       (This : in out Text_Editor'Class);
+
+procedure KF_Shift_End
+       (This : in out Text_Editor'Class);
+
+procedure KF_Shift_Page_Down
+       (This : in out Text_Editor'Class);
+
+procedure KF_Shift_Page_Up
+       (This : in out Text_Editor'Class);
+
+procedure KF_Shift_Down
+       (This : in out Text_Editor'Class);
+
+procedure KF_Shift_Left
+       (This : in out Text_Editor'Class);
+
+procedure KF_Shift_Right
+       (This : in out Text_Editor'Class);
+
+procedure KF_Shift_Up
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_undo(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure Undo
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static int kf_up(int c, Fl_Text_Editor *e);
+</pre></td>
+<td><pre>
+procedure KF_Up
+       (This : in out Text_Editor'Class);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

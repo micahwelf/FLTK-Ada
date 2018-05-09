@@ -28,7 +28,8 @@ void free_fl_surface(SURFACE s) {
 
 
 void fl_surface_set_current(SURFACE s) {
-    reinterpret_cast<Fl_Surface_Device*>(s)->set_current();
+    //  virtual so disable dispatch
+    reinterpret_cast<Fl_Surface_Device*>(s)->Fl_Surface_Device::set_current();
 }
 
 SURFACE fl_surface_get_surface(void) {

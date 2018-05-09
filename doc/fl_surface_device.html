@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Surface_Device Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Surface_Device Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Surface_Device</td>
+    <td>FLTK.Devices.Surfaces</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Surface_Device</td>
+    <td>Surface_Device</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Surface_Device_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Surface_Device(Fl_Graphics_Driver *graphics_driver);
+</pre></td>
+<td><pre>
+function Create
+       (Graphics : in out FLTK.Devices.Graphics.Graphics_Driver)
+    return Surface_Device;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * class_name();
+</pre></td>
+<td>Use runtime tag checks instead</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void driver(Fl_Graphics_Driver *graphics_driver);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Graphics_Driver * driver();
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void set_current(void);
+</pre></td>
+<td><pre>
+procedure Set_Current
+       (This : in out Surface_Device);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Surface_Device * surface();
+</pre></td>
+<td><pre>
+function Get_Current
+    return access Surface_Device'Class;
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

@@ -13,6 +13,7 @@ package body FLTK.Devices.Graphics is
            (G : in System.Address)
         return Interfaces.C.unsigned;
     pragma Import (C, fl_graphics_driver_color, "fl_graphics_driver_color");
+    pragma Inline (fl_graphics_driver_color);
 
 
 
@@ -21,17 +22,20 @@ package body FLTK.Devices.Graphics is
            (G : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_graphics_driver_descent, "fl_graphics_driver_descent");
+    pragma Inline (fl_graphics_driver_descent);
 
     function fl_graphics_driver_height
            (G : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_graphics_driver_height, "fl_graphics_driver_height");
+    pragma Inline (fl_graphics_driver_height);
 
     function fl_graphics_driver_width
            (G : in System.Address;
             C : in Interfaces.C.unsigned)
         return Interfaces.C.double;
     pragma Import (C, fl_graphics_driver_width, "fl_graphics_driver_width");
+    pragma Inline (fl_graphics_driver_width);
 
     function fl_graphics_driver_width2
            (G : in System.Address;
@@ -39,21 +43,25 @@ package body FLTK.Devices.Graphics is
             L : in Interfaces.C.int)
         return Interfaces.C.double;
     pragma Import (C, fl_graphics_driver_width2, "fl_graphics_driver_width2");
+    pragma Inline (fl_graphics_driver_width2);
 
     function fl_graphics_driver_get_font
            (G : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_graphics_driver_get_font, "fl_graphics_driver_get_font");
+    pragma Inline (fl_graphics_driver_get_font);
 
     function fl_graphics_driver_size
            (G : in System.Address)
         return Interfaces.C.int;
     pragma Import (C, fl_graphics_driver_size, "fl_graphics_driver_size");
+    pragma Inline (fl_graphics_driver_size);
 
     procedure fl_graphics_driver_set_font
            (G    : in System.Address;
             K, S : in Interfaces.C.int);
     pragma Import (C, fl_graphics_driver_set_font, "fl_graphics_driver_set_font");
+    pragma Inline (fl_graphics_driver_set_font);
 
 
 
@@ -62,6 +70,7 @@ package body FLTK.Devices.Graphics is
            (G, I       : in System.Address;
             X, Y, W, H : in Interfaces.C.int);
     pragma Import (C, fl_graphics_driver_draw_scaled, "fl_graphics_driver_draw_scaled");
+    pragma Inline (fl_graphics_driver_draw_scaled);
 
 
 

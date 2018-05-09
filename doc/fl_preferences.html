@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Preferences Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Preferences Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Preferences</td>
+    <td>FLTK.Environment</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Preferences</td>
+    <td>Preferences</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Preferences_Reference</td>
+  </tr>
+
+  <tr>
+    <td>Entry</td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>Root</td>
+    <td>Scope</td>
+  </tr>
+
+  <tr>
+    <td>ID</td>
+    <td>&nbsp;</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Preferences(Root root, const char *vendor, const char *application);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Preferences(const char *path, const char *vendor, const char *application);
+</pre></td>
+<td><pre>
+function From_Filesystem
+       (Path, Vendor, Application : in String)
+    return Preferences;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Preferences(Fl_Preferences &parent, const char *group);
+Fl_Preferences(Fl_Preferences *parent, const char *group);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Preferences(Fl_Preferences &parent, int groupIndex);
+Fl_Preferences(Fl_Preferences *parent, int groupIndex);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Preferences(const Fl_Preferences &);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+char clear();
+</pre></td>
+<td><pre>
+procedure Clear
+       (This : in out Preferences);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char deleteAllEntries();
+</pre></td>
+<td><pre>
+procedure Delete_All_Entries
+       (This : in out Preferences);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char deleteAllGroups();
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+char deleteEntry(const char *entry);
+</pre></td>
+<td><pre>
+procedure Delete_Entry
+       (This : in out Preferences;
+        Key  : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char deleteGroup(const char *group);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int entries();
+</pre></td>
+<td><pre>
+function Number_Of_Entries
+       (This : in Preferences)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * entry(int index);
+</pre></td>
+<td><pre>
+function Get_Key
+       (This  : in Preferences;
+        Index : in Natural)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char entryExists(const char *key);
+</pre></td>
+<td><pre>
+function Entry_Exists
+       (This : in Preferences;
+        Key  : in String)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void flush();
+</pre></td>
+<td><pre>
+procedure Flush
+       (This : in Preferences);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char get(const char *entry, int &value, int defaultValue);
+</pre></td>
+<td><pre>
+function Get
+       (This : in Preferences;
+        Key  : in String)
+    return Integer;
+
+function Get
+       (This    : in Preferences;
+        Key     : in String;
+        Default : in Integer)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char get(const char *entry, float &value, float defaultValue);
+</pre></td>
+<td><pre>
+function Get
+       (This : in Preferences;
+        Key  : in String)
+    return Float;
+
+function Get
+       (This    : in Preferences;
+        Key     : in String;
+        Default : in Float)
+    return Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char get(const char *entry, double &value, double defaultValue);
+</pre></td>
+<td><pre>
+function Get
+       (This : in Preferences;
+        Key  : in String)
+    return Long_Float;
+
+function Get
+       (This    : in Preferences;
+        Key     : in String;
+        Default : in Long_Float)
+    return Long_Float;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char get(const char *entry, char *&value, const char *defaultValue);
+</pre></td>
+<td><pre>
+function Get
+       (This : in Preferences;
+        Key  : in String)
+    return String;
+
+function Get
+       (This    : in Preferences;
+        Key     : in String;
+        Default : in String)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char get(const char *entry, char *value, const char *defaultValue, int maxSize);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+char get(const char *entry, void *&value, const void *defaultValue, int defaultSize);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+char get(const char *entry, void *value, const void *defaultValue, int defaultSize, int maxSize);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+char getUserdataPath(char *path, int pathlen);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * group(int num_group);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+char groupExists(const char *key);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int groups();
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+ID id();
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * name();
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * path();
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+char set(const char *entry, int value);
+</pre></td>
+<td><pre>
+procedure Set
+       (This  : in out Preferences;
+        Key   : in     String;
+        Value : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char set(const char *entry, float value);
+</pre></td>
+<td><pre>
+procedure Set
+       (This  : in out Preferences;
+        Key   : in     String;
+        Value : in     Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char set(const char *entry, float value, int precision);
+</pre></td>
+<td><pre>
+procedure Set
+       (This      : in out Preferences;
+        Key       : in     String;
+        Value     : in     Float;
+        Precision : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char set(const char *entry, double value);
+</pre></td>
+<td><pre>
+procedure Set
+       (This  : in out Preferences;
+        Key   : in     String;
+        Value : in     Long_Float);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char set(const char *entry, double value, int precision);
+</pre></td>
+<td><pre>
+procedure Set
+       (This      : in out Preferences;
+        Key       : in     String;
+        Value     : in     Long_Float;
+        Precision : in     Natural);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char set(const char *entry, const char *value);
+</pre></td>
+<td><pre>
+procedure Set
+       (This  : in out Preferences;
+        Key   : in     String;
+        Value : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+char set(const char *entry, const void *value, int size);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int size(const char *entry);
+</pre></td>
+<td><pre>
+function Entry_Size
+       (This : in Preferences;
+        Key  : in String)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static const char * newUUID();
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static char remove(ID id_);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

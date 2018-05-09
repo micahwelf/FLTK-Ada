@@ -11,7 +11,11 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
     type Text_Editor is new Text_Display with private;
 
+    type Text_Editor_Reference (Data : not null access Text_Editor'Class) is
+        limited null record with Implicit_Dereference => Data;
+
     type Insert_Mode is (Before, After);
+
     --  type Tab_Navigation is (Insert_Char, Widget_Focus);
 
     type Key_Func is access procedure
@@ -200,12 +204,12 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
             (Mod_None + Backspace_Key,    KF_Backspace'Access),
             (Mod_None + Insert_Key,       KF_Insert'Access),
 
-            (Mod_None + Delete_Key,     Delete'Access),
-            (Mod_Ctrl + 'c', Copy'Access),
-            (Mod_Ctrl + 'v', Paste'Access),
-            (Mod_Ctrl + 'x', Cut'Access),
-            (Mod_Ctrl + 'z', Undo'Access),
-            (Mod_Ctrl + 'a', Select_All'Access),
+            (Mod_None + Delete_Key, Delete'Access),
+            (Mod_Ctrl + 'c',        Copy'Access),
+            (Mod_Ctrl + 'v',        Paste'Access),
+            (Mod_Ctrl + 'x',        Cut'Access),
+            (Mod_Ctrl + 'z',        Undo'Access),
+            (Mod_Ctrl + 'a',        Select_All'Access),
 
             (Mod_None + Home_Key,      KF_Home'Access),
             (Mod_None + End_Key,       KF_End'Access),
@@ -246,19 +250,6 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
 
 
 
-    --  NOTE NOTE NOTE NOTE NOTE
-    --
-    --  Changing the keybindings for Shortcut_Keys that include modifiers
-    --  currently does not work due to some bugbear in the FLTK side of things.
-    --
-    --  Until that's fixed, the default keybindings for those key combinations
-    --  that include modifiers have been left in place.
-    --
-    --  NOTE NOTE NOTE NOTE NOTE
-
-
-
-
     procedure Add_Key_Binding
            (This : in out Text_Editor;
             Key  : in     Key_Combo;
@@ -267,6 +258,10 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     procedure Add_Key_Binding
            (This : in out Text_Editor;
             Bind : in     Key_Binding);
+
+    procedure Add_Key_Bindings
+           (This : in out Text_Editor;
+            List : in     Key_Binding_List);
 
     function Get_Bound_Key_Function
            (This : in Text_Editor;
@@ -280,6 +275,10 @@ package FLTK.Widgets.Groups.Text_Displays.Text_Editors is
     procedure Remove_Key_Binding
            (This : in out Text_Editor;
             Bind : in     Key_Binding);
+
+    procedure Remove_Key_Bindings
+           (This : in out Text_Editor;
+            List : in     Key_Binding_List);
 
     procedure Remove_All_Key_Bindings
            (This : in out Text_Editor);
@@ -357,6 +356,83 @@ private
 
 
     package Editor_Convert is new System.Address_To_Access_Conversions (Text_Editor'Class);
+
+
+
+
+    pragma Inline (Default);
+
+
+    pragma Inline (Undo);
+    pragma Inline (Cut);
+    pragma Inline (Copy);
+    pragma Inline (Paste);
+    pragma Inline (Delete);
+    pragma Inline (Select_All);
+
+
+    pragma Inline (KF_Backspace);
+    pragma Inline (KF_Insert);
+    pragma Inline (KF_Enter);
+    pragma Inline (KF_Ignore);
+
+
+    pragma Inline (KF_Home);
+    pragma Inline (KF_End);
+    pragma Inline (KF_Page_Down);
+    pragma Inline (KF_Page_Up);
+    pragma Inline (KF_Down);
+    pragma Inline (KF_Left);
+    pragma Inline (KF_Right);
+    pragma Inline (KF_Up);
+
+
+    pragma Inline (KF_Shift_Home);
+    pragma Inline (KF_Shift_End);
+    pragma Inline (KF_Shift_Page_Down);
+    pragma Inline (KF_Shift_Page_Up);
+    pragma Inline (KF_Shift_Down);
+    pragma Inline (KF_Shift_Left);
+    pragma Inline (KF_Shift_Right);
+    pragma Inline (KF_Shift_Up);
+
+
+    pragma Inline (KF_Ctrl_Home);
+    pragma Inline (KF_Ctrl_End);
+    pragma Inline (KF_Ctrl_Page_Down);
+    pragma Inline (KF_Ctrl_Page_Up);
+    pragma Inline (KF_Ctrl_Down);
+    pragma Inline (KF_Ctrl_Left);
+    pragma Inline (KF_Ctrl_Right);
+    pragma Inline (KF_Ctrl_Up);
+
+
+    pragma Inline (KF_Ctrl_Shift_Home);
+    pragma Inline (KF_Ctrl_Shift_End);
+    pragma Inline (KF_Ctrl_Shift_Page_Down);
+    pragma Inline (KF_Ctrl_Shift_Page_Up);
+    pragma Inline (KF_Ctrl_Shift_Down);
+    pragma Inline (KF_Ctrl_Shift_Left);
+    pragma Inline (KF_Ctrl_Shift_Right);
+    pragma Inline (KF_Ctrl_Shift_Up);
+
+
+    pragma Inline (Add_Key_Binding);
+    pragma Inline (Remove_All_Key_Bindings);
+    pragma Inline (Get_Default_Key_Function);
+    pragma Inline (Set_Default_Key_Function);
+
+
+    pragma Inline (Get_Insert_Mode);
+    pragma Inline (Set_Insert_Mode);
+
+
+    --  pragma Inline (Get_Tab_Nav_Mode);
+    --  pragma Inline (Set_Tab_Nav_Mode);
+
+
+    pragma Inline (Draw);
+    pragma Inline (Handle);
 
 
 end FLTK.Widgets.Groups.Text_Displays.Text_Editors;
