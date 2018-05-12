@@ -34,6 +34,7 @@ FLTK.Screen
 FLTK.Static
 FLTK.Text_Buffers
 FLTK.Tooltips
+FLTK.Widgets
 FLTK.Widgets.Boxes
 FLTK.Widgets.Buttons
 FLTK.Widgets.Buttons.Enter
@@ -105,7 +106,6 @@ Partially Done:
 FLTK.Devices.Graphics (incomplete API, otherwise polished)
 FLTK.Devices.Surfaces (incomplete API, otherwise polished)
 FLTK.Environment (incomplete API, otherwise polished)
-FLTK.Widgets
 FLTK.Widgets.Groups
 FLTK.Widgets.Menus
 

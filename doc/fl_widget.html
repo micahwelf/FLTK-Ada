@@ -1,0 +1,1059 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Widget Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Widget Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Widget</td>
+    <td>FLTK.Widgets</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Widget</td>
+    <td>Widget</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Widget_Reference</td>
+  </tr>
+
+  <tr>
+    <td>Fl_Callback_p</td>
+    <td>Widget_Callback</td>
+  </tr>
+
+  <tr>
+    <td>Fl_When</td>
+    <td>Callback_Flag</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Widget(int x, int y, int w, int h, const char *label=0L);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Widget;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void _clear_fullscreen();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void _set_fullscreen();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void activate();
+</pre></td>
+<td><pre>
+procedure Activate
+       (This : in out Widget);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int active() const;
+</pre></td>
+<td><pre>
+function Is_Active
+       (This : in Widget)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int active_r() const;
+</pre></td>
+<td><pre>
+function Is_Tree_Active
+       (This : in Widget)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Align align() const;
+</pre></td>
+<td><pre>
+function Get_Alignment
+       (This : in Widget)
+    return Alignment;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void align(Fl_Align alignment);
+</pre></td>
+<td><pre>
+procedure Set_Alignment
+       (This      : in out Widget;
+        New_Align : in     Alignment);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+long argument() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void argument(long v);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual class Fl_Gl_Window * as_gl_window();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual Fl_Group * as_group();
+</pre></td>
+<td>Use runtime tag checks and view conversions instead</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual Fl_Window * as_window();
+</pre></td>
+<td>Use runtime tag checks and view conversions instead</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Boxtype box() const;
+</pre></td>
+<td><pre>
+function Get_Box
+       (This : in Widget)
+    return Box_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void box(Fl_Boxtype new_box);
+</pre></td>
+<td><pre>
+procedure Set_Box
+       (This : in out Widget;
+        Box  : in     Box_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Callback_p callback() const;
+</pre></td>
+<td><pre>
+function Get_Callback
+       (This : in Widget)
+    return Widget_Callback;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void callback(Fl_Callback *cb, void *p);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void callback(Fl_Callback *cb);
+void callback(Fl_Callback0 *cb);
+</pre></td>
+<td><pre>
+procedure Set_Callback
+       (This : in out Widget;
+        Func : in     Widget_Callback);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void callback(Fl_Callback1 *cb, long p=0);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int changed() const;
+</pre></td>
+<td><pre>
+function Has_Changed
+       (This : in Widget)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear_active();
+</pre></td>
+<td><pre>
+procedure Set_Active
+       (This : in out Widget;
+        To   : in     Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear_changed();
+</pre></td>
+<td><pre>
+procedure Set_Changed
+       (This : in out Widget;
+        To   : in     Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear_damage(uchar c=0);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear_output();
+</pre></td>
+<td><pre>
+procedure Set_Output_Only
+       (This : in out Widget;
+        To   : in     Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear_visible();
+</pre></td>
+<td><pre>
+procedure Set_Visible
+       (This : in out Widget;
+        To   : in     Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear_visible_focus();
+</pre></td>
+<td><pre>
+procedure Set_Visible_Focus
+       (This : in out Widget;
+        To   : in     Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color color() const;
+</pre></td>
+<td><pre>
+function Get_Background_Color
+       (This : in Widget)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void color(Fl_Color bg);
+</pre></td>
+<td><pre>
+procedure Set_Background_Color
+       (This : in out Widget;
+        To   : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void color(Fl_Color bg, Fl_Color sel);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color color2() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void color2(unsigned a);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int contains(const Fl_Widget *w) const;
+</pre></td>
+<td><pre>
+function Contains
+       (This : in Widget;
+        Item : in Widget'Class)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void copy_label(const char *new_label);
+</pre></td>
+<td><pre>
+procedure Set_Label
+       (This : in out Widget;
+        Text : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void copy_tooltip(const char *text);
+</pre></td>
+<td><pre>
+procedure Set_Tooltip
+       (This : in out Widget;
+        Text : in     String);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+uchar damage() const;
+</pre></td>
+<td><pre>
+function Is_Damaged
+       (This : in Widget)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void damage(uchar c);
+</pre></td>
+<td><pre>
+procedure Set_Damaged
+       (This : in out Widget;
+        To   : in     Boolean);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void damage(uchar c, int x, int y, int w, int h);
+</pre></td>
+<td><pre>
+procedure Set_Damaged
+       (This       : in out Widget;
+        To         : in     Boolean;
+        X, Y, W, H : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int damage_resize(int, int, int, int);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void deactivate();
+</pre></td>
+<td><pre>
+procedure Deactivate
+       (This : in out Widget);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Image * deimage();
+const Fl_Image * deimage() const;
+</pre></td>
+<td><pre>
+function Get_Inactive_Image
+       (This : in Widget)
+    return access FLTK.Images.Image'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void deimage(Fl_Image *img);
+void deimage(Fl_Image &img);
+</pre></td>
+<td><pre>
+procedure Set_Inactive_Image
+       (This : in out Widget;
+        Pic  : in out FLTK.Images.Image'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void do_callback();
+</pre></td>
+<td><pre>
+procedure Do_Callback
+       (This : in out Widget);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void do_callback(Fl_Widget *o, long arg);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void do_callback(Fl_Widget *o, void *arg=0);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void draw()=0;
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Widget) is null;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw_label(int, int, int, int, Fl_Align) const;
+</pre></td>
+<td><pre>
+procedure Draw_Label
+       (This       : in Widget;
+        X, Y, W, H : in Integer;
+        Align      : in Alignment);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int h() const;
+</pre></td>
+<td><pre>
+function Get_H
+       (This : in Widget)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual int handle(int event);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Widget;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void hide();
+</pre></td>
+<td>See void clear_visible();</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Image * image();
+const Fl_Image * image() const;
+</pre></td>
+<td><pre>
+function Get_Image
+       (This : in Widget)
+    return access FLTK.Images.Image'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void image(Fl_Image *img);
+void image(Fl_Image &img);
+</pre></td>
+<td><pre>
+procedure Set_Image
+       (This : in out Widget;
+        Pic  : in out FLTK.Images.Image'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int inside(const Fl_Widget *wgt) const;
+</pre></td>
+<td><pre>
+function Inside
+       (This   : in Widget;
+        Parent : in Widget'Class)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int is_label_copied() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * label() const;
+</pre></td>
+<td><pre>
+function Get_Label
+       (This : in Widget)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void label(const char *text);
+</pre></td>
+<td>See void copy_label(const char *new_label);</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void label(Fl_Labeltype a, const char *b);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color labelcolor() const;
+</pre></td>
+<td><pre>
+function Get_Label_Color
+       (This : in Widget)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void labelcolor(Fl_Color c);
+</pre></td>
+<td><pre>
+procedure Set_Label_Color
+       (This  : in out Widget;
+        Value : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Font labelfont() const;
+</pre></td>
+<td><pre>
+function Get_Label_Font
+       (This : in Widget)
+    return Font_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void labelfont(Fl_Font f);
+</pre></td>
+<td><pre>
+procedure Set_Label_Font
+       (This : in out Widget;
+        Font : in     Font_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Fontsize labelsize() const;
+</pre></td>
+<td><pre>
+function Get_Label_Size
+       (This : in Widget)
+    return Font_Size;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void labelsize(Fl_Fontsize pix);
+</pre></td>
+<td><pre>
+procedure Set_Label_Size
+       (This : in out Widget;
+        Size : in     Font_Size);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Labeltype labeltype() const;
+</pre></td>
+<td><pre>
+function Get_Label_Type
+       (This : in Widget)
+    return Label_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void labeltype(Fl_Labeltype a);
+</pre></td>
+<td><pre>
+procedure Set_Label_Type
+       (This  : in out Widget;
+        Label : in     Label_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void measure_label(int &ww, int &hh) const;
+</pre></td>
+<td><pre>
+procedure Measure_Label
+       (This : in     Widget;
+        W, H :    out Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int output() const;
+</pre></td>
+<td><pre>
+function Is_Output_Only
+       (This : in Widget)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Group * parent() const;
+</pre></td>
+<td><pre>
+function Parent
+       (This : in Widget)
+    return access FLTK.Widgets.Groups.Group'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void parent(Fl_Group *p);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void position(int X, int Y);
+</pre></td>
+<td><pre>
+procedure Reposition
+       (This : in out Widget;
+        X, Y : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void redraw();
+</pre></td>
+<td><pre>
+procedure Redraw
+       (This : in out Widget);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void redraw_label();
+</pre></td>
+<td><pre>
+procedure Redraw_Label
+       (This : in out Widget);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void resize(int x, int y, int w, int h);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color selection_color() const;
+</pre></td>
+<td><pre>
+function Get_Selection_Color
+       (This : in Widget)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void selection_color(Fl_Color a);
+</pre></td>
+<td><pre>
+procedure Set_Selection_Color
+       (This : in out Widget;
+        To   : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_active();
+</pre></td>
+<td>See void clear_active();</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_changed();
+</pre></td>
+<td>See void clear_changed();</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_output();
+</pre></td>
+<td>See void clear_output();</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_visible();
+</pre></td>
+<td>See void clear_visible();</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void set_visible_focus();
+</pre></td>
+<td>See void clear_visible_focus();</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void show();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void size(int W, int H);
+</pre></td>
+<td><pre>
+procedure Resize
+       (This : in out Widget;
+        W, H : in     Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int take_focus();
+</pre></td>
+<td><pre>
+function Take_Focus
+       (This : in out Widget)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int takesevents() const;
+</pre></td>
+<td><pre>
+function Takes_Events
+       (This : in Widget)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int test_shortcut();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * tooltip() const;
+</pre></td>
+<td><pre>
+function Get_Tooltip
+       (This : in Widget)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void tooltip(const char *text);
+</pre></td>
+<td>See void copy_tooltip(const char *text);</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Window * top_window() const;
+</pre></td>
+<td><pre>
+function Top_Window
+       (This : in Widget)
+    return access FLTK.Widgets.Groups.Windows.Window'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Window * top_window_offset(int &xoff, int &yoff) const;
+</pre></td>
+<td><pre>
+function Top_Window_Offset
+       (This : in Widget;
+        Offset_X, Offset_Y : out Integer)
+    return access FLTK.Widgets.Groups.Windows.Window'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+uchar type() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void type(uchar t);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int use_accents_menu();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void * user_data() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void user_data(void *v);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int visible() const;
+</pre></td>
+<td><pre>
+function Is_Visible
+       (This : in Widget)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void visible_focus(int v);
+</pre></td>
+<td>See void clear_visible_focus();</td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int visible_focus();
+</pre></td>
+<td><pre>
+function Has_Visible_Focus
+       (This : in Widget)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int visible_r() const;
+</pre></td>
+<td><pre>
+function Is_Tree_Visible
+       (This : in Widget)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int w() const;
+</pre></td>
+<td><pre>
+function Get_W
+       (This : in Widget)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_When when() const;
+</pre></td>
+<td><pre>
+function Get_When
+       (This : in Widget)
+    return Callback_Flag;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void when(uchar i);
+</pre></td>
+<td><pre>
+procedure Set_When
+       (This : in out Widget;
+        To   : in     Callback_Flag);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Window * window() const;
+</pre></td>
+<td><pre>
+function Nearest_Window
+       (This : in Widget)
+    return access FLTK.Widgets.Groups.Windows.Window'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int x() const;
+</pre></td>
+<td><pre>
+function Get_X
+       (This : in Widget)
+    return Integer;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int y() const;
+</pre></td>
+<td><pre>
+function Get_Y
+       (This : in Widget)
+    return Integer;
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+
