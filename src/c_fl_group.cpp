@@ -141,3 +141,15 @@ void fl_group_init_sizes(GROUP g) {
     reinterpret_cast<Fl_Group*>(g)->init_sizes();
 }
 
+
+
+
+void * fl_group_get_current() {
+    return Fl_Group::current();
+}
+
+void fl_group_set_current(GROUP g) {
+    Fl_Group::current(reinterpret_cast<Fl_Group*>(g));
+}
+
+

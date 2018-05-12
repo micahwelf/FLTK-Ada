@@ -51,5 +51,9 @@ extern "C" void fl_group_set_resizable(GROUP g, WIDGET item);
 extern "C" void fl_group_init_sizes(GROUP g);
 
 
+extern "C" void * fl_group_get_current();
+extern "C" void fl_group_set_current(GROUP g);
+
+
 #endif
 

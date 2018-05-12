@@ -13,16 +13,16 @@ typedef void* OUTPUTT;
 
 
 
-extern "C" inline void output_set_draw_hook(OUTPUTT i, void * d);
-extern "C" inline void fl_output_draw(OUTPUTT i);
-extern "C" inline void output_set_handle_hook(OUTPUTT i, void * h);
-extern "C" inline int fl_output_handle(OUTPUTT i, int e);
+extern "C" void output_set_draw_hook(OUTPUTT i, void * d);
+extern "C" void fl_output_draw(OUTPUTT i);
+extern "C" void output_set_handle_hook(OUTPUTT i, void * h);
+extern "C" int fl_output_handle(OUTPUTT i, int e);
 
 
 
 
-extern "C" inline OUTPUTT new_fl_output(int x, int y, int w, int h, char* label);
-extern "C" inline void free_fl_output(OUTPUTT i);
+extern "C" OUTPUTT new_fl_output(int x, int y, int w, int h, char* label);
+extern "C" void free_fl_output(OUTPUTT i);
 
 
 #endif

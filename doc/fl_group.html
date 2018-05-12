@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Group Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Group Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Group</td>
+    <td>FLTK.Widgets.Groups</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Group</td>
+    <td>Group</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Group_Reference</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Index</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Cursor</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Group(int, int, int, int, const char *=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Group;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Widget *& _ddfdesign_kludge();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void add(Fl_Widget &);
+void add(Fl_Widget *o);
+</pre></td>
+<td><pre>
+procedure Add
+       (This : in out Group;
+        Item : in out Widget'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void add_resizable(Fl_Widget &o);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Widget * const * array() const;
+</pre></td>
+<td>Use iterators instead</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual Fl_Group * as_group();
+</pre></td>
+<td>Use runtime tag checks and view conversions instead</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void begin();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Has_Child
+       (This  : in Group;
+        Place : in Index)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Has_Child
+       (Place : in Cursor)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Widget * child(int n) const;
+</pre></td>
+<td><pre>
+function Child
+       (This  : in Group;
+        Place : in Index)
+    return Widget_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Child
+       (This  : in Group;
+        Place : in Cursor)
+    return Widget_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int children() const;
+</pre></td>
+<td><pre>
+function Number_Of_Children
+       (This : in Group)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear();
+</pre></td>
+<td><pre>
+procedure Clear
+       (This : in out Group);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clip_children(int c);
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+unsigned int clip_children();
+</pre></td>
+<td>TBA</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Group);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void end();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int find(const Fl_Widget *) const;
+int find(const Fl_Widget &o) const;
+</pre></td>
+<td><pre>
+function Find
+       (This : in     Group;
+        Item : in out Widget'Class)
+    return Index;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void focus(Fl_Widget *W);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void forms_end();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int handle(int);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Group;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void init_sizes();
+</pre></td>
+<td><pre>
+procedure Reset_Initial_Sizes
+       (This : in out Group);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void insert(Fl_Widget &, int i);
+</pre></td>
+<td><pre>
+procedure Insert
+       (This  : in out Group;
+        Item  : in out Widget'Class;
+        Place : in     Index);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void insert(Fl_Widget &o, Fl_Widget *before);
+</pre></td>
+<td><pre>
+procedure Insert
+       (This   : in out Group;
+        Item   : in out Widget'Class;
+        Before : in     Widget'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Iterate
+       (This : in Group)
+    return Group_Iterators.Reversible_Iterator'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void remove(int index);
+</pre></td>
+<td><pre>
+procedure Remove
+       (This  : in out Group;
+        Place : in     Index);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void remove(Fl_Widget &);
+void remove(Fl_Widget *o);
+</pre></td>
+<td><pre>
+procedure Remove
+       (This : in out Group;
+        Item : in out Widget'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void resizable(Fl_Widget &o);
+void resizable(Fl_Widget *o);
+</pre></td>
+<td><pre>
+procedure Set_Resizable
+       (This : in out Group;
+        Item : in     Widget'Class);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Widget * resizable() const;
+</pre></td>
+<td><pre>
+function Get_Resizable
+       (This : in Group)
+    return access Widget'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void resize(int, int, int, int);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+static Fl_Group * current();
+</pre></td>
+<td><pre>
+function Get_Current
+    return access Group'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+static void current(Fl_Group *g);
+</pre></td>
+<td><pre>
+procedure Set_Current
+       (To : in Group'Class);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

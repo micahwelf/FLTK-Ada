@@ -19,7 +19,7 @@ SHARED_IMAGE fl_shared_image_find(const char * n, int w, int h) {
     return Fl_Shared_Image::find(n, w, h);
 }
 
-void release_fl_shared_image(SHARED_IMAGE i) {
+void fl_shared_image_release(SHARED_IMAGE i) {
     reinterpret_cast<Fl_Shared_Image*>(i)->release();
 }
 

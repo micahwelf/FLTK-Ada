@@ -11,8 +11,8 @@ typedef void* XBM_IMAGE;
 
 
 
-extern "C" inline XBM_IMAGE new_fl_xbm_image(const char * f);
-extern "C" inline void free_fl_xbm_image(XBM_IMAGE b);
+extern "C" XBM_IMAGE new_fl_xbm_image(const char * f);
+extern "C" void free_fl_xbm_image(XBM_IMAGE b);
 
 
 #endif

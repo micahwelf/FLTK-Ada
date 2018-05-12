@@ -50,6 +50,7 @@ FLTK.Widgets.Charts
 FLTK.Widgets.Clocks
 FLTK.Widgets.Clocks.Updated
 FLTK.Widgets.Clocks.Updated.Round
+FLTK.Widgets.Groups
 FLTK.Widgets.Groups.Color_Choosers
 FLTK.Widgets.Groups.Input_Choices
 FLTK.Widgets.Groups.Packed
@@ -106,7 +107,6 @@ Partially Done:
 FLTK.Devices.Graphics (incomplete API, otherwise polished)
 FLTK.Devices.Surfaces (incomplete API, otherwise polished)
 FLTK.Environment (incomplete API, otherwise polished)
-FLTK.Widgets.Groups
 FLTK.Widgets.Menus
 
 
