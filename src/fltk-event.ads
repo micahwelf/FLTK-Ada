@@ -192,7 +192,7 @@ private
 
 
     Handlers : Handler_Vectors.Vector := Handler_Vectors.Empty_Vector;
-    Current_Dispatch : Event_Dispatch := null;
+    --  Current_Dispatch : Event_Dispatch := null;
 
 
     function fl_widget_get_user_data
@@ -206,9 +206,9 @@ private
 
     pragma Inline (Add_Handler);
     pragma Inline (Remove_Handler);
-    pragma Inline (Get_Dispatch);
-    pragma Inline (Set_Dispatch);
-    pragma Inline (Default_Dispatch);
+    --  pragma Inline (Get_Dispatch);
+    --  pragma Inline (Set_Dispatch);
+    --  pragma Inline (Default_Dispatch);
 
 
     pragma Inline (Get_Grab);

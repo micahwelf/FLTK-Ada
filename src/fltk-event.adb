@@ -261,24 +261,24 @@ package body FLTK.Event is
     end Event_Handler_Hook;
 
 
-    function Dispatch_Hook
-           (Num : in Interfaces.C.int;
-            Ptr : in System.Address)
-        return Interfaces.C.int
-    is
-        Ret_Val : Event_Outcome;
-        Actual_Window : access FLTK.Widgets.Groups.Windows.Window'Class;
-    begin
-        if Ptr /= System.Null_Address then
-            Actual_Window := Window_Convert.To_Pointer (fl_widget_get_user_data (Ptr));
-        end if;
-        if Current_Dispatch = null then
-            Ret_Val := Default_Dispatch (Event_Kind'Val (Num), Actual_Window);
-        else
-            Ret_Val := Current_Dispatch (Event_Kind'Val (Num), Actual_Window);
-        end if;
-        return Event_Outcome'Pos (Ret_Val);
-    end Dispatch_Hook;
+    --  function Dispatch_Hook
+    --         (Num : in Interfaces.C.int;
+    --          Ptr : in System.Address)
+    --      return Interfaces.C.int
+    --  is
+    --      Ret_Val : Event_Outcome;
+    --      Actual_Window : access FLTK.Widgets.Groups.Windows.Window'Class;
+    --  begin
+    --      if Ptr /= System.Null_Address then
+    --          Actual_Window := Window_Convert.To_Pointer (fl_widget_get_user_data (Ptr));
+    --      end if;
+    --      if Current_Dispatch = null then
+    --          Ret_Val := Default_Dispatch (Event_Kind'Val (Num), Actual_Window);
+    --      else
+    --          Ret_Val := Current_Dispatch (Event_Kind'Val (Num), Actual_Window);
+    --      end if;
+    --      return Event_Outcome'Pos (Ret_Val);
+    --  end Dispatch_Hook;
 
 
 
@@ -302,38 +302,38 @@ package body FLTK.Event is
     end Remove_Handler;
 
 
-    function Get_Dispatch
-        return Event_Dispatch is
-    begin
-        if Current_Dispatch = null then
-            return Default_Dispatch'Access;
-        else
-            return Current_Dispatch;
-        end if;
-    end Get_Dispatch;
+    --  function Get_Dispatch
+    --      return Event_Dispatch is
+    --  begin
+    --      if Current_Dispatch = null then
+    --          return Default_Dispatch'Access;
+    --      else
+    --          return Current_Dispatch;
+    --      end if;
+    --  end Get_Dispatch;
 
 
-    procedure Set_Dispatch
-           (Func : in Event_Dispatch) is
-    begin
-        Current_Dispatch := Func;
-    end Set_Dispatch;
+    --  procedure Set_Dispatch
+    --         (Func : in Event_Dispatch) is
+    --  begin
+    --      Current_Dispatch := Func;
+    --  end Set_Dispatch;
 
 
-    function Default_Dispatch
-           (Event : in     Event_Kind;
-            Win   : access FLTK.Widgets.Groups.Windows.Window'Class)
-        return Event_Outcome is
-    begin
-        if Win = null then
-            return Event_Outcome'Val (fl_event_handle
-               (Event_Kind'Pos (Event), System.Null_Address));
-        else
-            return Event_Outcome'Val (fl_event_handle
-               (Event_Kind'Pos (Event),
-                Wrapper (Win.all).Void_Ptr));
-        end if;
-    end Default_Dispatch;
+    --  function Default_Dispatch
+    --         (Event : in     Event_Kind;
+    --          Win   : access FLTK.Widgets.Groups.Windows.Window'Class)
+    --      return Event_Outcome is
+    --  begin
+    --      if Win = null then
+    --          return Event_Outcome'Val (fl_event_handle
+    --             (Event_Kind'Pos (Event), System.Null_Address));
+    --      else
+    --          return Event_Outcome'Val (fl_event_handle
+    --             (Event_Kind'Pos (Event),
+    --              Wrapper (Win.all).Void_Ptr));
+    --      end if;
+    --  end Default_Dispatch;
 
 
 
@@ -636,7 +636,7 @@ begin
 
 
     fl_event_add_handler (Event_Handler_Hook'Address);
-    --fl_event_set_event_dispatch (Dispatch_Hook'Address);
+    --  fl_event_set_event_dispatch (Dispatch_Hook'Address);
 
 
 end FLTK.Event;
