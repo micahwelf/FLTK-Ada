@@ -2,11 +2,14 @@
 
 with
 
-    Interfaces.C.Strings;
+    Interfaces.C.Strings,
+    System;
 
 use type
 
-    Interfaces.C.int;
+    Interfaces.C.int,
+    Interfaces.C.Strings.chars_ptr,
+    System.Address;
 
 
 package body FLTK.Event is
@@ -264,13 +267,15 @@ package body FLTK.Event is
         return Interfaces.C.int
     is
         Ret_Val : Event_Outcome;
-        Actual_Window : access FLTK.Widgets.Groups.Windows.Window'Class :=
-                Window_Convert.To_Pointer (fl_widget_get_user_data (Ptr));
+        Actual_Window : access FLTK.Widgets.Groups.Windows.Window'Class;
     begin
+        if Ptr /= System.Null_Address then
+            Actual_Window := Window_Convert.To_Pointer (fl_widget_get_user_data (Ptr));
+        end if;
         if Current_Dispatch = null then
-            Ret_Val := Default_Dispatch (Event_Kind'Val (Num), Actual_Window.all);
+            Ret_Val := Default_Dispatch (Event_Kind'Val (Num), Actual_Window);
         else
-            Ret_Val := Current_Dispatch (Event_Kind'Val (Num), Actual_Window.all);
+            Ret_Val := Current_Dispatch (Event_Kind'Val (Num), Actual_Window);
         end if;
         return Event_Outcome'Pos (Ret_Val);
     end Dispatch_Hook;
@@ -317,12 +322,17 @@ package body FLTK.Event is
 
     function Default_Dispatch
            (Event : in     Event_Kind;
-            Win   : in out FLTK.Widgets.Groups.Windows.Window'Class)
+            Win   : access FLTK.Widgets.Groups.Windows.Window'Class)
         return Event_Outcome is
     begin
-        return Event_Outcome'Val (fl_event_handle
-           (Event_Kind'Pos (Event),
-            Wrapper (Win).Void_Ptr));
+        if Win = null then
+            return Event_Outcome'Val (fl_event_handle
+               (Event_Kind'Pos (Event), System.Null_Address));
+        else
+            return Event_Outcome'Val (fl_event_handle
+               (Event_Kind'Pos (Event),
+                Wrapper (Win.all).Void_Ptr));
+        end if;
     end Default_Dispatch;
 
 
@@ -406,9 +416,15 @@ package body FLTK.Event is
 
 
     function Text
-        return String is
+        return String
+    is
+        Str : Interfaces.C.Strings.chars_ptr := fl_event_text;
     begin
-        return Interfaces.C.Strings.Value (fl_event_text, Interfaces.C.size_t (fl_event_length));
+        if Str = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            return Interfaces.C.Strings.Value (Str, Interfaces.C.size_t (fl_event_length));
+        end if;
     end Text;
 
 
@@ -620,7 +636,7 @@ begin
 
 
     fl_event_add_handler (Event_Handler_Hook'Address);
-    fl_event_set_event_dispatch (Dispatch_Hook'Address);
+    --fl_event_set_event_dispatch (Dispatch_Hook'Address);
 
 
 end FLTK.Event;

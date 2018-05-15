@@ -8,7 +8,8 @@ with
 
 use type
 
-    Interfaces.C.int;
+    Interfaces.C.int,
+    Interfaces.C.Strings.chars_ptr;
 
 
 package body FLTK.Static is
@@ -721,6 +722,7 @@ package body FLTK.Static is
            (Kind : in Font_Kind)
         return String is
     begin
+        --  should never get a null string in return since it's from an enum
         return Interfaces.C.Strings.Value (fl_static_get_font (Font_Kind'Pos (Kind)));
     end Font_Image;
 
@@ -729,6 +731,7 @@ package body FLTK.Static is
            (Kind : in Font_Kind)
         return String is
     begin
+        --  should never get a null string in return since it's from an enum
         return Interfaces.C.Strings.Value (fl_static_get_font_name (Font_Kind'Pos (Kind)));
     end Font_Family_Image;
 
@@ -947,9 +950,15 @@ package body FLTK.Static is
 
 
     function Get_Scheme
-        return String is
+        return String
+    is
+        Ptr : Interfaces.C.Strings.chars_ptr := fl_static_get_scheme;
     begin
-        return Interfaces.C.Strings.Value (fl_static_get_scheme);
+        if Ptr = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            return Interfaces.C.Strings.Value (Ptr);
+        end if;
     end Get_Scheme;
 
 

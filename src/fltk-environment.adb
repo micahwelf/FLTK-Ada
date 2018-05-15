@@ -8,6 +8,7 @@ with
 use type
 
     Interfaces.C.int,
+    Interfaces.C.Strings.chars_ptr,
     System.Address;
 
 
@@ -228,10 +229,13 @@ package body FLTK.Environment is
     is
         Key : Interfaces.C.Strings.chars_ptr :=
             fl_preferences_entry (This.Void_Ptr, Interfaces.C.int (Index));
-        Str : String := Interfaces.C.Strings.Value (Key);
     begin
         --  no need for dealloc?
-        return Str;
+        if Key = Interfaces.C.Strings.Null_Ptr then
+            raise Constraint_Error;
+        else
+            return Interfaces.C.Strings.Value (Key);
+        end if;
     end Get_Key;
 
 
@@ -320,13 +324,20 @@ package body FLTK.Environment is
             Interfaces.C.To_C (Key),
             Value,
             Interfaces.C.To_C ("default"));
-        Str : String := Interfaces.C.Strings.Value (Value);
     begin
-        Interfaces.C.Strings.Free (Value);
         if Check = 0 then
             raise Preference_Error;
         end if;
-        return Str;
+        if Value = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            declare
+                Str : String := Interfaces.C.Strings.Value (Value);
+            begin
+                Interfaces.C.Strings.Free (Value);
+                return Str;
+            end;
+        end if;
     end Get;
 
 
@@ -397,10 +408,17 @@ package body FLTK.Environment is
             Interfaces.C.To_C (Key),
             Value,
             Interfaces.C.To_C (Default));
-        Str : String := Interfaces.C.Strings.Value (Value);
     begin
-        Interfaces.C.Strings.Free (Value);
-        return Str;
+        if Value = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            declare
+                Str : String := Interfaces.C.Strings.Value (Value);
+            begin
+                Interfaces.C.Strings.Free (Value);
+                return Str;
+            end;
+        end if;
     end Get;
 
 

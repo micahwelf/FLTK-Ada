@@ -168,7 +168,11 @@ package body FLTK.Dialogs is
                 Interfaces.C.To_C (Default));
     begin
         --  string does not need dealloc
-        return Interfaces.C.Strings.Value (Result);
+        if Result = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            return Interfaces.C.Strings.Value (Result);
+        end if;
     end Text_Input;
 
 
@@ -189,7 +193,11 @@ package body FLTK.Dialogs is
                 Interfaces.C.To_C (Default));
     begin
         --  string does not need dealloc
-        return Interfaces.C.Strings.Value (Result);
+        if Result = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            return Interfaces.C.Strings.Value (Result);
+        end if;
     end Password;
 
 
@@ -248,7 +256,11 @@ package body FLTK.Dialogs is
                 Boolean'Pos (Relative));
     begin
         --  I'm... fairly sure the string does not need dealloc?
-        return Interfaces.C.Strings.Value (Result);
+        if Result = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            return Interfaces.C.Strings.Value (Result);
+        end if;
     end Dir_Chooser;
 
 
@@ -264,7 +276,11 @@ package body FLTK.Dialogs is
                 Boolean'Pos (Relative));
     begin
         --  I'm... fairly sure the string does not need dealloc?
-        return Interfaces.C.Strings.Value (Result);
+        if Result = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            return Interfaces.C.Strings.Value (Result);
+        end if;
     end File_Chooser;
 
 

@@ -7,6 +7,7 @@ with
 
 use type
 
+    Interfaces.C.Strings.chars_ptr,
     System.Address;
 
 
@@ -100,10 +101,15 @@ package body FLTK.Widgets.Inputs.Integer is
 
     function Get_Value
            (This : in Integer_Input)
-        return Standard.Integer is
+        return Standard.Integer
+    is
+        Ptr : Interfaces.C.Strings.chars_ptr := fl_input_get_value (This.Void_Ptr);
     begin
-        return Standard.Integer'Value
-               (Interfaces.C.Strings.Value (fl_input_get_value (This.Void_Ptr)));
+        if Ptr = Interfaces.C.Strings.Null_Ptr then
+            return 0;
+        else
+            return Standard.Integer'Value (Interfaces.C.Strings.Value (Ptr));
+        end if;
     end Get_Value;
 
 

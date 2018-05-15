@@ -9,6 +9,7 @@ with
 use type
 
     Interfaces.C.int,
+    Interfaces.C.Strings.chars_ptr,
     System.Address;
 
 
@@ -348,10 +349,16 @@ package body FLTK.Widgets.Groups.Input_Choices is
 
     function Get_Input
            (This : in Input_Choice)
-        return String is
+        return String
+    is
+        Ptr : Interfaces.C.Strings.chars_ptr := fl_input_choice_get_value (This.Void_Ptr);
     begin
-        --  pointer to internal buffer so no free necessary
-        return Interfaces.C.Strings.Value (fl_input_choice_get_value (This.Void_Ptr));
+        if Ptr = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            --  pointer to internal buffer so no free necessary
+            return Interfaces.C.Strings.Value (Ptr);
+        end if;
     end Get_Input;
 
 

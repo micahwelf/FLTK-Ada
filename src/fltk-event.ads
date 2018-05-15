@@ -17,10 +17,10 @@ package FLTK.Event is
            (Event : in Event_Kind)
         return Event_Outcome;
 
-    type Event_Dispatch is access function
-           (Event : in     Event_Kind;
-            Win   : in out FLTK.Widgets.Groups.Windows.Window'Class)
-        return Event_Outcome;
+    --  type Event_Dispatch is access function
+    --         (Event : in     Event_Kind;
+    --          Win   : access FLTK.Widgets.Groups.Windows.Window'Class)
+    --      return Event_Outcome;
 
 
 
@@ -31,16 +31,16 @@ package FLTK.Event is
     procedure Remove_Handler
            (Func : in Event_Handler);
 
-    function Get_Dispatch
-        return Event_Dispatch;
+    --  function Get_Dispatch
+    --      return Event_Dispatch;
 
-    procedure Set_Dispatch
-           (Func : in Event_Dispatch);
+    --  procedure Set_Dispatch
+    --         (Func : in Event_Dispatch);
 
-    function Default_Dispatch
-           (Event : in     Event_Kind;
-            Win   : in out FLTK.Widgets.Groups.Windows.Window'Class)
-        return Event_Outcome;
+    --  function Default_Dispatch
+    --         (Event : in     Event_Kind;
+    --          Win   : access FLTK.Widgets.Groups.Windows.Window'Class)
+    --      return Event_Outcome;
 
 
 

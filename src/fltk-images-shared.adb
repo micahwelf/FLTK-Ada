@@ -7,6 +7,7 @@ with
 
 use type
 
+    Interfaces.C.Strings.chars_ptr,
     System.Address;
 
 
@@ -223,9 +224,15 @@ package body FLTK.Images.Shared is
 
     function Name
            (This : in Shared_Image)
-        return String is
+        return String
+    is
+        Ptr : Interfaces.C.Strings.chars_ptr := fl_shared_image_name (This.Void_Ptr);
     begin
-        return Interfaces.C.Strings.Value (fl_shared_image_name (This.Void_Ptr));
+        if Ptr = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            return Interfaces.C.Strings.Value (Ptr);
+        end if;
     end Name;
 
 

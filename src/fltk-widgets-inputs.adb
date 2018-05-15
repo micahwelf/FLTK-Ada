@@ -8,6 +8,7 @@ with
 use type
 
     Interfaces.C.int,
+    Interfaces.C.Strings.chars_ptr,
     System.Address;
 
 
@@ -568,10 +569,16 @@ package body FLTK.Widgets.Inputs is
 
     function Get_Value
            (This : in Input)
-        return String is
+        return String
+    is
+        Ptr : Interfaces.C.Strings.chars_ptr := fl_input_get_value (This.Void_Ptr);
     begin
-        --  pointer to internal buffer only, so no Free required
-        return Interfaces.C.Strings.Value (fl_input_get_value (This.Void_Ptr));
+        if Ptr = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            --  pointer to internal buffer only, so no Free required
+            return Interfaces.C.Strings.Value (Ptr);
+        end if;
     end Get_Value;
 
 

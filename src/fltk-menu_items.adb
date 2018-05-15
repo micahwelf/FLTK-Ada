@@ -9,7 +9,8 @@ with
 use type
 
     System.Address,
-    Interfaces.C.int;
+    Interfaces.C.int,
+    Interfaces.C.Strings.chars_ptr;
 
 
 package body FLTK.Menu_Items is
@@ -340,9 +341,15 @@ package body FLTK.Menu_Items is
 
     function Get_Label
            (Item : in Menu_Item)
-        return String is
+        return String
+    is
+        Ptr : Interfaces.C.Strings.chars_ptr := fl_menu_item_get_label (Item.Void_Ptr);
     begin
-        return Interfaces.C.Strings.Value (fl_menu_item_get_label (Item.Void_Ptr));
+        if Ptr = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            return Interfaces.C.Strings.Value (Ptr);
+        end if;
     end Get_Label;
 
     procedure Set_Label

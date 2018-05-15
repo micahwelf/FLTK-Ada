@@ -11,6 +11,7 @@ use type
 
     Interfaces.C.int,
     Interfaces.C.unsigned,
+    Interfaces.C.Strings.chars_ptr,
     System.Address;
 
 
@@ -844,10 +845,16 @@ package body FLTK.Widgets is
 
     function Get_Tooltip
            (This : in Widget)
-        return String is
+        return String
+    is
+        Ptr : Interfaces.C.Strings.chars_ptr := fl_widget_tooltip (This.Void_Ptr);
     begin
-        --  no need for dealloc
-        return Interfaces.C.Strings.Value (fl_widget_tooltip (This.Void_Ptr));
+        if Ptr = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            --  no need for dealloc
+            return Interfaces.C.Strings.Value (Ptr);
+        end if;
     end Get_Tooltip;
 
 
@@ -863,9 +870,15 @@ package body FLTK.Widgets is
 
     function Get_Label
            (This : in Widget)
-        return String is
+        return String
+    is
+        Ptr : Interfaces.C.Strings.chars_ptr := fl_widget_get_label (This.Void_Ptr);
     begin
-        return Interfaces.C.Strings.Value (fl_widget_get_label (This.Void_Ptr));
+        if Ptr = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            return Interfaces.C.Strings.Value (Ptr);
+        end if;
     end Get_Label;
 
 

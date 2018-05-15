@@ -10,7 +10,8 @@ use type
 
     System.Address,
     Interfaces.C.int,
-    Interfaces.C.unsigned_long;
+    Interfaces.C.unsigned_long,
+    Interfaces.C.Strings.chars_ptr;
 
 
 package body FLTK.Widgets.Menus is
@@ -561,10 +562,16 @@ package body FLTK.Widgets.Menus is
 
     function Chosen_Label
            (This : in Menu)
-        return String is
+        return String
+    is
+        Ptr : Interfaces.C.Strings.chars_ptr := fl_menu_text (This.Void_Ptr);
     begin
-        --  no dealloc required?
-        return Interfaces.C.Strings.Value (fl_menu_text (This.Void_Ptr));
+        if Ptr = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            --  no dealloc required?
+            return Interfaces.C.Strings.Value (Ptr);
+        end if;
     end Chosen_Label;
 
 

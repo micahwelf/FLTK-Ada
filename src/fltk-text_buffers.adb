@@ -767,10 +767,17 @@ package body FLTK.Text_Buffers is
     is
         Raw : Interfaces.C.Strings.chars_ptr :=
             fl_text_buffer_get_text (This.Void_Ptr);
-        Ada_String : String := Interfaces.C.Strings.Value (Raw);
     begin
-        Interfaces.C.Strings.Free (Raw);
-        return Ada_String;
+        if Raw = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            declare
+                Ada_String : String := Interfaces.C.Strings.Value (Raw);
+            begin
+                Interfaces.C.Strings.Free (Raw);
+                return Ada_String;
+            end;
+        end if;
     end Get_Entire_Text;
 
 
@@ -812,10 +819,17 @@ package body FLTK.Text_Buffers is
                (This.Void_Ptr,
                 Interfaces.C.int (Start),
                 Interfaces.C.int (Finish));
-        The_Text : String := Interfaces.C.Strings.Value (C_Str);
     begin
-        Interfaces.C.Strings.Free (C_Str);
-        return The_Text;
+        if C_Str = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            declare
+                The_Text : String := Interfaces.C.Strings.Value (C_Str);
+            begin
+                Interfaces.C.Strings.Free (C_Str);
+                return The_Text;
+            end;
+        end if;
     end Text_At;
 
 
@@ -961,10 +975,17 @@ package body FLTK.Text_Buffers is
     is
         Raw : Interfaces.C.Strings.chars_ptr :=
             fl_text_buffer_selection_text (This.Void_Ptr);
-        Ada_String : String := Interfaces.C.Strings.Value (Raw);
     begin
-        Interfaces.C.Strings.Free (Raw);
-        return Ada_String;
+        if Raw = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            declare
+                Ada_String : String := Interfaces.C.Strings.Value (Raw);
+            begin
+                Interfaces.C.Strings.Free (Raw);
+                return Ada_String;
+            end;
+        end if;
     end Selection_Text;
 
 
@@ -974,10 +995,17 @@ package body FLTK.Text_Buffers is
     is
         Raw : Interfaces.C.Strings.chars_ptr :=
             fl_text_buffer_secondary_selection_text (This.Void_Ptr);
-        Ada_String : String := Interfaces.C.Strings.Value (Raw);
     begin
-        Interfaces.C.Strings.Free (Raw);
-        return Ada_String;
+        if Raw = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            declare
+                Ada_String : String := Interfaces.C.Strings.Value (Raw);
+            begin
+                Interfaces.C.Strings.Free (Raw);
+                return Ada_String;
+            end;
+        end if;
     end Secondary_Selection_Text;
 
 
@@ -1055,10 +1083,17 @@ package body FLTK.Text_Buffers is
     is
         Raw : Interfaces.C.Strings.chars_ptr :=
             fl_text_buffer_highlight_text (This.Void_Ptr);
-        Ada_String : String := Interfaces.C.Strings.Value (Raw);
     begin
-        Interfaces.C.Strings.Free (Raw);
-        return Ada_String;
+        if Raw = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            declare
+                Ada_String : String := Interfaces.C.Strings.Value (Raw);
+            begin
+                Interfaces.C.Strings.Free (Raw);
+                return Ada_String;
+            end;
+        end if;
     end Get_Highlighted_Text;
 
 
@@ -1181,10 +1216,17 @@ package body FLTK.Text_Buffers is
         Raw : Interfaces.C.Strings.chars_ptr := fl_text_buffer_line_text
            (This.Void_Ptr,
             Interfaces.C.int (Place));
-        Ada_String : String := Interfaces.C.Strings.Value (Raw);
     begin
-        Interfaces.C.Strings.Free (Raw);
-        return Ada_String;
+        if Raw = Interfaces.C.Strings.Null_Ptr then
+            return "";
+        else
+            declare
+                Ada_String : String := Interfaces.C.Strings.Value (Raw);
+            begin
+                Interfaces.C.Strings.Free (Raw);
+                return Ada_String;
+            end;
+        end if;
     end Line_Text;
 
 
