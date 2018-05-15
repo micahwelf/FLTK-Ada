@@ -21,6 +21,8 @@ package FLTK.Widgets.Groups is
         with Implicit_Dereference => Data;
 
     subtype Index is Positive;
+    subtype Extended_Index is Natural;
+    No_Index : constant Extended_Index := Extended_Index'First;
 
     --  type Clip_Mode is (No_Clip, Clip);
 
@@ -91,7 +93,7 @@ package FLTK.Widgets.Groups is
     function Find
            (This : in     Group;
             Item : in out Widget'Class)
-        return Index;
+        return Extended_Index;
 
     function Number_Of_Children
            (This : in Group)

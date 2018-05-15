@@ -1,0 +1,590 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Menu_ Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Menu_ Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Menu_</td>
+    <td>FLTK.Widgets.Menus</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Menu_</td>
+    <td>Menu</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Menu_Reference</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Index</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Extended_Index</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Cursor</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Menu_(int, int, int, int, const char *=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Menu;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int add(const char *, int shortcut, Fl_Callback *, void *=0, int=0);
+</pre></td>
+<td><pre>
+procedure Add
+       (This     : in out Menu;
+        Text     : in     String;
+        Action   : in     Widget_Callback := null;
+        Shortcut : in     Key_Combo := No_Key;
+        Flags    : in     Menu_Flag := Flag_Normal);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int add(const char *a, const char *b, Fl_Callback *c, void *d=0, int e=0);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int add(const char *);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void clear();
+</pre></td>
+<td><pre>
+procedure Clear
+       (This : in out Menu);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int clear_submenu(int index);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void copy(const Fl_Menu_Item *m, void *user_data=0);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Boxtype down_box() const;
+</pre></td>
+<td><pre>
+function Get_Down_Box
+       (This : in Menu)
+    return Box_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void down_box(Fl_Boxtyep b);
+</pre></td>
+<td><pre>
+procedure Set_Down_Box
+       (This : in out Menu;
+        To   : in     Box_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color down_color() const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void down_color(unsigned c);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+procedure Draw
+       (This : in out Menu) is null;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>See draw method in Fl_Menu_Item</td>
+<td><pre>
+procedure Draw_Item
+       (This       : in out Menu;
+        Item       : in     Index;
+        X, Y, W, H : in     Integer;
+        Selected   : in     Boolean := False);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int find_index(const char *name) const;
+</pre></td>
+<td><pre>
+function Find_Index
+       (This : in Menu;
+        Name : in String)
+    return Extended_Index;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int find_index(const Fl_Menu_Item *item) const;
+</pre></td>
+<td><pre>
+function Find_Index
+       (This : in Menu;
+        Item : in FLTK.Menu_Items.Menu_Item)
+    return Extended_Index;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int find_index(Fl_Callback *cb) const;
+</pre></td>
+<td><pre>
+function Find_Index
+       (This   : in Menu;
+        Action : in Widget_Callback)
+    return Extended_Index;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const Fl_Menu_Item * find_item(const char *name);
+</pre></td>
+<td><pre>
+function Find_Item
+       (This : in Menu;
+        Name : in String)
+    return FLTK.Menu_Items.Menu_Item_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const Fl_Menu_Item * find_item(Fl_Callback *);
+</pre></td>
+<td><pre>
+function Find_Item
+       (This   : in Menu;
+        Action : in Widget_Callback)
+    return FLTK.Menu_Items.Menu_Item_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void global();
+</pre></td>
+<td><pre>
+procedure Make_Global
+       (This : in out Menu);
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Handle
+       (This  : in out Menu;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Has_Item
+       (This  : in Menu;
+        Place : in Index)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Has_Item
+       (Place : in Cursor)
+    return Boolean;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int insert(int index, const char *, int shortcut, Fl_Callback *, void *=0, int=0);
+</pre></td>
+<td><pre>
+procedure Insert
+       (This     : in out Menu;
+        Place    : in     Index;
+        Text     : in     String;
+        Action   : in     Widget_Callback := null;
+        Shortcut : in     Key_Combo := No_Key;
+        Flags    : in     Menu_Flag := Flag_Normal);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int insert(int index, const char *a, const char *b, Fl_Callback *c, void *d=0, int e=0);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Item
+       (This  : in Menu;
+        Place : in Index)
+    return FLTK.Menu_Items.Menu_Item_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Item
+       (This  : in Menu;
+        Place : in Cursor)
+    return FLTK.Menu_Items.Menu_Item_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int item_pathname(char *name, int namelen, const Fl_Menu_Item *finditem=0) const;
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Iterate
+       (This : in Menu)
+    return Menu_Iterators.Reversible_Iterator'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>See measure method in Fl_Menu_Item</td>
+<td><pre>
+procedure Measure_Item
+       (This : in     Menu;
+        Item : in     Index;
+        W, H :    out Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const Fl_Menu_Item * menu() const;
+</pre></td>
+<td>Use iterators instead</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void menu(const Fl_Menu_Item *m);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void mode(int i, int fl);
+</pre></td>
+<td>See Set_Flags procedure in FLTK.Menu_Items</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int mode(int i) const;
+</pre></td>
+<td>See Get_Flags function in FLTK.Menu_Items</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const Fl_Menu_Item * mvalue() const;
+</pre></td>
+<td><pre>
+function Chosen
+       (This : in Menu)
+    return FLTK.Menu_Items.Menu_Item_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const Fl_Menu_Item * picked(const Fl_Menu_Item *);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td>See popup method in Fl_Menu_Item</td>
+<td><pre>
+function Popup
+       (This    : in Menu;
+        X, Y    : in Integer;
+        Title   : in String := "";
+        Initial : in Extended_Index := No_Index)
+    return FLTK.Menu_Items.Menu_Item_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>See pulldown method in Fl_Menu_Item</td>
+<td><pre>
+function Pulldown
+       (This       : in Menu;
+        X, Y, W, H : in Integer;
+        Initial    : in Extended_Index := No_Index)
+    return FLTK.Menu_Items.Menu_Item_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void remove(int);
+</pre></td>
+<td><pre>
+procedure Remove
+       (This  : in out Menu;
+        Place : in     Index);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void replace(int, const char *);
+</pre></td>
+<td>See Set_Label procedure in FLTK.Menu_Items</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void setonly(Fl_Menu_Item *item);
+</pre></td>
+<td>See Set_Only procedure in FLTK.Menu_Items</td>
+  </tr>
+
+  <tr>
+<td><pre>
+void shortcut(int i, int s);
+</pre></td>
+<td>See Set_Shortcut procedure in FLTK.Menu_Items</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int size() const;
+</pre></td>
+<td><pre>
+function Number_Of_Items
+       (This : in Menu)
+    return Natural;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void size(int W, int H);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const Fl_Menu_Item * test_shortcut();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * text() const;
+</pre></td>
+<td><pre>
+function Chosen_Label
+       (This : in Menu)
+    return String;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+const char * text(int i) const;
+</pre></td>
+<td>See Get_Label function in FLTK.Menu_Items</td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Color textcolor() const;
+</pre></td>
+<td><pre>
+function Get_Text_Color
+       (This : in Menu)
+    return Color;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textcolor(Fl_Color c);
+</pre></td>
+<td><pre>
+procedure Set_Text_Color
+       (This : in out Menu;
+        To   : in     Color);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Font textfont() const;
+</pre></td>
+<td><pre>
+function Get_Text_Font
+       (This : in Menu)
+    return Font_Kind;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textfont(Fl_Font c);
+</pre></td>
+<td><pre>
+procedure Set_Text_Font
+       (This : in out Menu;
+        To   : in     Font_Kind);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Fontsize textsize() const;
+</pre></td>
+<td><pre>
+function Get_Text_Size
+       (This : in Menu)
+    return Font_Size;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void textsize(Fl_Fontsize c);
+</pre></td>
+<td><pre>
+procedure Set_Text_Size
+       (This : in out Menu;
+        To   : in     Font_Size);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value() const;
+</pre></td>
+<td><pre>
+function Chosen_Index
+       (This : in Menu)
+    return Extended_Index;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value(const Fl_Menu_Item *);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value(int i);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

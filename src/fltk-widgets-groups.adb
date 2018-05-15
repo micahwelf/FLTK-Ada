@@ -7,6 +7,7 @@ with
 
 use type
 
+    Interfaces.C.int,
     System.Address;
 
 
@@ -215,7 +216,7 @@ package body FLTK.Widgets.Groups is
         fl_group_insert
                (This.Void_Ptr,
                 Item.Void_Ptr,
-                Interfaces.C.int (Place));
+                Interfaces.C.int (Place) - 1);
     end Insert;
 
 
@@ -243,7 +244,7 @@ package body FLTK.Widgets.Groups is
            (This  : in out Group;
             Place : in     Index) is
     begin
-        fl_group_remove2 (This.Void_Ptr, Interfaces.C.int (Place - 1));
+        fl_group_remove2 (This.Void_Ptr, Interfaces.C.int (Place) - 1);
     end Remove;
 
 
@@ -281,7 +282,7 @@ package body FLTK.Widgets.Groups is
         return Widget_Reference
     is
         Widget_Ptr : System.Address :=
-                fl_group_child (This.Void_Ptr, Interfaces.C.int (Place - 1));
+                fl_group_child (This.Void_Ptr, Interfaces.C.int (Place) - 1);
         Actual_Widget : access Widget'Class :=
                 Widget_Convert.To_Pointer (fl_widget_get_user_data (Widget_Ptr));
     begin
@@ -301,10 +302,15 @@ package body FLTK.Widgets.Groups is
     function Find
            (This : in     Group;
             Item : in out Widget'Class)
-        return Index is
+        return Extended_Index
+    is
+        Ret : Interfaces.C.int;
     begin
-        --  should set this up to throw an exception if not found
-        return Index (fl_group_find (This.Void_Ptr, Item.Void_Ptr));
+        Ret := fl_group_find (This.Void_Ptr, Item.Void_Ptr);
+        if Ret = fl_group_children (This.Void_Ptr) then
+            return No_Index;
+        end if;
+        return Extended_Index (Ret + 1);
     end Find;
 
 

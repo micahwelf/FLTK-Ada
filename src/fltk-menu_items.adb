@@ -161,6 +161,18 @@ package body FLTK.Menu_Items is
     pragma Import (C, fl_menu_item_set_shortcut, "fl_menu_item_set_shortcut");
     pragma Inline (fl_menu_item_set_shortcut);
 
+    function fl_menu_item_get_flags
+           (MI : in System.Address)
+        return Interfaces.C.unsigned_long;
+    pragma Import (C, fl_menu_item_get_flags, "fl_menu_item_get_flags");
+    pragma Inline (fl_menu_item_get_flags);
+
+    procedure fl_menu_item_set_flags
+           (MI : in System.Address;
+            F  : in Interfaces.C.unsigned_long);
+    pragma Import (C, fl_menu_item_set_flags, "fl_menu_item_set_flags");
+    pragma Inline (fl_menu_item_set_flags);
+
 
 
 
@@ -412,6 +424,22 @@ package body FLTK.Menu_Items is
     begin
         fl_menu_item_set_shortcut (Item.Void_Ptr, Interfaces.C.int (To_C (To)));
     end Set_Shortcut;
+
+
+    function Get_Flags
+           (Item : in Menu_Item)
+        return Menu_Flag is
+    begin
+        return Menu_Flag (fl_menu_item_get_flags (Item.Void_Ptr));
+    end Get_Flags;
+
+
+    procedure Set_Flags
+           (Item : in out Menu_Item;
+            To   : in     Menu_Flag) is
+    begin
+        fl_menu_item_set_flags (Item.Void_Ptr, Interfaces.C.unsigned_long (To));
+    end Set_Flags;
 
 
 

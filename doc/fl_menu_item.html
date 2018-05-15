@@ -94,14 +94,14 @@ function Is_Active_And_Visible
 <td><pre>
 int add(const char *, int shortcut, Fl_Callback *, void *=0, int=0);
 </pre></td>
-<td>See Fl_Menu</td>
+<td>See Add procedure in FLTK.Widgets.Menus</td>
   </tr>
 
   <tr>
 <td><pre>
 int add(const char *a, const char *b, Fl_Callback *c, void *d=0, int e=0);
 </pre></td>
-<td>See Fl_Menu</td>
+<td>&nbsp;</td>
   </tr>
 
   <tr>
@@ -206,7 +206,7 @@ procedure Do_Callback
 <td><pre>
 void draw(int x, int y, int w, int h, const Fl_Menu_ *, int t=0) const;
 </pre></td>
-<td>See Fl_Menu</td>
+<td>See Draw_Item procedure in FLTK.Widgets.Menus</td>
   </tr>
 
   <tr>
@@ -221,7 +221,25 @@ const Fl_Menu_Item * find_shortcut(int *ip=0, const bool require_alt=false) cons
 const Fl_Menu_Item * first() const;
 Fl_Menu_Item * first();
 </pre></td>
-<td>See Fl_Menu</td>
+<td>Use FLTK.Widgets.Menus iterators instead</td>
+  </tr>
+
+  <tr>
+<td>See Fl_Menu_ int mode(int i) const;</td>
+<td><pre>
+function Get_Flags
+       (Item : in Menu_Item)
+    return Menu_Flag;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>See Fl_Menu_ void mode(int i, int fl);</td>
+<td><pre>
+procedure Set_Flags
+       (Item : in out Menu_Item;
+        To   : in     Menu_Flag);
+</pre></td>
   </tr>
 
   <tr>
@@ -246,7 +264,7 @@ void image(Fl_Image &a);
 <td><pre>
 int insert(int, const char *, int, Fl_Callback *, void *=0, int=0);
 </pre></td>
-<td>See Fl_Menu</td>
+<td>See Insert procedure in FLTK.Widgets.Menus</td>
   </tr>
 
   <tr>
@@ -370,7 +388,7 @@ procedure Set_Label_Type
 <td><pre>
 int measure(int *h, const Fl_Menu_ *) const;
 </pre></td>
-<td>See Fl_Menu</td>
+<td>See Measure_Item procedure in FLTK.Widgets.Menus</td>
   </tr>
 
   <tr>
@@ -378,7 +396,7 @@ int measure(int *h, const Fl_Menu_ *) const;
 const Fl_Menu_Item * next(int=1) const;
 Fl_Menu_Item * next(int i=1);
 </pre></td>
-<td>See Fl_Menu</td>
+<td>Use FLTK.Widgets.Menus iterators instead</td>
   </tr>
 
   <tr>
@@ -387,7 +405,7 @@ const Fl_Menu_Item * popup
    (int X, int Y, const char *title=0,
     const Fl_Menu_Item *picked=0, const Fl_Menu_*=0) const;
 </pre></td>
-<td>See Fl_Menu</td>
+<td>See Popup function in FLTK.Widgets.Menus</td>
   </tr>
 
   <tr>
@@ -397,7 +415,7 @@ const Fl_Menu_Item * pulldown
     const Fl_Menu_Item *picked=0, const Fl_Menu_*=0,
     const Fl_Menu_Item *title=0, int menubar=0) const;
 </pre></td>
-<td>See Fl_Menu</td>
+<td>See Pulldown function in FLTK.Widgets.Menus</td>
   </tr>
 
   <tr>
@@ -464,7 +482,7 @@ procedure Show
 <td><pre>
 int size() const;
 </pre></td>
-<td>See Fl_Menu</td>
+<td>See Number_Of_Items function in FLTK.Widgets.Menus</td>
   </tr>
 
   <tr>

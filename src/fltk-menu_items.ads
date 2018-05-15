@@ -120,6 +120,14 @@ package FLTK.Menu_Items is
            (Item : in out Menu_Item;
             To   : in     Key_Combo);
 
+    function Get_Flags
+           (Item : in Menu_Item)
+        return Menu_Flag;
+
+    procedure Set_Flags
+           (Item : in out Menu_Item;
+            To   : in     Menu_Flag);
+
 
 
 
@@ -185,6 +193,8 @@ private
 
     pragma Inline (Get_Shortcut);
     pragma Inline (Set_Shortcut);
+    pragma Inline (Get_Flags);
+    pragma Inline (Set_Flags);
 
 
     pragma Inline (Activate);

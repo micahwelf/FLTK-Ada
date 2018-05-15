@@ -116,6 +116,14 @@ void fl_menu_item_set_shortcut(MENU_ITEM mi, int s) {
     reinterpret_cast<Fl_Menu_Item*>(mi)->shortcut(s);
 }
 
+unsigned long fl_menu_item_get_flags(MENU_ITEM mi) {
+    return reinterpret_cast<Fl_Menu_Item*>(mi)->flags;
+}
+
+void fl_menu_item_set_flags(MENU_ITEM mi, unsigned long f) {
+    reinterpret_cast<Fl_Menu_Item*>(mi)->flags = f;
+}
+
 
 
 

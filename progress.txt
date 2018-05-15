@@ -73,6 +73,7 @@ FLTK.Widgets.Inputs.Multiline
 FLTK.Widgets.Inputs.Outputs
 FLTK.Widgets.Inputs.Outputs.Multiline
 FLTK.Widgets.Inputs.Secret
+FLTK.Widgets.Menus
 FLTK.Widgets.Menus.Menu_Bars
 FLTK.Widgets.Menus.Menu_Buttons
 FLTK.Widgets.Progress_Bars
@@ -107,7 +108,6 @@ Partially Done:
 FLTK.Devices.Graphics (incomplete API, otherwise polished)
 FLTK.Devices.Surfaces (incomplete API, otherwise polished)
 FLTK.Environment (incomplete API, otherwise polished)
-FLTK.Widgets.Menus
 
 
 
@@ -155,6 +155,7 @@ FL_Cairo_Window
 
 Bugs to fix:
 
+Fl_Group ABI_VERSION checks
 Fl_Help_View ABI_VERSION checks
 Fl_Tooltip ABI_VERSION checks
 Fl_Text_Editor tab_nav ABI_VERSION checks
