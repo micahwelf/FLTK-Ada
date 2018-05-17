@@ -93,7 +93,7 @@ FLTK.Widgets.Valuators.Sliders.Horizontal
 FLTK.Widgets.Valuators.Sliders.Nice
 FLTK.Widgets.Valuators.Sliders.Scrollbars
 FLTK.Widgets.Valuators.Sliders.Value
-FLTK.Widgets.Valuators.Sliders.Horizontal
+FLTK.Widgets.Valuators.Sliders.Value.Horizontal
 
 
 
@@ -135,6 +135,8 @@ FL_Overlay_Window
 FL_GL_Window
 FL_Glut_Window
 FL_Cairo_Window
+Fl_Display_Device
+Fl_File_Chooser?
 
 
 (all these have to be done to put something in the polished category)
@@ -167,21 +169,22 @@ GNAT bug with type_invariant combined with derived type and a begin section in a
 
 Never:
 
-FL_FormsBitmap
-FL_FormsPixmap
-FL_FormsText
-FL_Free
-FL_Sys_Menu_Bar
-FL_Positioner
-FL_Timer
-FL_System_Printer
-FL_GDI_Graphics_Driver
-FL_Postscript_Graphics_Driver
-FL_Quartz_Graphics_Driver
-FL_Xlib_Graphics_Driver
-FL_Plugin
-FL_Plugin_Manager
-FL_Device_Plugin
+Fl_FormsBitmap
+Fl_FormsPixmap
+Fl_FormsText
+Fl_Free
+Fl_Sys_Menu_Bar
+Fl_Positioner
+Fl_Timer
+Fl_System_Printer
+Fl_GDI_Graphics_Driver
+Fl_Postscript_Graphics_Driver
+Fl_Quartz_Graphics_Driver
+Fl_Xlib_Graphics_Driver
+Fl_Plugin
+Fl_Plugin_Manager
+Fl_Device_Plugin
+Fl_Label
 
 
 
