@@ -94,6 +94,7 @@ FLTK.Widgets.Valuators.Sliders.Nice
 FLTK.Widgets.Valuators.Sliders.Scrollbars
 FLTK.Widgets.Valuators.Sliders.Value
 FLTK.Widgets.Valuators.Sliders.Value.Horizontal
+FLTK.Widgets.Valuators.Value_Inputs
 
 
 
@@ -136,7 +137,7 @@ FL_GL_Window
 FL_Glut_Window
 FL_Cairo_Window
 Fl_Display_Device
-Fl_File_Chooser?
+Fl_File_Chooser
 
 
 (all these have to be done to put something in the polished category)
@@ -184,7 +185,6 @@ Fl_Xlib_Graphics_Driver
 Fl_Plugin
 Fl_Plugin_Manager
 Fl_Device_Plugin
-Fl_Label
 
 
 
