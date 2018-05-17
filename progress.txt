@@ -95,6 +95,7 @@ FLTK.Widgets.Valuators.Sliders.Scrollbars
 FLTK.Widgets.Valuators.Sliders.Value
 FLTK.Widgets.Valuators.Sliders.Value.Horizontal
 FLTK.Widgets.Valuators.Value_Inputs
+FLTK.Widgets.Valuators.Value_Outputs
 
 
 
