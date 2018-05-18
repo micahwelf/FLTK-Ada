@@ -41,6 +41,8 @@ extern "C" int fl_menu_size(MENU m);
 extern "C" const void * fl_menu_mvalue(MENU m);
 extern "C" const char * fl_menu_text(MENU m);
 extern "C" int fl_menu_value(MENU m);
+extern "C" int fl_menu_set_value(MENU m, int p);
+extern "C" int fl_menu_set_value2(MENU m, void * i);
 
 
 extern "C" unsigned int fl_menu_get_textcolor(MENU m);

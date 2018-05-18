@@ -572,14 +572,22 @@ function Chosen_Index
 <td><pre>
 int value(const Fl_Menu_Item *);
 </pre></td>
-<td>&nbsp;</td>
+<td><pre>
+procedure Set_Chosen
+       (This : in out Menu;
+        Item : in     FLTK.Menu_Items.Menu_Item);
+</pre></td>
   </tr>
 
   <tr>
 <td><pre>
 int value(int i);
 </pre></td>
-<td>&nbsp;</td>
+<td><pre>
+procedure Set_Chosen
+       (This  : in out Menu;
+        Place : in     Index);
+</pre></td>
   </tr>
 
 </table>

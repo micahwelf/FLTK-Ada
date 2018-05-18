@@ -125,6 +125,14 @@ int fl_menu_value(MENU m) {
     return reinterpret_cast<Fl_Menu_*>(m)->value();
 }
 
+int fl_menu_set_value(MENU m, int p) {
+    return reinterpret_cast<Fl_Menu_*>(m)->value(p);
+}
+
+int fl_menu_set_value2(MENU m, void * i) {
+    return reinterpret_cast<Fl_Menu_*>(m)->value(reinterpret_cast<Fl_Menu_Item*>(i));
+}
+
 
 
 

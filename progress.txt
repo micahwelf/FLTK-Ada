@@ -23,6 +23,9 @@ FLTK.Event
 FLTK.Images
 FLTK.Images.Bitmaps
 FLTK.Images.Bitmaps.XBM
+FLTK.Images.Pixmaps
+FLTK.Images.Pixmaps.GIF
+FLTK.Images.Pixmaps.XPM
 FLTK.Images.RGB
 FLTK.Images.RGB.BMP
 FLTK.Images.RGB.JPEG
@@ -74,6 +77,7 @@ FLTK.Widgets.Inputs.Outputs
 FLTK.Widgets.Inputs.Outputs.Multiline
 FLTK.Widgets.Inputs.Secret
 FLTK.Widgets.Menus
+FLTK.Widgets.Menus.Choices
 FLTK.Widgets.Menus.Menu_Bars
 FLTK.Widgets.Menus.Menu_Buttons
 FLTK.Widgets.Progress_Bars
@@ -116,27 +120,24 @@ FLTK.Environment (incomplete API, otherwise polished)
 
 To-Do:
 
-FL_Pixmap
-FL_GIF_Image
-FL_XPM_Image
-FL_Tiled_Image
-FL_Browser
-FL_Check_Browser
-FL_File_Browser
-FL_Hold_Browser
-FL_Multi_Browser
-FL_Select_Browser
-FL_Help_View
-FL_Table
-FL_Table_Row
-FL_Tree
-FL_Label
-FL_Postscript_File_Device
-FL_Postscript_Printer
-FL_Overlay_Window
-FL_GL_Window
-FL_Glut_Window
-FL_Cairo_Window
+Fl_Tiled_Image
+Fl_Browser
+Fl_Check_Browser
+Fl_File_Browser
+Fl_Hold_Browser
+Fl_Multi_Browser
+Fl_Select_Browser
+Fl_Help_View
+Fl_Table
+Fl_Table_Row
+Fl_Tree
+Fl_Label
+Fl_Postscript_File_Device
+Fl_Postscript_Printer
+Fl_Overlay_Window
+Fl_GL_Window
+Fl_Glut_Window
+Fl_Cairo_Window
 Fl_Display_Device
 Fl_File_Chooser
 

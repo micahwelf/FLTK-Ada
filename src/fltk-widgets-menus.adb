@@ -146,6 +146,19 @@ package body FLTK.Widgets.Menus is
     pragma Import (C, fl_menu_value, "fl_menu_value");
     pragma Inline (fl_menu_value);
 
+    function fl_menu_set_value
+           (M : in System.Address;
+            I : in Interfaces.C.int)
+        return Interfaces.C.int;
+    pragma Import (C, fl_menu_set_value, "fl_menu_set_value");
+    pragma Inline (fl_menu_set_value);
+
+    function fl_menu_set_value2
+           (M, I : in System.Address)
+        return Interfaces.C.int;
+    pragma Import (C, fl_menu_set_value2, "fl_menu_set_value2");
+    pragma Inline (fl_menu_set_value2);
+
 
 
 
@@ -581,6 +594,26 @@ package body FLTK.Widgets.Menus is
     begin
         return Extended_Index (fl_menu_value (This.Void_Ptr) + 1);
     end Chosen_Index;
+
+
+    procedure Set_Chosen
+           (This  : in out Menu;
+            Place : in     Index)
+    is
+        Ignore_Ret : Interfaces.C.int;
+    begin
+        Ignore_Ret := fl_menu_set_value (This.Void_Ptr, Interfaces.C.int (Place) - 1);
+    end Set_Chosen;
+
+
+    procedure Set_Chosen
+           (This : in out Menu;
+            Item : in     FLTK.Menu_Items.Menu_Item)
+    is
+        Ignore_Ret : Interfaces.C.int;
+    begin
+        Ignore_Ret := fl_menu_set_value2 (This.Void_Ptr, Wrapper (Item).Void_Ptr);
+    end Set_Chosen;
 
 
 

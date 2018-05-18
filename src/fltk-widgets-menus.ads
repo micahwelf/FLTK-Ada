@@ -142,6 +142,14 @@ package FLTK.Widgets.Menus is
            (This : in Menu)
         return Extended_Index;
 
+    procedure Set_Chosen
+           (This  : in out Menu;
+            Place : in     Index);
+
+    procedure Set_Chosen
+           (This : in out Menu;
+            Item : in     FLTK.Menu_Items.Menu_Item);
+
 
 
 
@@ -294,6 +302,7 @@ private
     pragma Inline (Chosen);
     pragma Inline (Chosen_Label);
     pragma Inline (Chosen_Index);
+    pragma Inline (Set_Chosen);
 
 
     pragma Inline (Get_Text_Color);

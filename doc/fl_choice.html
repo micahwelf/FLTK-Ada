@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Choice Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Choice Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Choice</td>
+    <td>FLTK.Widgets.Menus.Choices</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Choice</td>
+    <td>Choice</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Choice_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Choice(int X, int Y, int W, int H, const char *L=0);
+</pre></td>
+<td><pre>
+function Create
+       (X, Y, W, H : in Integer;
+        Text       : in String)
+    return Choice;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw();
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in out Choice);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int handle(int);
+</pre></td>
+<td><pre>
+function Handle
+       (This  : in out Choice;
+        Event : in     Event_Kind)
+    return Event_Outcome;
+</pre></td>
+  </tr>
+
+  <tr>
+<td>&nbsp;</td>
+<td><pre>
+function Chosen
+       (This : in Choice)
+    return FLTK.Menu_Items.Menu_Item_Reference;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value() const;
+</pre></td>
+<td><pre>
+function Chosen_Index
+       (This : in Choice)
+    return Extended_Index;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value(int v);
+</pre></td>
+<td><pre>
+procedure Set_Chosen
+       (This  : in out Choice;
+        Place : in     Index);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+int value(const Fl_Menu_Item *v);
+</pre></td>
+<td><pre>
+procedure Set_Chosen
+       (This : in out Choice;
+        Item : in     FLTK.Menu_Items.Menu_Item);
+</pre></td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+

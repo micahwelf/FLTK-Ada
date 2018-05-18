@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fl_Pixmap Binding Map</title>
+    <link href="map.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+<h2>Fl_Pixmap Binding Map</h2>
+
+
+<table class="package">
+  <tr><th colspan="2">Package name</th></tr>
+
+  <tr>
+    <td>Fl_Pixmap</td>
+    <td>FLTK.Images.Pixmaps</td>
+  </tr>
+
+</table>
+
+
+
+<table class="type">
+  <tr><th colspan="2">Types</th></tr>
+
+  <tr>
+    <td>Fl_Pixmap</td>
+    <td>Pixmap</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Pixmap_Reference</td>
+  </tr>
+
+</table>
+
+
+
+<table class="function">
+  <tr><th colspan="2">Functions and Procedures</th></tr>
+
+  <tr>
+<td><pre>
+Fl_Pixmap(char *const *D);
+Fl_Pixmap(uchar *const *D);
+Fl_Pixmap(const char *const *D);
+Fl_Pixmap(const uchar *const *D);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void color_average(Fl_Color c, float i);
+</pre></td>
+<td><pre>
+procedure Color_Average
+       (This   : in out Pixmap;
+        Col    : in     Color;
+        Amount : in     Blend);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual Fl_Image * copy(int W, int H);
+</pre></td>
+<td><pre>
+function Copy
+       (This          : in Pixmap;
+        Width, Height : in Natural)
+    return Pixmap'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+Fl_Image * copy();
+</pre></td>
+<td><pre>
+function Copy
+       (This : in Pixmap)
+    return Pixmap'Class;
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void desaturate();
+</pre></td>
+<td><pre>
+procedure Desaturate
+       (This : in out Pixmap);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void draw(int X, int Y, int W, int H, int cx=0, int cy=0);
+</pre></td>
+<td><pre>
+procedure Draw
+       (This       : in Pixmap;
+        X, Y, W, H : in Integer;
+        CX, CY     : in Integer := 0);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+void draw(int X, int Y);
+</pre></td>
+<td><pre>
+procedure Draw
+       (This : in Pixmap;
+        X, Y : in Integer);
+</pre></td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void label(Fl_Widget *w);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void label(Fl_Menu_Item *m);
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+  <tr>
+<td><pre>
+virtual void uncache();
+</pre></td>
+<td>&nbsp;</td>
+  </tr>
+
+</table>
+
+
+  </body>
+</html>
+
