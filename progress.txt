@@ -1,11 +1,19 @@
 
 
-Approximate Progress List (Incomplete)
+Approximate Progress List
 
 
 
 
-Overall estimate: ???%
+Overall estimate: 80%
+
+
+
+
+To move from 'Never' to 'To-Do' the class must be useful enough to bind.
+To move from 'To-Do' to 'Partially Done' the class binding must be usable from Ada to some extent.
+To move from 'Partially Done' to 'Done' the Ada API must be completed.
+To move from 'Done' to 'Polished' the implementation details must be double checked and binding docs written.
 
 
 
@@ -120,40 +128,49 @@ FLTK.Environment (incomplete API, otherwise polished)
 
 To-Do:
 
-Fl_Tiled_Image
 Fl_Browser
+Fl_Browser_
+Fl_Cairo_Window
 Fl_Check_Browser
+Fl_Display_Device
 Fl_File_Browser
-Fl_Hold_Browser
-Fl_Multi_Browser
-Fl_Select_Browser
+Fl_File_Chooser
+Fl_Gl_Window
+Fl_Glut_Window
+Fl_Help_Dialog
 Fl_Help_View
+Fl_Hold_Browser
+Fl_Label
+Fl_Multi_Browser
+Fl_Overlay_Window
+Fl_Postscript_File_Device
+Fl_Select_Browser
 Fl_Table
 Fl_Table_Row
+Fl_Tiled_Image
 Fl_Tree
-Fl_Label
-Fl_Postscript_File_Device
+
+
+
+
+Never:
+
+Fl_Device_Plugin
+Fl_FormsBitmap
+Fl_FormsPixmap
+Fl_FormsText
+Fl_Free
+Fl_GDI_Graphics_Driver
+Fl_Plugin
+Fl_Plugin_Manager
+Fl_Positioner
+Fl_Postscript_Graphics_Driver
 Fl_Postscript_Printer
-Fl_Overlay_Window
-Fl_GL_Window
-Fl_Glut_Window
-Fl_Cairo_Window
-Fl_Display_Device
-Fl_File_Chooser
-
-
-(all these have to be done to put something in the polished category)
-
-- mark all methods as inline
-- make sure all C++ reinterpret_cast for methods is to the Fl object, not the My object, because inheriting
-- check FLTK library internals to see which char* return values need dealloc
-- qualify all C++ virtual method calls with the class name to prevent dynamic dispatch on C++ side
-- provide documentation for how C++ methods map to Ada functions and procedures
-
-
-(delay this until figure out an easier way to expose protected methods)
-
-- make all protected methods available
+Fl_Quartz_Graphics_Driver
+Fl_Sys_Menu_Bar
+Fl_System_Printer
+Fl_Timer
+Fl_Xlib_Graphics_Driver
 
 
 
@@ -170,37 +187,8 @@ GNAT bug with type_invariant combined with derived type and a begin section in a
 
 
 
-Never:
+General:
 
-Fl_FormsBitmap
-Fl_FormsPixmap
-Fl_FormsText
-Fl_Free
-Fl_Sys_Menu_Bar
-Fl_Positioner
-Fl_Timer
-Fl_System_Printer
-Fl_GDI_Graphics_Driver
-Fl_Postscript_Graphics_Driver
-Fl_Quartz_Graphics_Driver
-Fl_Xlib_Graphics_Driver
-Fl_Plugin
-Fl_Plugin_Manager
-Fl_Device_Plugin
-
-
-
-
-A note on callbacks and overriding:
-
-As part of its normal operation, FLTK calls a Widget's Draw and Handle methods from its
-main loop to deal with draw and input events. Since it's another part of the program
-that is invoking them, even if it's a part the programmer has no direct control over,
-this binding is set up so that if you override Draw or Handle, the behaviour will change.
-
-On the other hand, something like the Push method in tabbed groups is usually invoked
-from within that same tabbed group widget's Handle method. Therefore, keeping consistency
-with Ada semantics, overriding the Push method will NOT change the behaviour of the
-corresponding Handle method. You must also override Handle.
+Find an easy way to make protected methods available on the Ada side
 
 
