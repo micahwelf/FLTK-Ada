@@ -296,6 +296,12 @@ package FLTK is
 private
 
 
+    pragma Linker_Options ("-lfltk");
+    pragma Linker_Options ("-lfltk_images");
+
+
+
+
     type Wrapper is new Ada.Finalization.Limited_Controlled with
         record
             Void_Ptr      : System.Address;
